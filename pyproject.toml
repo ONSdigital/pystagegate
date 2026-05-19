@@ -20,8 +20,10 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "jupyter-book<2.0",
     "pytest>=9.0.3",
     "ruff>=0.15.13",
+    "sphinx>=7.4.7",
 ]
 
 [tool.ruff.lint]
