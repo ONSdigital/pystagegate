@@ -20,5 +20,6 @@ jobs:
           enable-cache: true
       - run: uv sync --locked --all-extras --dev
       - run: uv run ruff check --output-format=github .
+      - run: uv run ruff format --check .
       - run: uv run pytest
       - run: uv build
