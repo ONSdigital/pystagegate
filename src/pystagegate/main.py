@@ -8,7 +8,7 @@ age_max = 200
 year = 2024
 
 
-def main():
+def prov_fin_main():
     # Load config
     config = functions.load_config("testing_config.json")
 
@@ -84,11 +84,9 @@ def main():
         }
     )
 
-    ltim_provisional_subset["Year"] = year
-
     # Create aggregated provisional data
     ltim_provisional_agg = (
-        ltim_provisional_subset.groupby(["code", "Year"])
+        ltim_provisional_subset.groupby(["code", "Age"])
         .agg(
             {
                 "international_in": "sum",
@@ -106,6 +104,8 @@ def main():
             }
         )
     )
+
+    ltim_provisional_agg["Year"] = year
 
     # Create a cartesian product of unique values for the provisional Scotland data
     unique_values = [
@@ -134,8 +134,6 @@ def main():
         .reset_index()
     )
 
-    print(ltim_provisional_scot_agg.head())
-
     ltim_provisional_scot_agg = (
         pd.pivot_table(
             ltim_provisional_scot_agg,
@@ -151,8 +149,15 @@ def main():
         ltim_provisional_scot_agg["Imm_Prov"] - ltim_provisional_scot_agg["Em_Prov"]
     )
 
-    print(ltim_provisional_scot_agg[ltim_provisional_scot_agg["year"] == year].head())
+    # Concatenate all aggregated provisional data
+    ltim_provisional_scot_agg = ltim_provisional_scot_agg[
+        ltim_provisional_scot_agg["year"] == year
+    ].rename(columns={"ca_code": "Local Authority Code", "year": "Year"})
+
+    ltim_provisional_all = pd.concat([ltim_provisional_agg, ltim_provisional_scot_agg])
+
+    print(ltim_provisional_all.head(10), sep="\n\n")
 
 
 if __name__ == "__main__":
-    main()
+    prov_fin_main()
