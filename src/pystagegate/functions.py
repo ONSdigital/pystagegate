@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 
+
 def filler(df: pd.DataFrame) -> pd.DataFrame:
     """Filler function for testing autodoc
 

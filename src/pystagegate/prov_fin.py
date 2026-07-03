@@ -2,13 +2,13 @@ import pandas as pd
 
 
 def load_summary_data(
-        path: str, 
-        age_var: str,
-        age_min: int, 
-        age_max: int,
-        lan_var: str = None,
-        date_var: str = None,
-    ) -> pd.DataFrame:
+    path: str,
+    age_var: str,
+    age_min: int,
+    age_max: int,
+    lan_var: str = None,
+    date_var: str = None,
+) -> pd.DataFrame:
     """
     Load and preprocess summary data from a CSV file.
 
@@ -35,5 +35,3 @@ def load_summary_data(
             df = df.drop(columns=[date_var])
 
     return df
-
-
