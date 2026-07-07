@@ -194,17 +194,38 @@ def prov_fin_main():
 
     # England analysis
     eng_agg = prov_fin.regional_breakdown(
-        ltim_final, "Imm_Prov", "Imm_Fin", "Em_Prov", "Em_Fin", "Net_Prov", "Net_Fin", "E"
+        ltim_final,
+        "Imm_Prov",
+        "Imm_Fin",
+        "Em_Prov",
+        "Em_Fin",
+        "Net_Prov",
+        "Net_Fin",
+        "E",
     )
 
     # Wales analysis
     wal_agg = prov_fin.regional_breakdown(
-        ltim_final, "Imm_Prov", "Imm_Fin", "Em_Prov", "Em_Fin", "Net_Prov", "Net_Fin", "W"
+        ltim_final,
+        "Imm_Prov",
+        "Imm_Fin",
+        "Em_Prov",
+        "Em_Fin",
+        "Net_Prov",
+        "Net_Fin",
+        "W",
     )
 
     # Scotland analysis
     sco_agg = prov_fin.regional_breakdown(
-        ltim_final, "Imm_Prov", "Imm_Fin", "Em_Prov", "Em_Fin", "Net_Prov", "Net_Fin", "S"
+        ltim_final,
+        "Imm_Prov",
+        "Imm_Fin",
+        "Em_Prov",
+        "Em_Fin",
+        "Net_Prov",
+        "Net_Fin",
+        "S",
     )
 
     # Put all together
