@@ -50,8 +50,7 @@ def prov_fin_main():
     )
 
     # Merge immigration and emmigration
-    ltim_merged = pd.merge(
-        ltim_immigration,
+    ltim_merged = ltim_immigration.merge(
         ltim_emigration,
         on=["Age", "Local Authority Code", "Year", "Sex", "Nationality Group"],
         how="left",
@@ -59,6 +58,29 @@ def prov_fin_main():
     )
 
     ltim_merged["Net_Cell"] = ltim_merged["Count_imm"] - ltim_merged["Count_em"]
+
+    ltim_merged = ltim_merged[ltim_merged["Nationality Group"] == "All Nationalities"]
+    ltim_merged = ltim_merged[ltim_merged["Year"] == year]
+
+    # Complete processing of the merged data
+    ltim_merged = (
+        ltim_merged.groupby(["Local Authority Code", "Year", "Age"])
+        .agg(
+            {
+                "Count_imm": "sum",
+                "Count_em": "sum",
+                "Net_Cell": "sum",
+            }
+        )
+        .reset_index()
+        .rename(
+            columns={
+                "Count_imm": "Imm_Fin",
+                "Count_em": "Em_Fin",
+                "Net_Cell": "Net_Fin",
+            }
+        )
+    )
 
     # Filter provisional data for the specified year
     ltim_provisional_subset = pd.concat(
@@ -123,13 +145,13 @@ def prov_fin_main():
     )
 
     # Merge the cartesian product with the provisional Scotland data
-    ltim_provisional_scot_merged = pd.merge(
-        scot_cartesian, ltim_provisional_scot, on=scot_column_select, how="left"
+    ltim_provisional_scot = scot_cartesian.merge(
+        ltim_provisional_scot, on=scot_column_select, how="left"
     ).fillna(0)
 
     # Aggregate the merged Scotland data, summing count for sex
     ltim_provisional_scot_agg = (
-        ltim_provisional_scot_merged.groupby(["ca_code", "year", "dir", "Age"])
+        ltim_provisional_scot.groupby(["ca_code", "year", "dir", "Age"])
         .agg({"count": "sum"})
         .reset_index()
     )
@@ -149,14 +171,43 @@ def prov_fin_main():
         ltim_provisional_scot_agg["Imm_Prov"] - ltim_provisional_scot_agg["Em_Prov"]
     )
 
-    # Concatenate all aggregated provisional data
     ltim_provisional_scot_agg = ltim_provisional_scot_agg[
         ltim_provisional_scot_agg["year"] == year
     ].rename(columns={"ca_code": "Local Authority Code", "year": "Year"})
 
+    # Concatenate all aggregated provisional data
     ltim_provisional_all = pd.concat([ltim_provisional_agg, ltim_provisional_scot_agg])
 
-    print(ltim_provisional_all.head(10), sep="\n\n")
+    # Final dataframe with provisional and merged data
+    ltim_final = ltim_provisional_all.merge(
+        ltim_merged,
+        on=["Local Authority Code", "Age", "Year"],
+        how="left",
+    )
+
+    ltim_final["Nation"] = ltim_final["Local Authority Code"].str[0]
+
+    # GB analysis
+    gb_agg = prov_fin.regional_breakdown(
+        ltim_final, "Imm_Prov", "Imm_Fin", "Em_Prov", "Em_Fin", "Net_Prov", "Net_Fin"
+    )
+
+    # England analysis
+    eng_agg = prov_fin.regional_breakdown(
+        ltim_final, "Imm_Prov", "Imm_Fin", "Em_Prov", "Em_Fin", "Net_Prov", "Net_Fin", "E"
+    )
+
+    # Wales analysis
+    wal_agg = prov_fin.regional_breakdown(
+        ltim_final, "Imm_Prov", "Imm_Fin", "Em_Prov", "Em_Fin", "Net_Prov", "Net_Fin", "W"
+    )
+
+    # Scotland analysis
+    sco_agg = prov_fin.regional_breakdown(
+        ltim_final, "Imm_Prov", "Imm_Fin", "Em_Prov", "Em_Fin", "Net_Prov", "Net_Fin", "S"
+    )
+
+    # Put all together
 
 
 if __name__ == "__main__":
