@@ -23,6 +23,7 @@ dev = [
     "jupyter-book<2.0",
     "pytest>=9.0.3",
     "ruff>=0.15.13",
+    "sdv>=1.37.3",
     "sphinx>=7.4.7",
 ]
 
