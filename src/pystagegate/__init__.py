@@ -1,2 +1,5 @@
+from pystagegate.pipelines import prov_fin_main
+
+
 def main() -> None:
-    print("Hello from pystagegate!")
+    prov_fin_main()
