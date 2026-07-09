@@ -21,7 +21,7 @@ def load_summary_data(
         date_var (str, optional): The name of the date variable column to drop. Defaults to None.
 
     Returns:
-        pd.DataFrame: A pandas DataFrame containing the filtered and preprocessed data.
+        df (pd.DataFrame): A pandas DataFrame containing the filtered and preprocessed data.
     """
     df = pd.read_csv(path)
     df = df[df[age_var].between(age_min, age_max)]
@@ -41,16 +41,15 @@ def squared_difference(
     df: pd.DataFrame, prefix: str, prov_col: str, fin_col: str
 ) -> pd.DataFrame:
     """
-    Create squared difference estimates for immigration or emigration
-    data using provisional and final estimates.
+    Create squared difference estimates for migration data using provisional and final estimates.
 
     Args:
-        df (pd.DataFrame): The input DataFrame.
+        df (pd.DataFrame): The input migration DataFrame.
         prov_col (str): The provisional estimate column name.
         fin_col (str): The final estimate column name.
 
     Returns:
-        pd.DataFrame: A pandas DataFrame containing the difference
+        df (pd.DataFrame): A pandas DataFrame containing the difference
         and squared difference estiamtes.
     """
 
@@ -67,7 +66,14 @@ def squared_difference(
 
 def check_prefix(prov: str, fin: str) -> str:
     """
-    Docstrings here
+    Checks if prefixes of supplied provisional and final column names match and returns the prefix.
+
+    Args:
+        prov (str): The provisional column name.
+        fin (str): The final column name.
+
+    Returns:
+        prefix (str): The common prefix of the two column names.
     """
     if prov.split("_", 1)[0] == fin.split("_", 1)[0]:
         prefix = prov.split("_", 1)[0]
@@ -89,17 +95,32 @@ def regional_breakdown(
     em_fin: str,
     net_prov: str,
     net_fin: str,
-    region: str = None,
-) -> pd.DataFrame:
+    nation: str = None,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Docstrings here
+    Performs aggregations by Age and Local Authority on both a whole country (GB) profile and nation profile.
+
+    Args:
+        df (pd.DataFrame): The input migration DataFrame.
+        imm_prov (str): The provisional immigration estimate column name.
+        imm_fin (str): The final immigration estimate column name.
+        em_prov (str): The provisional emigration estimate column name.
+        em_fin (str): The final emigration estimate column name.
+        net_prov (str): The provisional net migration estimate column name.
+        net_fin (str): The final net migration estimate column name.
+        nation (str, optional): A one letter code for nation, must be one of 'E', 'S', 'W'. Defaults to None for GB analysis.
+
+    Returns:
+        tuple:
+            - age_agg (pd.DataFrame): Migration data aggregated by age.
+            - la_agg (pd.DataFrame): Migration data aggregated by age and local authority.
     """
     imm_prefix = check_prefix(imm_prov, imm_fin)
     em_prefix = check_prefix(em_prov, em_fin)
     net_prefix = check_prefix(net_prov, net_fin)
 
-    if region is None:
-        aggr = (
+    if nation is None:
+        age_agg = (
             df.groupby("Age")
             .agg(
                 {
@@ -114,16 +135,16 @@ def regional_breakdown(
             .reset_index()
         )
 
-        aggr = df.merge(
-            aggr,
+        age_agg = df.merge(
+            age_agg,
             on="Age",
             how="left",
             suffixes=("", "_T"),
         )
     else:
-        if region in ["W", "S", "E"]:
-            aggr = (
-                df[df["Nation"] == region]
+        if nation in ["W", "S", "E"]:
+            age_agg = (
+                df[df["Nation"] == nation]
                 .groupby("Age")
                 .agg(
                     {
@@ -138,21 +159,21 @@ def regional_breakdown(
                 .reset_index()
             )
 
-            aggr = df[df["Nation"] == region].merge(
-                aggr,
+            age_agg = df[df["Nation"] == nation].merge(
+                age_agg,
                 on="Age",
                 how="left",
                 suffixes=("", "_T"),
             )
         else:
-            raise (ValueError("Region must be one of 'E', 'S', 'W'"))
+            raise (ValueError("Nation must be one of 'E', 'S', 'W'"))
 
-    aggr = squared_difference(aggr, imm_prefix, imm_prov, imm_fin)
-    aggr = squared_difference(aggr, em_prefix, em_prov, em_fin)
-    aggr = squared_difference(aggr, net_prefix, net_prov, net_fin)
+    age_agg = squared_difference(age_agg, imm_prefix, imm_prov, imm_fin)
+    age_agg = squared_difference(age_agg, em_prefix, em_prov, em_fin)
+    age_agg = squared_difference(age_agg, net_prefix, net_prov, net_fin)
 
-    aggr = (
-        aggr.groupby("Local Authority Code")
+    la_agg = (
+        age_agg.groupby("Local Authority Code")
         .agg(
             {
                 imm_prov: "sum",
@@ -166,4 +187,12 @@ def regional_breakdown(
         .reset_index()
     )
 
-    return aggr
+    for prefix in [imm_prefix, em_prefix, net_prefix]:
+        la_agg[f"sqdiff_{prefix}_sc"] = (
+            la_agg[f"sqdiff_{prefix}"] / la_agg[f"{prefix}_Prov"]
+        )
+
+    for frame in [age_agg, la_agg]:
+        frame["Nation"] = frame["Local Authority Code"].str[0]
+
+    return age_agg, la_agg
