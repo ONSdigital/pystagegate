@@ -2,20 +2,14 @@ from pystagegate import prov_fin, functions
 import pandas as pd
 from itertools import product
 
-# Params
-age_min = 0
-age_max = 200
-year = 2024
-
 
 def prov_fin_main():
     # Load config
     config = functions.load_config("testing_config.json")
 
-    # Load datasets
-    ltim_lookup = pd.read_csv(config["lookup_tables"]["ltim_lookup"])
-
-    las_lookup = pd.read_csv(config["lookup_tables"]["las_lookup"])
+    age_min = config["parameters"]["age_min"]
+    age_max = config["parameters"]["age_max"]
+    year = config["parameters"]["year"]
 
     ltim_immigration = prov_fin.load_summary_data(
         path=config["prov_fin_paths"]["spring_immigration"],
@@ -188,12 +182,14 @@ def prov_fin_main():
     ltim_final["Nation"] = ltim_final["Local Authority Code"].str[0]
 
     # GB analysis
-    gb_agg = prov_fin.regional_breakdown(
+    gb_age, gb_la = prov_fin.regional_breakdown(
         ltim_final, "Imm_Prov", "Imm_Fin", "Em_Prov", "Em_Fin", "Net_Prov", "Net_Fin"
     )
 
+    print("\n\n******** GB Analysis ********", gb_age, gb_la, sep="\n\n")
+
     # England analysis
-    eng_agg = prov_fin.regional_breakdown(
+    eng_age, eng_la = prov_fin.regional_breakdown(
         ltim_final,
         "Imm_Prov",
         "Imm_Fin",
@@ -204,8 +200,10 @@ def prov_fin_main():
         "E",
     )
 
+    print("\n\n******** England Analysis ********", eng_age, eng_la, sep="\n\n")
+
     # Wales analysis
-    wal_agg = prov_fin.regional_breakdown(
+    wal_age, wal_la = prov_fin.regional_breakdown(
         ltim_final,
         "Imm_Prov",
         "Imm_Fin",
@@ -216,8 +214,10 @@ def prov_fin_main():
         "W",
     )
 
+    print("\n\n******** Wales Analysis ********", wal_age, wal_la, sep="\n\n")
+
     # Scotland analysis
-    sco_agg = prov_fin.regional_breakdown(
+    scot_age, scot_la = prov_fin.regional_breakdown(
         ltim_final,
         "Imm_Prov",
         "Imm_Fin",
@@ -228,8 +228,4 @@ def prov_fin_main():
         "S",
     )
 
-    # Put all together
-
-
-if __name__ == "__main__":
-    prov_fin_main()
+    print("\n\n******** Scotland Analysis ********", scot_age, scot_la, sep="\n\n")
