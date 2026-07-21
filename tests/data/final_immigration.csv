@@ -1,0 +1,1001 @@
+Local Authority Name,Local Authority Code,Age,Sex,Nationality Group,Year,Count,Date Updated
+Ealing,E4,30,Female,Non-British,2023,39.344354372,xxx
+Gloucester,S3,30,Female,British,2025,1.916488707,xxx
+Dudley,E1,30,Male,British,2022,0.0,xxx
+Merthyr Tydfil,W1,40,Female,All Nationalities,2023,2.719261274,xxx
+Enfield,E3,30,Male,British,2023,12.169596709,xxx
+Stratford-on-Avon,S2,20,Male,All Nationalities,2025,0.0,xxx
+Gravesham,S2,30,Female,British,2022,0.0,xxx
+Castle Point,S2,50,Female,British,2025,0.0,xxx
+Cheshire East,S3,30,Male,British,2023,0.0,xxx
+Buckinghamshire,S1,30,Female,British,2021,29.570879547,xxx
+Dundee City,W2,60,Male,Non-British,2022,38.594651316,xxx
+Wirral,E2,40,Female,All Nationalities,2024,20.399632438,xxx
+Ashfield,W1,40,Male,All Nationalities,2024,0.0,xxx
+Boston,E2,30,Male,Non-British,2024,0.0,xxx
+Argyll and Bute,S3,20,Male,Non-British,2025,0.0,xxx
+Barnsley,E1,50,Male,Non-British,2025,0.0,xxx
+Worcester,S1,40,Male,British,2023,81.814665434,xxx
+Chelmsford,S1,50,Female,British,2022,41.251615633,xxx
+Tamworth,E4,60,Male,Non-British,2023,45.314119412,xxx
+Inverclyde,W2,40,Male,All Nationalities,2024,8.924138274,xxx
+Rhondda Cynon Taf,E3,30,Female,Non-British,2024,10.903321823,xxx
+Mole Valley,S3,40,Female,British,2021,0.0,xxx
+Thanet,S1,50,Female,British,2024,32.458757056,xxx
+Uttlesford,W1,40,Female,Non-British,2023,12.217778522,xxx
+Derby,S1,30,Male,All Nationalities,2021,0.0,xxx
+Merthyr Tydfil,W1,20,Female,Non-British,2022,52.845658008,xxx
+North East Derbyshire,S3,40,Male,All Nationalities,2023,0.0,xxx
+Worcester,W2,20,Female,All Nationalities,2021,49.864784136,xxx
+Rugby,E1,30,Female,All Nationalities,2023,49.983840454,xxx
+St. Helens,S3,40,Female,British,2021,18.190787997,xxx
+Wyre,E3,30,Female,British,2024,24.945601398,xxx
+Blaby,E1,30,Female,British,2023,75.636749341,xxx
+Dartford,W1,20,Male,All Nationalities,2024,16.957600656,xxx
+Na h-Eileanan Siar,S1,30,Female,British,2023,0.0,xxx
+Doncaster,W1,30,Male,Non-British,2024,0.0,xxx
+Uttlesford,S3,30,Female,British,2024,0.0,xxx
+Barking and Dagenham,W2,30,Male,British,2023,36.04646056,xxx
+Chorley,W1,40,Female,British,2022,0.0,xxx
+Adur,E1,30,Female,British,2023,75.349911856,xxx
+Great Yarmouth,S3,40,Male,All Nationalities,2021,0.0,xxx
+South Hams,S2,20,Male,British,2021,67.923465219,xxx
+Hartlepool,S3,20,Male,Non-British,2024,12.647077051,xxx
+Huntingdonshire,S1,30,Female,British,2024,39.806917465,xxx
+Dacorum,S1,20,Male,Non-British,2022,13.659710365,xxx
+Reading,E1,30,Male,All Nationalities,2023,0.0,xxx
+South Cambridgeshire,E2,60,Male,British,2022,37.495084642,xxx
+Dacorum,E4,50,Male,British,2023,29.061846014,xxx
+"Kingston upon Hull, City of",S2,30,Male,British,2021,0.0,xxx
+Welwyn Hatfield,E1,30,Female,Non-British,2023,11.444861815,xxx
+North Warwickshire,E3,20,Female,Non-British,2022,0.0,xxx
+West Lancashire,W2,40,Female,British,2024,124.268829865,xxx
+Babergh,S2,30,Male,British,2022,53.09172713,xxx
+Pendle,S3,60,Male,All Nationalities,2021,0.0,xxx
+Wandsworth,S2,60,Male,All Nationalities,2021,10.198630757,xxx
+Merthyr Tydfil,W1,30,Female,Non-British,2021,46.481862786,xxx
+East Riding of Yorkshire,E2,20,Male,All Nationalities,2021,0.0,xxx
+Merthyr Tydfil,S3,30,Male,All Nationalities,2022,0.0,xxx
+Redditch,W1,50,Male,All Nationalities,2022,0.0,xxx
+Merthyr Tydfil,E1,40,Male,British,2023,0.0,xxx
+South Lanarkshire,E4,50,Male,British,2024,65.744678403,xxx
+North East Derbyshire,S1,20,Female,British,2023,7.13614978,xxx
+West Northamptonshire,S2,40,Female,Non-British,2022,0.0,xxx
+Croydon,E1,30,Female,British,2022,30.477834308,xxx
+Hartlepool,S3,20,Male,Non-British,2023,0.0,xxx
+Merthyr Tydfil,W2,20,Female,British,2022,17.879527108,xxx
+Chorley,E3,50,Male,All Nationalities,2023,33.942691814,xxx
+Dartford,E4,40,Female,British,2023,0.0,xxx
+Crawley,E3,60,Female,All Nationalities,2022,0.0,xxx
+Merthyr Tydfil,W2,30,Female,Non-British,2024,33.762234536,xxx
+Oxford,S1,20,Male,British,2023,18.960661634,xxx
+Merthyr Tydfil,E2,30,Male,All Nationalities,2024,64.540727036,xxx
+Three Rivers,E2,30,Female,Non-British,2025,0.0,xxx
+Hastings,E3,20,Female,All Nationalities,2023,39.384103778,xxx
+Rushmoor,S1,50,Male,All Nationalities,2021,16.217830587,xxx
+Sandwell,E2,40,Female,Non-British,2022,86.779387116,xxx
+Stockton-on-Tees,S1,60,Female,British,2023,5.908457,xxx
+Solihull,E4,60,Male,Non-British,2024,15.61708238,xxx
+North Lincolnshire,W2,20,Male,All Nationalities,2021,0.0,xxx
+Gosport,W1,20,Female,British,2025,0.0,xxx
+Islington,E1,20,Male,All Nationalities,2023,64.631738956,xxx
+Runnymede,W2,40,Female,All Nationalities,2023,38.735605889,xxx
+Boston,E3,20,Male,All Nationalities,2023,92.853657483,xxx
+Hartlepool,S3,20,Male,All Nationalities,2022,0.0,xxx
+East Staffordshire,S2,30,Male,Non-British,2024,55.391832426,xxx
+Mid Sussex,S1,20,Female,All Nationalities,2023,0.0,xxx
+Epping Forest,E1,40,Male,British,2024,61.66298908,xxx
+Reigate and Banstead,E4,60,Female,Non-British,2022,0.0,xxx
+Greenwich,S2,30,Male,All Nationalities,2025,28.644586796,xxx
+Merton,E1,20,Female,Non-British,2022,0.0,xxx
+Hart,E2,30,Male,Non-British,2021,8.264246612,xxx
+South Norfolk,E3,30,Male,British,2022,21.174343612,xxx
+Dartford,E3,30,Male,Non-British,2021,0.0,xxx
+Pendle,W1,20,Male,British,2024,0.0,xxx
+Cambridge,S3,50,Male,Non-British,2024,0.0,xxx
+Islington,E2,40,Female,British,2022,19.620803247,xxx
+Hartlepool,E2,20,Female,All Nationalities,2024,0.0,xxx
+Torridge,S3,20,Male,British,2025,0.0,xxx
+Coventry,E4,30,Male,Non-British,2024,20.451110339,xxx
+Salford,E3,30,Female,All Nationalities,2025,5.185301136,xxx
+Ealing,W1,20,Female,All Nationalities,2022,0.0,xxx
+Stroud,W2,20,Male,All Nationalities,2023,0.0,xxx
+Amber Valley,E2,30,Male,British,2022,0.0,xxx
+Merthyr Tydfil,S1,40,Male,Non-British,2023,7.481589883,xxx
+Merthyr Tydfil,S2,30,Male,All Nationalities,2021,41.399010145,xxx
+Fylde,E1,60,Male,British,2021,35.089248336,xxx
+Salford,W2,40,Female,British,2025,0.0,xxx
+Peterborough,E2,20,Female,British,2025,0.0,xxx
+Fylde,W1,20,Female,Non-British,2025,35.193418224,xxx
+Hertsmere,S1,20,Female,Non-British,2023,0.0,xxx
+Dacorum,S3,30,Male,British,2021,42.726533796,xxx
+Newcastle upon Tyne,E4,40,Male,Non-British,2023,22.624074639,xxx
+Welwyn Hatfield,W2,30,Male,British,2024,11.084290855,xxx
+Hartlepool,S2,20,Female,Non-British,2022,0.0,xxx
+East Staffordshire,S3,40,Female,British,2023,0.0,xxx
+Tonbridge and Malling,S2,60,Male,British,2023,0.0,xxx
+Merthyr Tydfil,E3,30,Female,Non-British,2023,39.381411745,xxx
+Tendring,S2,30,Male,All Nationalities,2024,38.650123737,xxx
+Tunbridge Wells,E2,60,Female,All Nationalities,2024,0.0,xxx
+Hinckley and Bosworth,W2,20,Male,All Nationalities,2025,18.560275807,xxx
+Mid Devon,W1,30,Female,British,2025,19.739196995,xxx
+North Kesteven,E4,30,Female,British,2024,60.106757196,xxx
+Winchester,E1,50,Female,All Nationalities,2023,10.385678214,xxx
+Reigate and Banstead,E1,30,Male,Non-British,2021,15.926854773,xxx
+Cannock Chase,E4,30,Male,British,2024,45.707654081,xxx
+Rossendale,S1,60,Female,British,2024,64.120220754,xxx
+Hart,W2,20,Male,British,2023,0.0,xxx
+Stirling,S2,40,Male,Non-British,2021,0.0,xxx
+Perth and Kinross,E4,20,Female,British,2023,22.835075987,xxx
+Surrey Heath,S1,20,Female,All Nationalities,2024,0.0,xxx
+Ribble Valley,W2,30,Female,British,2023,48.870263651,xxx
+Manchester,S2,30,Male,British,2021,3.65728048,xxx
+Knowsley,S2,30,Female,All Nationalities,2021,0.0,xxx
+North Kesteven,W1,30,Female,Non-British,2025,17.917326841,xxx
+Bromsgrove,W1,30,Male,All Nationalities,2023,0.0,xxx
+Thanet,W2,40,Male,Non-British,2025,0.0,xxx
+Brent,W2,30,Female,Non-British,2022,0.0,xxx
+Vale of Glamorgan,S1,20,Female,All Nationalities,2023,0.0,xxx
+North Lincolnshire,E3,60,Male,British,2023,44.506497968,xxx
+Fylde,S1,40,Female,Non-British,2023,11.731167345,xxx
+Staffordshire Moorlands,S2,60,Male,Non-British,2021,0.0,xxx
+West Suffolk,E3,30,Male,Non-British,2022,31.155081631,xxx
+Pembrokeshire,W2,30,Female,British,2023,0.0,xxx
+East Staffordshire,E4,30,Male,British,2021,0.0,xxx
+Falkirk,E1,30,Male,All Nationalities,2023,3.315890841,xxx
+Dacorum,E3,40,Male,Non-British,2021,0.0,xxx
+"Bournemouth, Christchurch and Poole",S1,30,Male,All Nationalities,2025,64.062446057,xxx
+North Devon,E3,30,Male,British,2022,0.0,xxx
+Breckland,W1,20,Male,British,2023,17.651460479,xxx
+Wokingham,S3,40,Female,British,2025,11.880296988,xxx
+Neath Port Talbot,W2,40,Male,British,2022,8.928447573,xxx
+West Lancashire,W1,40,Female,Non-British,2021,33.719541449,xxx
+Merthyr Tydfil,E2,40,Female,All Nationalities,2022,69.180028922,xxx
+Cheltenham,E1,20,Female,British,2025,0.0,xxx
+Fenland,S2,50,Male,Non-British,2022,0.0,xxx
+Sheffield,E3,20,Female,Non-British,2022,0.0,xxx
+Spelthorne,E3,30,Male,British,2021,0.0,xxx
+Neath Port Talbot,E1,40,Male,Non-British,2023,0.0,xxx
+West Lindsey,E4,30,Female,British,2023,16.977609433,xxx
+Rochdale,E2,30,Female,All Nationalities,2023,0.0,xxx
+"Bristol, City of",E1,60,Male,British,2024,0.0,xxx
+South Hams,E3,20,Female,British,2022,0.0,xxx
+Babergh,E4,20,Male,Non-British,2024,46.107771056,xxx
+North Norfolk,E1,30,Female,British,2023,33.861617185,xxx
+Cheltenham,S3,30,Female,British,2023,0.0,xxx
+Epping Forest,W1,40,Female,British,2023,12.699425044,xxx
+Inverclyde,E1,30,Female,British,2025,26.530769321,xxx
+Hartlepool,W1,60,Female,British,2024,60.487059632,xxx
+Hartlepool,S1,40,Female,British,2022,23.522615524,xxx
+Milton Keynes,S1,30,Male,British,2023,1.85971763,xxx
+Nuneaton and Bedworth,E4,30,Male,British,2023,0.0,xxx
+Basildon,E3,30,Male,All Nationalities,2024,29.490876531,xxx
+Hartlepool,E4,40,Female,All Nationalities,2024,52.438275794,xxx
+Pendle,E1,20,Male,British,2021,66.801301907,xxx
+Chichester,E2,30,Female,Non-British,2021,0.0,xxx
+South Gloucestershire,W1,40,Female,Non-British,2023,0.0,xxx
+Three Rivers,S1,30,Male,British,2021,14.680802981,xxx
+Stockport,S3,50,Female,All Nationalities,2023,4.760930431,xxx
+Sutton,E2,60,Male,Non-British,2025,0.0,xxx
+Hinckley and Bosworth,S1,50,Female,All Nationalities,2025,0.0,xxx
+Cheltenham,E2,50,Female,All Nationalities,2022,82.288740972,xxx
+West Lothian,S2,30,Female,British,2025,63.816435604,xxx
+Exeter,W2,40,Male,British,2022,40.304211513,xxx
+Harrow,W2,30,Female,Non-British,2024,0.0,xxx
+Buckinghamshire,E4,20,Male,British,2023,53.227734194,xxx
+Ashfield,E4,30,Male,British,2023,54.500576556,xxx
+St. Helens,S3,50,Female,All Nationalities,2021,34.895092045,xxx
+Worcester,S3,60,Female,Non-British,2023,0.0,xxx
+Falkirk,E4,30,Male,British,2022,66.079473999,xxx
+Northumberland,E2,30,Female,All Nationalities,2025,0.0,xxx
+South Derbyshire,S1,40,Male,All Nationalities,2023,0.0,xxx
+Stratford-on-Avon,W2,30,Male,Non-British,2022,0.0,xxx
+Chelmsford,W2,20,Male,British,2023,8.734228666,xxx
+Nuneaton and Bedworth,E3,20,Female,Non-British,2022,1.594815437,xxx
+Great Yarmouth,W2,20,Male,All Nationalities,2022,76.91575016,xxx
+Thanet,W2,30,Female,Non-British,2023,9.659517217,xxx
+"Kingston upon Hull, City of",E3,40,Male,Non-British,2023,0.0,xxx
+Birmingham,W1,20,Female,British,2024,0.0,xxx
+Hounslow,S3,40,Male,All Nationalities,2024,0.0,xxx
+West Devon,E4,20,Male,All Nationalities,2024,0.0,xxx
+Cornwall,E1,50,Male,All Nationalities,2023,113.355405035,xxx
+Stoke-on-Trent,W1,30,Female,Non-British,2021,0.0,xxx
+Windsor and Maidenhead,S3,30,Female,All Nationalities,2023,30.462210394,xxx
+Chelmsford,W1,20,Female,British,2023,0.0,xxx
+Tendring,E1,60,Female,British,2023,36.797725593,xxx
+Stevenage,S1,60,Male,British,2024,25.956991631,xxx
+Blaby,E2,40,Male,British,2023,0.0,xxx
+Bury,E3,20,Female,Non-British,2023,0.0,xxx
+Amber Valley,W1,20,Male,Non-British,2025,19.169731668,xxx
+City of London,E2,20,Female,British,2022,50.783446402,xxx
+East Suffolk,E2,50,Female,British,2022,24.267492406,xxx
+Tendring,E3,30,Female,British,2021,16.79184874,xxx
+South Norfolk,S3,30,Female,British,2023,54.547355845,xxx
+Worthing,E3,40,Male,All Nationalities,2023,60.767530593,xxx
+Fareham,E3,40,Male,British,2021,0.0,xxx
+Derbyshire Dales,S1,30,Female,British,2023,52.792710317,xxx
+Rushcliffe,E4,30,Male,British,2024,0.0,xxx
+Peterborough,S1,30,Male,British,2024,0.0,xxx
+High Peak,S3,30,Male,British,2023,0.0,xxx
+Vale of White Horse,S1,30,Female,British,2023,51.666548768,xxx
+Merthyr Tydfil,S1,20,Male,Non-British,2021,59.874312925,xxx
+Cotswold,E3,40,Female,All Nationalities,2024,50.932697944,xxx
+North Norfolk,W1,40,Male,British,2023,11.472037168,xxx
+North East Derbyshire,E2,20,Male,British,2021,19.66439711,xxx
+East Staffordshire,E3,40,Male,All Nationalities,2023,17.592891879,xxx
+Dartford,S1,40,Female,All Nationalities,2023,27.93697771,xxx
+Nuneaton and Bedworth,S1,40,Male,British,2021,41.308324689,xxx
+East Lindsey,E1,40,Female,British,2023,0.0,xxx
+Redditch,E3,40,Female,British,2021,46.555841471,xxx
+Vale of White Horse,W2,20,Male,All Nationalities,2022,11.195821548,xxx
+Hartlepool,W1,30,Female,All Nationalities,2023,0.0,xxx
+North Norfolk,E1,30,Female,All Nationalities,2025,0.0,xxx
+Medway,E3,40,Female,Non-British,2023,0.0,xxx
+Rushcliffe,E4,20,Male,Non-British,2022,0.0,xxx
+Horsham,E1,20,Female,British,2023,8.580685339,xxx
+Hackney,E4,20,Male,All Nationalities,2023,5.935052783,xxx
+South Cambridgeshire,W2,30,Female,All Nationalities,2025,56.548505077,xxx
+Epsom and Ewell,S3,20,Female,British,2025,0.0,xxx
+Nuneaton and Bedworth,S3,30,Male,All Nationalities,2023,17.357498077,xxx
+Eastbourne,W2,30,Female,All Nationalities,2023,3.727267023,xxx
+New Forest,E3,40,Male,British,2023,81.102018749,xxx
+East Lindsey,W1,60,Female,British,2025,0.0,xxx
+Barnsley,S3,30,Male,British,2024,69.317862598,xxx
+Croydon,W1,20,Male,All Nationalities,2024,97.222658886,xxx
+West Lancashire,E4,20,Female,British,2023,0.0,xxx
+Hartlepool,W1,40,Male,Non-British,2022,72.320941475,xxx
+South Ribble,E2,40,Male,British,2021,0.0,xxx
+High Peak,S2,40,Female,Non-British,2021,0.0,xxx
+Stratford-on-Avon,W2,20,Male,British,2023,0.0,xxx
+West Lothian,S1,30,Male,All Nationalities,2023,19.714444195,xxx
+Liverpool,W2,50,Male,Non-British,2021,0.0,xxx
+Huntingdonshire,E3,40,Female,British,2021,26.242110047,xxx
+Eastbourne,E3,20,Male,Non-British,2023,0.0,xxx
+Adur,E2,30,Female,Non-British,2023,0.0,xxx
+Melton,E2,30,Male,Non-British,2021,0.0,xxx
+North Devon,E4,30,Male,Non-British,2024,0.0,xxx
+Portsmouth,S1,30,Male,Non-British,2024,0.0,xxx
+Rushmoor,W2,20,Male,British,2023,44.531229625,xxx
+St. Helens,S3,50,Male,Non-British,2023,9.464597045,xxx
+Hertsmere,W1,30,Male,British,2023,5.134863975,xxx
+Wigan,S1,60,Female,All Nationalities,2025,5.078363336,xxx
+Broadland,S2,30,Female,British,2023,0.0,xxx
+Basildon,W2,30,Male,All Nationalities,2024,43.556641316,xxx
+Cheshire West and Chester,W1,40,Male,British,2025,49.724553264,xxx
+Eastleigh,S2,40,Female,Non-British,2022,102.728461958,xxx
+Merton,S2,20,Male,British,2021,25.127083543,xxx
+East Dunbartonshire,W1,30,Male,All Nationalities,2022,21.570619296,xxx
+Enfield,S1,30,Male,British,2021,1.716412259,xxx
+South Kesteven,E4,20,Male,All Nationalities,2023,75.078683825,xxx
+Enfield,S3,40,Female,Non-British,2022,1.939660683,xxx
+East Lindsey,S3,30,Male,British,2025,0.0,xxx
+Nuneaton and Bedworth,E4,30,Male,British,2025,0.577367935,xxx
+Broxbourne,E4,40,Female,British,2022,0.0,xxx
+Merthyr Tydfil,W2,20,Male,All Nationalities,2021,0.0,xxx
+Camden,E1,30,Male,British,2024,55.271869137,xxx
+Tamworth,W2,50,Male,British,2023,48.793649088,xxx
+Rushmoor,E1,30,Female,British,2022,67.293565457,xxx
+Hartlepool,E2,30,Female,Non-British,2022,0.0,xxx
+South Norfolk,E4,60,Female,British,2024,19.657645778,xxx
+Boston,E4,30,Male,Non-British,2025,43.237634638,xxx
+Merthyr Tydfil,W2,40,Male,Non-British,2021,0.0,xxx
+Preston,E4,20,Male,British,2022,0.0,xxx
+Babergh,W2,20,Female,Non-British,2022,16.841335844,xxx
+Boston,S1,30,Female,British,2024,55.200877303,xxx
+Castle Point,S1,20,Female,Non-British,2023,51.821556593,xxx
+Cornwall,S1,20,Female,British,2024,0.0,xxx
+Hartlepool,E1,60,Female,Non-British,2023,0.0,xxx
+Barking and Dagenham,S2,30,Female,Non-British,2023,40.017890623,xxx
+Amber Valley,E4,20,Male,British,2024,0.0,xxx
+Cannock Chase,E3,30,Male,Non-British,2024,0.0,xxx
+Camden,S2,40,Female,British,2021,86.925217489,xxx
+Cannock Chase,S3,30,Female,Non-British,2024,39.120266345,xxx
+Tendring,W1,20,Female,Non-British,2024,0.0,xxx
+Maldon,E3,40,Female,British,2023,0.0,xxx
+Harborough,E3,30,Female,All Nationalities,2021,9.15610282,xxx
+Calderdale,E4,20,Female,All Nationalities,2021,2.081484977,xxx
+Liverpool,E1,30,Male,Non-British,2023,0.0,xxx
+Bromsgrove,S3,20,Female,British,2023,0.7184757,xxx
+Bolton,E2,20,Male,British,2024,62.258637511,xxx
+Welwyn Hatfield,W2,30,Female,British,2024,0.0,xxx
+Stoke-on-Trent,W1,30,Female,Non-British,2022,16.353136741,xxx
+Epping Forest,S3,20,Female,British,2023,52.835946521,xxx
+East Hampshire,W2,20,Male,Non-British,2025,36.987880312,xxx
+Watford,W1,40,Female,Non-British,2021,0.0,xxx
+Redditch,E4,50,Male,British,2022,0.0,xxx
+Hammersmith and Fulham,W1,20,Male,Non-British,2023,49.582200561,xxx
+Derby,W1,30,Female,All Nationalities,2022,0.0,xxx
+Newcastle-under-Lyme,S3,30,Male,All Nationalities,2024,34.871063097,xxx
+Gateshead,S3,20,Male,All Nationalities,2022,0.0,xxx
+Newark and Sherwood,S2,40,Female,All Nationalities,2021,18.221015136,xxx
+Trafford,S1,50,Male,British,2023,17.510557952,xxx
+Burnley,E3,20,Male,Non-British,2025,23.107096333,xxx
+Stevenage,S1,30,Female,British,2023,41.548921697,xxx
+Broxtowe,S2,40,Male,Non-British,2022,0.0,xxx
+Swale,W2,30,Male,All Nationalities,2024,20.485486932,xxx
+Newark and Sherwood,E3,40,Male,All Nationalities,2022,0.0,xxx
+Chichester,S2,60,Male,British,2023,29.552483466,xxx
+Harborough,W1,20,Male,Non-British,2023,73.508053027,xxx
+Enfield,S2,60,Female,All Nationalities,2022,56.307159304,xxx
+Hart,E3,20,Female,British,2021,27.419010768,xxx
+Rugby,S1,30,Female,Non-British,2025,27.727061488,xxx
+Birmingham,S2,30,Female,Non-British,2022,4.405510747,xxx
+Na h-Eileanan Siar,W1,30,Female,All Nationalities,2023,23.504644287,xxx
+West Dunbartonshire,S1,30,Male,British,2022,0.0,xxx
+Wandsworth,S2,40,Male,British,2021,19.830875077,xxx
+Epsom and Ewell,S3,20,Female,All Nationalities,2023,132.922671363,xxx
+Milton Keynes,W2,30,Male,All Nationalities,2025,0.0,xxx
+Rochford,S2,20,Female,Non-British,2021,55.014896637,xxx
+Hartlepool,S3,30,Male,Non-British,2023,0.0,xxx
+Runnymede,S3,40,Male,British,2022,0.0,xxx
+Runnymede,W2,30,Male,All Nationalities,2025,0.0,xxx
+Cheshire East,E2,60,Male,British,2021,42.673574507,xxx
+Shropshire,S2,20,Male,British,2023,0.0,xxx
+Broadland,W1,40,Male,British,2023,0.0,xxx
+Waverley,S3,50,Female,Non-British,2023,18.976920746,xxx
+Epsom and Ewell,S3,50,Male,All Nationalities,2025,42.545675314,xxx
+Melton,E4,30,Female,Non-British,2023,3.499097792,xxx
+South Holland,W1,40,Male,British,2023,0.0,xxx
+North Warwickshire,E2,40,Female,British,2025,0.0,xxx
+Torridge,W1,20,Male,Non-British,2025,23.755391188,xxx
+Liverpool,S1,30,Male,Non-British,2025,38.106754135,xxx
+Trafford,W1,40,Male,All Nationalities,2025,93.480422271,xxx
+Midlothian,E1,30,Male,All Nationalities,2025,43.332148962,xxx
+North East Lincolnshire,S2,60,Male,All Nationalities,2024,13.06839889,xxx
+East Renfrewshire,S2,40,Female,British,2025,35.835095339,xxx
+Central Bedfordshire,S1,20,Female,British,2022,34.7096572,xxx
+Dartford,S2,30,Male,Non-British,2022,0.0,xxx
+Stafford,W2,20,Male,British,2025,4.040563985,xxx
+Mid Sussex,S1,20,Male,British,2025,37.641665618,xxx
+West Devon,S1,30,Female,Non-British,2024,47.325289937,xxx
+Ashford,W1,20,Female,British,2021,72.688080008,xxx
+North West Leicestershire,E3,50,Male,Non-British,2022,41.629986481,xxx
+Solihull,S3,40,Male,All Nationalities,2022,136.934891948,xxx
+Sheffield,S2,20,Female,All Nationalities,2024,42.077376645,xxx
+High Peak,E2,50,Male,Non-British,2022,0.0,xxx
+Swale,E2,40,Male,Non-British,2021,6.408998227,xxx
+Oxford,W1,30,Female,British,2022,0.0,xxx
+Tewkesbury,S1,30,Female,All Nationalities,2023,0.0,xxx
+Worcester,S2,40,Male,British,2023,0.0,xxx
+Brighton and Hove,W2,30,Female,British,2024,92.800610785,xxx
+Glasgow City,S2,60,Female,British,2021,0.0,xxx
+North Northamptonshire,E4,40,Male,British,2025,0.0,xxx
+Chorley,W2,20,Female,Non-British,2021,0.0,xxx
+Ipswich,E3,30,Female,Non-British,2023,55.340476232,xxx
+Cornwall,W1,30,Female,All Nationalities,2024,23.812050255,xxx
+Sandwell,W1,40,Male,Non-British,2024,0.0,xxx
+Forest of Dean,E4,30,Male,British,2023,45.34023783,xxx
+Bolton,W1,60,Male,Non-British,2025,0.0,xxx
+Hillingdon,E2,30,Female,All Nationalities,2023,7.755575406,xxx
+Breckland,S1,30,Male,British,2021,35.285859382,xxx
+Barnet,E3,30,Male,British,2024,6.538689195,xxx
+Colchester,E3,20,Female,Non-British,2024,26.929824826,xxx
+South Norfolk,E2,50,Male,British,2022,0.0,xxx
+Sefton,E3,60,Female,Non-British,2024,80.155051456,xxx
+Bexley,S3,60,Female,All Nationalities,2024,0.0,xxx
+Oadby and Wigston,E2,30,Male,British,2024,0.0,xxx
+Woking,E3,60,Female,All Nationalities,2024,30.454607704,xxx
+South Staffordshire,W1,20,Male,Non-British,2021,0.0,xxx
+Mole Valley,E4,60,Male,British,2022,25.787646962,xxx
+Derbyshire Dales,E1,20,Male,British,2025,79.659924299,xxx
+Hart,E2,40,Female,Non-British,2025,0.0,xxx
+Great Yarmouth,W1,30,Female,British,2024,0.0,xxx
+Camden,S2,30,Female,British,2022,0.0,xxx
+Ribble Valley,S3,20,Female,All Nationalities,2023,4.376236481,xxx
+Maidstone,E3,30,Male,British,2024,40.225581774,xxx
+Torbay,E1,30,Male,Non-British,2023,0.0,xxx
+Merthyr Tydfil,W2,40,Male,All Nationalities,2021,23.185558893,xxx
+Oldham,E4,50,Male,All Nationalities,2023,78.106639425,xxx
+Hartlepool,E1,60,Female,All Nationalities,2022,57.070788675,xxx
+Reigate and Banstead,S2,30,Male,Non-British,2023,0.0,xxx
+Rochdale,W2,20,Female,All Nationalities,2022,0.0,xxx
+Rochford,W1,60,Female,All Nationalities,2022,0.0,xxx
+Stafford,S3,50,Female,Non-British,2022,0.0,xxx
+East Riding of Yorkshire,E3,30,Male,All Nationalities,2025,16.336844347,xxx
+Worthing,E4,20,Male,British,2023,31.751563251,xxx
+Dumfries and Galloway,S1,30,Male,British,2025,75.050215762,xxx
+Kingston upon Thames,S2,30,Male,British,2022,43.140903201,xxx
+Thanet,S1,40,Female,All Nationalities,2025,6.602809099,xxx
+Wiltshire,E3,30,Female,British,2022,0.0,xxx
+Test Valley,E2,20,Male,British,2023,0.0,xxx
+Chorley,W1,30,Male,British,2023,0.0,xxx
+Greenwich,E1,40,Female,British,2022,8.115058287,xxx
+Hinckley and Bosworth,E2,20,Male,British,2023,69.740145395,xxx
+Redcar and Cleveland,E3,30,Female,All Nationalities,2022,16.74605099,xxx
+Bromsgrove,E2,40,Male,All Nationalities,2025,0.0,xxx
+Ashford,S3,30,Female,British,2022,0.0,xxx
+Spelthorne,S1,40,Male,British,2025,0.0,xxx
+Rochford,E3,60,Male,All Nationalities,2022,21.828411418,xxx
+Bromsgrove,S3,40,Male,Non-British,2023,13.746065065,xxx
+Sunderland,E1,30,Male,Non-British,2023,48.544947657,xxx
+Malvern Hills,S2,50,Male,All Nationalities,2022,31.8196267,xxx
+Merthyr Tydfil,S3,40,Female,Non-British,2023,0.0,xxx
+St. Helens,E1,20,Male,All Nationalities,2023,0.0,xxx
+Chelmsford,S3,50,Male,British,2025,3.500503257,xxx
+"Herefordshire, County of",S3,30,Male,Non-British,2024,22.203930369,xxx
+South Norfolk,E4,40,Female,Non-British,2022,0.0,xxx
+Redbridge,E3,20,Male,British,2022,19.543388249,xxx
+Cannock Chase,S2,30,Male,British,2021,0.0,xxx
+Staffordshire Moorlands,E2,30,Female,British,2023,17.155204925,xxx
+Hartlepool,S3,20,Female,All Nationalities,2025,25.612897332,xxx
+Scottish Borders,E3,40,Female,British,2023,18.733587375,xxx
+St Albans,S1,20,Male,All Nationalities,2024,0.0,xxx
+Pendle,E1,60,Male,British,2022,0.0,xxx
+East Lothian,E2,20,Female,British,2021,26.734829256,xxx
+West Suffolk,W2,20,Male,Non-British,2023,46.174735567,xxx
+Lambeth,S3,30,Male,British,2022,29.502539539,xxx
+Merthyr Tydfil,W2,30,Male,Non-British,2022,0.0,xxx
+Warwick,S3,20,Female,British,2021,15.892593007,xxx
+Havant,E1,30,Male,All Nationalities,2024,6.060100586,xxx
+Merthyr Tydfil,W2,20,Male,Non-British,2024,0.0,xxx
+South Holland,E3,40,Female,British,2023,0.0,xxx
+Pembrokeshire,E2,20,Male,Non-British,2024,0.0,xxx
+Mid Devon,W2,40,Male,British,2022,0.0,xxx
+Epsom and Ewell,E2,60,Female,British,2024,57.416854852,xxx
+Chesterfield,W2,20,Male,British,2025,17.085652751,xxx
+Coventry,W1,20,Female,British,2023,0.0,xxx
+Doncaster,W2,30,Female,All Nationalities,2025,13.274560085,xxx
+Isle of Wight,E1,30,Male,British,2022,34.784817657,xxx
+Torridge,E1,20,Male,British,2023,52.641800965,xxx
+Stockport,W1,20,Female,All Nationalities,2024,72.56953418,xxx
+Brighton and Hove,S1,40,Female,British,2023,0.0,xxx
+Welwyn Hatfield,E2,40,Male,Non-British,2022,0.0,xxx
+Norwich,E3,20,Male,Non-British,2021,0.0,xxx
+Orkney Islands,E1,30,Male,British,2021,0.0,xxx
+Harborough,E2,40,Female,All Nationalities,2025,0.0,xxx
+Mole Valley,S2,30,Male,British,2025,49.010533131,xxx
+Chelmsford,S3,30,Male,All Nationalities,2023,63.663424793,xxx
+King's Lynn and West Norfolk,W1,30,Male,British,2023,6.230556175,xxx
+Chelmsford,E4,50,Male,Non-British,2024,0.0,xxx
+Waverley,E4,60,Female,All Nationalities,2022,6.52837599,xxx
+South Norfolk,W2,30,Male,British,2025,61.007604328,xxx
+Midlothian,E2,50,Male,All Nationalities,2025,0.0,xxx
+Thanet,E4,40,Male,All Nationalities,2024,18.467419085,xxx
+Rochdale,S3,50,Female,British,2024,0.0,xxx
+Leicester,S3,50,Male,British,2022,0.0,xxx
+Hartlepool,E2,30,Female,British,2023,0.0,xxx
+Leicester,S3,60,Female,British,2025,31.738304706,xxx
+Castle Point,E4,40,Female,British,2021,20.638001489,xxx
+Fenland,E1,30,Female,British,2023,53.961866909,xxx
+South Derbyshire,E4,40,Female,All Nationalities,2024,0.0,xxx
+Dudley,S3,30,Male,Non-British,2024,7.10822777,xxx
+Shropshire,S2,30,Female,All Nationalities,2024,0.0,xxx
+Bolton,E3,40,Male,British,2024,0.0,xxx
+Eastleigh,E2,60,Male,All Nationalities,2024,47.806003603,xxx
+Vale of Glamorgan,E3,30,Female,All Nationalities,2021,3.767724187,xxx
+Sandwell,E1,20,Female,British,2022,0.0,xxx
+Enfield,S3,40,Female,British,2023,9.528331337,xxx
+Spelthorne,S2,30,Female,British,2023,0.0,xxx
+West Lancashire,W1,20,Male,British,2023,46.62741669,xxx
+Shetland Islands,W2,20,Male,All Nationalities,2022,79.977273897,xxx
+Bromsgrove,E3,60,Female,Non-British,2025,0.0,xxx
+South Holland,E2,20,Female,Non-British,2022,0.0,xxx
+Tunbridge Wells,W2,20,Female,British,2022,11.279685078,xxx
+Spelthorne,W1,40,Male,Non-British,2025,0.0,xxx
+Canterbury,S2,40,Male,British,2025,0.0,xxx
+Hartlepool,S1,30,Female,British,2021,0.0,xxx
+Maldon,S2,40,Male,Non-British,2024,0.0,xxx
+Ashfield,E4,30,Male,British,2024,0.0,xxx
+Sunderland,E3,30,Female,British,2023,3.600951949,xxx
+South Norfolk,E3,30,Male,British,2022,76.427203078,xxx
+South Oxfordshire,E2,30,Female,Non-British,2025,0.0,xxx
+Swindon,E4,30,Male,British,2022,0.0,xxx
+Medway,W1,40,Male,British,2025,0.0,xxx
+North Devon,S3,40,Female,Non-British,2022,14.361051356,xxx
+Stafford,S3,20,Male,British,2023,57.199597988,xxx
+South Holland,E3,40,Female,All Nationalities,2024,119.121243027,xxx
+Uttlesford,E1,30,Male,British,2023,0.0,xxx
+Fareham,S1,40,Male,British,2022,54.287546357,xxx
+Huntingdonshire,S3,40,Female,British,2025,1.823834804,xxx
+Middlesbrough,E4,20,Female,Non-British,2022,10.197566248,xxx
+North East Derbyshire,S3,30,Female,Non-British,2021,38.153634717,xxx
+Rossendale,E4,30,Male,All Nationalities,2025,0.0,xxx
+Mansfield,S1,30,Female,Non-British,2023,79.559064625,xxx
+Bath and North East Somerset,S3,40,Female,Non-British,2021,0.0,xxx
+Lancaster,W2,30,Female,British,2025,0.0,xxx
+Surrey Heath,E3,40,Male,All Nationalities,2023,0.0,xxx
+Wirral,S1,30,Female,British,2025,9.54343279,xxx
+Fylde,E2,60,Female,All Nationalities,2021,0.0,xxx
+Merthyr Tydfil,W1,30,Female,All Nationalities,2021,0.0,xxx
+Aberdeen City,E3,60,Male,All Nationalities,2021,60.791905962,xxx
+Harlow,S3,40,Male,Non-British,2024,31.907918688,xxx
+Rochdale,E2,30,Male,British,2021,29.83407398,xxx
+Arun,S2,20,Female,Non-British,2021,0.0,xxx
+Cannock Chase,S1,40,Female,British,2023,14.160675423,xxx
+Blackpool,E4,60,Male,British,2021,0.0,xxx
+South Norfolk,E1,30,Male,Non-British,2023,0.0,xxx
+Merthyr Tydfil,W2,30,Male,British,2023,0.0,xxx
+Fareham,S2,40,Male,British,2021,28.216820401,xxx
+Crawley,S2,50,Female,British,2023,0.0,xxx
+Hartlepool,W2,60,Male,British,2025,40.857159424,xxx
+Calderdale,S3,60,Female,All Nationalities,2025,0.0,xxx
+Sunderland,S1,40,Male,Non-British,2023,0.0,xxx
+Kirklees,E3,20,Female,All Nationalities,2022,0.0,xxx
+Dover,W2,30,Female,Non-British,2023,26.167841023,xxx
+Liverpool,S2,30,Male,British,2023,40.572990258,xxx
+Torridge,S2,50,Female,British,2024,0.0,xxx
+Glasgow City,E1,30,Male,British,2022,10.988851172,xxx
+Bolton,W1,40,Male,British,2022,12.095670528,xxx
+Babergh,E1,40,Male,Non-British,2022,14.737599337,xxx
+Somerset,E2,40,Female,British,2021,0.0,xxx
+Ashford,S1,20,Male,Non-British,2024,28.563474152,xxx
+Sutton,E2,30,Female,All Nationalities,2024,0.0,xxx
+South Hams,W1,20,Female,Non-British,2024,31.664289806,xxx
+Oadby and Wigston,E1,30,Female,Non-British,2022,0.0,xxx
+West Oxfordshire,E4,20,Female,Non-British,2025,0.0,xxx
+Ashford,W2,20,Male,All Nationalities,2025,16.374789788,xxx
+Birmingham,E4,50,Female,All Nationalities,2021,18.141690026,xxx
+Brent,E1,30,Female,Non-British,2025,0.0,xxx
+Gravesham,W1,40,Male,Non-British,2024,0.0,xxx
+Gloucester,W1,60,Female,British,2023,0.0,xxx
+Argyll and Bute,E1,20,Male,British,2021,15.029314346,xxx
+Cherwell,E4,30,Male,Non-British,2025,0.0,xxx
+Newcastle upon Tyne,S1,40,Male,British,2021,0.0,xxx
+Tewkesbury,S1,30,Male,Non-British,2023,0.0,xxx
+Hartlepool,E4,30,Female,British,2021,1.061787806,xxx
+North Devon,S3,40,Female,British,2024,18.614467854,xxx
+Southwark,E3,20,Female,All Nationalities,2023,0.0,xxx
+Adur,S2,50,Male,Non-British,2024,7.985582529,xxx
+Teignbridge,E4,50,Male,British,2022,60.045512513,xxx
+Charnwood,W2,60,Male,All Nationalities,2024,63.782097274,xxx
+Broxbourne,E2,30,Male,British,2022,48.923872421,xxx
+Angus,S1,40,Female,British,2022,27.429132642,xxx
+Rochford,E4,20,Male,Non-British,2024,41.09175346,xxx
+Staffordshire Moorlands,S1,50,Female,British,2022,0.0,xxx
+Stroud,E4,50,Male,All Nationalities,2024,0.0,xxx
+Fife,W2,30,Male,British,2023,0.0,xxx
+Ashford,E3,50,Female,Non-British,2024,0.0,xxx
+Warwick,E2,40,Male,Non-British,2025,0.0,xxx
+Tunbridge Wells,W1,60,Male,Non-British,2025,0.0,xxx
+Epsom and Ewell,E3,30,Male,Non-British,2023,0.0,xxx
+Tendring,W1,30,Male,Non-British,2023,0.0,xxx
+North Norfolk,S3,20,Male,British,2024,0.0,xxx
+Boston,E2,30,Male,British,2023,13.289368441,xxx
+Gosport,E4,30,Male,British,2023,32.55237665,xxx
+Birmingham,E3,20,Female,British,2023,79.781694636,xxx
+South Oxfordshire,W1,30,Female,British,2024,0.0,xxx
+North Lanarkshire,W2,20,Female,All Nationalities,2022,22.108583328,xxx
+Merthyr Tydfil,S1,30,Female,Non-British,2025,0.0,xxx
+Merthyr Tydfil,E1,30,Male,Non-British,2024,0.0,xxx
+East Hertfordshire,W1,30,Male,British,2024,38.257238017,xxx
+East Staffordshire,E2,40,Female,Non-British,2025,9.409978802,xxx
+Wigan,E1,40,Male,Non-British,2023,42.99764029,xxx
+Tendring,S1,30,Female,British,2024,0.0,xxx
+Oldham,E2,60,Female,British,2024,0.0,xxx
+Merthyr Tydfil,S2,20,Female,British,2025,14.13002775,xxx
+North Yorkshire,W2,30,Female,British,2021,105.112014478,xxx
+Leeds,W1,30,Male,British,2021,6.371904191,xxx
+Blackpool,S1,40,Male,Non-British,2024,0.0,xxx
+East Cambridgeshire,W2,20,Female,All Nationalities,2024,0.0,xxx
+Blackpool,E1,30,Female,British,2025,13.110560443,xxx
+Merthyr Tydfil,S2,30,Female,British,2024,5.566712887,xxx
+East Devon,W2,40,Female,Non-British,2022,25.458314196,xxx
+East Ayrshire,S1,30,Male,Non-British,2023,36.573749656,xxx
+South Norfolk,E3,40,Male,British,2025,61.269765122,xxx
+East Lothian,S2,30,Male,All Nationalities,2022,78.048489878,xxx
+Croydon,E3,30,Male,All Nationalities,2022,63.849199661,xxx
+Ashfield,E1,30,Male,Non-British,2022,0.0,xxx
+Hartlepool,S2,30,Female,British,2022,40.331994669,xxx
+Swale,W2,30,Female,British,2022,26.997910471,xxx
+Oadby and Wigston,S2,30,Male,Non-British,2021,67.193327517,xxx
+Trafford,W2,20,Female,All Nationalities,2024,68.02477835,xxx
+North Northamptonshire,E3,50,Female,All Nationalities,2023,19.711413529,xxx
+Tewkesbury,W1,50,Female,British,2022,113.342416117,xxx
+Coventry,E2,60,Female,British,2023,58.097469568,xxx
+Elmbridge,E1,30,Male,All Nationalities,2024,35.435845492,xxx
+Elmbridge,S2,20,Male,Non-British,2023,0.0,xxx
+Waltham Forest,W1,30,Male,British,2023,0.0,xxx
+Hertsmere,W1,30,Male,Non-British,2024,13.903991644,xxx
+Braintree,S3,60,Male,British,2021,0.0,xxx
+West Berkshire,E2,30,Female,Non-British,2022,3.827361859,xxx
+Merthyr Tydfil,E4,20,Female,All Nationalities,2024,29.583084429,xxx
+Dacorum,W2,30,Female,All Nationalities,2024,55.791049772,xxx
+Dacorum,W1,20,Male,All Nationalities,2021,27.223723714,xxx
+Test Valley,W1,50,Male,All Nationalities,2023,61.255712622,xxx
+Redbridge,S2,30,Female,All Nationalities,2025,27.966048213,xxx
+Inverclyde,E1,40,Male,British,2021,0.0,xxx
+Warwick,E2,50,Female,All Nationalities,2024,0.0,xxx
+Eastbourne,E4,60,Female,All Nationalities,2021,0.0,xxx
+Worcester,W2,40,Male,British,2025,27.643510523,xxx
+Hartlepool,W1,50,Female,All Nationalities,2023,23.685916416,xxx
+Wirral,E2,20,Male,British,2024,58.215505446,xxx
+Hartlepool,E2,40,Female,All Nationalities,2024,0.0,xxx
+Sandwell,E2,40,Female,Non-British,2024,0.0,xxx
+Hartlepool,E3,40,Female,British,2023,0.0,xxx
+Melton,E2,30,Male,British,2021,22.824476449,xxx
+Stockport,W1,50,Female,All Nationalities,2021,4.00789071,xxx
+Plymouth,S1,20,Male,Non-British,2022,0.0,xxx
+Crawley,E2,30,Male,British,2021,0.0,xxx
+Chelmsford,W2,40,Female,British,2021,0.0,xxx
+Peterborough,E1,30,Male,British,2023,11.379565332,xxx
+Chichester,S3,30,Male,Non-British,2023,3.418368604,xxx
+Stockport,E4,60,Female,All Nationalities,2023,9.75591942,xxx
+Melton,E2,30,Male,All Nationalities,2025,31.512709172,xxx
+Cheltenham,E1,40,Male,Non-British,2023,0.0,xxx
+Rhondda Cynon Taf,W1,20,Male,Non-British,2021,0.0,xxx
+Ribble Valley,S2,40,Male,British,2022,20.406156053,xxx
+Oxford,W2,20,Male,Non-British,2024,17.508153387,xxx
+Hartlepool,W2,30,Female,British,2023,42.225556439,xxx
+Hartlepool,E2,30,Female,All Nationalities,2023,0.0,xxx
+Ashford,W1,20,Female,Non-British,2022,0.0,xxx
+Haringey,E2,40,Male,British,2024,83.037295098,xxx
+Merthyr Tydfil,W1,30,Female,Non-British,2024,45.356874214,xxx
+Sutton,S2,60,Male,Non-British,2022,0.0,xxx
+Dundee City,E4,20,Male,British,2023,0.0,xxx
+South Ayrshire,E3,60,Male,British,2023,39.842249183,xxx
+Flintshire,S3,30,Female,Non-British,2022,0.0,xxx
+Test Valley,S3,30,Male,Non-British,2022,20.577472354,xxx
+Rushcliffe,E1,20,Male,All Nationalities,2024,0.0,xxx
+Hyndburn,E2,20,Male,Non-British,2024,0.0,xxx
+South Holland,S3,30,Female,All Nationalities,2021,0.0,xxx
+North East Lincolnshire,E3,40,Female,Non-British,2025,0.0,xxx
+County Durham,E4,30,Male,All Nationalities,2023,36.337986858,xxx
+Mid Devon,E1,20,Male,All Nationalities,2025,20.449467898,xxx
+Northern Ireland,W2,50,Female,All Nationalities,2022,0.0,xxx
+Lancaster,S2,40,Female,British,2024,3.969437909,xxx
+Lichfield,W2,30,Female,British,2022,50.001859659,xxx
+Bexley,S3,20,Female,Non-British,2022,20.967481677,xxx
+South Oxfordshire,E2,60,Female,Non-British,2021,0.0,xxx
+Vale of White Horse,E3,60,Female,All Nationalities,2023,41.134636099,xxx
+Pendle,S2,50,Female,British,2024,49.733800411,xxx
+West Oxfordshire,S2,20,Female,Non-British,2023,0.0,xxx
+Knowsley,W1,30,Female,All Nationalities,2025,0.0,xxx
+South Staffordshire,S3,30,Female,All Nationalities,2021,0.0,xxx
+Vale of Glamorgan,E1,50,Female,All Nationalities,2023,9.760285692,xxx
+Newcastle upon Tyne,S2,40,Male,British,2024,0.0,xxx
+Central Bedfordshire,W2,30,Female,All Nationalities,2022,3.928732399,xxx
+South Ribble,E3,20,Female,British,2023,0.0,xxx
+Babergh,E4,40,Male,British,2023,0.0,xxx
+Cornwall,E1,50,Male,Non-British,2021,0.0,xxx
+Great Yarmouth,E4,60,Male,British,2022,0.0,xxx
+Hartlepool,E1,20,Female,British,2024,0.0,xxx
+Powys,S1,20,Female,All Nationalities,2024,78.494797714,xxx
+South Cambridgeshire,E2,50,Male,All Nationalities,2023,0.0,xxx
+Westmorland and Furness,E4,40,Male,British,2023,73.661317435,xxx
+South Ribble,E4,20,Male,Non-British,2025,67.341584362,xxx
+Elmbridge,E3,30,Female,All Nationalities,2023,9.219150999,xxx
+Hartlepool,W2,40,Female,British,2024,0.0,xxx
+Bromsgrove,S1,50,Female,British,2022,3.41732087,xxx
+Dover,E3,30,Female,British,2025,15.814190914,xxx
+Crawley,W1,40,Female,Non-British,2022,10.393433006,xxx
+Wolverhampton,E1,30,Male,Non-British,2023,4.225168638,xxx
+Kingston upon Thames,S2,40,Male,All Nationalities,2023,42.379237668,xxx
+Na h-Eileanan Siar,W1,20,Male,All Nationalities,2023,6.503012401,xxx
+North West Leicestershire,E1,20,Male,British,2021,0.0,xxx
+Ipswich,E4,20,Male,British,2023,0.0,xxx
+West Lindsey,E2,30,Female,British,2025,0.0,xxx
+Mid Suffolk,E2,30,Male,British,2022,26.856031333,xxx
+Merthyr Tydfil,E2,40,Male,British,2022,3.780740634,xxx
+Norwich,E1,20,Female,Non-British,2025,9.819731944,xxx
+Wyre,W1,30,Female,British,2023,50.747852289,xxx
+Trafford,E2,30,Female,Non-British,2024,0.0,xxx
+Broadland,E3,30,Female,British,2024,0.0,xxx
+Merthyr Tydfil,E1,60,Male,British,2021,0.0,xxx
+North East Lincolnshire,S3,30,Female,Non-British,2022,0.0,xxx
+Liverpool,E2,30,Female,Non-British,2023,89.805137786,xxx
+Mole Valley,W2,20,Male,British,2023,0.0,xxx
+Rossendale,W2,50,Male,Non-British,2024,67.19150469,xxx
+East Staffordshire,S2,60,Female,Non-British,2024,38.682169893,xxx
+Tendring,E4,30,Male,All Nationalities,2022,0.0,xxx
+East Renfrewshire,E1,50,Male,All Nationalities,2021,65.558646801,xxx
+Thanet,E3,60,Female,Non-British,2023,0.0,xxx
+Hartlepool,E4,60,Male,British,2023,0.0,xxx
+Cheshire East,S3,60,Male,All Nationalities,2022,47.46253907,xxx
+Hyndburn,E3,20,Female,All Nationalities,2024,12.875430928,xxx
+West Lancashire,E4,30,Male,British,2023,31.018059514,xxx
+Wychavon,S3,30,Male,Non-British,2022,0.0,xxx
+East Lindsey,E1,20,Male,Non-British,2021,0.0,xxx
+Mid Sussex,W2,60,Female,British,2022,46.377080274,xxx
+Tunbridge Wells,S1,60,Female,Non-British,2021,9.975202214,xxx
+Dorset,E1,60,Female,British,2024,82.120173434,xxx
+Watford,E1,20,Female,British,2021,90.588268255,xxx
+Hartlepool,E4,30,Female,British,2025,9.299263366,xxx
+North Kesteven,W2,60,Female,British,2022,0.0,xxx
+Lancaster,S2,30,Female,Non-British,2023,0.0,xxx
+Brent,E4,50,Male,Non-British,2023,7.011091127,xxx
+Spelthorne,E1,30,Female,British,2022,24.119578411,xxx
+Horsham,W2,50,Female,All Nationalities,2022,0.0,xxx
+North West Leicestershire,E1,40,Male,British,2024,17.770744029,xxx
+Cumberland,W1,20,Female,Non-British,2023,0.0,xxx
+Coventry,E1,30,Male,Non-British,2024,0.0,xxx
+Buckinghamshire,E2,30,Male,Non-British,2022,29.827270883,xxx
+Hartlepool,W2,50,Female,British,2025,32.27295054,xxx
+North Yorkshire,E4,40,Female,British,2024,74.364043092,xxx
+Wychavon,S1,30,Male,All Nationalities,2023,0.0,xxx
+Lewisham,S1,30,Female,British,2025,0.0,xxx
+Salford,S1,30,Male,All Nationalities,2023,53.327752676,xxx
+Birmingham,E3,30,Female,All Nationalities,2024,24.812135327,xxx
+Chesterfield,S2,40,Male,Non-British,2022,8.723065526,xxx
+Hartlepool,S2,60,Male,British,2023,0.0,xxx
+St. Helens,E1,30,Male,Non-British,2022,48.600809632,xxx
+Cheltenham,E4,20,Female,Non-British,2022,6.470434019,xxx
+Ashfield,E4,30,Female,All Nationalities,2021,89.471130332,xxx
+Bromsgrove,S2,30,Male,Non-British,2024,41.747573177,xxx
+High Peak,E2,30,Male,Non-British,2023,72.668571887,xxx
+Leeds,W2,50,Male,Non-British,2023,0.0,xxx
+Test Valley,E3,20,Male,Non-British,2023,11.412655869,xxx
+Braintree,S3,50,Female,British,2022,5.656693851,xxx
+Clackmannanshire,S3,40,Female,British,2023,1.775222084,xxx
+Ribble Valley,S3,60,Female,British,2024,0.0,xxx
+Brent,S1,40,Male,All Nationalities,2024,3.24435024,xxx
+West Northamptonshire,W2,50,Female,All Nationalities,2025,16.815623357,xxx
+St. Helens,W1,20,Male,British,2025,6.094618551,xxx
+Kingston upon Thames,S2,30,Female,British,2024,0.0,xxx
+Vale of Glamorgan,E1,20,Male,Non-British,2025,0.0,xxx
+Fife,W2,30,Male,British,2025,60.150100124,xxx
+Harrow,S2,30,Male,British,2022,50.185472958,xxx
+Hart,S2,40,Male,All Nationalities,2025,35.95679352,xxx
+Worthing,W1,30,Male,All Nationalities,2025,72.49578011,xxx
+Staffordshire Moorlands,E4,20,Female,British,2024,18.416048991,xxx
+Mid Suffolk,W1,40,Female,Non-British,2024,53.452232869,xxx
+Croydon,S1,20,Female,Non-British,2023,0.0,xxx
+Hounslow,E1,40,Female,Non-British,2022,47.191866876,xxx
+Renfrewshire,E4,40,Male,British,2023,53.437954862,xxx
+Hartlepool,S2,40,Male,British,2023,96.520304344,xxx
+Lichfield,E2,50,Female,All Nationalities,2023,25.757079711,xxx
+Cambridge,W1,30,Female,British,2023,33.178544487,xxx
+Newcastle-under-Lyme,S3,20,Male,British,2024,20.94798786,xxx
+Lincoln,E2,30,Male,British,2024,52.020400755,xxx
+Brighton and Hove,S3,60,Female,British,2023,92.958461557,xxx
+Wrexham,S3,40,Male,All Nationalities,2022,60.958522851,xxx
+Uttlesford,E1,60,Female,British,2023,2.995858131,xxx
+Chesterfield,S1,40,Male,All Nationalities,2024,9.702539651,xxx
+Dacorum,W1,50,Female,All Nationalities,2025,46.86169669,xxx
+Teignbridge,W1,60,Female,All Nationalities,2024,0.0,xxx
+Merthyr Tydfil,W1,40,Male,British,2025,44.233269685,xxx
+Melton,S1,40,Male,British,2022,5.26324548,xxx
+Hartlepool,S1,20,Male,British,2024,0.0,xxx
+Barnsley,E4,30,Female,Non-British,2022,0.0,xxx
+Hartlepool,E4,30,Male,Non-British,2024,96.983646834,xxx
+Waltham Forest,W2,20,Female,Non-British,2023,15.801455391,xxx
+Bassetlaw,E1,30,Female,British,2021,0.0,xxx
+Teignbridge,W1,40,Female,British,2023,0.0,xxx
+Coventry,W2,60,Male,Non-British,2023,39.584950431,xxx
+South Norfolk,W2,20,Male,All Nationalities,2022,100.932688663,xxx
+Monmouthshire,E2,40,Female,British,2022,114.72722135,xxx
+Hartlepool,W1,30,Female,Non-British,2023,69.39233178,xxx
+Knowsley,W1,60,Female,British,2021,34.869885535,xxx
+Adur,E3,60,Male,Non-British,2024,0.0,xxx
+Preston,E2,30,Female,British,2022,22.944913343,xxx
+Mid Suffolk,W1,30,Female,Non-British,2025,4.596117592,xxx
+Winchester,W2,30,Female,British,2023,11.006939317,xxx
+Leeds,S2,30,Male,British,2024,0.0,xxx
+Leeds,S1,30,Male,Non-British,2025,11.64265653,xxx
+Isle of Wight,S2,30,Male,British,2023,0.0,xxx
+Waverley,E3,40,Female,All Nationalities,2023,0.0,xxx
+Rugby,S1,30,Female,All Nationalities,2023,0.0,xxx
+Elmbridge,E4,30,Female,Non-British,2024,0.0,xxx
+Kensington and Chelsea,S3,40,Female,Non-British,2023,0.0,xxx
+Broxtowe,S3,60,Male,All Nationalities,2023,92.699825498,xxx
+South Kesteven,E4,40,Female,British,2023,0.0,xxx
+Worthing,S3,40,Female,Non-British,2023,64.404963595,xxx
+Lancaster,S2,20,Male,British,2021,0.0,xxx
+Derbyshire Dales,S1,30,Male,Non-British,2025,39.519174315,xxx
+South Lanarkshire,E4,30,Female,British,2022,1.325600153,xxx
+North Northamptonshire,W2,50,Female,British,2024,0.0,xxx
+Hartlepool,S2,30,Female,All Nationalities,2022,98.580748878,xxx
+East Dunbartonshire,S2,30,Female,British,2025,6.891991662,xxx
+Canterbury,S3,40,Male,Non-British,2024,0.0,xxx
+Rushmoor,S2,40,Female,All Nationalities,2022,12.541420964,xxx
+Ashfield,E2,30,Male,British,2023,35.089990124,xxx
+Three Rivers,E3,40,Female,British,2022,0.0,xxx
+Norwich,S3,40,Male,British,2024,35.59088809,xxx
+"Bournemouth, Christchurch and Poole",E4,30,Male,All Nationalities,2023,13.366964797,xxx
+East Hertfordshire,W1,60,Male,Non-British,2023,0.0,xxx
+Dudley,S1,60,Male,British,2022,81.621461613,xxx
+Oadby and Wigston,S3,40,Male,All Nationalities,2023,0.0,xxx
+Camden,S3,30,Male,All Nationalities,2021,0.0,xxx
+Clackmannanshire,E4,30,Female,All Nationalities,2021,80.085628607,xxx
+Westminster,S3,30,Male,All Nationalities,2023,4.334632776,xxx
+Solihull,E1,30,Female,All Nationalities,2025,50.564797757,xxx
+East Dunbartonshire,E2,30,Male,All Nationalities,2023,0.0,xxx
+Hillingdon,S2,60,Female,Non-British,2024,3.603352055,xxx
+Wrexham,E1,20,Female,British,2022,0.0,xxx
+Gedling,E1,30,Female,Non-British,2022,67.862618929,xxx
+Runnymede,W2,20,Male,British,2021,54.144197828,xxx
+Solihull,E1,50,Male,Non-British,2023,3.954727506,xxx
+Wigan,S2,40,Male,Non-British,2024,90.396847118,xxx
+East Ayrshire,S2,20,Male,Non-British,2022,65.135316277,xxx
+Hartlepool,E1,30,Male,Non-British,2023,5.56229356,xxx
+East Staffordshire,S3,20,Male,British,2022,16.725068448,xxx
+Southend-on-Sea,E3,30,Female,All Nationalities,2025,0.0,xxx
+Hartlepool,W2,30,Male,All Nationalities,2024,2.45791786,xxx
+County Durham,E4,20,Male,Non-British,2021,37.168497359,xxx
+Middlesbrough,S2,50,Male,British,2022,0.0,xxx
+Breckland,E2,30,Female,British,2023,40.901381605,xxx
+Merthyr Tydfil,W2,40,Female,British,2025,23.332287479,xxx
+Leeds,S1,60,Male,British,2022,0.0,xxx
+Havering,S3,50,Male,All Nationalities,2025,36.246038205,xxx
+Brent,E1,20,Male,British,2024,0.0,xxx
+Torbay,W2,40,Female,Non-British,2025,33.132540067,xxx
+Tandridge,E2,30,Male,Non-British,2024,0.0,xxx
+Bolsover,S1,30,Male,Non-British,2022,32.700796313,xxx
+Broxtowe,S1,20,Female,Non-British,2025,21.243218412,xxx
+Redditch,E1,60,Female,All Nationalities,2025,0.0,xxx
+Worcester,S2,60,Male,British,2023,0.0,xxx
+Luton,E2,30,Female,British,2021,0.0,xxx
+Rochdale,E2,50,Male,British,2022,61.229677093,xxx
+Birmingham,E1,50,Female,British,2022,0.0,xxx
+Wychavon,W2,40,Male,British,2023,0.0,xxx
+Hackney,S1,50,Male,All Nationalities,2022,0.0,xxx
+West Lindsey,E3,50,Male,All Nationalities,2024,0.0,xxx
+Rotherham,E1,20,Male,British,2021,15.367661949,xxx
+Clackmannanshire,S1,60,Female,British,2025,0.0,xxx
+Hart,E4,50,Male,All Nationalities,2025,47.012750897,xxx
+Hartlepool,S1,40,Male,Non-British,2023,0.0,xxx
+Salford,S1,20,Female,Non-British,2023,0.0,xxx
+King's Lynn and West Norfolk,W2,40,Male,British,2024,3.416793108,xxx
+Boston,S2,40,Male,British,2023,0.0,xxx
+Three Rivers,W2,30,Male,British,2024,13.154500614,xxx
+Bolsover,S2,30,Female,All Nationalities,2025,0.0,xxx
+West Oxfordshire,E1,50,Female,Non-British,2023,0.0,xxx
+Merthyr Tydfil,S1,30,Male,British,2022,0.0,xxx
+Newport,W2,40,Male,All Nationalities,2021,68.703975075,xxx
+Ipswich,E1,20,Female,All Nationalities,2022,0.0,xxx
+Three Rivers,E4,20,Male,All Nationalities,2021,2.724282554,xxx
+Staffordshire Moorlands,E2,60,Female,All Nationalities,2025,50.940372009,xxx
+Newham,E2,40,Female,British,2023,68.987840674,xxx
+Gateshead,W1,30,Female,All Nationalities,2021,69.685024398,xxx
+Worcester,E2,20,Female,Non-British,2024,71.487035208,xxx
+Mole Valley,E3,30,Female,British,2024,40.565049464,xxx
+Dover,S2,20,Female,British,2025,20.661944914,xxx
+Walsall,E4,20,Female,British,2024,0.0,xxx
+Rushmoor,S2,30,Female,British,2024,91.023856733,xxx
+Dorset,W2,40,Female,British,2021,27.085992466,xxx
+Liverpool,E1,40,Female,All Nationalities,2022,47.799680744,xxx
+Hartlepool,S2,60,Male,All Nationalities,2024,0.0,xxx
+Ashford,S3,30,Female,All Nationalities,2022,20.918051697,xxx
+Tamworth,W1,60,Male,British,2023,32.288332439,xxx
+Stroud,S2,40,Female,All Nationalities,2025,17.442357182,xxx
+Southwark,E3,20,Female,All Nationalities,2022,39.628435565,xxx
+Hertsmere,W2,40,Male,British,2021,40.354506198,xxx
+Ashfield,W1,30,Male,All Nationalities,2023,9.353202738,xxx
+St. Helens,S1,60,Female,British,2022,0.0,xxx
+Gravesham,S3,20,Male,British,2021,21.416870786,xxx
+Worthing,S2,30,Male,All Nationalities,2022,0.0,xxx
+South Oxfordshire,W2,40,Female,Non-British,2025,0.0,xxx
+Inverclyde,E4,40,Male,Non-British,2022,0.0,xxx
+Solihull,E4,30,Male,Non-British,2025,19.512894256,xxx
+Reigate and Banstead,W2,30,Male,British,2021,18.461728503,xxx
+Aberdeen City,E3,30,Male,All Nationalities,2023,29.223884431,xxx
+Carmarthenshire,W2,30,Female,British,2024,0.0,xxx
+Nottingham,E4,40,Female,British,2021,9.090033036,xxx
+East Renfrewshire,S1,30,Female,British,2024,4.003184634,xxx
+Derbyshire Dales,E2,50,Male,British,2023,1.311540487,xxx
+Merthyr Tydfil,E3,60,Male,British,2021,0.0,xxx
+Merthyr Tydfil,W1,40,Male,British,2024,111.248764084,xxx
+Barnsley,E3,30,Male,British,2022,35.280359519,xxx
+Exeter,S2,20,Female,British,2021,0.0,xxx
+City of London,S1,40,Male,British,2025,80.878838682,xxx
+Tamworth,E4,50,Female,All Nationalities,2024,24.06866003,xxx
+Cambridge,E2,20,Male,British,2025,147.173601644,xxx
+Wrexham,W1,40,Female,All Nationalities,2021,0.0,xxx
+Wolverhampton,W2,30,Female,Non-British,2021,39.577476595,xxx
+Hartlepool,E3,30,Male,British,2025,0.0,xxx
+West Lindsey,E1,30,Female,Non-British,2022,19.67006055,xxx
+Maidstone,S2,30,Male,Non-British,2022,32.219796351,xxx
+Exeter,E3,30,Male,British,2021,0.0,xxx
+Rochdale,S1,30,Male,British,2023,0.0,xxx
+North Hertfordshire,S1,50,Male,British,2022,2.579922943,xxx
+Moray,S1,50,Male,Non-British,2025,57.600214372,xxx
+South Ayrshire,E4,30,Male,British,2023,0.0,xxx
+Rochdale,S1,20,Female,British,2025,16.195565182,xxx
+Na h-Eileanan Siar,E1,20,Female,Non-British,2023,28.556344417,xxx
+South Norfolk,W2,20,Female,All Nationalities,2022,0.0,xxx
+Leeds,W1,50,Female,British,2022,0.0,xxx
+North Norfolk,E1,30,Female,Non-British,2024,45.916402198,xxx
+North Warwickshire,W2,20,Male,Non-British,2025,0.0,xxx
+Norwich,E2,40,Male,British,2024,0.0,xxx
+Brent,W1,20,Male,British,2024,0.0,xxx
+Winchester,E3,30,Female,British,2023,0.0,xxx
+Rushcliffe,E2,30,Male,British,2022,0.0,xxx
+Hinckley and Bosworth,W1,50,Male,British,2021,0.0,xxx
+Ipswich,E3,30,Female,Non-British,2022,0.0,xxx
+Forest of Dean,S3,30,Male,All Nationalities,2024,0.0,xxx
+Hammersmith and Fulham,S3,60,Male,British,2024,0.0,xxx
+Newcastle-under-Lyme,W1,30,Male,All Nationalities,2021,40.076417291,xxx
+Merthyr Tydfil,E4,30,Male,British,2022,0.0,xxx
+Central Bedfordshire,W2,50,Male,Non-British,2024,11.947917927,xxx
+Braintree,E1,30,Female,Non-British,2024,4.178252076,xxx
+Hinckley and Bosworth,S1,30,Female,Non-British,2021,0.0,xxx
+Welwyn Hatfield,E2,50,Female,All Nationalities,2024,29.210698005,xxx
+West Suffolk,S2,20,Female,All Nationalities,2021,0.0,xxx
+Sheffield,E3,30,Female,All Nationalities,2024,55.269379401,xxx
+Hartlepool,E3,30,Male,All Nationalities,2025,1.491089604,xxx
+Adur,S3,40,Female,All Nationalities,2025,28.948964776,xxx
+Westmorland and Furness,E2,40,Female,Non-British,2023,48.486022618,xxx
+Gateshead,E1,50,Male,British,2023,23.745440523,xxx
+Dover,E1,20,Male,British,2021,46.952360055,xxx
+East Dunbartonshire,E4,60,Female,British,2024,0.0,xxx
+Dartford,E4,30,Male,British,2021,22.446802928,xxx
+Hartlepool,E2,30,Male,All Nationalities,2025,0.0,xxx
+Gedling,E1,50,Female,Non-British,2025,0.0,xxx
+Amber Valley,W2,30,Male,British,2022,57.995462794,xxx
+South Kesteven,E4,40,Male,British,2024,53.963024738,xxx
+Hartlepool,S2,30,Female,All Nationalities,2023,30.903681367,xxx
+Wirral,W2,40,Female,All Nationalities,2021,51.189121933,xxx
+Merthyr Tydfil,E3,30,Male,British,2024,0.0,xxx
+North East Lincolnshire,E4,50,Male,All Nationalities,2025,0.0,xxx
+Bath and North East Somerset,W1,30,Female,Non-British,2025,27.670204974,xxx
+Eastleigh,E2,20,Female,British,2023,30.993117251,xxx
+Arun,E2,30,Male,British,2022,42.473027999,xxx
+Pendle,S3,20,Male,Non-British,2022,103.172717716,xxx
+Eastbourne,E2,50,Female,All Nationalities,2022,10.460032523,xxx
+Lancaster,E1,30,Male,British,2021,0.0,xxx
+Lincoln,S3,60,Male,All Nationalities,2021,0.0,xxx
+Richmond upon Thames,W2,40,Male,All Nationalities,2021,37.338621408,xxx
+Wyre,S2,40,Female,All Nationalities,2025,0.0,xxx
+Hartlepool,S2,60,Male,All Nationalities,2023,39.438492165,xxx
+Hartlepool,S3,40,Female,Non-British,2021,44.513893997,xxx
+North Kesteven,E3,30,Female,Non-British,2025,63.29921662,xxx
+Cheshire East,S1,60,Male,Non-British,2022,0.0,xxx
+Tower Hamlets,W2,40,Male,British,2021,2.095560698,xxx
+Broadland,E3,20,Male,All Nationalities,2023,19.716641651,xxx
+Hartlepool,W2,30,Male,All Nationalities,2021,48.129679996,xxx
+Buckinghamshire,S2,20,Female,All Nationalities,2023,0.914242763,xxx
+Hartlepool,E2,50,Male,British,2021,0.0,xxx
+Islington,W1,20,Female,British,2025,0.0,xxx
+"Herefordshire, County of",E2,30,Male,All Nationalities,2023,0.0,xxx
+Lancaster,S1,40,Male,All Nationalities,2024,0.0,xxx
+Swindon,S3,20,Female,All Nationalities,2022,0.0,xxx
+West Northamptonshire,W2,30,Female,British,2024,85.210088902,xxx
+Woking,S3,20,Male,British,2024,2.40981016,xxx
+Babergh,E2,20,Male,British,2024,55.946286671,xxx
+Merthyr Tydfil,E1,40,Female,All Nationalities,2025,0.0,xxx
+Renfrewshire,E2,30,Female,Non-British,2025,29.165560145,xxx
+Malvern Hills,S3,20,Female,All Nationalities,2023,12.867384821,xxx
+Southwark,E2,30,Male,British,2022,0.0,xxx
+Lewisham,W2,30,Male,All Nationalities,2025,27.582451059,xxx
+Nuneaton and Bedworth,W2,30,Female,British,2024,75.797099473,xxx
+Eastbourne,W2,50,Female,All Nationalities,2024,0.0,xxx
+Wyre,S3,40,Female,British,2022,0.0,xxx
+King's Lynn and West Norfolk,E3,60,Female,All Nationalities,2023,0.0,xxx
+Halton,S1,30,Female,British,2025,0.0,xxx
+Huntingdonshire,E3,40,Female,Non-British,2024,0.0,xxx
+Huntingdonshire,E3,50,Female,Non-British,2025,0.0,xxx
+Wandsworth,E4,20,Male,All Nationalities,2022,7.148825921,xxx
+North Hertfordshire,W2,20,Male,Non-British,2024,0.0,xxx
+Mole Valley,E3,30,Female,All Nationalities,2021,0.0,xxx
+Barking and Dagenham,S2,50,Male,British,2024,25.668040889,xxx
+North Norfolk,W2,30,Female,All Nationalities,2022,0.0,xxx
+Broxtowe,S2,60,Male,British,2021,9.840353297,xxx
+Crawley,S1,20,Female,All Nationalities,2023,0.514855708,xxx
+Falkirk,S1,20,Female,All Nationalities,2022,17.38682794,xxx
+Ipswich,S2,30,Male,British,2023,54.223281428,xxx
+North Hertfordshire,W1,30,Male,All Nationalities,2023,77.927370739,xxx
+Sunderland,E2,20,Female,Non-British,2022,62.730539839,xxx
+Redditch,W2,30,Male,All Nationalities,2022,13.849439973,xxx
+Rushcliffe,S1,30,Male,All Nationalities,2022,63.483465182,xxx
+Conwy,E1,60,Male,Non-British,2025,12.108975748,xxx
+East Cambridgeshire,E3,60,Female,Non-British,2024,46.818778227,xxx
+Erewash,W1,30,Male,All Nationalities,2022,0.0,xxx
+Forest of Dean,E4,20,Male,British,2021,86.924160892,xxx
+Stafford,E2,30,Male,Non-British,2023,3.766010858,xxx
+Basingstoke and Deane,E4,20,Male,Non-British,2025,49.764722195,xxx
+South Ribble,E1,40,Male,British,2024,22.50166979,xxx
+Malvern Hills,S3,30,Male,British,2023,19.468105646,xxx
+East Staffordshire,W2,30,Female,British,2023,0.0,xxx
+Newcastle-under-Lyme,W2,30,Male,British,2024,50.6494714,xxx
+Chichester,W1,40,Male,British,2021,0.0,xxx
+South Holland,E3,60,Female,Non-British,2023,0.0,xxx
+Merthyr Tydfil,E2,20,Male,Non-British,2025,0.0,xxx
+Fife,W1,30,Female,British,2024,0.0,xxx
+Brent,S3,40,Female,All Nationalities,2025,92.947636035,xxx
+Central Bedfordshire,S2,30,Female,All Nationalities,2021,24.814756919,xxx
+Plymouth,E3,40,Male,All Nationalities,2023,0.0,xxx
+Rotherham,E1,30,Female,Non-British,2023,32.152186941,xxx
+Ceredigion,S2,40,Male,Non-British,2023,10.937639509,xxx
+Bromley,S2,50,Male,British,2021,7.453854945,xxx
+Wyre,S2,30,Male,All Nationalities,2023,0.0,xxx
+Mole Valley,S3,30,Female,British,2023,0.0,xxx
+Eastbourne,E1,50,Male,British,2022,47.172241635,xxx
+Malvern Hills,S1,30,Female,British,2023,0.0,xxx
+Wigan,E1,50,Male,British,2021,4.447799129,xxx
+Folkestone and Hythe,W2,40,Male,British,2025,38.920993302,xxx
+Hartlepool,E3,20,Female,All Nationalities,2022,0.0,xxx
+Peterborough,E3,50,Male,All Nationalities,2025,0.0,xxx
+Flintshire,S2,40,Female,Non-British,2023,4.54900462,xxx
+Buckinghamshire,E3,30,Female,Non-British,2024,0.0,xxx
+Bury,S2,60,Male,British,2021,56.308390448,xxx
+Hartlepool,S1,50,Male,British,2025,20.863683757,xxx
+Richmond upon Thames,W2,40,Male,Non-British,2022,0.0,xxx

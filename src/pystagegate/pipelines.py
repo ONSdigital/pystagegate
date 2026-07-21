@@ -3,16 +3,19 @@ import pandas as pd
 from itertools import product
 
 
-def prov_fin_main():
-    # Load config
-    config = functions.load_config("testing_config.json")
+def prov_fin_main(config=None):
+    print("\n\n")
+    if config is None:
+        config = functions.load_config("testing_config.json")
 
     age_min = config["parameters"]["age_min"]
     age_max = config["parameters"]["age_max"]
     year = config["parameters"]["year"]
 
+    paths = functions.join_paths(config["root"], config["prov_fin_paths"])
+
     ltim_immigration = prov_fin.load_summary_data(
-        path=config["prov_fin_paths"]["spring_immigration"],
+        path=paths["spring_immigration"],
         age_var="Age",
         age_min=age_min,
         age_max=age_max,
@@ -21,7 +24,7 @@ def prov_fin_main():
     )
 
     ltim_emigration = prov_fin.load_summary_data(
-        path=config["prov_fin_paths"]["spring_emigration"],
+        path=paths["spring_emigration"],
         age_var="Age",
         age_min=age_min,
         age_max=age_max,
@@ -30,14 +33,14 @@ def prov_fin_main():
     )
 
     ltim_provisional = prov_fin.load_summary_data(
-        path=config["prov_fin_paths"]["provisional_mye"],
+        path=paths["provisional_mye"],
         age_var="Age",
         age_min=age_min,
         age_max=age_max,
     )
 
     ltim_provisional_scot = prov_fin.load_summary_data(
-        path=config["prov_fin_paths"]["provisional_scot"],
+        path=paths["provisional_scot"],
         age_var="Age",
         age_min=age_min,
         age_max=age_max,

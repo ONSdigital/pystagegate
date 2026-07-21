@@ -15,6 +15,8 @@ This package uses [uv](https://docs.astral.sh/uv/) for virtual environments and 
 3. Ensure you have a `testing_config.json` file located at the top level of the directory
 4. `uv run pystagegate` to run all available pipelines
 
+Pure synthetic data for testing is available in `tests/data`
+
 ## Contributing
 
 - `uv sync` to read dependencies
