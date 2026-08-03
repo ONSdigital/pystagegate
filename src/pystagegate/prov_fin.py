@@ -227,6 +227,7 @@ def provisional_scot_aggregate(
         .reset_index()
     )
 
+    # todo: Add configuration check for the values of 'direction'
     aggregate_df = (
         pd.pivot_table(
             aggregate_df,
