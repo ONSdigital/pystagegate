@@ -1,6 +1,5 @@
 from pystagegate import prov_fin, functions
 import pandas as pd
-from itertools import product
 
 
 def prov_fin_main(config):
@@ -43,7 +42,6 @@ def prov_fin_main(config):
     ltim_provisional_all = pd.concat(
         [ltim_provisional_subset, ltim_provisional_scot_agg]
     )
-
 
     # Final dataframe with provisional and merged data
     ltim_final = ltim_provisional_all.merge(
