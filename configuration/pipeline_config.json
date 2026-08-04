@@ -1,0 +1,62 @@
+{
+    "prov_fin": {
+        "root_path": "",
+
+        "global_parameters": {
+            "age_min": 0,
+            "age_max": 200,
+            "year": 2024,
+            "all_nationalities": ""
+        },
+
+        "datasets": {
+            "final_immigration": {
+                "path": "",
+                "variables": {
+                    "la_code": "",
+                    "age": "",
+                    "sex": "",
+                    "nationality": "",
+                    "year": "",
+                    "count": ""
+                }
+            },
+
+            "final_emigration": {
+                "path": "",
+                "variables": {
+                    "la_code": "",
+                    "age": "",
+                    "sex": "",
+                    "nationality": "",
+                    "year": "",
+                    "count": ""
+                }
+            },
+
+            "provisional": {
+                "path": "",
+                "variables": {
+                    "la_code": "",
+                    "age": "",
+                    "sex": "",
+                    "immigration_prefix": "",
+                    "emigration_prefix": "",
+                    "net_prefix": ""
+                }
+            },
+
+            "provisional_scot": {
+                "path": "",
+                "variables": {
+                    "la_code": "",
+                    "age": "",
+                    "sex": "",
+                    "direction": "",
+                    "year": "",
+                    "count": ""
+                }
+            }
+        }
+    }
+}

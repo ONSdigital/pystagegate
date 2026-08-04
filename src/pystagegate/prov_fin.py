@@ -1,40 +1,260 @@
 import pandas as pd
+from itertools import product
+import os
 
 
-def load_summary_data(
-    path: str,
-    age_var: str,
-    age_min: int,
-    age_max: int,
-    lan_var: str = None,
-    date_var: str = None,
-) -> pd.DataFrame:
+def load_summary_data(config: dict, dataset: str) -> pd.DataFrame:
     """
     Load and preprocess summary data from a CSV file.
 
     Args:
-        path (str): The file path to the CSV file.
-        age_var (str): The name of the age variable column.
-        age_min (int): The minimum age for filtering the data.
-        age_max (int): The maximum age for filtering the data.
-        lan_var (str, optional): The name of the language variable column to drop. Defaults to None.
-        date_var (str, optional): The name of the date variable column to drop. Defaults to None.
+        config (dict): A dictionary configuration.
+        dataset (str): A string key value for the dataset to load.
 
     Returns:
-        df (pd.DataFrame): A pandas DataFrame containing the filtered and preprocessed data.
+        df (pd.DataFrame): A pandas DataFrame containing the selected data.
     """
+    path = os.path.join(config["root_path"], config["datasets"][dataset]["path"])
+
     df = pd.read_csv(path)
-    df = df[df[age_var].between(age_min, age_max)]
+    df = df[
+        df[config["datasets"][dataset]["variables"]["age"]].between(
+            config["global_parameters"]["age_min"],
+            config["global_parameters"]["age_max"],
+        )
+    ]
 
-    if lan_var:
-        if lan_var in df.columns:
-            df = df.drop(columns=[lan_var])
+    if "Local Authority Name" in df.columns:
+        df = df.drop(columns=["Local Authority Name"])
 
-    if date_var:
-        if date_var in df.columns:
-            df = df.drop(columns=[date_var])
+    if "Date Updated" in df.columns:
+        df = df.drop(columns=["Date Updated"])
 
     return df
+
+
+def merge_final_migration_data(
+    immigration_df: pd.DataFrame, emigration_df: pd.DataFrame, config: dict
+) -> pd.DataFrame:
+    """
+    Merge immigration and emigration dataframes on specified columns and calculate net migration.
+
+    Args:
+        immigration_df (pd.DataFrame): The immigration DataFrame.
+        emigration_df (pd.DataFrame): The emigration DataFrame.
+        config (dict): A dictionary configuration.
+
+    Returns:
+        merged_df (pd.DataFrame): A pandas DataFrame containing the merged data with net migration.
+    """
+    left_vars = config["datasets"]["final_immigration"]["variables"]
+    right_vars = config["datasets"]["final_emigration"]["variables"]
+
+    merged_df = immigration_df.merge(
+        emigration_df,
+        left_on=[
+            left_vars["age"],
+            left_vars["la_code"],
+            left_vars["year"],
+            left_vars["sex"],
+            left_vars["nationality"],
+        ],
+        right_on=[
+            right_vars["age"],
+            right_vars["la_code"],
+            right_vars["year"],
+            right_vars["sex"],
+            right_vars["nationality"],
+        ],
+        how="left",
+        suffixes=("_imm", "_em"),
+    )
+
+    if left_vars["count"] == right_vars["count"]:
+        immigration_col = f"{left_vars['count']}_imm"
+        emigration_col = f"{left_vars['count']}_em"
+    else:
+        immigration_col = left_vars["count"]
+        emigration_col = right_vars["count"]
+
+    merged_df["net_cell"] = merged_df[immigration_col] - merged_df[emigration_col]
+
+    merged_df = merged_df[
+        merged_df[left_vars["nationality"]]
+        == config["global_parameters"]["all_nationalities"]
+    ]
+    merged_df = merged_df[
+        merged_df[left_vars["year"]] == config["global_parameters"]["year"]
+    ]
+
+    merged_df = (
+        merged_df.groupby([left_vars["la_code"], left_vars["year"], left_vars["age"]])
+        .agg(
+            imm_fin=(immigration_col, "sum"),
+            em_fin=(emigration_col, "sum"),
+            net_fin=("net_cell", "sum"),
+        )
+        .reset_index()
+    )
+
+    return merged_df[
+        [
+            left_vars["year"],
+            left_vars["la_code"],
+            left_vars["age"],
+            "imm_fin",
+            "em_fin",
+            "net_fin",
+        ]
+    ]
+
+
+def subset_provisional_data(provisional_df: pd.DataFrame, config: dict) -> pd.DataFrame:
+    """
+    Subset the provisional migration data for the specified year and rename columns.
+
+    Args:
+        provisional_df (pd.DataFrame): The provisional migration DataFrame.
+        config (dict): A dictionary configuration.
+
+    Returns:
+        subset_df (pd.DataFrame): A pandas DataFrame containing the subsetted and renamed data.
+    """
+    year = config["global_parameters"]["year"]
+    variables = config["datasets"]["provisional"]["variables"]
+
+    subset_df = pd.concat(
+        [
+            provisional_df.iloc[:, 0:3],
+            provisional_df.loc[
+                :,
+                [
+                    f"{variables['immigration_prefix']}{year}",
+                    f"{variables['emigration_prefix']}{year}",
+                    f"{variables['net_prefix']}{year}",
+                ],
+            ],
+        ],
+        axis=1,
+    )
+
+    subset_df = (
+        subset_df.groupby([variables["la_code"], variables["age"]])
+        .agg(
+            imm_prov=(f"{variables['immigration_prefix']}{year}", "sum"),
+            em_prov=(f"{variables['emigration_prefix']}{year}", "sum"),
+            net_prov=(f"{variables['net_prefix']}{year}", "sum"),
+        )
+        .reset_index()
+    )
+
+    subset_df["year"] = year
+
+    return subset_df[
+        [
+            "year",
+            variables["la_code"],
+            variables["age"],
+            "imm_prov",
+            "em_prov",
+            "net_prov",
+        ]
+    ]
+
+
+def provisional_scot_cartesian_merge(
+    provisional_scot_df: pd.DataFrame, config: dict
+) -> pd.DataFrame:
+    """
+    Create a cartesian product of unique values for the provisional Scotland data and merge it with the original DataFrame.
+
+    Args:
+        provisional_scot_df (pd.DataFrame): The provisional Scotland migration DataFrame.
+        config (dict): A dictionary configuration.
+
+    Returns:
+        merged_df (pd.DataFrame): A pandas DataFrame containing the cartesian product merged with the original data, with missing values filled with 0.
+
+    """
+    variables = config["datasets"]["provisional_scot"]["variables"]
+
+    unique_values = [
+        provisional_scot_df[col].unique()
+        for col in provisional_scot_df.columns
+        if col != variables["count"]
+    ]
+
+    scot_column_select = [
+        col for col in provisional_scot_df.columns if col != variables["count"]
+    ]
+
+    scot_cartesian = pd.DataFrame(
+        set(product(*unique_values)), columns=scot_column_select
+    )
+
+    scot_merged_df = scot_cartesian.merge(
+        provisional_scot_df, on=scot_column_select, how="left"
+    ).fillna(0)
+
+    return scot_merged_df
+
+
+def provisional_scot_aggregate(
+    provisional_scot_df: pd.DataFrame, config: dict
+) -> pd.DataFrame:
+    """
+    Aggregate the provisional Scotland migration data by summing counts for each combination of local authority, year, direction, and age.
+
+    Args:
+        provisional_scot_df (pd.DataFrame): The provisional Scotland migration DataFrame.
+        config (dict): A dictionary configuration.
+
+    Returns:
+        aggregate_df (pd.DataFrame): A pandas DataFrame containing the aggregated data.
+    """
+    variables = config["datasets"]["provisional_scot"]["variables"]
+
+    aggregate_df = (
+        provisional_scot_df.groupby(
+            [
+                variables["la_code"],
+                variables["year"],
+                variables["direction"],
+                variables["age"],
+            ]
+        )
+        .agg({variables["count"]: "sum"})
+        .reset_index()
+    )
+
+    # todo: Add configuration check for the values of 'direction'
+    aggregate_df = (
+        pd.pivot_table(
+            aggregate_df,
+            index=[variables["la_code"], variables["year"], variables["age"]],
+            columns=variables["direction"],
+            values=variables["count"],
+        )
+        .reset_index()
+        .rename(columns={"in": "imm_prov", "out": "em_prov"})
+    )
+
+    aggregate_df["net_prov"] = aggregate_df["imm_prov"] - aggregate_df["em_prov"]
+
+    aggregate_df = aggregate_df[
+        aggregate_df[variables["year"]] == config["global_parameters"]["year"]
+    ]
+
+    return aggregate_df[
+        [
+            variables["year"],
+            variables["la_code"],
+            variables["age"],
+            "imm_prov",
+            "em_prov",
+            "net_prov",
+        ]
+    ]
 
 
 def squared_difference(
@@ -89,12 +309,7 @@ def check_prefix(prov: str, fin: str) -> str:
 
 def regional_breakdown(
     df: pd.DataFrame,
-    imm_prov: str,
-    imm_fin: str,
-    em_prov: str,
-    em_fin: str,
-    net_prov: str,
-    net_fin: str,
+    config: dict,
     nation: str = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
@@ -102,12 +317,7 @@ def regional_breakdown(
 
     Args:
         df (pd.DataFrame): The input migration DataFrame.
-        imm_prov (str): The provisional immigration estimate column name.
-        imm_fin (str): The final immigration estimate column name.
-        em_prov (str): The provisional emigration estimate column name.
-        em_fin (str): The final emigration estimate column name.
-        net_prov (str): The provisional net migration estimate column name.
-        net_fin (str): The final net migration estimate column name.
+        config (dict): A dictionary configuration.
         nation (str, optional): A one letter code for nation, must be one of 'E', 'S', 'W'. Defaults to None for GB analysis.
 
     Returns:
@@ -115,21 +325,23 @@ def regional_breakdown(
             - age_agg (pd.DataFrame): Migration data aggregated by age.
             - la_agg (pd.DataFrame): Migration data aggregated by age and local authority.
     """
-    imm_prefix = check_prefix(imm_prov, imm_fin)
-    em_prefix = check_prefix(em_prov, em_fin)
-    net_prefix = check_prefix(net_prov, net_fin)
+    imm_prefix = check_prefix("imm_prov", "imm_fin")
+    em_prefix = check_prefix("em_prov", "em_fin")
+    net_prefix = check_prefix("net_prov", "net_fin")
+
+    variables = config["datasets"]["final_immigration"]["variables"]
 
     if nation is None:
         age_agg = (
-            df.groupby("Age")
+            df.groupby(variables["age"])
             .agg(
                 {
-                    imm_prov: "sum",
-                    em_prov: "sum",
-                    net_prov: "sum",
-                    imm_fin: "sum",
-                    em_fin: "sum",
-                    net_fin: "sum",
+                    "imm_prov": "sum",
+                    "em_prov": "sum",
+                    "net_prov": "sum",
+                    "imm_fin": "sum",
+                    "em_fin": "sum",
+                    "net_fin": "sum",
                 }
             )
             .reset_index()
@@ -137,7 +349,7 @@ def regional_breakdown(
 
         age_agg = df.merge(
             age_agg,
-            on="Age",
+            on=variables["age"],
             how="left",
             suffixes=("", "_T"),
         )
@@ -145,15 +357,15 @@ def regional_breakdown(
         if nation in ["W", "S", "E"]:
             age_agg = (
                 df[df["Nation"] == nation]
-                .groupby("Age")
+                .groupby(variables["age"])
                 .agg(
                     {
-                        imm_prov: "sum",
-                        em_prov: "sum",
-                        net_prov: "sum",
-                        imm_fin: "sum",
-                        em_fin: "sum",
-                        net_fin: "sum",
+                        "imm_prov": "sum",
+                        "em_prov": "sum",
+                        "net_prov": "sum",
+                        "imm_fin": "sum",
+                        "em_fin": "sum",
+                        "net_fin": "sum",
                     }
                 )
                 .reset_index()
@@ -161,24 +373,24 @@ def regional_breakdown(
 
             age_agg = df[df["Nation"] == nation].merge(
                 age_agg,
-                on="Age",
+                on=variables["age"],
                 how="left",
                 suffixes=("", "_T"),
             )
         else:
             raise (ValueError("Nation must be one of 'E', 'S', 'W'"))
 
-    age_agg = squared_difference(age_agg, imm_prefix, imm_prov, imm_fin)
-    age_agg = squared_difference(age_agg, em_prefix, em_prov, em_fin)
-    age_agg = squared_difference(age_agg, net_prefix, net_prov, net_fin)
+    age_agg = squared_difference(age_agg, imm_prefix, "imm_prov", "imm_fin")
+    age_agg = squared_difference(age_agg, em_prefix, "em_prov", "em_fin")
+    age_agg = squared_difference(age_agg, net_prefix, "net_prov", "net_fin")
 
     la_agg = (
-        age_agg.groupby("Local Authority Code")
+        age_agg.groupby(variables["la_code"])
         .agg(
             {
-                imm_prov: "sum",
-                em_prov: "sum",
-                net_prov: "sum",
+                "imm_prov": "sum",
+                "em_prov": "sum",
+                "net_prov": "sum",
                 f"sqdiff_{imm_prefix}": "sum",
                 f"sqdiff_{em_prefix}": "sum",
                 f"sqdiff_{net_prefix}": "sum",
@@ -189,10 +401,10 @@ def regional_breakdown(
 
     for prefix in [imm_prefix, em_prefix, net_prefix]:
         la_agg[f"sqdiff_{prefix}_sc"] = (
-            la_agg[f"sqdiff_{prefix}"] / la_agg[f"{prefix}_Prov"]
+            la_agg[f"sqdiff_{prefix}"] / la_agg[f"{prefix}_prov"]
         )
 
     for frame in [age_agg, la_agg]:
-        frame["Nation"] = frame["Local Authority Code"].str[0]
+        frame["Nation"] = frame[variables["la_code"]].str[0]
 
     return age_agg, la_agg
