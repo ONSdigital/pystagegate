@@ -1,6 +1,7 @@
 import pytest
 from pystagegate.functions import load_config
 
+
 @pytest.fixture
 def test_pipeline_config():
     config = load_config("tests/data/testing_config.json")
