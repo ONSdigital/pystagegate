@@ -1,14 +1,19 @@
 from pystagegate import prov_fin, functions
 import pandas as pd
+import os
 
 
 def prov_fin_main(config):
-    print("\n\n")
     # Configuration setup
     if type(config) is str:
-        config = functions.load_config(config)["prov_fin"]
-    else:
+        if os.path.exists(config):
+            config = functions.load_config(config)["prov_fin"]
+        else:
+            raise FileNotFoundError(f"Config file not found: {config}")
+    elif type(config) is dict:
         config = config["prov_fin"]
+    else:
+        raise ValueError("Invalid config type. Must be str or dict.")
 
     # Load datasets
     ltim_immigration = prov_fin.load_summary_data(config, "final_immigration")
@@ -16,7 +21,7 @@ def prov_fin_main(config):
     ltim_provisional = prov_fin.load_summary_data(config, "provisional")
     ltim_provisional_scot = prov_fin.load_summary_data(config, "provisional_scot")
 
-    # todo: Data validation against schema
+    # todo: Data validation with GX against (generated) schema
 
     # Merge immigration and emmigration and aggregate
     ltim_merged = prov_fin.merge_final_migration_data(
@@ -63,17 +68,6 @@ def prov_fin_main(config):
         config["datasets"]["final_immigration"]["variables"]["la_code"]
     ].str[0]
 
-    print(
-        "\n\n",
-        ltim_merged.head(5),
-        ltim_provisional_subset.head(5),
-        ltim_provisional_scot_agg.head(5),
-        ltim_provisional_all.head(5),
-        ltim_final.head(5),
-        ltim_final.columns,
-        sep="\n\n",
-    )
-
     # GB analysis
     gb_age, gb_la = prov_fin.regional_breakdown(ltim_final, config)
 
@@ -86,8 +80,21 @@ def prov_fin_main(config):
     # Scotland analysis
     scot_age, scot_la = prov_fin.regional_breakdown(ltim_final, config, "S")
 
-    # Console print out
-    print("\n\n******** GB Analysis ********", gb_age, gb_la, sep="\n\n")
-    print("\n\n******** England Analysis ********", eng_age, eng_la, sep="\n\n")
-    print("\n\n******** Wales Analysis ********", wal_age, wal_la, sep="\n\n")
-    print("\n\n******** Scotland Analysis ********", scot_age, scot_la, sep="\n\n")
+    # Correlation matrix outputs
+    ltim_output = pd.concat([eng_la, wal_la, scot_la])
+
+    ltim_output.to_csv(
+        os.path.join(config["output_path"], "prov_fin_output.csv"), index=False
+    )
+
+    ltim_output.groupby("Nation")[["sqdiff_imm_sc", "imm_prov"]].corr().to_csv(
+        os.path.join(config["output_path"], "prov_fin_corr_imm.csv"), index=False
+    )
+
+    ltim_output.groupby("Nation")[["sqdiff_em_sc", "em_prov"]].corr().to_csv(
+        os.path.join(config["output_path"], "prov_fin_corr_em.csv"), index=False
+    )
+
+    ltim_output.groupby("Nation")[["sqdiff_net_sc", "imm_prov"]].corr().to_csv(
+        os.path.join(config["output_path"], "prov_fin_corr_net.csv"), index=False
+    )
