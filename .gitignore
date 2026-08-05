@@ -221,5 +221,4 @@ __marimo__/
 _build
 
 # Configs and testing
-testing_config.json
 testing_data/
