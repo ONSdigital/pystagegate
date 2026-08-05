@@ -284,29 +284,6 @@ def squared_difference(
     return df
 
 
-def check_prefix(prov: str, fin: str) -> str:
-    """
-    Checks if prefixes of supplied provisional and final column names match and returns the prefix.
-
-    Args:
-        prov (str): The provisional column name.
-        fin (str): The final column name.
-
-    Returns:
-        prefix (str): The common prefix of the two column names.
-    """
-    if prov.split("_", 1)[0] == fin.split("_", 1)[0]:
-        prefix = prov.split("_", 1)[0]
-
-        return prefix
-    else:
-        raise (
-            ValueError(
-                f"Provisional and final columns do not match for {prov} and {fin}"
-            )
-        )
-
-
 def regional_breakdown(
     df: pd.DataFrame,
     config: dict,
@@ -325,9 +302,9 @@ def regional_breakdown(
             - age_agg (pd.DataFrame): Migration data aggregated by age.
             - la_agg (pd.DataFrame): Migration data aggregated by age and local authority.
     """
-    imm_prefix = check_prefix("imm_prov", "imm_fin")
-    em_prefix = check_prefix("em_prov", "em_fin")
-    net_prefix = check_prefix("net_prov", "net_fin")
+    imm_prefix = "imm"
+    em_prefix = "em"
+    net_prefix = "net"
 
     variables = config["datasets"]["final_immigration"]["variables"]
 
