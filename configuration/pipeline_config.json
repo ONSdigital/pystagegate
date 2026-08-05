@@ -1,6 +1,7 @@
 {
     "prov_fin": {
         "root_path": "",
+        "output_path": "",
 
         "global_parameters": {
             "age_min": 0,

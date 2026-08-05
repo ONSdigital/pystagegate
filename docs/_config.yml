@@ -7,6 +7,8 @@ title: Pystagegate Docs
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  allow_errors: false
+  timeout: 300
 
 # Information about where the book exists on the web
 repository:

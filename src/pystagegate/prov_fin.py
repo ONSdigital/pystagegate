@@ -399,10 +399,16 @@ def regional_breakdown(
         .reset_index()
     )
 
+    # todo: check denominator for scaled squared differences
     for prefix in [imm_prefix, em_prefix, net_prefix]:
-        la_agg[f"sqdiff_{prefix}_sc"] = (
-            la_agg[f"sqdiff_{prefix}"] / la_agg[f"{prefix}_prov"]
-        )
+        if prefix == net_prefix:
+            la_agg[f"sqdiff_{prefix}_sc"] = (
+                la_agg[f"sqdiff_{prefix}"] / la_agg[f"{imm_prefix}_prov"]
+            )
+        else:
+            la_agg[f"sqdiff_{prefix}_sc"] = (
+                la_agg[f"sqdiff_{prefix}"] / la_agg[f"{prefix}_prov"]
+            )
 
     for frame in [age_agg, la_agg]:
         frame["Nation"] = frame[variables["la_code"]].str[0]

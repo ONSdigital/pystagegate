@@ -1813,6 +1813,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "pandas" },
+    { name = "sdv" },
 ]
 
 [package.dev-dependencies]
@@ -1820,19 +1821,20 @@ dev = [
     { name = "jupyter-book" },
     { name = "pytest" },
     { name = "ruff" },
-    { name = "sdv" },
     { name = "sphinx" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pandas", specifier = ">=2.3.3" }]
+requires-dist = [
+    { name = "pandas", specifier = ">=2.3.3" },
+    { name = "sdv", specifier = ">=1.37.3" },
+]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "jupyter-book", specifier = "<2.0" },
     { name = "pytest", specifier = ">=9.0.3" },
     { name = "ruff", specifier = ">=0.15.13" },
-    { name = "sdv", specifier = ">=1.37.3" },
     { name = "sphinx", specifier = ">=7.4.7" },
 ]
 
