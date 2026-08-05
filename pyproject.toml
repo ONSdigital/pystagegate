@@ -9,10 +9,11 @@ authors = [
 requires-python = ">=3.10"
 dependencies = [
     "pandas>=2.3.3",
+    "sdv>=1.37.3",
 ]
 
 [project.scripts]
-pystagegate = "pystagegate:main"
+provfin = "pystagegate:run_prov_fin"
 
 [build-system]
 requires = ["uv_build>=0.11.14,<0.12.0"]
@@ -23,7 +24,6 @@ dev = [
     "jupyter-book<2.0",
     "pytest>=9.0.3",
     "ruff>=0.15.13",
-    "sdv>=1.37.3",
     "sphinx>=7.4.7",
 ]
 
