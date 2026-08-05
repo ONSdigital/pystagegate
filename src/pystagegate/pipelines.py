@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 
-def prov_fin_main(config):
+def prov_fin_main(config: dict | str) -> pd.DataFrame:
     # Configuration setup
     if type(config) is str:
         if os.path.exists(config):
@@ -98,3 +98,5 @@ def prov_fin_main(config):
     ltim_output.groupby("Nation")[["sqdiff_net_sc", "imm_prov"]].corr().to_csv(
         os.path.join(config["output_path"], "prov_fin_corr_net.csv"), index=False
     )
+
+    return ltim_output
