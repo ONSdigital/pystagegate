@@ -1,7 +1,7 @@
 {
     "prov_fin": {
         "root_path": "tests/data/",
-        "output_path": "tests/data/output/",
+        "output_path": null,
         "global_parameters": {
             "age_min": 0,
             "age_max": 200,

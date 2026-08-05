@@ -80,23 +80,28 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     # Scotland analysis
     scot_age, scot_la = prov_fin.regional_breakdown(ltim_final, config, "S")
 
-    # Correlation matrix outputs
+    # Correlation matrices and outputs
     ltim_output = pd.concat([eng_la, wal_la, scot_la])
 
-    ltim_output.to_csv(
-        os.path.join(config["output_path"], "prov_fin_output.csv"), index=False
-    )
+    # Handle output directory creation
+    if config["output_path"] is not None:
+        if not os.path.exists(config["output_path"]):
+            os.makedirs(config["output_path"])
 
-    ltim_output.groupby("Nation")[["sqdiff_imm_sc", "imm_prov"]].corr().to_csv(
-        os.path.join(config["output_path"], "prov_fin_corr_imm.csv"), index=False
-    )
+        ltim_output.to_csv(
+            os.path.join(config["output_path"], "prov_fin_output.csv"), index=False
+        )
 
-    ltim_output.groupby("Nation")[["sqdiff_em_sc", "em_prov"]].corr().to_csv(
-        os.path.join(config["output_path"], "prov_fin_corr_em.csv"), index=False
-    )
+        ltim_output.groupby("Nation")[["sqdiff_imm_sc", "imm_prov"]].corr().to_csv(
+            os.path.join(config["output_path"], "prov_fin_corr_imm.csv"), index=False
+        )
 
-    ltim_output.groupby("Nation")[["sqdiff_net_sc", "imm_prov"]].corr().to_csv(
-        os.path.join(config["output_path"], "prov_fin_corr_net.csv"), index=False
-    )
+        ltim_output.groupby("Nation")[["sqdiff_em_sc", "em_prov"]].corr().to_csv(
+            os.path.join(config["output_path"], "prov_fin_corr_em.csv"), index=False
+        )
+
+        ltim_output.groupby("Nation")[["sqdiff_net_sc", "imm_prov"]].corr().to_csv(
+            os.path.join(config["output_path"], "prov_fin_corr_net.csv"), index=False
+        )
 
     return ltim_output
