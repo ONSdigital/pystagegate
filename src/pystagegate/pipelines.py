@@ -1,13 +1,15 @@
-from pystagegate import prov_fin, functions
+from pystagegate import prov_fin, utils, validate
+import great_expectations as gx
 import pandas as pd
 import os
+import json
 
 
 def prov_fin_main(config: dict | str) -> pd.DataFrame:
     # Configuration setup
     if type(config) is str:
         if os.path.exists(config):
-            config = functions.load_config(config)["prov_fin"]
+            config = utils.load_config(config)["prov_fin"]
         else:
             raise FileNotFoundError(f"Config file not found: {config}")
     elif type(config) is dict:
@@ -22,6 +24,9 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     ltim_provisional_scot = prov_fin.load_summary_data(config, "provisional_scot")
 
     # todo: Data validation with GX against (generated) schema
+    validation = validate.generic_validate(
+        ltim_immigration, "final_immigration", config
+    )
 
     # Merge immigration and emmigration and aggregate
     ltim_merged = prov_fin.merge_final_migration_data(
@@ -87,6 +92,11 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     if config["output_path"] is not None:
         if not os.path.exists(config["output_path"]):
             os.makedirs(config["output_path"])
+
+        with open(
+            os.path.join(config["output_path"], "validation_results.json"), "w"
+        ) as f:
+            json.dump(validation.to_json_dict(), f, indent=4)
 
         ltim_output.to_csv(
             os.path.join(config["output_path"], "prov_fin_output.csv"), index=False
