@@ -1,8 +1,6 @@
-from pystagegate import prov_fin, utils, validate
-import great_expectations as gx
+from pystagegate import prov_fin, utils
 import pandas as pd
 import os
-import json
 
 
 def prov_fin_main(config: dict | str) -> pd.DataFrame:
@@ -17,16 +15,11 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     else:
         raise ValueError("Invalid config type. Must be str or dict.")
 
-    # Load datasets
+    # Load and validate datasets
     ltim_immigration = prov_fin.load_summary_data(config, "final_immigration")
     ltim_emigration = prov_fin.load_summary_data(config, "final_emigration")
     ltim_provisional = prov_fin.load_summary_data(config, "provisional")
     ltim_provisional_scot = prov_fin.load_summary_data(config, "provisional_scot")
-
-    # todo: Data validation with GX against (generated) schema
-    validation = validate.generic_validate(
-        ltim_immigration, "final_immigration", config
-    )
 
     # Merge immigration and emmigration and aggregate
     ltim_merged = prov_fin.merge_final_migration_data(
@@ -69,7 +62,7 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         how="left",
     )
 
-    ltim_final["Nation"] = ltim_final[
+    ltim_final["nation"] = ltim_final[
         config["datasets"]["final_immigration"]["variables"]["la_code"]
     ].str[0]
 
@@ -93,25 +86,20 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         if not os.path.exists(config["output_path"]):
             os.makedirs(config["output_path"])
 
-        with open(
-            os.path.join(config["output_path"], "validation_results.json"), "w"
-        ) as f:
-            json.dump(validation.to_json_dict(), f, indent=4)
-
         ltim_output.to_csv(
             os.path.join(config["output_path"], "prov_fin_output.csv"), index=False
         )
 
-        ltim_output.groupby("Nation")[["sqdiff_imm_sc", "imm_prov"]].corr().to_csv(
+        ltim_output.groupby("nation")[["sqdiff_imm_sc", "imm_prov"]].corr().to_csv(
             os.path.join(config["output_path"], "prov_fin_corr_imm.csv"), index=False
         )
 
-        ltim_output.groupby("Nation")[["sqdiff_em_sc", "em_prov"]].corr().to_csv(
+        ltim_output.groupby("nation")[["sqdiff_em_sc", "em_prov"]].corr().to_csv(
             os.path.join(config["output_path"], "prov_fin_corr_em.csv"), index=False
         )
 
-        ltim_output.groupby("Nation")[["sqdiff_net_sc", "imm_prov"]].corr().to_csv(
+        ltim_output.groupby("nation")[["sqdiff_net_sc", "imm_prov"]].corr().to_csv(
             os.path.join(config["output_path"], "prov_fin_corr_net.csv"), index=False
         )
 
-    return ltim_output
+    return ltim_output.reset_index(drop=True)
