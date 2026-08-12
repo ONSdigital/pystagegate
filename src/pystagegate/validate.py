@@ -9,7 +9,7 @@ def create_gx_context(df: pd.DataFrame, df_key: str):
     Args:
         df (pd.DataFrame): The DataFrame to validate.
         df_key (str): The key for the DataFrame in the configuration.
-    
+
     Returns:
         tuple: A tuple containing the Great Expectations context, expectation suite, and batch definition.
     """
@@ -53,14 +53,12 @@ def generic_validate(df: pd.DataFrame, df_key: str, config: dict):
 
     suite.add_expectation(
         gx.expectations.ExpectColumnValuesToBeOfType(
-            column=variables["la_code"],
-            type_="str"
+            column=variables["la_code"], type_="str"
         )
     )
     suite.add_expectation(
         gx.expectations.ExpectColumnValuesToBeOfType(
-            column=variables["age"],
-            type_="int64"
+            column=variables["age"], type_="int64"
         )
     )
     suite.add_expectation(
@@ -75,19 +73,17 @@ def generic_validate(df: pd.DataFrame, df_key: str, config: dict):
         suite.add_expectation(
             gx.expectations.ExpectColumnDistinctValuesToBeInSet(
                 column=variables["nationality"],
-                value_set=config["global_parameters"]["final_nationalities"]
+                value_set=config["global_parameters"]["final_nationalities"],
             )
         )
         suite.add_expectation(
             gx.expectations.ExpectColumnDistinctValuesToBeInSet(
-                column=variables["sex"],
-                value_set=["Male", "Female"]
+                column=variables["sex"], value_set=["Male", "Female"]
             )
         )
         suite.add_expectation(
             gx.expectations.ExpectColumnValuesToBeInTypeList(
-                column=variables["count"],
-                type_list=["int64", "float64"]
+                column=variables["count"], type_list=["int64", "float64"]
             )
         )
 
@@ -95,21 +91,19 @@ def generic_validate(df: pd.DataFrame, df_key: str, config: dict):
         suite.add_expectation(
             gx.expectations.ExpectColumnDistinctValuesToBeInSet(
                 column=variables["direction"],
-                value_set=config["global_parameters"]["provisional_scot_direction"]
+                value_set=config["global_parameters"]["provisional_scot_direction"],
             )
         )
         suite.add_expectation(
             gx.expectations.ExpectColumnValuesToBeInTypeList(
-                column=variables["count"],
-                type_list=["int64", "float64"]
+                column=variables["count"], type_list=["int64", "float64"]
             )
         )
 
     if df_key == "provisional":
         for v in [variables["immigration"], variables["emigration"], variables["net"]]:
             gx.expectations.ExpectColumnValuesToBeInTypeList(
-                column=v,
-                type_list=["int64", "float64"]
+                column=v, type_list=["int64", "float64"]
             )
 
     validation_definition = context.validation_definitions.add(
@@ -122,9 +116,7 @@ def generic_validate(df: pd.DataFrame, df_key: str, config: dict):
 
     validation_results = validation_definition.run(batch_parameters={"dataframe": df})
 
-    if (validation_results.statistics["success_percent"] < 100):
-        raise ValueError(
-            validation_results.get_failed_validation_results()
-        )
+    if validation_results.statistics["success_percent"] < 100:
+        raise ValueError(validation_results.get_failed_validation_results())
 
     return validation_results
