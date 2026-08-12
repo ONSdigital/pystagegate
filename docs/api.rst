@@ -1,14 +1,20 @@
 API Reference
 =============
 
-Utility functions module
+Provisional-Final module
 ________________________
 
-.. automodule:: pystagegate.functions
+.. automodule:: pystagegate.prov_fin
     :members:
 
-Provisional-Final pipeline module
-_________________________________
+Utility module
+______________
 
-.. automodule:: pystagegate.prov_fin
+.. automodule:: pystagegate.utils
+    :members:
+
+Validation module
+_________________
+
+.. automodule:: pystagegate.validate
     :members:
