@@ -1,5 +1,5 @@
 import pytest
-from pystagegate.functions import load_config
+from pystagegate.utils import load_config
 
 
 @pytest.fixture

@@ -8,6 +8,7 @@ authors = [
 ]
 requires-python = ">=3.10"
 dependencies = [
+    "great-expectations>=1.19.1",
     "pandas>=2.3.3",
     "sdv>=1.37.3",
 ]

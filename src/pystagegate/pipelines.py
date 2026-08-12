@@ -1,4 +1,4 @@
-from pystagegate import prov_fin, functions
+from pystagegate import prov_fin, utils
 import pandas as pd
 import os
 
@@ -7,7 +7,7 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     # Configuration setup
     if type(config) is str:
         if os.path.exists(config):
-            config = functions.load_config(config)["prov_fin"]
+            config = utils.load_config(config)["prov_fin"]
         else:
             raise FileNotFoundError(f"Config file not found: {config}")
     elif type(config) is dict:
@@ -15,13 +15,11 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     else:
         raise ValueError("Invalid config type. Must be str or dict.")
 
-    # Load datasets
+    # Load and validate datasets
     ltim_immigration = prov_fin.load_summary_data(config, "final_immigration")
     ltim_emigration = prov_fin.load_summary_data(config, "final_emigration")
     ltim_provisional = prov_fin.load_summary_data(config, "provisional")
     ltim_provisional_scot = prov_fin.load_summary_data(config, "provisional_scot")
-
-    # todo: Data validation with GX against (generated) schema
 
     # Merge immigration and emmigration and aggregate
     ltim_merged = prov_fin.merge_final_migration_data(
@@ -64,7 +62,7 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         how="left",
     )
 
-    ltim_final["Nation"] = ltim_final[
+    ltim_final["nation"] = ltim_final[
         config["datasets"]["final_immigration"]["variables"]["la_code"]
     ].str[0]
 
@@ -92,16 +90,16 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
             os.path.join(config["output_path"], "prov_fin_output.csv"), index=False
         )
 
-        ltim_output.groupby("Nation")[["sqdiff_imm_sc", "imm_prov"]].corr().to_csv(
+        ltim_output.groupby("nation")[["sqdiff_imm_sc", "imm_prov"]].corr().to_csv(
             os.path.join(config["output_path"], "prov_fin_corr_imm.csv"), index=False
         )
 
-        ltim_output.groupby("Nation")[["sqdiff_em_sc", "em_prov"]].corr().to_csv(
+        ltim_output.groupby("nation")[["sqdiff_em_sc", "em_prov"]].corr().to_csv(
             os.path.join(config["output_path"], "prov_fin_corr_em.csv"), index=False
         )
 
-        ltim_output.groupby("Nation")[["sqdiff_net_sc", "imm_prov"]].corr().to_csv(
+        ltim_output.groupby("nation")[["sqdiff_net_sc", "imm_prov"]].corr().to_csv(
             os.path.join(config["output_path"], "prov_fin_corr_net.csv"), index=False
         )
 
-    return ltim_output
+    return ltim_output.reset_index(drop=True)
