@@ -1,11 +1,13 @@
 import pandas as pd
 from itertools import product
 import os
+import json
+from pystagegate.validate import generic_validate
 
 
-def load_summary_data(config: dict, dataset: str) -> pd.DataFrame:
+def load_summary_data(config: dict, dataset_key: str) -> pd.DataFrame:
     """
-    Load and preprocess summary data from a CSV file.
+    Load and validate summary data from a CSV file.
 
     Args:
         config (dict): A dictionary configuration.
@@ -14,21 +16,21 @@ def load_summary_data(config: dict, dataset: str) -> pd.DataFrame:
     Returns:
         df (pd.DataFrame): A pandas DataFrame containing the selected data.
     """
-    path = os.path.join(config["root_path"], config["datasets"][dataset]["path"])
+    path = os.path.join(config["root_path"], config["datasets"][dataset_key]["path"])
+    variables = config["datasets"][dataset_key]["variables"]
 
-    df = pd.read_csv(path)
-    df = df[
-        df[config["datasets"][dataset]["variables"]["age"]].between(
-            config["global_parameters"]["age_min"],
-            config["global_parameters"]["age_max"],
-        )
-    ]
+    df = pd.read_csv(path)[variables.values()]
 
-    if "Local Authority Name" in df.columns:
-        df = df.drop(columns=["Local Authority Name"])
+    validation_results = generic_validate(df, dataset_key, config)
 
-    if "Date Updated" in df.columns:
-        df = df.drop(columns=["Date Updated"])
+    if config["output_path"] is not None:
+        if not os.path.exists(config["output_path"]):
+            os.makedirs(config["output_path"])
+
+        with open(
+            os.path.join(config["output_path"], f"{dataset_key}_validate.json"), "w"
+        ) as f:
+            json.dump(validation_results.to_json_dict(), f, indent=4)
 
     return df
 
@@ -81,7 +83,7 @@ def merge_final_migration_data(
 
     merged_df = merged_df[
         merged_df[left_vars["nationality"]]
-        == config["global_parameters"]["all_nationalities"]
+        == config["global_parameters"]["final_nationalities"][0]
     ]
     merged_df = merged_df[
         merged_df[left_vars["year"]] == config["global_parameters"]["year"]
@@ -128,11 +130,7 @@ def subset_provisional_data(provisional_df: pd.DataFrame, config: dict) -> pd.Da
             provisional_df.iloc[:, 0:3],
             provisional_df.loc[
                 :,
-                [
-                    f"{variables['immigration_prefix']}{year}",
-                    f"{variables['emigration_prefix']}{year}",
-                    f"{variables['net_prefix']}{year}",
-                ],
+                [variables["immigration"], variables["emigration"], variables["net"]],
             ],
         ],
         axis=1,
@@ -141,9 +139,9 @@ def subset_provisional_data(provisional_df: pd.DataFrame, config: dict) -> pd.Da
     subset_df = (
         subset_df.groupby([variables["la_code"], variables["age"]])
         .agg(
-            imm_prov=(f"{variables['immigration_prefix']}{year}", "sum"),
-            em_prov=(f"{variables['emigration_prefix']}{year}", "sum"),
-            net_prov=(f"{variables['net_prefix']}{year}", "sum"),
+            imm_prov=(variables["immigration"], "sum"),
+            em_prov=(variables["emigration"], "sum"),
+            net_prov=(variables["net"], "sum"),
         )
         .reset_index()
     )
@@ -213,6 +211,7 @@ def provisional_scot_aggregate(
         aggregate_df (pd.DataFrame): A pandas DataFrame containing the aggregated data.
     """
     variables = config["datasets"]["provisional_scot"]["variables"]
+    directions = config["global_parameters"]["provisional_scot_direction"]
 
     aggregate_df = (
         provisional_scot_df.groupby(
@@ -227,7 +226,6 @@ def provisional_scot_aggregate(
         .reset_index()
     )
 
-    # todo: Add configuration check for the values of 'direction'
     aggregate_df = (
         pd.pivot_table(
             aggregate_df,
@@ -236,7 +234,7 @@ def provisional_scot_aggregate(
             values=variables["count"],
         )
         .reset_index()
-        .rename(columns={"in": "imm_prov", "out": "em_prov"})
+        .rename(columns={directions[0]: "imm_prov", directions[1]: "em_prov"})
     )
 
     aggregate_df["net_prov"] = aggregate_df["imm_prov"] - aggregate_df["em_prov"]
@@ -333,7 +331,7 @@ def regional_breakdown(
     else:
         if nation in ["W", "S", "E"]:
             age_agg = (
-                df[df["Nation"] == nation]
+                df[df["nation"] == nation]
                 .groupby(variables["age"])
                 .agg(
                     {
@@ -348,7 +346,7 @@ def regional_breakdown(
                 .reset_index()
             )
 
-            age_agg = df[df["Nation"] == nation].merge(
+            age_agg = df[df["nation"] == nation].merge(
                 age_agg,
                 on=variables["age"],
                 how="left",
@@ -388,6 +386,6 @@ def regional_breakdown(
             )
 
     for frame in [age_agg, la_agg]:
-        frame["Nation"] = frame[variables["la_code"]].str[0]
+        frame["nation"] = frame[variables["la_code"]].str[0]
 
     return age_agg, la_agg
