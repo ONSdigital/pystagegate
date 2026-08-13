@@ -22,5 +22,5 @@ jobs:
       - run: uv run ruff check --output-format=github .
       - run: uv run ruff format --check .
       - run: uv run pytest
-      - run: uv run jupyter-book build docs
+      - run: uv run jupyter-book build docs --all --warningiserror
       - run: uv build

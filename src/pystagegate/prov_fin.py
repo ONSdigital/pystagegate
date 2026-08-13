@@ -2,7 +2,7 @@ import pandas as pd
 from itertools import product
 import os
 import json
-from pystagegate.validate import generic_validate
+from pystagegate.validate import prov_fin_validate
 
 
 def load_summary_data(config: dict, dataset_key: str) -> pd.DataFrame:
@@ -21,7 +21,7 @@ def load_summary_data(config: dict, dataset_key: str) -> pd.DataFrame:
 
     df = pd.read_csv(path)[variables.values()]
 
-    validation_results = generic_validate(df, dataset_key, config)
+    validation_results = prov_fin_validate(df, dataset_key, config)
 
     if config["output_path"] is not None:
         if not os.path.exists(config["output_path"]):
