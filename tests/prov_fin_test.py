@@ -74,7 +74,9 @@ class TestSubsetProvisionalData:
             "net_prov",
         ]
 
-    def test_subset_adds_year_column(self, mock_provisional_df, prov_fin_config_no_output):
+    def test_subset_adds_year_column(
+        self, mock_provisional_df, prov_fin_config_no_output
+    ):
         result = prov_fin.subset_provisional_data(
             mock_provisional_df, prov_fin_config_no_output
         )
@@ -115,7 +117,9 @@ class TestProvisionalScotAggregate:
         cartesian = prov_fin.provisional_scot_cartesian_merge(
             mock_provisional_scot_df, prov_fin_config_no_output
         )
-        result = prov_fin.provisional_scot_aggregate(cartesian, prov_fin_config_no_output)
+        result = prov_fin.provisional_scot_aggregate(
+            cartesian, prov_fin_config_no_output
+        )
         assert list(result.columns) == [
             "year",
             "ca_code",
@@ -131,7 +135,9 @@ class TestProvisionalScotAggregate:
         cartesian = prov_fin.provisional_scot_cartesian_merge(
             mock_provisional_scot_df, prov_fin_config_no_output
         )
-        result = prov_fin.provisional_scot_aggregate(cartesian, prov_fin_config_no_output)
+        result = prov_fin.provisional_scot_aggregate(
+            cartesian, prov_fin_config_no_output
+        )
         assert (result["net_prov"] == result["imm_prov"] - result["em_prov"]).all()
 
     def test_aggregate_filters_by_year(
@@ -140,7 +146,9 @@ class TestProvisionalScotAggregate:
         cartesian = prov_fin.provisional_scot_cartesian_merge(
             mock_provisional_scot_df, prov_fin_config_no_output
         )
-        result = prov_fin.provisional_scot_aggregate(cartesian, prov_fin_config_no_output)
+        result = prov_fin.provisional_scot_aggregate(
+            cartesian, prov_fin_config_no_output
+        )
         assert (result["year"] == 2024).all()
 
 
@@ -188,9 +196,13 @@ class TestRegionalBreakdown:
         self, mock_final_merged_df, prov_fin_config_no_output
     ):
         with pytest.raises(ValueError):
-            prov_fin.regional_breakdown(mock_final_merged_df, prov_fin_config_no_output, "X")
+            prov_fin.regional_breakdown(
+                mock_final_merged_df, prov_fin_config_no_output, "X"
+            )
 
-    def test_la_agg_has_scaled_sqdiff(self, mock_final_merged_df, prov_fin_config_no_output):
+    def test_la_agg_has_scaled_sqdiff(
+        self, mock_final_merged_df, prov_fin_config_no_output
+    ):
         _, la_agg = prov_fin.regional_breakdown(
             mock_final_merged_df, prov_fin_config_no_output, "E"
         )
@@ -218,7 +230,9 @@ class TestLoadSummaryData:
         mock_read_csv.return_value = mock_df
         mock_validate.return_value = MagicMock(to_json_dict=lambda: {})
 
-        result = prov_fin.load_summary_data(prov_fin_config_no_output, "final_immigration")
+        result = prov_fin.load_summary_data(
+            prov_fin_config_no_output, "final_immigration"
+        )
         assert isinstance(result, pd.DataFrame)
 
     @patch("pystagegate.prov_fin.prov_fin_validate")
@@ -240,7 +254,9 @@ class TestLoadSummaryData:
         mock_read_csv.return_value = mock_df
         mock_validate.return_value = MagicMock(to_json_dict=lambda: {})
 
-        result = prov_fin.load_summary_data(prov_fin_config_no_output, "final_immigration")
+        result = prov_fin.load_summary_data(
+            prov_fin_config_no_output, "final_immigration"
+        )
         assert "Extra Column" not in result.columns
 
     @patch("pystagegate.prov_fin.prov_fin_validate")
