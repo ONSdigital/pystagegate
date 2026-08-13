@@ -15,6 +15,12 @@ def create_gx_context(df: pd.DataFrame, df_key: str):
     """
     context = gx.get_context()
 
+    # Disable progress bars for metric calculations
+    context.variables.progress_bars = {
+        "globally": False,
+        "metric_calculations": False,
+    }
+
     data_source = context.data_sources.add_pandas("pandas")
     data_asset = data_source.add_dataframe_asset(name=f"{df_key} pd dataframe asset")
 
