@@ -35,7 +35,7 @@ def create_gx_context(df: pd.DataFrame, df_key: str):
     return context, suite, batch_definition
 
 
-def generic_validate(df: pd.DataFrame, df_key: str, config: dict):
+def prov_fin_validate(df: pd.DataFrame, df_key: str, config: dict):
     """
     Validate the given DataFrame against the configuration.
 
