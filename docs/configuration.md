@@ -1,5 +1,7 @@
 # Configuration Guidance
 
+A valid configuration file is an essential component of pystagegate. It is the only way for the package to connect to data sources and select the correct variable names from those data sources.
+
 A template of the configuration file is always on GitHub. You download it [here.](https://github.com/ONSdigital/pystagegate/blob/main/configuration/pipeline_config.json)
 
 The JSON is shown below:
@@ -93,8 +95,8 @@ Within `global_parameters` we can access:
 | `age_min` | The lower bound of age to perform the analysis on. Must be an integer |
 | `age_max` | The upper bound of age to perform the analysis on. Must be an integer |
 | `year` | The year to perform the analysis on. Must be an integer |
-| `final_nationalities` | A string array stating the nationality categories contained in both final migration datasets. Must be ordered such that the 'all nationalities' category takes position 0. E.g., `["All Nationality", "British", "Non-British"]` |
-| `provisional_scot_direction` | A string array stating the direction categories from the provisional Scottish migration data. Must be ordered so that the immigration category takes position 0 and the emigration category takes position 1. E.g., `["in", "out"]` |
+| `final_nationalities` | String array stating the nationality categories contained in both final migration datasets. Must be ordered such that the 'all nationalities' category takes position 0. E.g., `["All Nationality", "British", "Non-British"]` |
+| `provisional_scot_direction` | String array stating the direction categories from the provisional Scottish migration data. Must be ordered so that the immigration category takes position 0 and the emigration category takes position 1. E.g., `["in", "out"]` |
 
 
 ### Datasets
@@ -115,15 +117,45 @@ Within each dataset-specific configuration we have the two keys:
 - `path`: The path to the dataset. This can be either a shortened path appended to `root_path` or the entire path if `root_path` is left empty.
 - `variables`: The list of variable names required from the dataset to run the pipeline.
 
-#### Final Immigration / Final Emigration
+#### Final Immigration / Final Emigration (`final_immigration`/`final_emigration`)
+
+Final migration estimates by Local Authority geography, age, sex, nationality status and year.
+
+The final migration data is ingested seperately as two datasets for immigration and emigration and joined during the pipeline.
 
 The final migration datasets `final_immigration` and `final_migration` share the same set of required variable names, but they can be named differently between the two datasets.
 
 | Key | Value | Description |
 |-----|-------|-------------|
-| `la_code` | A string value to index the column for the Local Authority Code in which the migration occurred | |
-| `age` | A string value to index the column for migrant age | |
-| `sex` | A string value to index the column for migrant sex | |
-| `nationality` | A string value to index the column for migrant nationality | |
-| `year` | A string value to index the column for year data was collected | |
-| `count` | A string value to index the column for the migration estimate | |
+| `la_code` | String value to index the geography column for the Local Authority Code in which the migration occurred | |
+| `age` | String value to index the column for age | |
+| `sex` | String value to index the column for sex | |
+| `nationality` | String value to index the column for migrant nationality | |
+| `year` | String value to index the column for year data was collected | |
+| `count` | String value to index the column for the final estimate of migration at a given geography, age, sex and nationality | |
+
+#### Provisional Migration (`provisional`)
+
+Provisional migration estimates by Local Authority geography, age, sex, nationality status and year.
+
+| Key | Value | Description |
+|-----|-------|-------------|
+| `la_code` | String value to index the geography column for the Local Authority Code | |
+| `age` | String value to index the column for age | |
+| `sex` | String value to index the column for sex | |
+| `immigration` | String value to index the column for the provisional estimate of immigration at a given geography, age, sex and nationality | |
+| `emigration` | String value to index the column for the provisional estimate of emigration at a given geography, age, sex and nationality | |
+| `net` | `immigration` - `emigration` | |
+
+#### Scottish Provisional Migration (`provisional_scot`)
+
+Additional provisional migration estimates for Local Authority geographies in Scotland only.
+
+| Key | Value | Description |
+|-----|-------|-------------|
+| `la_code` | String value to index the geography column for the Local Authority Code | |
+| `age` | String value to index the column for age | |
+| `sex` | String value to index the column for sex | |
+| `direction` | String value to index the column that states if the row refers to immigration or emigration | |
+| `year` | String value to index the column for year data was collected | |
+| `count` | String value to index the column for the provisional estimate migration at a given geography, age, sex and nationality | |
