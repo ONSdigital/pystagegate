@@ -125,27 +125,27 @@ The final migration data is ingested seperately as two datasets for immigration 
 
 The final migration datasets `final_immigration` and `final_migration` share the same set of required variable names, but they can be named differently between the two datasets.
 
-| Key | Value | Description |
+| Key | Value | Column Description |
 |-----|-------|-------------|
-| `la_code` | String value to index the geography column for the Local Authority Code in which the migration occurred | |
-| `age` | String value to index the column for age | |
-| `sex` | String value to index the column for sex | |
-| `nationality` | String value to index the column for migrant nationality | |
-| `year` | String value to index the column for year data was collected | |
-| `count` | String value to index the column for the final estimate of migration at a given geography, age, sex and nationality | |
+| `la_code` | String value to index the geography column for the Local Authority Code | This column must be recognised in Pandas as a string |
+| `age` | String value to index the column for age | This column must be recognised in Pandas as an integer |
+| `sex` | String value to index the column for sex | This column must take the values `"Male"` or `"Female"` |
+| `nationality` | String value to index the column for migrant nationality | This column must take the values given in Global Parameters - `final_nationalities` |
+| `year` | String value to index the column for year data was collected | This column must be recognised in Pandas as an integer |
+| `count` | String value to index the column for the final estimate of migration at a given geography, age, sex and nationality | This column must be recognised in Pandas as an integer or floating point |
 
 #### Provisional Migration (`provisional`)
 
 Provisional migration estimates by Local Authority geography, age, sex, nationality status and year.
 
-| Key | Value | Description |
+| Key | Value | Column Description |
 |-----|-------|-------------|
-| `la_code` | String value to index the geography column for the Local Authority Code | |
-| `age` | String value to index the column for age | |
-| `sex` | String value to index the column for sex | |
-| `immigration` | String value to index the column for the provisional estimate of immigration at a given geography, age, sex and nationality | |
-| `emigration` | String value to index the column for the provisional estimate of emigration at a given geography, age, sex and nationality | |
-| `net` | `immigration` - `emigration` | |
+| `la_code` | String value to index the geography column for the Local Authority Code | This column must be recognised in Pandas as a string |
+| `age` | String value to index the column for age | This column must be recognised in Pandas as an integer |
+| `sex` | String value to index the column for sex | This column must be recognised in Pandas as a string |
+| `immigration` | String value to index the column for the provisional estimate of immigration at a given geography, age, sex and nationality | This column must be recognised in Pandas as an integer or floating point |
+| `emigration` | String value to index the column for the provisional estimate of emigration at a given geography, age, sex and nationality | This column must be recognised in Pandas as an integer or floating point |
+| `net` | `immigration` - `emigration` | This column must be recognised in Pandas as an integer or floating point |
 
 #### Scottish Provisional Migration (`provisional_scot`)
 
@@ -153,9 +153,9 @@ Additional provisional migration estimates for Local Authority geographies in Sc
 
 | Key | Value | Description |
 |-----|-------|-------------|
-| `la_code` | String value to index the geography column for the Local Authority Code | |
-| `age` | String value to index the column for age | |
-| `sex` | String value to index the column for sex | |
-| `direction` | String value to index the column that states if the row refers to immigration or emigration | |
-| `year` | String value to index the column for year data was collected | |
-| `count` | String value to index the column for the provisional estimate migration at a given geography, age, sex and nationality | |
+| `la_code` | String value to index the geography column for the Local Authority Code | This column must be recognised in Pandas as a string |
+| `age` | String value to index the column for age | This column must be recognised in Pandas as an integer |
+| `sex` | String value to index the column for sex | This column must be recognised in Pandas as a string |
+| `direction` | String value to index the column that states if the row refers to immigration or emigration | This column must take the values given in Global Parameters - `provisional_scot_direction` |
+| `year` | String value to index the column for year data was collected | This column must be recognised in Pandas as an integer |
+| `count` | String value to index the column for the provisional estimate migration at a given geography, age, sex and nationality | This column must be recognised in Pandas as an integer or floating point |
