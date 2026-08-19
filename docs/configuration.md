@@ -121,7 +121,7 @@ Within each dataset-specific configuration we have the two keys:
 
 Final migration estimates by Local Authority geography, age, sex, nationality status and year.
 
-The final migration data is ingested seperately as two datasets for immigration and emigration and joined during the pipeline.
+The final migration data is ingested separately as two datasets for immigration and emigration and joined during the pipeline.
 
 The final migration datasets `final_immigration` and `final_migration` share the same set of required variable names, but they can be named differently between the two datasets.
 
