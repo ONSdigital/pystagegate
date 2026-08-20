@@ -106,3 +106,35 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         )
 
     return ltim_output.reset_index(drop=True)
+
+
+def sex_ratio_main(config: dict | str) -> pd.DataFrame:
+    # Configuration setup
+    if type(config) is str:
+        if os.path.exists(config):
+            config = utils.load_config(config)["sex_ratio"]
+        else:
+            raise FileNotFoundError(f"Config file not found: {config}")
+    elif type(config) is dict:
+        config = config["prov_fin"]
+    else:
+        raise ValueError("Invalid config type. Must be str or dict.")
+
+    # Load and validate datasets
+    ltim_immigration = utils.load_summary_data(config, "final_immigration")
+    ltim_emigration = utils.load_summary_data(config, "final_emigration")
+    ltim_provisional = utils.load_summary_data(config, "provisional")
+
+    # Merge and aggregate final immigration and emmigration data
+    ltim_merged = prov_fin.merge_final_migration_data(
+        ltim_immigration, ltim_emigration, config
+    )
+
+    print(
+        "\n\n",
+        ltim_immigration.head(),
+        ltim_emigration.head(),
+        ltim_provisional.head(),
+        ltim_merged,
+        sep="\n\n",
+    )
