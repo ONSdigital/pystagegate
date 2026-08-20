@@ -55,5 +55,50 @@
                 }
             }
         }
+    },
+    "sex_ratio": {
+        "root_path": "",
+        "output_path": null,
+        "global_parameters": {
+            "age_min": 0,
+            "age_max": 200,
+            "year1": 2024,
+            "year2": 2025
+        },
+        "datasets": {
+            "final_immigration": {
+                "path": "",
+                "variables": {
+                    "la_code": "",
+                    "age": "",
+                    "sex": "",
+                    "nationality": "",
+                    "year": "",
+                    "count": ""
+                }
+            },
+            "final_emigration": {
+                "path": "",
+                "variables": {
+                    "la_code": "",
+                    "age": "",
+                    "sex": "",
+                    "nationality": "",
+                    "year": "",
+                    "count": ""
+                }
+            },
+            "provisional": {
+                "path": "",
+                "variables": {
+                    "la_code": "",
+                    "age": "",
+                    "sex": "",
+                    "immigration": "",
+                    "emigration": "",
+                    "net": ""
+                }
+            }
+        }
     }
 }
