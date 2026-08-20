@@ -21,8 +21,6 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     provisional = utils.load_summary_data(config, "provisional")
     provisional_scot = utils.load_summary_data(config, "provisional_scot")
 
-    print(config["datasets"]["final_immigration"]["variables"]["nationality"])
-
     # Filter final immigration and emmigration on nationality
     immigration = immigration[
         immigration[
@@ -83,17 +81,14 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         config["datasets"]["final_immigration"]["variables"]["la_code"]
     ].str[0]
 
-    # GB analysis
-    gb_age, gb_la = prov_fin.regional_breakdown(final, config)
-
     # England analysis
-    eng_age, eng_la = prov_fin.regional_breakdown(final, config, "E")
+    _, eng_la = prov_fin.regional_breakdown(final, config, "E")
 
     # Wales analysis
-    wal_age, wal_la = prov_fin.regional_breakdown(final, config, "W")
+    _, wal_la = prov_fin.regional_breakdown(final, config, "W")
 
     # Scotland analysis
-    scot_age, scot_la = prov_fin.regional_breakdown(final, config, "S")
+    _, scot_la = prov_fin.regional_breakdown(final, config, "S")
 
     # Correlation matrices and outputs
     output = pd.concat([eng_la, wal_la, scot_la])
