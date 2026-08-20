@@ -16,54 +16,56 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         raise ValueError("Invalid config type. Must be str or dict.")
 
     # Load and validate datasets
-    ltim_immigration = utils.load_summary_data(config, "final_immigration")
-    ltim_emigration = utils.load_summary_data(config, "final_emigration")
-    ltim_provisional = utils.load_summary_data(config, "provisional")
-    ltim_provisional_scot = utils.load_summary_data(config, "provisional_scot")
+    immigration = utils.load_summary_data(config, "final_immigration")
+    emigration = utils.load_summary_data(config, "final_emigration")
+    provisional = utils.load_summary_data(config, "provisional")
+    provisional_scot = utils.load_summary_data(config, "provisional_scot")
 
     print(config["datasets"]["final_immigration"]["variables"]["nationality"])
 
     # Filter final immigration and emmigration on nationality
-    ltim_immigration = ltim_immigration[
-        ltim_immigration[
+    immigration = immigration[
+        immigration[
             config["datasets"]["final_immigration"]["variables"]["nationality"]
-        ] == config["global_parameters"]["final_nationalities"][0]
+        ]
+        == config["global_parameters"]["final_nationalities"][0]
     ]
 
-    ltim_emigration = ltim_emigration[
-        ltim_emigration[
+    emigration = emigration[
+        emigration[
             config["datasets"]["final_emigration"]["variables"]["nationality"]
-        ] == config["global_parameters"]["final_nationalities"][0]
+        ]
+        == config["global_parameters"]["final_nationalities"][0]
     ]
 
     # Merge and aggregate final immigration and emmigration
-    ltim_merged = prov_fin.merge_final_migration_data(
-        ltim_immigration, ltim_emigration, config
+    merged = prov_fin.merge_final_migration_data(
+        immigration, emigration, config
     )
 
     # Filter provisional data for the specified year and aggregate
-    ltim_provisional_subset = prov_fin.subset_provisional_data(ltim_provisional, config)
+    provisional_subset = prov_fin.subset_provisional_data(provisional, config)
 
     # Create and merge cartesian product of unique values for the provisional Scotland data
-    ltim_provisional_scot_cartesian = prov_fin.provisional_scot_cartesian_merge(
-        ltim_provisional_scot, config
+    provisional_scot_cartesian = prov_fin.provisional_scot_cartesian_merge(
+        provisional_scot, config
     )
 
     # Aggregate the merged Scotland data, summing count for sex
-    ltim_provisional_scot_agg = prov_fin.provisional_scot_aggregate(
-        ltim_provisional_scot_cartesian, config
+    provisional_scot_agg = prov_fin.provisional_scot_aggregate(
+        provisional_scot_cartesian, config
     )
 
     # Concatenate all aggregated provisional data
-    ltim_provisional_scot_agg.columns = ltim_provisional_subset.columns
+    provisional_scot_agg.columns = provisional_subset.columns
 
-    ltim_provisional_all = pd.concat(
-        [ltim_provisional_subset, ltim_provisional_scot_agg]
+    provisional_all = pd.concat(
+        [provisional_subset, provisional_scot_agg]
     )
 
     # Final dataframe with provisional and merged data
-    ltim_final = ltim_provisional_all.merge(
-        ltim_merged,
+    final = provisional_all.merge(
+        merged,
         left_on=[
             config["datasets"]["provisional"]["variables"]["la_code"],
             config["datasets"]["provisional"]["variables"]["age"],
@@ -77,35 +79,35 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         how="left",
     )
 
-    ltim_final["nation"] = ltim_final[
+    final["nation"] = final[
         config["datasets"]["final_immigration"]["variables"]["la_code"]
     ].str[0]
 
     # GB analysis
-    gb_age, gb_la = prov_fin.regional_breakdown(ltim_final, config)
+    gb_age, gb_la = prov_fin.regional_breakdown(final, config)
 
     # England analysis
-    eng_age, eng_la = prov_fin.regional_breakdown(ltim_final, config, "E")
+    eng_age, eng_la = prov_fin.regional_breakdown(final, config, "E")
 
     # Wales analysis
-    wal_age, wal_la = prov_fin.regional_breakdown(ltim_final, config, "W")
+    wal_age, wal_la = prov_fin.regional_breakdown(final, config, "W")
 
     # Scotland analysis
-    scot_age, scot_la = prov_fin.regional_breakdown(ltim_final, config, "S")
+    scot_age, scot_la = prov_fin.regional_breakdown(final, config, "S")
 
     # Correlation matrices and outputs
-    ltim_output = pd.concat([eng_la, wal_la, scot_la])
+    output = pd.concat([eng_la, wal_la, scot_la])
 
     # Handle output directory creation
     if config["output_path"] is not None:
         if not os.path.exists(config["output_path"]):
             os.makedirs(config["output_path"])
 
-        ltim_output.to_csv(
+        output.to_csv(
             os.path.join(config["output_path"], "prov_fin_output.csv"), index=False
         )
 
-    return ltim_output.reset_index(drop=True)
+    return output.reset_index(drop=True)
 
 
 def sex_ratio_main(config: dict | str) -> pd.DataFrame:
@@ -121,20 +123,20 @@ def sex_ratio_main(config: dict | str) -> pd.DataFrame:
         raise ValueError("Invalid config type. Must be str or dict.")
 
     # Load and validate datasets
-    ltim_immigration = utils.load_summary_data(config, "final_immigration")
-    ltim_emigration = utils.load_summary_data(config, "final_emigration")
-    ltim_provisional = utils.load_summary_data(config, "provisional")
+    immigration = utils.load_summary_data(config, "final_immigration")
+    emigration = utils.load_summary_data(config, "final_emigration")
+    provisional = utils.load_summary_data(config, "provisional")
 
     # Merge and aggregate final immigration and emmigration data
-    ltim_merged = prov_fin.merge_final_migration_data(
-        ltim_immigration, ltim_emigration, config
+    merged = prov_fin.merge_final_migration_data(
+        immigration, emigration, config
     )
 
     print(
         "\n\n",
-        ltim_immigration.head(),
-        ltim_emigration.head(),
-        ltim_provisional.head(),
-        ltim_merged,
+        immigration.head(),
+        emigration.head(),
+        provisional.head(),
+        merged,
         sep="\n\n",
     )
