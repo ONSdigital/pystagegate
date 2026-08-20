@@ -16,10 +16,10 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         raise ValueError("Invalid config type. Must be str or dict.")
 
     # Load and validate datasets
-    ltim_immigration = prov_fin.load_summary_data(config, "final_immigration")
-    ltim_emigration = prov_fin.load_summary_data(config, "final_emigration")
-    ltim_provisional = prov_fin.load_summary_data(config, "provisional")
-    ltim_provisional_scot = prov_fin.load_summary_data(config, "provisional_scot")
+    ltim_immigration = utils.load_summary_data(config, "final_immigration")
+    ltim_emigration = utils.load_summary_data(config, "final_emigration")
+    ltim_provisional = utils.load_summary_data(config, "provisional")
+    ltim_provisional_scot = utils.load_summary_data(config, "provisional_scot")
 
     # Merge immigration and emmigration and aggregate
     ltim_merged = prov_fin.merge_final_migration_data(

@@ -1,38 +1,5 @@
 import pandas as pd
 from itertools import product
-import os
-import json
-from pystagegate.validate import prov_fin_validate
-
-
-def load_summary_data(config: dict, dataset_key: str) -> pd.DataFrame:
-    """
-    Load and validate summary data from a CSV file.
-
-    Args:
-        config (dict): A dictionary configuration.
-        dataset (str): A string key value for the dataset to load.
-
-    Returns:
-        df (pd.DataFrame): A pandas DataFrame containing the selected data.
-    """
-    path = os.path.join(config["root_path"], config["datasets"][dataset_key]["path"])
-    variables = config["datasets"][dataset_key]["variables"]
-
-    df = pd.read_csv(path)[variables.values()]
-
-    validation_results = prov_fin_validate(df, dataset_key, config)
-
-    if config["output_path"] is not None:
-        if not os.path.exists(config["output_path"]):
-            os.makedirs(config["output_path"])
-
-        with open(
-            os.path.join(config["output_path"], f"{dataset_key}_validate.json"), "w"
-        ) as f:
-            json.dump(validation_results.to_json_dict(), f, indent=4)
-
-    return df
 
 
 def merge_final_migration_data(
