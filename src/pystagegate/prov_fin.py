@@ -49,10 +49,6 @@ def merge_final_migration_data(
     merged_df["net_cell"] = merged_df[immigration_col] - merged_df[emigration_col]
 
     merged_df = merged_df[
-        merged_df[left_vars["nationality"]]
-        == config["global_parameters"]["final_nationalities"][0]
-    ]
-    merged_df = merged_df[
         merged_df[left_vars["year"]] == config["global_parameters"]["year"]
     ]
 

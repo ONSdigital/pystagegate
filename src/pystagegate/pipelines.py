@@ -21,7 +21,22 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     ltim_provisional = utils.load_summary_data(config, "provisional")
     ltim_provisional_scot = utils.load_summary_data(config, "provisional_scot")
 
-    # Merge immigration and emmigration and aggregate
+    print(config["datasets"]["final_immigration"]["variables"]["nationality"])
+
+    # Filter final immigration and emmigration on nationality
+    ltim_immigration = ltim_immigration[
+        ltim_immigration[
+            config["datasets"]["final_immigration"]["variables"]["nationality"]
+        ] == config["global_parameters"]["final_nationalities"][0]
+    ]
+
+    ltim_emigration = ltim_emigration[
+        ltim_emigration[
+            config["datasets"]["final_emigration"]["variables"]["nationality"]
+        ] == config["global_parameters"]["final_nationalities"][0]
+    ]
+
+    # Merge and aggregate final immigration and emmigration
     ltim_merged = prov_fin.merge_final_migration_data(
         ltim_immigration, ltim_emigration, config
     )
