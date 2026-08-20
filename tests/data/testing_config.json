@@ -1,6 +1,6 @@
 {
     "prov_fin": {
-        "root_path": "tests/data/",
+        "root_path": "tests/data/prov_fin/",
         "output_path": "tests/data/output/",
         "global_parameters": {
             "age_min": 0,
