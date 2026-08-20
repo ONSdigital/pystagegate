@@ -90,16 +90,4 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
             os.path.join(config["output_path"], "prov_fin_output.csv"), index=False
         )
 
-        ltim_output.groupby("nation")[["sqdiff_imm_sc", "imm_prov"]].corr().to_csv(
-            os.path.join(config["output_path"], "prov_fin_corr_imm.csv"), index=False
-        )
-
-        ltim_output.groupby("nation")[["sqdiff_em_sc", "em_prov"]].corr().to_csv(
-            os.path.join(config["output_path"], "prov_fin_corr_em.csv"), index=False
-        )
-
-        ltim_output.groupby("nation")[["sqdiff_net_sc", "imm_prov"]].corr().to_csv(
-            os.path.join(config["output_path"], "prov_fin_corr_net.csv"), index=False
-        )
-
     return ltim_output.reset_index(drop=True)
