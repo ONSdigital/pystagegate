@@ -214,6 +214,7 @@ def squared_difference(
 
     Args:
         df (pd.DataFrame): The input migration DataFrame.
+        prefix (str): A string prefix used to name the computed squared difference column
         prov_col (str): The provisional estimate column name.
         fin_col (str): The final estimate column name.
 
