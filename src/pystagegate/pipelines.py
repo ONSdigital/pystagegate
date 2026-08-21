@@ -1,4 +1,4 @@
-from pystagegate import prov_fin, utils
+from pystagegate import prov_fin, sex_ratio, utils
 import pandas as pd
 import os
 
@@ -99,15 +99,37 @@ def sex_ratio_main(config: dict | str) -> pd.DataFrame:
     provisional = utils.load_summary_data(config, "provisional")
 
     # Merge and aggregate final immigration and emmigration data
-    merged = prov_fin.merge_final_migration_data(
-        immigration, emigration, config
+    final = prov_fin.merge_final_migration_data(immigration, emigration, config)
+
+    # Aggregate provisional data
+    provisional_agg = prov_fin.subset_provisional_data(provisional, config)
+
+    # Create merge provisional and final with added aggregated national profile
+    merged = sex_ratio.merged_national_profile(provisional_agg, final, config)
+
+    # Calculate squared difference from national profile
+    merged = prov_fin.squared_difference(merged, "imm", "imm_prov", "imm_fin")
+    merged = prov_fin.squared_difference(merged, "em", "em_prov", "em_fin")
+    merged = prov_fin.squared_difference(merged, "net", "net_prov", "net_fin")
+
+    # Aggregate squared difference
+    sq_diff_output = merged.groupby(
+        config["datasets"]["final_immigration"]["variables"]["la_code"]
+    ).agg(
+        {
+            "imm_prov": "sum",
+            "em_prov": "sum",
+            "net_prov": "sum",
+            "sqdiff_imm": "sum",
+            "sqdiff_em": "sum",
+            "sqdiff_net": "sum",
+        }
     )
 
     print(
         "\n\n",
-        immigration.head(),
-        emigration.head(),
-        provisional.head(),
-        merged,
+        sq_diff_output,
         sep="\n\n",
     )
+
+    # year1 - year2 analysis on final migration data
