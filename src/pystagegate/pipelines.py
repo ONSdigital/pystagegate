@@ -5,15 +5,7 @@ import os
 
 def prov_fin_main(config: dict | str) -> pd.DataFrame:
     # Configuration setup
-    if type(config) is str:
-        if os.path.exists(config):
-            config = utils.load_config(config)["prov_fin"]
-        else:
-            raise FileNotFoundError(f"Config file not found: {config}")
-    elif type(config) is dict:
-        config = config["prov_fin"]
-    else:
-        raise ValueError("Invalid config type. Must be str or dict.")
+    config = utils.load_config(config)["prov_fin"]
 
     # Load and validate datasets
     immigration = utils.load_summary_data(config, "final_immigration")
@@ -107,15 +99,7 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
 
 def sex_ratio_main(config: dict | str) -> pd.DataFrame:
     # Configuration setup
-    if type(config) is str:
-        if os.path.exists(config):
-            config = utils.load_config(config)["sex_ratio"]
-        else:
-            raise FileNotFoundError(f"Config file not found: {config}")
-    elif type(config) is dict:
-        config = config["prov_fin"]
-    else:
-        raise ValueError("Invalid config type. Must be str or dict.")
+    config = utils.load_config(config)["sex_ratio"]
 
     # Load and validate datasets
     immigration = utils.load_summary_data(config, "final_immigration")

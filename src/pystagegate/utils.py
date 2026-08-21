@@ -7,19 +7,27 @@ import os
 from pystagegate.validate import validate
 
 
-def load_config(path: str) -> dict:
+def load_config(conf_id: str | dict) -> dict:
     """
     Load a JSON configuration file.
 
     Args:
-        path (str): The file path to the JSON file.
+        conf_id (str | dict): The file path to a JSON file or a dict object
 
     Returns:
-        config (dict): The loaded JSON configuration as a dictionary.
+        config (dict): Configuration dictionary.
     """
-    with open(path, "r") as f:
-        config = json.load(f)
-    return config
+    if type(conf_id) is str:
+        if os.path.exists(conf_id):
+            with open(conf_id, "r") as f:
+                config = json.load(f)
+            return config
+        else:
+            raise FileNotFoundError(f"Config file not found: {conf_id}")
+    elif type(conf_id) is dict:
+        return conf_id
+    else:
+        raise ValueError("Invalid config type. Must be str or dict.")
 
 
 def load_summary_data(config: dict, dataset_key: str) -> pd.DataFrame:
