@@ -40,9 +40,6 @@ def _load_validation_dataset(config: dict, df_key: str) -> pd.DataFrame:
     """
     Load a configured validation dataset from disk.
 
-    This is used by cross-dataset checks where one dataset must be compared
-    against another after the current DataFrame has passed its own GX suite.
-
     Args:
         config (dict): The prov_fin configuration dictionary.
         df_key (str): The dataset key to load from the configuration.
@@ -58,11 +55,6 @@ def _load_validation_dataset(config: dict, df_key: str) -> pd.DataFrame:
 def _validate_final_dataset_consistency(df: pd.DataFrame, df_key: str, config: dict):
     """
     Validate that the two final migration datasets cover the same domains.
-
-    The final immigration and final emigration inputs are validated separately
-    by Great Expectations, but some rules only make sense when comparing one
-    dataset against the other. This helper checks that both datasets share the
-    same unique local authority code set and the same unique age set.
 
     Args:
         df (pd.DataFrame): The current final migration DataFrame under validation.
@@ -103,10 +95,6 @@ def _validate_provisional_scot_directions(
 ):
     """
     Validate Scotland provisional direction coverage for the configured year.
-
-    Great Expectations already restricts direction values to the configured set.
-    This helper adds the stronger pipeline rule that, for the configured year,
-    every configured direction must actually be present in the data.
 
     Args:
         df (pd.DataFrame): The provisional Scotland dataset under validation.
