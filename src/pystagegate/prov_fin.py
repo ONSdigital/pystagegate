@@ -85,22 +85,10 @@ def subset_provisional_data(provisional_df: pd.DataFrame, config: dict) -> pd.Da
     Returns:
         subset_df (pd.DataFrame): A pandas DataFrame containing the subsetted and renamed data.
     """
-    year = config["global_parameters"]["year"]
     variables = config["datasets"]["provisional"]["variables"]
 
-    subset_df = pd.concat(
-        [
-            provisional_df.iloc[:, 0:3],
-            provisional_df.loc[
-                :,
-                [variables["immigration"], variables["emigration"], variables["net"]],
-            ],
-        ],
-        axis=1,
-    )
-
     subset_df = (
-        subset_df.groupby([variables["la_code"], variables["age"]])
+        provisional_df.groupby([variables["la_code"], variables["age"]])
         .agg(
             imm_prov=(variables["immigration"], "sum"),
             em_prov=(variables["emigration"], "sum"),
@@ -109,7 +97,7 @@ def subset_provisional_data(provisional_df: pd.DataFrame, config: dict) -> pd.Da
         .reset_index()
     )
 
-    subset_df["year"] = year
+    subset_df["year"] = config["global_parameters"]["year"]
 
     return subset_df[
         [
