@@ -15,26 +15,20 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
 
     # Filter final immigration and emmigration on nationality
     immigration = immigration[
-        immigration[
-            config["datasets"]["final_immigration"]["variables"]["nationality"]
-        ]
+        immigration[config["datasets"]["final_immigration"]["variables"]["nationality"]]
         == config["global_parameters"]["final_nationalities"][0]
     ]
 
     emigration = emigration[
-        emigration[
-            config["datasets"]["final_emigration"]["variables"]["nationality"]
-        ]
+        emigration[config["datasets"]["final_emigration"]["variables"]["nationality"]]
         == config["global_parameters"]["final_nationalities"][0]
     ]
 
     # Merge and aggregate final immigration and emmigration
-    merged = prov_fin.merge_final_migration_data(
-        immigration, emigration, config
-    )
+    final = prov_fin.merge_final_migration_data(immigration, emigration, config)
 
-    # Filter provisional data for the specified year and aggregate
-    provisional_subset = prov_fin.subset_provisional_data(provisional, config)
+    # Aggregate provisional data
+    provisional_agg = prov_fin.subset_provisional_data(provisional, config)
 
     # Create and merge cartesian product of unique values for the provisional Scotland data
     provisional_scot_cartesian = prov_fin.provisional_scot_cartesian_merge(
@@ -47,15 +41,13 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     )
 
     # Concatenate all aggregated provisional data
-    provisional_scot_agg.columns = provisional_subset.columns
+    provisional_scot_agg.columns = provisional_agg.columns
 
-    provisional_all = pd.concat(
-        [provisional_subset, provisional_scot_agg]
-    )
+    provisional_all = pd.concat([provisional_agg, provisional_scot_agg])
 
     # Final dataframe with provisional and merged data
-    final = provisional_all.merge(
-        merged,
+    all = provisional_all.merge(
+        final,
         left_on=[
             config["datasets"]["provisional"]["variables"]["la_code"],
             config["datasets"]["provisional"]["variables"]["age"],
@@ -69,18 +61,18 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         how="left",
     )
 
-    final["nation"] = final[
+    all["nation"] = all[
         config["datasets"]["final_immigration"]["variables"]["la_code"]
     ].str[0]
 
     # England analysis
-    _, eng_la = prov_fin.regional_breakdown(final, config, "E")
+    _, eng_la = prov_fin.regional_breakdown(all, config, "E")
 
     # Wales analysis
-    _, wal_la = prov_fin.regional_breakdown(final, config, "W")
+    _, wal_la = prov_fin.regional_breakdown(all, config, "W")
 
     # Scotland analysis
-    _, scot_la = prov_fin.regional_breakdown(final, config, "S")
+    _, scot_la = prov_fin.regional_breakdown(all, config, "S")
 
     # Correlation matrices and outputs
     output = pd.concat([eng_la, wal_la, scot_la])
