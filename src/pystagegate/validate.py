@@ -172,7 +172,23 @@ def prov_fin_validate(df: pd.DataFrame, df_key: str, config: dict):
         )
     )
 
+    suite.add_expectation(
+        gx.expectations.ExpectColumnValuesToMatchRegex(
+            column=variables["la_code"], regex=r".*\S.*"
+        )
+    )
+
     if df_key in ["final_immigration", "final_emigration"]:
+        suite.add_expectation(
+            gx.expectations.ExpectColumnValuesToBeOfType(
+                column=variables["year"], type_="int64"
+            )
+        )
+        suite.add_expectation(
+            gx.expectations.ExpectColumnValuesToBeBetween(
+                column=variables["year"], min_value=1900, max_value=2100
+            )
+        )
         suite.add_expectation(
             gx.expectations.ExpectColumnDistinctValuesToBeInSet(
                 column=variables["nationality"],
@@ -180,8 +196,18 @@ def prov_fin_validate(df: pd.DataFrame, df_key: str, config: dict):
             )
         )
         suite.add_expectation(
+            gx.expectations.ExpectColumnValuesToMatchRegex(
+                column=variables["nationality"], regex=r".*\S.*"
+            )
+        )
+        suite.add_expectation(
             gx.expectations.ExpectColumnDistinctValuesToBeInSet(
                 column=variables["sex"], value_set=["Male", "Female"]
+            )
+        )
+        suite.add_expectation(
+            gx.expectations.ExpectColumnValuesToMatchRegex(
+                column=variables["sex"], regex=r".*\S.*"
             )
         )
         suite.add_expectation(
@@ -197,9 +223,34 @@ def prov_fin_validate(df: pd.DataFrame, df_key: str, config: dict):
 
     if df_key == "provisional_scot":
         suite.add_expectation(
+            gx.expectations.ExpectColumnValuesToBeOfType(
+                column=variables["year"], type_="int64"
+            )
+        )
+        suite.add_expectation(
+            gx.expectations.ExpectColumnValuesToBeBetween(
+                column=variables["year"], min_value=1900, max_value=2100
+            )
+        )
+        suite.add_expectation(
+            gx.expectations.ExpectColumnDistinctValuesToBeInSet(
+                column=variables["sex"], value_set=["F", "M"]
+            )
+        )
+        suite.add_expectation(
+            gx.expectations.ExpectColumnValuesToMatchRegex(
+                column=variables["sex"], regex=r".*\S.*"
+            )
+        )
+        suite.add_expectation(
             gx.expectations.ExpectColumnDistinctValuesToBeInSet(
                 column=variables["direction"],
                 value_set=config["global_parameters"]["provisional_scot_direction"],
+            )
+        )
+        suite.add_expectation(
+            gx.expectations.ExpectColumnValuesToMatchRegex(
+                column=variables["direction"], regex=r".*\S.*"
             )
         )
         suite.add_expectation(
@@ -214,6 +265,11 @@ def prov_fin_validate(df: pd.DataFrame, df_key: str, config: dict):
         )
 
     if df_key == "provisional":
+        suite.add_expectation(
+            gx.expectations.ExpectColumnDistinctValuesToBeInSet(
+                column=variables["sex"], value_set=[1, 2]
+            )
+        )
         for v in [variables["immigration"], variables["emigration"], variables["net"]]:
             suite.add_expectation(
                 gx.expectations.ExpectColumnValuesToBeInTypeList(
