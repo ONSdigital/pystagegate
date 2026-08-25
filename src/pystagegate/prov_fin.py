@@ -2,6 +2,19 @@ import pandas as pd
 from itertools import product
 
 
+def filter_migration_data(migration_df: pd.DataFrame, key: str, config: dict):
+    variables = config["datasets"][key]["variables"]
+    migration_df = migration_df[
+        migration_df[variables["nationality"]]
+        == config["global_parameters"]["final_nationalities"][0]
+    ]
+    migration_df = migration_df[
+        migration_df[variables["year"]] == config["global_parameters"]["year"]
+    ]
+
+    return migration_df
+
+
 def merge_final_migration_data(
     immigration_df: pd.DataFrame, emigration_df: pd.DataFrame, config: dict
 ) -> pd.DataFrame:
@@ -47,10 +60,6 @@ def merge_final_migration_data(
         emigration_col = right_vars["count"]
 
     merged_df["net_cell"] = merged_df[immigration_col] - merged_df[emigration_col]
-
-    merged_df = merged_df[
-        merged_df[left_vars["year"]] == config["global_parameters"]["year"]
-    ]
 
     merged_df = (
         merged_df.groupby([left_vars["la_code"], left_vars["year"], left_vars["age"]])

@@ -13,16 +13,11 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     provisional = utils.load_summary_data(config, "provisional")
     provisional_scot = utils.load_summary_data(config, "provisional_scot")
 
-    # Filter final immigration and emmigration on nationality
-    immigration = immigration[
-        immigration[config["datasets"]["final_immigration"]["variables"]["nationality"]]
-        == config["global_parameters"]["final_nationalities"][0]
-    ]
-
-    emigration = emigration[
-        emigration[config["datasets"]["final_emigration"]["variables"]["nationality"]]
-        == config["global_parameters"]["final_nationalities"][0]
-    ]
+    # Filter final immigration and emmigration
+    immigration = prov_fin.filter_migration_data(
+        immigration, "final_immigration", config
+    )
+    emigration = prov_fin.filter_migration_data(emigration, "final_immigration", config)
 
     # Merge and aggregate final immigration and emmigration
     final = prov_fin.merge_final_migration_data(immigration, emigration, config)
