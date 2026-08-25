@@ -99,7 +99,7 @@ def sex_ratio_main(config: dict | str) -> pd.DataFrame:
     # Aggregate provisional data
     provisional_agg = prov_fin.subset_provisional_data(provisional, config)
 
-    # Create merge provisional and final with added aggregated national profile
+    # Create merged provisional and final with added aggregated national profile
     merged = sex_ratio.merged_national_profile(provisional_agg, final, config)
 
     # Calculate squared difference from national profile
@@ -121,10 +121,6 @@ def sex_ratio_main(config: dict | str) -> pd.DataFrame:
         }
     )
 
-    print(
-        "\n\n",
-        sq_diff_output,
-        sep="\n\n",
-    )
+    year_agg = sex_ratio.year_aggregation(final, config)
 
-    # year1 - year2 analysis on final migration data
+    print(sex_ratio.year_squared_difference(year_agg, "imm", 2024, 2025))
