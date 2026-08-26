@@ -5,7 +5,7 @@ def merged_national_profile(
     provisional_df: pd.DataFrame, final_df: pd.DataFrame, config: dict
 ) -> pd.DataFrame:
     """
-    Merged final immigration data onto the provisional data and computes national profiles.
+    Merges final immigration data onto the provisional data and computes national profiles.
 
     Args:
         provisional_df (pd.DataFrame): The provisional immigration dataset.
@@ -59,7 +59,18 @@ def merged_national_profile(
     return merged_df.merge(national_profile, on=right_vars["age"], how="left")
 
 
-def year_aggregation(merged_df: pd.DataFrame, config: dict) -> pd.DataFrame:
+def year_agg_sqdiff(merged_df: pd.DataFrame, config: dict) -> pd.DataFrame:
+    """
+    Computes the squared differences of immigration, emigration, and net migration counts
+    between two specified years.
+
+    Args:
+        merged_df (pd.DataFrame): The merged DataFrame containing immigration and emigration data.
+        config (dict): Configuration dictionary containing dataset variable mappings and global parameters.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the squared differences for immigration, emigration, and net migration counts between the two specified years.
+    """
     variables = config["datasets"]["final_immigration"]["variables"]
 
     year_1 = config["global_parameters"]["year"]
@@ -91,13 +102,34 @@ def year_aggregation(merged_df: pd.DataFrame, config: dict) -> pd.DataFrame:
 
         df_dict.update({year: df.drop(columns=[variables["year"]])})
 
-    return pd.merge(
+    # DataFrame containing squared differences
+    merged = pd.merge(
         df_dict[year_1],
         df_dict[year_2],
         on=[variables["la_code"], variables["age"]],
         how="left",
         suffixes=(year_1, year_2),
     )
+
+    for out_name in ["imm", "em", "net"]:
+        merged = year_squared_difference(merged, out_name, year_1, year_2)
+
+    # Aggregated DataFrame for scaled sums of squared differences
+    adjusted_ssq = merged.groupby(variables["la_code"]).agg(
+        imm_ssq_total=("sqdiff_imm", "sum"),
+        em_ssq_total=("sqdiff_em", "sum"),
+        net_ssq_total=("sqdiff_net", "sum"),
+        imm_la_total=(f"count_imm{year_1}", "sum"),
+        em_la_total=(f"count_em{year_1}", "sum"),
+        net_la_total=(f"count_net{year_1}", "sum"),
+    )
+
+    for out_name in ["imm", "em", "net"]:
+        adjusted_ssq[f"{out_name}_adjusted_size_ssq"] = (
+            adjusted_ssq[f"{out_name}_ssq_total"] / adjusted_ssq[f"{out_name}_la_total"]
+        )
+
+    return merged, adjusted_ssq.reset_index()
 
 
 def year_squared_difference(
@@ -106,22 +138,54 @@ def year_squared_difference(
     year_1: int,
     year_2: int,
 ) -> pd.DataFrame:
+    """
+    Computes the squared differences for a specific migration type between two years.
+
+    Args:
+        yc_df (pd.DataFrame): The DataFrame containing migration counts for two years.
+        output_name (str): The migration type to compute squared differences for. Must be one of 'imm', 'em', or 'net'.
+        year_1 (int): The first year for comparison.
+        year_2 (int): The second year for comparison.
+
+    Returns:
+        pd.DataFrame: The DataFrame with added columns for the difference and squared difference of the specified migration type between the two years.
+    """
     if output_name not in ["imm", "em", "net"]:
         raise ValueError("output_name must be one of 'imm', 'em', 'net'")
-    
+
     count_year_1 = f"count_{output_name}{year_1}"
     total_count_year_1 = f"total_count_{output_name}{year_1}"
 
     count_year_2 = f"count_{output_name}{year_2}"
     total_count_year_2 = f"total_count_{output_name}{year_2}"
 
-    yc_df[f"{output_name}_diff"] = (
-        (yc_df[count_year_2]) -
-        (yc_df[count_year_1] * yc_df[total_count_year_2]/yc_df[total_count_year_1])
+    yc_df[f"diff_{output_name}"] = (yc_df[count_year_2]) - (
+        yc_df[count_year_1] * yc_df[total_count_year_2] / yc_df[total_count_year_1]
     )
 
-    yc_df[f"{output_name}_sqdiff"] = yc_df[f"{output_name}_diff"] ** 2
+    yc_df[f"sqdiff_{output_name}"] = yc_df[f"diff_{output_name}"] ** 2
 
     return yc_df
 
-    
+
+def pivot_sex_ratio_frame(sex_ratio_df: pd.DataFrame, config: dict):
+    variables = config["datasets"]["final_immigration"]["variables"]
+
+    # Filter on years
+    sex_ratio_df = sex_ratio_df[
+        sex_ratio_df[variables["year"]].isin(
+            [config["global_parameters"]["year"], config["global_parameters"]["year2"]]
+        )
+    ]
+
+    # First pivot on gender and year
+    sr_pivot = sex_ratio_df.pivot_table(
+        index=[
+            variables["la_code"],
+            variables["age"],
+        ],
+        columns=[variables["sex"], variables["year"]],
+        values=["imm_fin", "em_fin"],
+    )
+
+    return sr_pivot
