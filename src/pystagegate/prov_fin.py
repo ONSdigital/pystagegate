@@ -16,7 +16,10 @@ def filter_migration_data(migration_df: pd.DataFrame, key: str, config: dict):
 
 
 def merge_final_migration_data(
-    immigration_df: pd.DataFrame, emigration_df: pd.DataFrame, config: dict
+    immigration_df: pd.DataFrame,
+    emigration_df: pd.DataFrame,
+    config: dict,
+    sex_ratio: bool = False,
 ) -> pd.DataFrame:
     """
     Merge immigration and emigration dataframes on specified columns and calculate net migration.
@@ -61,26 +64,56 @@ def merge_final_migration_data(
 
     merged_df["net_cell"] = merged_df[immigration_col] - merged_df[emigration_col]
 
-    merged_df = (
-        merged_df.groupby([left_vars["la_code"], left_vars["year"], left_vars["age"]])
-        .agg(
-            imm_fin=(immigration_col, "sum"),
-            em_fin=(emigration_col, "sum"),
-            net_fin=("net_cell", "sum"),
+    if sex_ratio:
+        # Alternative aggregation for sex_ratio calculations
+        merged_df = (
+            merged_df.groupby(
+                [
+                    left_vars["la_code"],
+                    left_vars["year"],
+                    left_vars["age"],
+                    left_vars["sex"],
+                ]
+            )
+            .agg(imm_fin=(immigration_col, "sum"), em_fin=(emigration_col, "sum"))
+            .reset_index()
         )
-        .reset_index()
-    )
 
-    return merged_df[
-        [
-            left_vars["year"],
-            left_vars["la_code"],
-            left_vars["age"],
-            "imm_fin",
-            "em_fin",
-            "net_fin",
+        return merged_df[
+            [
+                left_vars["year"],
+                left_vars["la_code"],
+                left_vars["age"],
+                left_vars["sex"],
+                "imm_fin",
+                "em_fin",
+            ]
         ]
-    ]
+
+    else:
+        # Default aggregation for combining with provisional data
+        merged_df = (
+            merged_df.groupby(
+                [left_vars["la_code"], left_vars["year"], left_vars["age"]]
+            )
+            .agg(
+                imm_fin=(immigration_col, "sum"),
+                em_fin=(emigration_col, "sum"),
+                net_fin=("net_cell", "sum"),
+            )
+            .reset_index()
+        )
+
+        return merged_df[
+            [
+                left_vars["year"],
+                left_vars["la_code"],
+                left_vars["age"],
+                "imm_fin",
+                "em_fin",
+                "net_fin",
+            ]
+        ]
 
 
 def subset_provisional_data(provisional_df: pd.DataFrame, config: dict) -> pd.DataFrame:
@@ -243,7 +276,7 @@ def squared_difference(
     return df
 
 
-def regional_breakdown(
+def regional_breakdown_sqdiff(
     df: pd.DataFrame,
     config: dict,
     nation: str = None,
