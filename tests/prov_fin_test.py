@@ -177,7 +177,7 @@ class TestRegionalBreakdown:
     def test_gb_breakdown_returns_two_dataframes(
         self, mock_final_merged_df, prov_fin_config_no_output
     ):
-        age_agg, la_agg = prov_fin.regional_breakdown(
+        age_agg, la_agg = prov_fin.regional_breakdown_sqdiff(
             mock_final_merged_df, prov_fin_config_no_output
         )
         assert isinstance(age_agg, pd.DataFrame)
@@ -186,7 +186,7 @@ class TestRegionalBreakdown:
     def test_nation_breakdown_filters_correctly(
         self, mock_final_merged_df, prov_fin_config_no_output
     ):
-        age_agg, la_agg = prov_fin.regional_breakdown(
+        age_agg, la_agg = prov_fin.regional_breakdown_sqdiff(
             mock_final_merged_df, prov_fin_config_no_output, "E"
         )
         assert (la_agg["nation"] == "E").all()
@@ -195,14 +195,14 @@ class TestRegionalBreakdown:
         self, mock_final_merged_df, prov_fin_config_no_output
     ):
         with pytest.raises(ValueError):
-            prov_fin.regional_breakdown(
+            prov_fin.regional_breakdown_sqdiff(
                 mock_final_merged_df, prov_fin_config_no_output, "X"
             )
 
     def test_la_agg_has_scaled_sqdiff(
         self, mock_final_merged_df, prov_fin_config_no_output
     ):
-        _, la_agg = prov_fin.regional_breakdown(
+        _, la_agg = prov_fin.regional_breakdown_sqdiff(
             mock_final_merged_df, prov_fin_config_no_output, "E"
         )
         assert "sqdiff_imm_sc" in la_agg.columns
