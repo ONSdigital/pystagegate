@@ -61,13 +61,13 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     ].str[0]
 
     # England analysis
-    _, eng_la = prov_fin.regional_breakdown(all, config, "E")
+    _, eng_la = prov_fin.regional_breakdown_sqdiff(all, config, "E")
 
     # Wales analysis
-    _, wal_la = prov_fin.regional_breakdown(all, config, "W")
+    _, wal_la = prov_fin.regional_breakdown_sqdiff(all, config, "W")
 
     # Scotland analysis
-    _, scot_la = prov_fin.regional_breakdown(all, config, "S")
+    _, scot_la = prov_fin.regional_breakdown_sqdiff(all, config, "S")
 
     # Correlation matrices and outputs
     output = pd.concat([eng_la, wal_la, scot_la])
@@ -121,6 +121,16 @@ def sex_ratio_main(config: dict | str) -> pd.DataFrame:
         }
     )
 
-    year_agg = sex_ratio.year_aggregation(final, config)
+    # Year on year comparison squared difference
+    year_agg, year_agg_adjusted = sex_ratio.year_agg_sqdiff(final, config)
 
-    print(sex_ratio.year_squared_difference(year_agg, "imm", 2024, 2025))
+    # Sex Ratio analysis
+    sr = prov_fin.merge_final_migration_data(
+        immigration, emigration, config, sex_ratio=True
+    )
+
+    sr_pivot = sex_ratio.pivot_sex_ratio_frame(sr, config)
+
+    print("\n\n", sr_pivot, sr_pivot.columns, sep="\n\n")
+
+    # Data cleaning sex ratio
