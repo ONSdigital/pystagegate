@@ -84,7 +84,7 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     return output.reset_index(drop=True)
 
 
-def sex_ratio_main(config: dict | str) -> pd.DataFrame:
+def national_profile_main(config: dict | str) -> list:
     # Configuration setup
     config = utils.load_config(config)["sex_ratio"]
 
@@ -123,6 +123,17 @@ def sex_ratio_main(config: dict | str) -> pd.DataFrame:
 
     # Year on year comparison squared difference
     year_agg, year_agg_adjusted = sex_ratio.year_agg_sqdiff(final, config)
+
+    return [sq_diff_output, year_agg, year_agg_adjusted]
+
+
+def sex_ratio_main(config: dict | str) -> pd.DataFrame:
+    # Configuration setup
+    config = utils.load_config(config)["sex_ratio"]
+
+    # Load and validate datasets
+    immigration = utils.load_summary_data(config, "final_immigration")
+    emigration = utils.load_summary_data(config, "final_emigration")
 
     # Sex Ratio analysis
     sr = prov_fin.merge_final_migration_data(
