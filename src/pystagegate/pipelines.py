@@ -142,6 +142,24 @@ def sex_ratio_main(config: dict | str) -> pd.DataFrame:
 
     sr_pivot = sex_ratio.pivot_sex_ratio_frame(sr, config)
 
-    print("\n\n", sr_pivot, sr_pivot.columns, sep="\n\n")
+    # Data cleaning for sex ratio calculation
+    sr_recode = sr_pivot.where(sr_pivot >= 1, 1).where(sr_pivot >= 0.5, 0)
 
-    # Data cleaning sex ratio
+    # Add flags
+    sr_mask = (
+        sr_recode.mask(sr_recode == 0, "Zero")
+        .mask(sr_recode >= 1, "Low")
+        .mask(sr_recode >= 5, "OK")
+    )
+
+    sr_recode = sr_recode.merge(
+        sr_mask,
+        on=["Local Authority Code", "Age"],
+        how="left",
+        suffixes=("", "_quality"),
+    )
+
+    # Calculate sex ratios:
+    sr_recode = sex_ratio.compute_sex_ratio(sr_recode, config)
+
+    return sr_recode
