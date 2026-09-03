@@ -202,13 +202,20 @@ def pivot_sex_ratio_frame(sex_ratio_df: pd.DataFrame, config: dict):
     return sr_pivot
 
 
-def compute_sex_ratio(sex_ratio_df: pd.DataFrame, config: dict) -> pd.DataFrame:
+def compute_sex_ratio(
+    sex_ratio_df: pd.DataFrame,
+    config: dict,
+    caps: tuple[float, float] = None,
+    mask: bool = True,
+) -> pd.DataFrame:
     """
     Compute sex ratios for immigration and emigration across both configured years.
 
     Args:
         sex_ratio_df (pd.DataFrame): Pivoted DataFrame with (measure, sex, year) columns.
         config (dict): Configuration dictionary containing global parameters.
+        caps (tuple[float, float], optional): Lower and upper caps for sex ratio. Defaults to None.
+        mask (bool, optional): Whether to apply quality masking to the sex ratio calculations. Defaults to True.
 
     Returns:
         pd.DataFrame: The DataFrame with added sex ratio columns for each migration type and year.
@@ -216,52 +223,58 @@ def compute_sex_ratio(sex_ratio_df: pd.DataFrame, config: dict) -> pd.DataFrame:
     year_1 = config["global_parameters"]["year"]
     year_2 = config["global_parameters"]["year2"]
 
+    # Call sex ratio calculation helper func for each year of data
     for year in [year_1, year_2]:
-        sex_ratio_df = _sex_ratio_helper(sex_ratio_df, "imm", year)
-        sex_ratio_df = _sex_ratio_helper(sex_ratio_df, "em", year)
+        sex_ratio_df = _sex_ratio_helper(sex_ratio_df, "imm", year, caps, mask)
+        sex_ratio_df = _sex_ratio_helper(sex_ratio_df, "em", year, caps, mask)
+
+    # Calculate weights
+    sex_ratio_df["imm_weight"] = sex_ratio_df["imm_fin"].sum(axis=1)
+    sex_ratio_df["em_weight"] = sex_ratio_df["em_fin"].sum(axis=1)
 
     return sex_ratio_df
 
 
 def _sex_ratio_helper(
-    sex_ratio_df: pd.DataFrame, migration: str, year: int
+    sex_ratio_df: pd.DataFrame,
+    migration: str,
+    year: int,
+    caps: tuple[float, float] = None,
+    mask: bool = True,
 ) -> pd.DataFrame:
-    """
-    Compute the sex ratio for a migration type and year, recoding values based on quality flags.
-
-    Args:
-        sex_ratio_df (pd.DataFrame): Pivoted DataFrame with (measure, sex, year) columns.
-        migration (str): Migration type, must be one of 'imm' or 'em'.
-        year (int): The year to compute the sex ratio for.
-
-    Returns:
-        pd.DataFrame: The DataFrame with an added sex ratio column.
-    """
     if migration not in ["imm", "em"]:
         raise ValueError("migration must be one of 'imm', 'em'")
 
+    # Sex ratio calculation
     male_count = sex_ratio_df[(f"{migration}_fin", "Male", year)]
     female_count = sex_ratio_df[(f"{migration}_fin", "Female", year)]
-    male_quality = sex_ratio_df[(f"{migration}_fin_quality", "Male", year)]
-    female_quality = sex_ratio_df[(f"{migration}_fin_quality", "Female", year)]
-
-    # Sex ratio: Male migration estimate / Female migration estimate
     ratio = male_count / female_count
 
-    # Recode sex ratios based on quality metrics
-    conditions = [
-        # Zero/Zero, Zero/Low or Low/Zero are invalid
-        (male_quality == "Zero") & (female_quality.isin(["Zero", "Low"])),
-        (male_quality == "Low") & (female_quality == "Zero"),
-        # OK/Zero or Zero/OK take the value of the OK estimate
-        (male_quality == "Zero") & (female_quality == "OK"),
-        (male_quality == "OK") & (female_quality == "Zero"),
-    ]
-    choices = [np.nan, np.nan, female_count, male_count]
+    # Default recode sex ratios based on quality metrics
+    if mask:
+        male_quality = sex_ratio_df[(f"{migration}_fin_quality", "Male", year)]
+        female_quality = sex_ratio_df[(f"{migration}_fin_quality", "Female", year)]
 
-    # Cap ratios between 0.1 and 10
-    sex_ratio_df[f"sex_ratio_{migration}_{year}"] = np.select(
-        conditions, choices, default=ratio
-    ).clip(0.1, 10)
+        # Recode sex ratios based on quality metrics
+        conditions = [
+            # Zero/Zero, Zero/Low or Low/Zero are invalid
+            (male_quality == "Zero") & (female_quality.isin(["Zero", "Low"])),
+            (male_quality == "Low") & (female_quality == "Zero"),
+            # OK/Zero or Zero/OK take the value of the OK estimate
+            (male_quality == "Zero") & (female_quality == "OK"),
+            (male_quality == "OK") & (female_quality == "Zero"),
+        ]
+        choices = [np.nan, np.nan, female_count, male_count]
+
+        sex_ratio_df[f"sex_ratio_{migration}_{year}"] = np.select(
+            conditions, choices, default=ratio
+        )
+    else:
+        sex_ratio_df[f"sex_ratio_{migration}_{year}"] = ratio
+
+    if caps:
+        sex_ratio_df[f"sex_ratio_{migration}_{year}"] = sex_ratio_df[
+            f"sex_ratio_{migration}_{year}"
+        ].clip(caps[0], caps[1])
 
     return sex_ratio_df

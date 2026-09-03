@@ -160,6 +160,25 @@ def sex_ratio_main(config: dict | str) -> pd.DataFrame:
     )
 
     # Calculate sex ratios:
-    sr_recode = sex_ratio.compute_sex_ratio(sr_recode, config)
+    sr_recode = sex_ratio.compute_sex_ratio(sr_recode, config, caps=(0.1, 10.0))
 
-    return sr_recode
+    # Aggregate over local authority and recalculate sex ratios
+    la_sr_recode = sex_ratio.compute_sex_ratio(
+        sr_recode.groupby("Age").agg(sum)[["em_fin", "imm_fin"]], config, mask=False
+    )
+
+    sr_merged = (
+        sr_recode.reset_index()
+        .merge(
+            la_sr_recode, 
+            on=config["datasets"]["final_immigration"]["variables"]["age"], 
+            how="left", 
+            suffixes=("_local", "_national")
+        )
+        .set_index(config["datasets"]["final_immigration"]["variables"]["la_code"])
+    )
+
+    # Year on year comparison squared difference
+    
+
+    return sr_recode, la_sr_recode, sr_merged
