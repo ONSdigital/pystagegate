@@ -60,26 +60,6 @@ def load_summary_data(config: dict, dataset_key: str) -> pd.DataFrame:
     return df
 
 
-def join_paths(root: str, paths: dict) -> dict:
-    """
-    Join the folder root from the config to a dict of paths from the config
-
-    Args:
-        root (str): The root value from the config.
-        paths (dict): A paths value from the config.
-
-    Returns:
-        joined_paths (dict): A new dict with the joined root and path values.
-    """
-    joined_paths = {}
-
-    for key in paths:
-        joined_path = os.path.join(root, paths[key])
-        joined_paths.update({key: joined_path})
-
-    return joined_paths
-
-
 def _generate_synth_df(df: pd.DataFrame, n: int) -> pd.DataFrame:
     """
     Return a synthetic DataFrame produced from a DataFrame reference.
