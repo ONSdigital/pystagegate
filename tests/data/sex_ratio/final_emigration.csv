@@ -1,0 +1,1001 @@
+Local Authority Name,Local Authority Code,Age,Sex,Nationality Group,Year,Count,Date Updated
+South Tyneside,W1,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Eastleigh,E1,30,Male,Non-British,2023,3.8643615188,2025-11-28 00:00:00
+Runnymede,E4,60,Female,British,2022,11.2767163848,2025-11-28 00:00:00
+York,W2,30,Male,British,2024,11.1835075577,2025-11-28 00:00:00
+Southend-on-Sea,W1,40,Male,Non-British,2021,22.4817658502,2025-11-28 00:00:00
+North Lanarkshire,W1,30,Male,Non-British,2023,28.0142749764,2025-11-28 00:00:00
+Greenwich,E4,40,Female,Non-British,2023,8.3436236716,2025-11-28 00:00:00
+Dover,S1,50,Male,British,2024,0.0,2025-11-28 00:00:00
+Bromley,S1,40,Female,British,2023,13.2742556771,2025-11-28 00:00:00
+Cherwell,E1,30,Female,British,2025,6.1532613614,2025-11-28 00:00:00
+West Berkshire,S2,30,Female,British,2021,0.0,2025-11-28 00:00:00
+Rotherham,W2,40,Male,British,2023,16.7977333796,2025-11-28 00:00:00
+Kingston upon Thames,E3,30,Male,British,2023,1.2613218797,2025-11-28 00:00:00
+Horsham,S2,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Trafford,E1,30,Male,British,2022,0.0,2025-11-28 00:00:00
+Redditch,E1,30,Male,British,2022,0.0,2025-11-28 00:00:00
+Pendle,E1,20,Female,British,2021,0.0,2025-11-28 00:00:00
+East Suffolk,E2,40,Female,Non-British,2023,10.8964417483,2025-11-28 00:00:00
+Newcastle upon Tyne,E1,30,Male,Non-British,2021,6.390394362,2025-11-28 00:00:00
+Thurrock,S1,40,Male,British,2023,0.0,2025-11-28 00:00:00
+Wirral,E1,30,Male,Non-British,2025,1.535206774,2025-11-28 00:00:00
+Na h-Eileanan Siar,S2,20,Female,British,2024,0.0,2025-11-28 00:00:00
+Hart,E3,30,Male,Non-British,2025,4.0505959469,2025-11-28 00:00:00
+East Suffolk,S1,30,Male,Non-British,2024,9.8463196142,2025-11-28 00:00:00
+Ashford,S3,30,Female,British,2023,28.5958851112,2025-11-28 00:00:00
+York,S3,40,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+County Durham,W2,30,Male,British,2023,18.1729158161,2025-11-28 00:00:00
+Peterborough,E2,20,Female,British,2024,8.6657355863,2025-11-28 00:00:00
+North Warwickshire,S3,40,Male,British,2025,0.4862989893,2025-11-28 00:00:00
+Richmond upon Thames,W2,40,Female,British,2025,0.0,2025-11-28 00:00:00
+Horsham,W2,30,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+Islington,E1,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Halton,W2,20,Male,Non-British,2022,15.5729124203,2025-11-28 00:00:00
+Thanet,E2,30,Male,Non-British,2024,15.4669795081,2025-11-28 00:00:00
+Rossendale,W1,20,Male,Non-British,2022,8.4909083267,2025-11-28 00:00:00
+East Hampshire,E1,40,Male,Non-British,2023,30.5788654816,2025-11-28 00:00:00
+South Oxfordshire,S1,20,Female,Non-British,2022,6.3923819301,2025-11-28 00:00:00
+Haringey,S1,30,Female,British,2025,14.2340605211,2025-11-28 00:00:00
+Norwich,W2,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Knowsley,S1,60,Female,British,2022,26.6147175765,2025-11-28 00:00:00
+East Cambridgeshire,W2,30,Female,British,2021,14.1327809557,2025-11-28 00:00:00
+Aberdeen City,S1,60,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Cornwall,E4,40,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Gateshead,E4,20,Female,British,2022,0.0,2025-11-28 00:00:00
+Breckland,S2,20,Male,British,2021,8.3862996363,2025-11-28 00:00:00
+Coventry,W1,50,Female,Non-British,2022,4.8064715398,2025-11-28 00:00:00
+Gosport,S3,30,Female,British,2022,8.0836984214,2025-11-28 00:00:00
+Argyll and Bute,E2,20,Female,British,2022,43.213321018,2025-11-28 00:00:00
+Oxford,S1,30,Female,Non-British,2024,1.4733286658,2025-11-28 00:00:00
+North Ayrshire,W1,40,Female,Non-British,2025,20.4221886228,2025-11-28 00:00:00
+Kensington and Chelsea,W2,40,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Neath Port Talbot,S3,40,Female,British,2024,0.0,2025-11-28 00:00:00
+"Herefordshire, County of",E2,20,Female,British,2023,27.6143686284,2025-11-28 00:00:00
+Tendring,S1,30,Female,Non-British,2021,23.5350030745,2025-11-28 00:00:00
+York,W2,50,Female,Non-British,2024,4.2513649744,2025-11-28 00:00:00
+Barnet,E2,30,Male,British,2023,38.4714947552,2025-11-28 00:00:00
+York,W2,50,Female,British,2022,11.7341204927,2025-11-28 00:00:00
+North Tyneside,E4,30,Female,British,2021,25.2193065923,2025-11-28 00:00:00
+York,S3,30,Male,British,2022,20.4024754677,2025-11-28 00:00:00
+Waltham Forest,E2,50,Male,British,2022,0.0,2025-11-28 00:00:00
+Crawley,W1,30,Male,British,2025,13.1006213804,2025-11-28 00:00:00
+Ceredigion,W1,40,Female,Non-British,2023,16.2559018028,2025-11-28 00:00:00
+Southend-on-Sea,E4,30,Female,Non-British,2023,13.8738485519,2025-11-28 00:00:00
+Aberdeen City,S2,40,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+York,E3,60,Female,British,2024,17.8333587139,2025-11-28 00:00:00
+Hertsmere,E4,60,Male,British,2023,2.7886346738,2025-11-28 00:00:00
+Great Yarmouth,S3,30,Male,Non-British,2025,26.5530524276,2025-11-28 00:00:00
+North Tyneside,E2,40,Male,Non-British,2025,27.0519901136,2025-11-28 00:00:00
+York,S3,20,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+Melton,S1,40,Male,Non-British,2022,0.8906824145,2025-11-28 00:00:00
+York,E2,20,Male,British,2022,0.0,2025-11-28 00:00:00
+Flintshire,E3,40,Male,Non-British,2024,16.2675359566,2025-11-28 00:00:00
+East Ayrshire,E2,20,Male,British,2024,4.1054748018,2025-11-28 00:00:00
+Flintshire,S3,60,Female,British,2023,0.0,2025-11-28 00:00:00
+South Ayrshire,E3,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Adur,W1,40,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Salford,E1,30,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Barnsley,S1,20,Female,Non-British,2022,38.2332528749,2025-11-28 00:00:00
+Enfield,S3,30,Male,Non-British,2025,16.9657260758,2025-11-28 00:00:00
+Sunderland,E3,30,Male,British,2023,0.0,2025-11-28 00:00:00
+North East Lincolnshire,W2,50,Male,British,2023,3.143845384,2025-11-28 00:00:00
+Leicester,W2,40,Male,British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,S1,40,Male,British,2021,19.0951466022,2025-11-28 00:00:00
+Midlothian,S3,20,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+North West Leicestershire,S1,30,Male,Non-British,2024,6.6593065142,2025-11-28 00:00:00
+East Staffordshire,E4,40,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Mole Valley,W2,60,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Spelthorne,S1,40,Male,Non-British,2022,3.3594568052,2025-11-28 00:00:00
+St. Helens,E2,30,Female,Non-British,2025,5.8539747379,2025-11-28 00:00:00
+Fenland,S3,40,Female,British,2021,5.5342455884,2025-11-28 00:00:00
+Lichfield,E3,30,Female,British,2021,0.0,2025-11-28 00:00:00
+Gloucester,W2,60,Female,Non-British,2022,15.2783328801,2025-11-28 00:00:00
+Havering,E4,20,Male,Non-British,2021,5.7376515987,2025-11-28 00:00:00
+Cheshire East,E3,30,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Stockport,E2,30,Female,Non-British,2024,15.4845466884,2025-11-28 00:00:00
+Aberdeen City,E3,30,Male,British,2025,22.4008741485,2025-11-28 00:00:00
+Derby,S2,60,Male,Non-British,2023,17.1110863617,2025-11-28 00:00:00
+Salford,E3,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Redbridge,E2,20,Male,British,2023,7.7980299982,2025-11-28 00:00:00
+South Ribble,E4,40,Female,British,2023,16.7767568641,2025-11-28 00:00:00
+Epsom and Ewell,E4,40,Male,British,2021,20.0708821441,2025-11-28 00:00:00
+Colchester,E3,30,Female,Non-British,2022,25.1522603761,2025-11-28 00:00:00
+York,S2,30,Female,Non-British,2022,2.165542915,2025-11-28 00:00:00
+York,E1,40,Female,British,2023,1.2220454593,2025-11-28 00:00:00
+Hillingdon,S1,30,Female,Non-British,2022,12.9660014944,2025-11-28 00:00:00
+Reading,E1,30,Male,Non-British,2023,19.8262432386,2025-11-28 00:00:00
+Bexley,E3,30,Male,British,2025,0.0,2025-11-28 00:00:00
+Havering,S1,30,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Fenland,S2,30,Female,Non-British,2024,22.3600997566,2025-11-28 00:00:00
+Gwynedd,E1,20,Female,British,2021,15.6647931142,2025-11-28 00:00:00
+Rutland,E4,40,Male,Non-British,2021,11.5785967206,2025-11-28 00:00:00
+Oadby and Wigston,E2,50,Male,British,2022,0.0,2025-11-28 00:00:00
+Aberdeen City,E1,40,Female,Non-British,2023,16.9996528172,2025-11-28 00:00:00
+Melton,W2,60,Male,Non-British,2024,6.1623832806,2025-11-28 00:00:00
+Halton,E3,30,Female,British,2021,10.9571019777,2025-11-28 00:00:00
+York,E4,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Elmbridge,E4,40,Male,Non-British,2021,2.8905631217,2025-11-28 00:00:00
+Hammersmith and Fulham,E3,50,Male,British,2025,9.8880478123,2025-11-28 00:00:00
+Inverclyde,S2,40,Male,British,2022,0.0,2025-11-28 00:00:00
+Croydon,W1,30,Male,British,2024,0.0,2025-11-28 00:00:00
+Knowsley,E4,40,Male,British,2024,0.0,2025-11-28 00:00:00
+Gedling,S1,30,Male,Non-British,2024,11.8706973202,2025-11-28 00:00:00
+Newcastle upon Tyne,E2,40,Female,British,2023,0.0,2025-11-28 00:00:00
+Middlesbrough,S1,50,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Huntingdonshire,S2,30,Male,British,2024,0.0,2025-11-28 00:00:00
+Epping Forest,S2,30,Male,Non-British,2023,12.8384770551,2025-11-28 00:00:00
+Trafford,E4,50,Female,Non-British,2021,22.2251109563,2025-11-28 00:00:00
+West Devon,S3,60,Female,Non-British,2025,3.4947872124,2025-11-28 00:00:00
+Newark and Sherwood,E3,30,Male,British,2024,17.0080927414,2025-11-28 00:00:00
+Hounslow,E1,40,Female,British,2023,0.0,2025-11-28 00:00:00
+Redcar and Cleveland,S3,60,Female,British,2021,26.2474502638,2025-11-28 00:00:00
+Rochdale,S1,40,Female,British,2025,31.1544958923,2025-11-28 00:00:00
+Kensington and Chelsea,W2,30,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+Northern Ireland,W2,30,Male,British,2023,24.4196176511,2025-11-28 00:00:00
+Guildford,W1,30,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+South Cambridgeshire,E4,30,Female,Non-British,2025,13.5014560674,2025-11-28 00:00:00
+Westmorland and Furness,S1,30,Male,British,2025,3.8669651569,2025-11-28 00:00:00
+Bedford,E1,30,Male,British,2021,8.2155868111,2025-11-28 00:00:00
+Hartlepool,S1,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Midlothian,E1,50,Female,Non-British,2023,29.7619382594,2025-11-28 00:00:00
+Plymouth,E3,30,Female,British,2023,0.0,2025-11-28 00:00:00
+West Lindsey,S1,30,Male,British,2025,20.0231932305,2025-11-28 00:00:00
+Mid Suffolk,E2,40,Female,Non-British,2023,19.2558234769,2025-11-28 00:00:00
+Tewkesbury,E1,50,Male,British,2022,0.0,2025-11-28 00:00:00
+Gateshead,E3,40,Female,British,2022,6.904087291,2025-11-28 00:00:00
+Chesterfield,S2,30,Male,British,2023,0.0,2025-11-28 00:00:00
+Darlington,E2,50,Female,Non-British,2022,3.5863399228,2025-11-28 00:00:00
+Lambeth,E2,20,Female,British,2022,0.0,2025-11-28 00:00:00
+Bromsgrove,W2,30,Male,Non-British,2023,5.3466061575,2025-11-28 00:00:00
+Windsor and Maidenhead,S1,50,Female,British,2022,4.6168901811,2025-11-28 00:00:00
+Hyndburn,S2,30,Female,Non-British,2024,6.6817491684,2025-11-28 00:00:00
+York,W1,20,Male,British,2024,1.8267401202,2025-11-28 00:00:00
+East Devon,S1,40,Male,British,2025,0.0,2025-11-28 00:00:00
+Cheshire East,E4,30,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Richmond upon Thames,E4,20,Female,Non-British,2023,20.4570852502,2025-11-28 00:00:00
+North Devon,S1,20,Female,Non-British,2021,42.1570621134,2025-11-28 00:00:00
+West Northamptonshire,E2,40,Female,British,2022,3.7910510576,2025-11-28 00:00:00
+Lancaster,E2,20,Male,Non-British,2024,18.206702551,2025-11-28 00:00:00
+Powys,W1,50,Male,British,2024,18.3413448948,2025-11-28 00:00:00
+Birmingham,S3,50,Male,British,2023,11.8106658867,2025-11-28 00:00:00
+Darlington,W1,50,Female,Non-British,2024,30.0030271021,2025-11-28 00:00:00
+Neath Port Talbot,S3,40,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Lichfield,S1,30,Male,British,2024,0.0,2025-11-28 00:00:00
+East Riding of Yorkshire,W2,30,Male,Non-British,2023,18.7241685979,2025-11-28 00:00:00
+East Renfrewshire,E1,30,Male,British,2023,13.9515820436,2025-11-28 00:00:00
+Tonbridge and Malling,E1,60,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,S3,60,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,E4,50,Female,British,2024,2.3363415794,2025-11-28 00:00:00
+Bromsgrove,S3,50,Male,Non-British,2023,13.7180664452,2025-11-28 00:00:00
+North Hertfordshire,W2,30,Female,British,2022,8.0808357569,2025-11-28 00:00:00
+East Hampshire,W1,30,Male,Non-British,2022,5.3913402156,2025-11-28 00:00:00
+Ashfield,S1,30,Male,Non-British,2024,20.8230607909,2025-11-28 00:00:00
+Hyndburn,W1,50,Female,British,2021,0.0,2025-11-28 00:00:00
+North Hertfordshire,E3,20,Female,Non-British,2023,41.3469853601,2025-11-28 00:00:00
+Bath and North East Somerset,W2,50,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Gravesham,E3,30,Female,Non-British,2022,4.9750150848,2025-11-28 00:00:00
+Renfrewshire,W2,60,Male,Non-British,2025,21.5033120565,2025-11-28 00:00:00
+Stratford-on-Avon,E3,20,Male,Non-British,2021,6.6822922257,2025-11-28 00:00:00
+Hounslow,E2,30,Male,British,2023,10.9422996546,2025-11-28 00:00:00
+Flintshire,E4,30,Male,Non-British,2024,12.6606490154,2025-11-28 00:00:00
+West Devon,S1,30,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Derby,S1,40,Female,British,2022,1.2234100077,2025-11-28 00:00:00
+South Lanarkshire,S1,30,Female,British,2024,3.6466269822,2025-11-28 00:00:00
+Cherwell,E4,30,Female,British,2022,0.0,2025-11-28 00:00:00
+Maldon,W1,40,Female,British,2022,0.0,2025-11-28 00:00:00
+Rugby,E4,40,Female,British,2025,15.4797305404,2025-11-28 00:00:00
+Northern Ireland,W2,20,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Torfaen,E4,60,Female,British,2021,0.0,2025-11-28 00:00:00
+Bury,S1,50,Male,British,2025,0.0,2025-11-28 00:00:00
+Colchester,S2,60,Male,British,2021,30.6099832591,2025-11-28 00:00:00
+North East Derbyshire,S3,30,Female,British,2022,2.6646612994,2025-11-28 00:00:00
+East Dunbartonshire,E1,30,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+North East Derbyshire,S1,30,Female,British,2024,0.0,2025-11-28 00:00:00
+Maidstone,S1,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Hart,E3,30,Male,Non-British,2023,23.1371390977,2025-11-28 00:00:00
+Argyll and Bute,W2,30,Female,Non-British,2022,5.0051042078,2025-11-28 00:00:00
+Runnymede,S2,20,Male,Non-British,2025,17.2739291022,2025-11-28 00:00:00
+South Oxfordshire,S2,30,Male,British,2022,42.8312043037,2025-11-28 00:00:00
+Dorset,E4,30,Male,British,2022,8.6365988316,2025-11-28 00:00:00
+Cheshire West and Chester,W1,30,Male,British,2022,0.0,2025-11-28 00:00:00
+Bassetlaw,S3,30,Female,Non-British,2024,23.794957727,2025-11-28 00:00:00
+Burnley,S1,30,Male,Non-British,2023,10.0713588275,2025-11-28 00:00:00
+East Ayrshire,E1,40,Female,British,2023,0.0,2025-11-28 00:00:00
+Elmbridge,S1,40,Male,Non-British,2025,9.492413522,2025-11-28 00:00:00
+Portsmouth,S3,30,Male,British,2021,8.9658801397,2025-11-28 00:00:00
+Hillingdon,W2,40,Male,Non-British,2021,17.8286647026,2025-11-28 00:00:00
+Oldham,W1,40,Female,Non-British,2025,9.7299965743,2025-11-28 00:00:00
+City of London,E3,30,Male,British,2023,0.0,2025-11-28 00:00:00
+South Staffordshire,E2,60,Female,Non-British,2024,21.0758069083,2025-11-28 00:00:00
+Plymouth,E3,20,Female,British,2025,0.7191155589,2025-11-28 00:00:00
+Enfield,E3,30,Female,British,2023,25.7845560657,2025-11-28 00:00:00
+Manchester,W1,60,Male,Non-British,2024,14.7559486477,2025-11-28 00:00:00
+Oxford,E3,20,Male,British,2022,2.2182202017,2025-11-28 00:00:00
+Erewash,S2,60,Female,British,2022,15.0744129575,2025-11-28 00:00:00
+Dacorum,S3,40,Male,Non-British,2023,2.4823561714,2025-11-28 00:00:00
+Luton,S1,30,Male,British,2022,29.1984152933,2025-11-28 00:00:00
+Blackburn with Darwen,S3,20,Male,British,2021,16.7747753086,2025-11-28 00:00:00
+Coventry,W1,30,Female,British,2021,8.9316476838,2025-11-28 00:00:00
+Mid Suffolk,W2,30,Female,British,2024,0.0,2025-11-28 00:00:00
+York,W2,30,Female,British,2022,0.0,2025-11-28 00:00:00
+Epsom and Ewell,S2,30,Male,British,2023,0.0,2025-11-28 00:00:00
+Lichfield,E2,60,Male,Non-British,2022,12.7361280943,2025-11-28 00:00:00
+Croydon,E4,30,Female,British,2023,0.6068017726,2025-11-28 00:00:00
+Middlesbrough,E4,20,Male,British,2023,6.4863438058,2025-11-28 00:00:00
+Halton,E3,50,Male,British,2025,15.1827758941,2025-11-28 00:00:00
+Northern Ireland,E3,30,Female,Non-British,2021,39.9064921108,2025-11-28 00:00:00
+Islington,W1,40,Female,Non-British,2024,12.5735241717,2025-11-28 00:00:00
+Pembrokeshire,E2,30,Female,British,2024,0.0389125503,2025-11-28 00:00:00
+Merton,W1,30,Female,British,2023,4.1077282129,2025-11-28 00:00:00
+Aberdeen City,E1,40,Male,British,2024,32.3544675885,2025-11-28 00:00:00
+Lancaster,W2,40,Male,British,2024,29.496282406,2025-11-28 00:00:00
+Bradford,E1,20,Male,Non-British,2025,23.4271675821,2025-11-28 00:00:00
+Maidstone,E4,30,Female,Non-British,2023,6.8616582001,2025-11-28 00:00:00
+North Yorkshire,E4,60,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Southend-on-Sea,E1,50,Male,British,2022,3.235451069,2025-11-28 00:00:00
+Croydon,S3,30,Male,Non-British,2022,5.0729801332,2025-11-28 00:00:00
+Milton Keynes,S2,30,Male,Non-British,2023,12.2770322953,2025-11-28 00:00:00
+North Somerset,E2,40,Male,British,2022,16.996477727,2025-11-28 00:00:00
+Dudley,W1,20,Male,Non-British,2024,15.5537586035,2025-11-28 00:00:00
+Gloucester,W1,40,Female,British,2022,0.0,2025-11-28 00:00:00
+Islington,E1,60,Male,Non-British,2023,16.8563545281,2025-11-28 00:00:00
+Rushmoor,E4,30,Male,Non-British,2021,0.0,2025-11-28 00:00:00
+Stevenage,W1,30,Male,British,2022,0.0,2025-11-28 00:00:00
+Hinckley and Bosworth,S2,20,Male,Non-British,2024,6.3023920931,2025-11-28 00:00:00
+Aberdeen City,S3,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Hertsmere,S1,30,Female,British,2021,22.0017723037,2025-11-28 00:00:00
+Cornwall,E1,30,Female,Non-British,2023,15.4943006188,2025-11-28 00:00:00
+North Lincolnshire,E3,60,Male,Non-British,2022,9.8836778437,2025-11-28 00:00:00
+Watford,E3,40,Male,British,2024,0.0,2025-11-28 00:00:00
+Rhondda Cynon Taf,W2,50,Female,Non-British,2023,23.575822972,2025-11-28 00:00:00
+Cornwall,E2,40,Female,Non-British,2023,9.4167116298,2025-11-28 00:00:00
+Dacorum,E4,30,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+North Northamptonshire,E3,40,Female,Non-British,2024,18.7136139732,2025-11-28 00:00:00
+Inverclyde,S1,30,Female,British,2021,3.6998275626,2025-11-28 00:00:00
+Croydon,E3,40,Male,Non-British,2021,16.4213912703,2025-11-28 00:00:00
+Bridgend,W2,40,Male,Non-British,2021,5.1103712089,2025-11-28 00:00:00
+Gedling,E3,20,Female,British,2022,0.0,2025-11-28 00:00:00
+Rhondda Cynon Taf,S1,30,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Glasgow City,W2,30,Male,British,2022,16.0657134121,2025-11-28 00:00:00
+Reigate and Banstead,E1,60,Male,British,2024,0.1211965487,2025-11-28 00:00:00
+Islington,E2,60,Female,British,2024,0.0,2025-11-28 00:00:00
+East Hampshire,S1,60,Male,British,2022,0.6396431482,2025-11-28 00:00:00
+Cambridge,S2,30,Male,British,2022,0.0,2025-11-28 00:00:00
+Gedling,E3,40,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Surrey Heath,W2,20,Female,British,2023,8.8524390442,2025-11-28 00:00:00
+West Dunbartonshire,E3,60,Female,British,2022,20.2940228516,2025-11-28 00:00:00
+Southampton,W1,30,Female,Non-British,2023,28.2698480484,2025-11-28 00:00:00
+Lincoln,W2,20,Male,British,2023,0.0,2025-11-28 00:00:00
+Southend-on-Sea,E1,30,Female,Non-British,2023,27.6414003562,2025-11-28 00:00:00
+Isle of Wight,S3,20,Male,British,2021,4.292449635,2025-11-28 00:00:00
+North Devon,E4,40,Male,British,2023,0.0,2025-11-28 00:00:00
+Gateshead,W2,40,Female,Non-British,2023,22.4436340204,2025-11-28 00:00:00
+York,W1,50,Female,British,2022,37.4004014781,2025-11-28 00:00:00
+Southend-on-Sea,S2,20,Male,Non-British,2021,0.0,2025-11-28 00:00:00
+Newark and Sherwood,E2,20,Male,British,2021,2.5357304631,2025-11-28 00:00:00
+Gosport,E3,60,Female,British,2025,0.0,2025-11-28 00:00:00
+Aberdeen City,W1,40,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Lincoln,W1,30,Male,Non-British,2025,13.1378776399,2025-11-28 00:00:00
+King's Lynn and West Norfolk,E1,30,Male,Non-British,2023,0.4787081193,2025-11-28 00:00:00
+York,E4,30,Female,British,2022,21.9801503164,2025-11-28 00:00:00
+Havering,S1,30,Female,Non-British,2021,2.5438926601,2025-11-28 00:00:00
+Milton Keynes,S2,60,Female,British,2023,0.0,2025-11-28 00:00:00
+"Kingston upon Hull, City of",S2,30,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+East Hertfordshire,E1,30,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Burnley,S2,30,Male,Non-British,2023,10.7989739293,2025-11-28 00:00:00
+Aberdeen City,S2,40,Female,British,2025,0.0,2025-11-28 00:00:00
+South Lanarkshire,S1,30,Female,Non-British,2023,3.8104087753,2025-11-28 00:00:00
+Ceredigion,E2,40,Male,Non-British,2021,24.1497776256,2025-11-28 00:00:00
+Maldon,S1,40,Male,Non-British,2022,6.8033565679,2025-11-28 00:00:00
+Stafford,S3,20,Female,British,2025,1.1830496908,2025-11-28 00:00:00
+Mid Devon,E4,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+East Dunbartonshire,E1,40,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Dumfries and Galloway,S1,30,Male,Non-British,2025,38.134456074,2025-11-28 00:00:00
+Isle of Anglesey,E3,50,Female,British,2024,21.4096080255,2025-11-28 00:00:00
+South Ayrshire,E2,20,Female,British,2024,27.4520866866,2025-11-28 00:00:00
+Powys,E3,30,Male,Non-British,2021,23.2735891676,2025-11-28 00:00:00
+Northern Ireland,S1,20,Female,Non-British,2025,3.3266322281,2025-11-28 00:00:00
+Redcar and Cleveland,E3,30,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Oadby and Wigston,W1,20,Male,Non-British,2024,9.7711951688,2025-11-28 00:00:00
+Blaby,S3,30,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+East Renfrewshire,S2,40,Female,British,2024,0.0,2025-11-28 00:00:00
+Exeter,E4,30,Male,Non-British,2021,0.0,2025-11-28 00:00:00
+Gosport,S3,30,Female,Non-British,2025,31.8458193644,2025-11-28 00:00:00
+Norwich,E1,60,Female,Non-British,2023,38.530697182,2025-11-28 00:00:00
+St Albans,E1,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Basildon,S3,40,Male,British,2025,39.8874024882,2025-11-28 00:00:00
+Milton Keynes,E2,40,Male,British,2021,0.0,2025-11-28 00:00:00
+South Gloucestershire,W2,40,Female,British,2021,25.3789835719,2025-11-28 00:00:00
+Melton,W2,30,Female,British,2023,16.1948533851,2025-11-28 00:00:00
+Reigate and Banstead,S2,40,Female,British,2021,0.0,2025-11-28 00:00:00
+Hart,S2,40,Male,British,2021,0.0,2025-11-28 00:00:00
+Plymouth,W1,40,Female,British,2024,0.0,2025-11-28 00:00:00
+Lewes,W1,30,Female,Non-British,2022,34.0596143732,2025-11-28 00:00:00
+Hartlepool,W2,30,Male,Non-British,2021,11.0696071717,2025-11-28 00:00:00
+Malvern Hills,W2,30,Male,British,2023,16.9964846783,2025-11-28 00:00:00
+North Yorkshire,E1,30,Male,British,2022,0.0,2025-11-28 00:00:00
+King's Lynn and West Norfolk,E2,30,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+St Albans,E3,30,Female,British,2024,0.0,2025-11-28 00:00:00
+Forest of Dean,E1,20,Female,Non-British,2023,8.5415399338,2025-11-28 00:00:00
+North Lanarkshire,E3,30,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Rutland,E1,30,Female,Non-British,2024,3.3847751801,2025-11-28 00:00:00
+Thanet,W2,20,Female,British,2024,0.0,2025-11-28 00:00:00
+Wakefield,S2,60,Female,British,2023,32.410129301,2025-11-28 00:00:00
+Tandridge,E3,20,Female,British,2022,11.6809017801,2025-11-28 00:00:00
+North Warwickshire,W2,40,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Brighton and Hove,S1,50,Male,British,2022,2.288931171,2025-11-28 00:00:00
+East Suffolk,S1,20,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,E2,40,Female,Non-British,2022,12.802831009,2025-11-28 00:00:00
+Newcastle upon Tyne,S1,40,Female,Non-British,2023,31.1163159554,2025-11-28 00:00:00
+New Forest,E1,60,Male,British,2021,0.0,2025-11-28 00:00:00
+Camden,W2,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Calderdale,E2,50,Male,British,2022,15.3822637477,2025-11-28 00:00:00
+"Kingston upon Hull, City of",E3,40,Male,Non-British,2021,24.0853896871,2025-11-28 00:00:00
+North Ayrshire,S2,30,Female,British,2024,0.0,2025-11-28 00:00:00
+Newport,S3,40,Male,British,2022,3.5189179926,2025-11-28 00:00:00
+Inverclyde,E2,30,Female,British,2024,4.8890287947,2025-11-28 00:00:00
+Isle of Anglesey,W1,40,Female,British,2023,12.1242395421,2025-11-28 00:00:00
+North East Derbyshire,E2,50,Male,Non-British,2023,0.6286213752,2025-11-28 00:00:00
+Derbyshire Dales,S3,20,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Ribble Valley,S1,50,Male,British,2023,0.0,2025-11-28 00:00:00
+Rotherham,E3,20,Male,British,2022,0.0,2025-11-28 00:00:00
+Torridge,S1,50,Male,British,2022,0.0,2025-11-28 00:00:00
+Bassetlaw,S3,20,Male,British,2022,20.8671406614,2025-11-28 00:00:00
+Tewkesbury,E4,50,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Chelmsford,W1,20,Female,Non-British,2025,9.1052940415,2025-11-28 00:00:00
+Gloucester,E1,20,Female,British,2023,3.1126478241,2025-11-28 00:00:00
+Middlesbrough,E3,30,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+North Yorkshire,E4,40,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Dundee City,S3,30,Male,Non-British,2023,7.8170361583,2025-11-28 00:00:00
+Harlow,W2,60,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Kensington and Chelsea,E4,30,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+South Tyneside,W2,30,Male,British,2021,0.0,2025-11-28 00:00:00
+Scottish Borders,W2,30,Male,Non-British,2025,11.9699186079,2025-11-28 00:00:00
+Conwy,E3,30,Female,British,2022,10.8698065375,2025-11-28 00:00:00
+Haringey,E2,30,Female,Non-British,2021,0.5363460813,2025-11-28 00:00:00
+Manchester,E4,30,Female,Non-British,2024,15.6027488938,2025-11-28 00:00:00
+East Riding of Yorkshire,S2,30,Male,British,2024,12.2025056576,2025-11-28 00:00:00
+North Somerset,S1,40,Male,Non-British,2023,22.5232797471,2025-11-28 00:00:00
+Calderdale,E1,30,Male,British,2024,0.0,2025-11-28 00:00:00
+Welwyn Hatfield,E1,30,Female,British,2023,9.6018203408,2025-11-28 00:00:00
+Ceredigion,E1,50,Male,British,2022,8.0904015513,2025-11-28 00:00:00
+Hartlepool,S1,30,Female,British,2024,24.7509238095,2025-11-28 00:00:00
+Newark and Sherwood,W2,30,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Canterbury,S1,50,Male,British,2025,9.7687829963,2025-11-28 00:00:00
+Salford,W2,20,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Epsom and Ewell,E2,30,Female,British,2021,0.0,2025-11-28 00:00:00
+Oldham,E1,30,Male,Non-British,2021,0.0,2025-11-28 00:00:00
+Stockport,S3,30,Male,British,2023,33.4766940239,2025-11-28 00:00:00
+Lichfield,W2,30,Female,Non-British,2021,11.1087453987,2025-11-28 00:00:00
+South Kesteven,E4,30,Male,Non-British,2022,13.2026902791,2025-11-28 00:00:00
+East Devon,S2,40,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Lambeth,S2,30,Female,Non-British,2021,21.8028347403,2025-11-28 00:00:00
+Rugby,E3,50,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Somerset,E3,20,Male,British,2023,9.3649177355,2025-11-28 00:00:00
+Hertsmere,E2,40,Male,British,2023,26.0998123772,2025-11-28 00:00:00
+North Lanarkshire,E2,60,Male,British,2025,0.0,2025-11-28 00:00:00
+Merton,S1,20,Female,Non-British,2022,16.7182054827,2025-11-28 00:00:00
+North East Derbyshire,E1,20,Female,Non-British,2022,19.9942957386,2025-11-28 00:00:00
+Dartford,E2,60,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+East Staffordshire,E2,30,Male,Non-British,2025,9.8703071387,2025-11-28 00:00:00
+Lancaster,S2,40,Male,Non-British,2023,18.4880834892,2025-11-28 00:00:00
+South Derbyshire,W2,30,Female,Non-British,2024,14.7952921693,2025-11-28 00:00:00
+Hertsmere,W1,30,Female,British,2025,0.0,2025-11-28 00:00:00
+Hammersmith and Fulham,S3,50,Male,British,2021,0.0,2025-11-28 00:00:00
+Blackpool,S1,40,Female,British,2023,0.0,2025-11-28 00:00:00
+York,E4,40,Female,Non-British,2023,21.5166461739,2025-11-28 00:00:00
+Richmond upon Thames,S3,50,Male,British,2022,0.0,2025-11-28 00:00:00
+Aberdeen City,W1,40,Female,British,2023,0.0,2025-11-28 00:00:00
+Midlothian,E4,60,Female,Non-British,2023,15.8504769825,2025-11-28 00:00:00
+Redbridge,W1,40,Female,British,2024,18.4141739124,2025-11-28 00:00:00
+East Riding of Yorkshire,S1,60,Male,British,2025,42.7421338605,2025-11-28 00:00:00
+Merthyr Tydfil,E2,40,Female,Non-British,2023,16.3932301342,2025-11-28 00:00:00
+Barnet,E2,30,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Oadby and Wigston,S1,30,Male,British,2023,13.243014263,2025-11-28 00:00:00
+Test Valley,W1,40,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Stoke-on-Trent,E4,50,Female,British,2023,0.0,2025-11-28 00:00:00
+Harrow,S1,50,Male,British,2024,16.6746713488,2025-11-28 00:00:00
+Calderdale,S3,30,Female,British,2025,5.0633521136,2025-11-28 00:00:00
+Flintshire,S3,30,Male,British,2023,10.4178723625,2025-11-28 00:00:00
+Havant,E3,30,Male,Non-British,2021,38.4969064376,2025-11-28 00:00:00
+South Tyneside,W1,50,Female,British,2023,0.0,2025-11-28 00:00:00
+King's Lynn and West Norfolk,W2,20,Female,British,2021,0.0,2025-11-28 00:00:00
+Argyll and Bute,E3,20,Female,British,2025,7.6190448912,2025-11-28 00:00:00
+Northumberland,S3,30,Male,British,2022,19.8733132754,2025-11-28 00:00:00
+Great Yarmouth,E4,30,Female,Non-British,2025,11.772853864,2025-11-28 00:00:00
+Middlesbrough,E1,40,Male,British,2021,16.3395653669,2025-11-28 00:00:00
+East Renfrewshire,E1,30,Female,British,2024,0.0,2025-11-28 00:00:00
+Northumberland,S3,20,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Sevenoaks,S1,30,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Pembrokeshire,E2,30,Female,Non-British,2022,18.4709066021,2025-11-28 00:00:00
+York,E3,20,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Rhondda Cynon Taf,E2,40,Male,British,2024,22.7518174046,2025-11-28 00:00:00
+East Hampshire,W2,30,Male,Non-British,2021,12.8037760502,2025-11-28 00:00:00
+Bexley,S1,20,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Islington,E2,30,Female,British,2025,21.7426685554,2025-11-28 00:00:00
+Sunderland,S2,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Merton,E1,20,Female,British,2021,38.7110198362,2025-11-28 00:00:00
+Milton Keynes,S2,30,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Aberdeen City,S1,30,Male,Non-British,2025,12.0121083935,2025-11-28 00:00:00
+Tunbridge Wells,S1,20,Female,British,2025,6.6697487863,2025-11-28 00:00:00
+Oadby and Wigston,E2,30,Male,British,2023,17.8718326867,2025-11-28 00:00:00
+Hastings,W2,30,Female,British,2023,21.3572237101,2025-11-28 00:00:00
+Three Rivers,E1,40,Female,Non-British,2024,12.5740414683,2025-11-28 00:00:00
+Preston,E4,50,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Stroud,S1,50,Female,Non-British,2022,3.3823943715,2025-11-28 00:00:00
+York,E4,40,Female,British,2023,3.2260432047,2025-11-28 00:00:00
+North Tyneside,E3,30,Female,Non-British,2024,17.0267512635,2025-11-28 00:00:00
+Fife,E3,30,Male,British,2021,9.9253687523,2025-11-28 00:00:00
+Wrexham,S3,30,Male,Non-British,2022,10.3164843701,2025-11-28 00:00:00
+Horsham,W1,30,Female,Non-British,2024,28.2349690854,2025-11-28 00:00:00
+West Lancashire,S1,40,Male,Non-British,2023,4.5273351743,2025-11-28 00:00:00
+Croydon,E4,60,Female,British,2024,13.6637244664,2025-11-28 00:00:00
+North Ayrshire,E3,20,Male,Non-British,2025,1.7473523574,2025-11-28 00:00:00
+Conwy,S2,50,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Sandwell,E4,20,Male,Non-British,2024,5.7296727286,2025-11-28 00:00:00
+Rossendale,E1,30,Male,British,2024,0.0,2025-11-28 00:00:00
+Camden,S1,50,Female,Non-British,2022,8.6373699136,2025-11-28 00:00:00
+Dudley,E4,50,Female,British,2022,0.0,2025-11-28 00:00:00
+Rochford,W2,20,Male,British,2025,3.7257975401,2025-11-28 00:00:00
+Bromley,S2,30,Male,Non-British,2024,32.2536296275,2025-11-28 00:00:00
+Norwich,W1,50,Female,Non-British,2021,13.3526302732,2025-11-28 00:00:00
+Kirklees,S2,60,Female,British,2021,4.8115829379,2025-11-28 00:00:00
+Tower Hamlets,E2,40,Female,Non-British,2022,33.9078331827,2025-11-28 00:00:00
+Horsham,W2,30,Male,Non-British,2025,19.8351324698,2025-11-28 00:00:00
+Newham,S1,30,Male,British,2022,0.0,2025-11-28 00:00:00
+East Riding of Yorkshire,W1,50,Male,British,2021,0.0,2025-11-28 00:00:00
+Lancaster,S1,40,Female,British,2023,0.0,2025-11-28 00:00:00
+Dorset,E1,40,Male,Non-British,2022,13.2851637067,2025-11-28 00:00:00
+North East Lincolnshire,E2,40,Female,British,2025,8.3249436944,2025-11-28 00:00:00
+Luton,S2,30,Male,British,2022,0.0,2025-11-28 00:00:00
+Three Rivers,E1,30,Male,British,2022,9.817340978,2025-11-28 00:00:00
+Harrow,E1,30,Male,British,2021,0.0,2025-11-28 00:00:00
+Portsmouth,E1,30,Male,Non-British,2025,2.8919770095,2025-11-28 00:00:00
+Basildon,W1,30,Male,Non-British,2021,27.5946590281,2025-11-28 00:00:00
+Aberdeen City,W2,20,Female,Non-British,2023,12.8062141409,2025-11-28 00:00:00
+Bassetlaw,E3,50,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+East Hertfordshire,S2,40,Female,Non-British,2025,5.4121224506,2025-11-28 00:00:00
+Cotswold,E1,60,Male,British,2023,2.171438038,2025-11-28 00:00:00
+Cotswold,E4,50,Male,British,2023,28.9105914529,2025-11-28 00:00:00
+Salford,E4,30,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Caerphilly,S2,50,Male,British,2024,26.1424488123,2025-11-28 00:00:00
+Pendle,W1,40,Male,Non-British,2022,16.4775035823,2025-11-28 00:00:00
+Fife,E4,30,Male,British,2021,0.0,2025-11-28 00:00:00
+Wolverhampton,S3,30,Female,British,2025,17.7677639452,2025-11-28 00:00:00
+Sheffield,E3,30,Female,Non-British,2024,25.8390310531,2025-11-28 00:00:00
+South Oxfordshire,E3,60,Female,British,2024,0.0,2025-11-28 00:00:00
+Newport,E2,40,Female,Non-British,2025,5.9415261178,2025-11-28 00:00:00
+Ipswich,E1,50,Male,British,2022,8.872471556,2025-11-28 00:00:00
+Waverley,W1,20,Female,British,2022,10.1547747696,2025-11-28 00:00:00
+North Somerset,E3,50,Male,Non-British,2025,21.597814222,2025-11-28 00:00:00
+Islington,S1,30,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Hastings,E1,40,Female,Non-British,2023,19.2655900017,2025-11-28 00:00:00
+Monmouthshire,E3,20,Male,Non-British,2021,0.0984041093,2025-11-28 00:00:00
+Glasgow City,S3,30,Male,Non-British,2022,1.3961682585,2025-11-28 00:00:00
+Aberdeen City,W1,40,Female,Non-British,2024,17.4248736535,2025-11-28 00:00:00
+Dundee City,E1,40,Female,Non-British,2022,5.121734501,2025-11-28 00:00:00
+Lewisham,E1,20,Male,Non-British,2023,10.8430888472,2025-11-28 00:00:00
+Rushmoor,E3,30,Female,British,2024,9.3872758466,2025-11-28 00:00:00
+Mansfield,E2,30,Female,British,2021,0.0,2025-11-28 00:00:00
+Luton,E2,30,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+Bolton,E3,60,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Bolton,S1,20,Male,British,2021,25.682669977,2025-11-28 00:00:00
+Dacorum,W1,20,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Neath Port Talbot,E4,40,Female,British,2022,0.0,2025-11-28 00:00:00
+Luton,S1,30,Male,British,2024,0.0,2025-11-28 00:00:00
+East Lothian,E3,50,Female,British,2023,5.8276335219,2025-11-28 00:00:00
+Forest of Dean,W2,40,Female,British,2023,0.0,2025-11-28 00:00:00
+City of Edinburgh,E1,30,Male,Non-British,2023,9.973803591,2025-11-28 00:00:00
+Aberdeen City,W1,40,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Denbighshire,E2,30,Female,Non-British,2023,16.4267393085,2025-11-28 00:00:00
+High Peak,S3,30,Male,British,2022,11.7020930882,2025-11-28 00:00:00
+Melton,E1,50,Female,British,2023,0.0,2025-11-28 00:00:00
+Bedford,E4,30,Female,Non-British,2024,18.2786703903,2025-11-28 00:00:00
+Hastings,W1,40,Male,Non-British,2024,3.1506962812,2025-11-28 00:00:00
+North Ayrshire,E4,20,Male,British,2023,14.3543584528,2025-11-28 00:00:00
+Richmond upon Thames,S3,40,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+Haringey,S2,30,Female,British,2024,29.8025170749,2025-11-28 00:00:00
+York,S1,20,Female,Non-British,2024,41.9075660312,2025-11-28 00:00:00
+West Dunbartonshire,S3,20,Female,British,2021,31.5192533839,2025-11-28 00:00:00
+East Hampshire,E4,50,Female,British,2021,0.0,2025-11-28 00:00:00
+Renfrewshire,W1,40,Female,Non-British,2021,12.589902895,2025-11-28 00:00:00
+North Ayrshire,S2,20,Female,Non-British,2024,13.015919708,2025-11-28 00:00:00
+Mid Devon,W2,20,Female,British,2024,0.7182501812,2025-11-28 00:00:00
+Arun,S3,30,Female,British,2022,4.931539261,2025-11-28 00:00:00
+Lichfield,E1,60,Male,Non-British,2021,9.4731827498,2025-11-28 00:00:00
+York,E1,40,Male,Non-British,2021,29.9024320933,2025-11-28 00:00:00
+Folkestone and Hythe,E4,50,Female,British,2023,19.3918666678,2025-11-28 00:00:00
+North Lincolnshire,S1,20,Male,Non-British,2024,20.3751318972,2025-11-28 00:00:00
+Aberdeen City,W1,30,Male,Non-British,2021,0.0,2025-11-28 00:00:00
+Sefton,W2,30,Male,British,2024,8.5640332972,2025-11-28 00:00:00
+Rochford,S1,30,Female,Non-British,2022,10.1842462759,2025-11-28 00:00:00
+Shropshire,E4,30,Female,British,2025,20.7930062947,2025-11-28 00:00:00
+Hammersmith and Fulham,E4,20,Female,Non-British,2024,9.6838640086,2025-11-28 00:00:00
+Rossendale,W1,60,Female,British,2022,1.3735512464,2025-11-28 00:00:00
+Darlington,W2,30,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+West Lancashire,S1,20,Female,Non-British,2022,18.1990381396,2025-11-28 00:00:00
+Portsmouth,E4,40,Female,British,2022,3.8282730387,2025-11-28 00:00:00
+Na h-Eileanan Siar,E2,30,Female,British,2022,8.0684932935,2025-11-28 00:00:00
+Chorley,E2,60,Female,Non-British,2023,32.5087113636,2025-11-28 00:00:00
+Great Yarmouth,E3,50,Female,British,2022,0.0,2025-11-28 00:00:00
+Stroud,S2,20,Male,Non-British,2025,20.1802080819,2025-11-28 00:00:00
+Derby,E2,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Inverclyde,W1,20,Female,Non-British,2024,19.8593328482,2025-11-28 00:00:00
+Manchester,S1,30,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+Gravesham,E2,50,Male,British,2024,0.0,2025-11-28 00:00:00
+Sevenoaks,S2,20,Female,British,2024,12.6558668864,2025-11-28 00:00:00
+South Derbyshire,E3,40,Male,Non-British,2024,2.5453655852,2025-11-28 00:00:00
+Guildford,E1,50,Male,Non-British,2021,21.2992673844,2025-11-28 00:00:00
+East Staffordshire,W1,30,Female,Non-British,2023,21.8755553026,2025-11-28 00:00:00
+Wandsworth,E1,30,Female,British,2023,13.3610306308,2025-11-28 00:00:00
+Lichfield,E1,30,Male,Non-British,2021,11.5787883057,2025-11-28 00:00:00
+Rhondda Cynon Taf,E3,60,Female,British,2022,19.9780024051,2025-11-28 00:00:00
+Enfield,W2,40,Female,Non-British,2022,14.9685584095,2025-11-28 00:00:00
+Aberdeen City,W1,60,Female,Non-British,2025,17.8791278334,2025-11-28 00:00:00
+Darlington,E4,30,Male,British,2024,0.0,2025-11-28 00:00:00
+Sunderland,S1,30,Male,British,2024,11.6725124516,2025-11-28 00:00:00
+North Lincolnshire,E1,50,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Dundee City,E3,40,Female,Non-British,2021,2.005224437,2025-11-28 00:00:00
+Kensington and Chelsea,E3,30,Male,British,2022,0.0,2025-11-28 00:00:00
+Greenwich,S1,40,Female,Non-British,2022,13.5397167676,2025-11-28 00:00:00
+Welwyn Hatfield,W2,20,Female,Non-British,2023,8.7052554165,2025-11-28 00:00:00
+East Renfrewshire,W2,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Milton Keynes,E4,40,Female,British,2024,19.3050557436,2025-11-28 00:00:00
+Elmbridge,S3,30,Male,British,2023,25.5779148943,2025-11-28 00:00:00
+Wandsworth,E4,20,Male,British,2022,8.1778915787,2025-11-28 00:00:00
+Glasgow City,S1,30,Male,Non-British,2023,6.9169849682,2025-11-28 00:00:00
+North Ayrshire,S2,30,Male,Non-British,2021,8.3577679349,2025-11-28 00:00:00
+Hammersmith and Fulham,W1,30,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Midlothian,E2,40,Female,Non-British,2022,0.3778560344,2025-11-28 00:00:00
+East Hertfordshire,E3,40,Female,Non-British,2023,20.0633196774,2025-11-28 00:00:00
+Kirklees,S2,50,Male,Non-British,2021,12.4457600169,2025-11-28 00:00:00
+Isles of Scilly,S1,20,Female,British,2021,0.0,2025-11-28 00:00:00
+Fife,E4,60,Female,British,2023,2.4960125122,2025-11-28 00:00:00
+Shetland Islands,W1,30,Female,British,2025,0.0,2025-11-28 00:00:00
+Malvern Hills,S1,20,Male,Non-British,2025,18.3978957936,2025-11-28 00:00:00
+West Northamptonshire,S1,40,Female,British,2024,18.8928676494,2025-11-28 00:00:00
+York,E4,40,Male,Non-British,2023,15.5669514262,2025-11-28 00:00:00
+York,W2,40,Male,Non-British,2023,6.3790960566,2025-11-28 00:00:00
+Plymouth,S1,40,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Mid Devon,S3,60,Male,Non-British,2023,8.3203363065,2025-11-28 00:00:00
+Richmond upon Thames,W2,30,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+East Dunbartonshire,E1,40,Male,Non-British,2024,22.5115264342,2025-11-28 00:00:00
+Pendle,E2,30,Male,Non-British,2025,14.7509987392,2025-11-28 00:00:00
+Wyre,W2,40,Male,Non-British,2024,0.4676888768,2025-11-28 00:00:00
+Crawley,S3,20,Female,British,2023,0.0,2025-11-28 00:00:00
+South Cambridgeshire,S3,50,Female,British,2022,8.0438711238,2025-11-28 00:00:00
+Aberdeenshire,E3,20,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Chesterfield,W2,30,Male,British,2024,25.1855518964,2025-11-28 00:00:00
+Ashfield,E1,30,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+York,W1,60,Male,Non-British,2025,14.344477977,2025-11-28 00:00:00
+Cumberland,E3,30,Female,British,2025,0.0,2025-11-28 00:00:00
+Thanet,S3,30,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Luton,E1,20,Male,British,2023,0.0,2025-11-28 00:00:00
+Trafford,W1,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Spelthorne,E1,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Leicester,E4,40,Female,Non-British,2021,22.5595811684,2025-11-28 00:00:00
+Aberdeen City,E2,60,Female,British,2024,9.05940608,2025-11-28 00:00:00
+Harlow,E4,30,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Kingston upon Thames,W2,60,Female,British,2023,0.0,2025-11-28 00:00:00
+Rochford,E2,20,Male,British,2024,0.0,2025-11-28 00:00:00
+Cherwell,S1,40,Male,British,2025,8.9348713671,2025-11-28 00:00:00
+Glasgow City,E2,50,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Slough,E3,30,Male,Non-British,2025,3.3350161939,2025-11-28 00:00:00
+Newport,E4,50,Male,British,2022,4.290435716,2025-11-28 00:00:00
+Mansfield,W1,20,Female,Non-British,2021,28.0591523843,2025-11-28 00:00:00
+Stroud,E2,30,Female,British,2021,12.4213008812,2025-11-28 00:00:00
+Gloucester,S1,30,Male,Non-British,2021,4.4117430354,2025-11-28 00:00:00
+Dumfries and Galloway,W2,20,Female,British,2022,24.4316461705,2025-11-28 00:00:00
+Brentwood,S1,30,Female,Non-British,2025,4.7885585836,2025-11-28 00:00:00
+York,E2,50,Male,British,2023,14.7460586106,2025-11-28 00:00:00
+Great Yarmouth,E1,20,Male,British,2023,0.0,2025-11-28 00:00:00
+Greenwich,S2,50,Female,British,2022,16.4890041544,2025-11-28 00:00:00
+Gosport,E3,20,Female,British,2022,0.0,2025-11-28 00:00:00
+Sutton,W2,20,Male,Non-British,2023,2.7008188371,2025-11-28 00:00:00
+Thanet,S2,50,Female,British,2022,17.1693922422,2025-11-28 00:00:00
+North Norfolk,E3,50,Male,Non-British,2025,16.5645413377,2025-11-28 00:00:00
+Derby,E2,30,Female,British,2024,44.5598276758,2025-11-28 00:00:00
+Oldham,W1,40,Male,Non-British,2022,1.0332913981,2025-11-28 00:00:00
+Aberdeen City,S1,30,Male,British,2024,10.1191160576,2025-11-28 00:00:00
+Rugby,E3,60,Male,British,2022,0.0,2025-11-28 00:00:00
+Aberdeen City,E2,50,Male,Non-British,2024,20.9588843647,2025-11-28 00:00:00
+Salford,E3,30,Male,Non-British,2023,2.9278476529,2025-11-28 00:00:00
+Aberdeen City,W2,30,Male,Non-British,2023,13.6978758405,2025-11-28 00:00:00
+Islington,E2,20,Female,British,2022,4.2977622558,2025-11-28 00:00:00
+Rhondda Cynon Taf,E4,20,Female,Non-British,2025,22.7742990288,2025-11-28 00:00:00
+Birmingham,S1,20,Female,British,2023,3.8656295468,2025-11-28 00:00:00
+North Tyneside,S1,40,Female,Non-British,2022,21.3029071098,2025-11-28 00:00:00
+East Cambridgeshire,W2,20,Female,Non-British,2025,38.4022066234,2025-11-28 00:00:00
+Breckland,S2,50,Male,Non-British,2021,15.416344446,2025-11-28 00:00:00
+North Norfolk,E1,50,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Reigate and Banstead,E3,20,Male,Non-British,2023,5.6460601782,2025-11-28 00:00:00
+Isle of Wight,W1,40,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+East Suffolk,S2,20,Female,Non-British,2021,17.3737453473,2025-11-28 00:00:00
+Wokingham,S1,20,Female,Non-British,2021,10.8407477111,2025-11-28 00:00:00
+Hinckley and Bosworth,S1,30,Female,British,2023,7.24334605,2025-11-28 00:00:00
+Medway,S1,60,Male,Non-British,2023,0.7663183356,2025-11-28 00:00:00
+Aberdeen City,E2,50,Female,British,2025,0.0,2025-11-28 00:00:00
+Aberdeen City,E4,30,Male,British,2023,10.4434869993,2025-11-28 00:00:00
+Gedling,W2,20,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Stirling,E3,30,Male,British,2023,0.0,2025-11-28 00:00:00
+York,W2,20,Male,Non-British,2025,4.6800269593,2025-11-28 00:00:00
+Sunderland,W2,60,Female,Non-British,2022,6.1801713904,2025-11-28 00:00:00
+Warrington,S2,30,Male,British,2022,8.0469172325,2025-11-28 00:00:00
+Vale of White Horse,S1,20,Male,British,2022,0.0,2025-11-28 00:00:00
+West Devon,W1,20,Female,Non-British,2025,21.4832778638,2025-11-28 00:00:00
+Fylde,S1,60,Female,Non-British,2023,4.1094202541,2025-11-28 00:00:00
+Leicester,E3,20,Male,British,2023,16.6606631104,2025-11-28 00:00:00
+Hartlepool,E1,60,Female,Non-British,2022,3.5393126991,2025-11-28 00:00:00
+Kingston upon Thames,E4,30,Female,British,2025,31.4732916955,2025-11-28 00:00:00
+Aberdeen City,E2,40,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Calderdale,E2,20,Male,British,2024,0.0,2025-11-28 00:00:00
+Dartford,E2,40,Male,British,2023,0.0,2025-11-28 00:00:00
+Tameside,W2,50,Male,Non-British,2025,28.6000502442,2025-11-28 00:00:00
+Havant,E2,20,Male,British,2023,0.0,2025-11-28 00:00:00
+Milton Keynes,W1,30,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+South Kesteven,S3,40,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Mansfield,E1,30,Female,Non-British,2024,43.3043031672,2025-11-28 00:00:00
+Midlothian,E1,60,Male,Non-British,2025,11.7441035793,2025-11-28 00:00:00
+Highland,W1,40,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+Malvern Hills,E1,40,Female,Non-British,2023,6.4769110948,2025-11-28 00:00:00
+Redcar and Cleveland,S3,20,Male,Non-British,2025,25.9098668616,2025-11-28 00:00:00
+Mole Valley,S3,30,Female,British,2025,40.6008737142,2025-11-28 00:00:00
+Woking,E2,20,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Rochford,E4,40,Male,Non-British,2021,21.0941794133,2025-11-28 00:00:00
+Ceredigion,E3,30,Female,British,2023,29.540523528,2025-11-28 00:00:00
+"Herefordshire, County of",W1,30,Female,British,2025,0.0,2025-11-28 00:00:00
+Merton,W2,30,Male,British,2023,21.7610665524,2025-11-28 00:00:00
+Calderdale,W1,40,Female,Non-British,2021,13.8565896412,2025-11-28 00:00:00
+Kirklees,W2,30,Female,Non-British,2022,0.5270365445,2025-11-28 00:00:00
+Aberdeen City,S3,20,Male,Non-British,2025,8.9348401772,2025-11-28 00:00:00
+York,S1,60,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+City of Edinburgh,W2,60,Male,British,2023,48.636856594,2025-11-28 00:00:00
+Conwy,E3,40,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Hounslow,E1,50,Male,Non-British,2021,0.0,2025-11-28 00:00:00
+Newark and Sherwood,S2,20,Male,British,2025,6.9034333546,2025-11-28 00:00:00
+Aberdeen City,W1,60,Male,British,2025,0.0,2025-11-28 00:00:00
+Northumberland,W1,60,Female,Non-British,2023,2.2085746929,2025-11-28 00:00:00
+Gravesham,W2,30,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+North West Leicestershire,E2,40,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Sheffield,S2,20,Female,Non-British,2022,1.1972876545,2025-11-28 00:00:00
+Surrey Heath,S2,60,Male,British,2021,13.4591966503,2025-11-28 00:00:00
+Tewkesbury,W2,20,Male,British,2022,7.9234458889,2025-11-28 00:00:00
+Isles of Scilly,S1,20,Female,Non-British,2022,30.6427672863,2025-11-28 00:00:00
+Mole Valley,S1,30,Female,British,2022,3.693405274,2025-11-28 00:00:00
+Kensington and Chelsea,W1,40,Male,Non-British,2024,2.9429059479,2025-11-28 00:00:00
+Newham,S1,20,Female,British,2021,10.7507808041,2025-11-28 00:00:00
+York,W2,60,Male,British,2022,22.0192395852,2025-11-28 00:00:00
+Lancaster,E1,60,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Hyndburn,S2,60,Female,British,2024,0.0,2025-11-28 00:00:00
+Pendle,E3,30,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Kingston upon Thames,E2,60,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+York,S2,40,Female,Non-British,2022,1.8924420977,2025-11-28 00:00:00
+Argyll and Bute,W1,40,Female,British,2025,5.0680424266,2025-11-28 00:00:00
+Runnymede,S3,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Newcastle-under-Lyme,W2,50,Male,British,2022,12.7113365336,2025-11-28 00:00:00
+Horsham,S2,30,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Middlesbrough,S3,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+East Lindsey,S2,60,Female,British,2022,10.210459266,2025-11-28 00:00:00
+Trafford,E2,60,Female,British,2023,0.0,2025-11-28 00:00:00
+Gwynedd,S2,50,Female,Non-British,2024,15.5817330439,2025-11-28 00:00:00
+Aberdeen City,E2,30,Female,Non-British,2022,7.6433796598,2025-11-28 00:00:00
+Cardiff,S2,40,Female,British,2021,2.564521841,2025-11-28 00:00:00
+Havering,E2,20,Male,British,2025,0.0,2025-11-28 00:00:00
+Huntingdonshire,E3,30,Male,British,2023,1.3080256171,2025-11-28 00:00:00
+Norwich,W1,30,Female,Non-British,2022,5.2391202741,2025-11-28 00:00:00
+Isle of Anglesey,W2,30,Female,Non-British,2021,15.2218323218,2025-11-28 00:00:00
+Nottingham,W2,40,Female,British,2024,0.0,2025-11-28 00:00:00
+Hartlepool,E2,40,Female,British,2025,22.0012816596,2025-11-28 00:00:00
+Chesterfield,E3,60,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Harrow,S3,40,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,S2,40,Male,Non-British,2024,15.829857366,2025-11-28 00:00:00
+Isles of Scilly,S2,60,Female,Non-British,2023,16.159452802,2025-11-28 00:00:00
+Hart,E1,30,Female,Non-British,2024,18.5994921579,2025-11-28 00:00:00
+South Kesteven,S1,30,Female,Non-British,2022,4.2835211241,2025-11-28 00:00:00
+North East Lincolnshire,E4,50,Female,Non-British,2022,8.8479241869,2025-11-28 00:00:00
+North Warwickshire,E1,30,Female,British,2024,13.7604203672,2025-11-28 00:00:00
+Isle of Wight,S3,40,Male,British,2022,3.5016688357,2025-11-28 00:00:00
+Calderdale,W1,40,Female,Non-British,2025,20.4962469704,2025-11-28 00:00:00
+Runnymede,S1,40,Male,British,2022,0.0,2025-11-28 00:00:00
+Cheltenham,E1,40,Female,British,2022,0.0,2025-11-28 00:00:00
+Aberdeen City,W2,50,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+Clackmannanshire,S1,40,Male,British,2024,0.0,2025-11-28 00:00:00
+Norwich,S3,20,Male,British,2022,25.623000546,2025-11-28 00:00:00
+St. Helens,E2,30,Male,Non-British,2023,9.7830942034,2025-11-28 00:00:00
+Rhondda Cynon Taf,E2,50,Male,British,2022,0.0,2025-11-28 00:00:00
+Sefton,E2,30,Male,Non-British,2024,8.8966730775,2025-11-28 00:00:00
+Colchester,E3,30,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Aberdeen City,S3,50,Male,British,2022,17.7805928046,2025-11-28 00:00:00
+Rossendale,S2,30,Female,British,2022,0.0,2025-11-28 00:00:00
+East Staffordshire,S1,30,Female,Non-British,2024,1.3782496725,2025-11-28 00:00:00
+Merton,S2,30,Female,British,2025,0.0,2025-11-28 00:00:00
+Nottingham,E2,20,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Cumberland,W1,20,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Sevenoaks,W2,30,Female,Non-British,2022,26.5595966795,2025-11-28 00:00:00
+Folkestone and Hythe,E4,60,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Dundee City,S2,30,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Tameside,S2,60,Female,British,2025,0.9049931766,2025-11-28 00:00:00
+High Peak,E3,30,Male,Non-British,2025,27.1263864522,2025-11-28 00:00:00
+South Norfolk,S3,30,Male,British,2023,20.2737613933,2025-11-28 00:00:00
+Cheltenham,E2,30,Male,British,2024,2.6927659998,2025-11-28 00:00:00
+Rochford,E3,20,Male,Non-British,2022,18.4237195116,2025-11-28 00:00:00
+St. Helens,E4,50,Male,British,2024,22.5550666966,2025-11-28 00:00:00
+Wigan,W1,30,Male,Non-British,2021,0.0,2025-11-28 00:00:00
+West Devon,E3,30,Male,British,2022,0.0,2025-11-28 00:00:00
+Stirling,E2,30,Female,British,2022,4.0740158794,2025-11-28 00:00:00
+Fenland,E1,30,Male,British,2021,0.0,2025-11-28 00:00:00
+Pembrokeshire,W2,40,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Monmouthshire,W1,60,Male,Non-British,2023,3.91242386,2025-11-28 00:00:00
+Newcastle upon Tyne,E2,30,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+South Gloucestershire,E3,30,Female,Non-British,2025,11.4666795983,2025-11-28 00:00:00
+Stockport,S1,20,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Welwyn Hatfield,S1,30,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Argyll and Bute,S2,30,Female,British,2022,0.0,2025-11-28 00:00:00
+Mole Valley,S3,60,Male,British,2024,11.7726405032,2025-11-28 00:00:00
+Chorley,S3,50,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Middlesbrough,W1,60,Male,British,2023,0.0,2025-11-28 00:00:00
+Kingston upon Thames,E2,50,Male,British,2022,0.0,2025-11-28 00:00:00
+Carmarthenshire,S1,30,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Wirral,W2,30,Female,British,2023,0.0,2025-11-28 00:00:00
+East Staffordshire,S1,30,Male,Non-British,2025,5.3688729673,2025-11-28 00:00:00
+Cotswold,S2,40,Male,British,2021,12.8318564564,2025-11-28 00:00:00
+Great Yarmouth,W2,20,Male,Non-British,2024,6.439171745,2025-11-28 00:00:00
+Dacorum,E1,30,Male,British,2025,0.0,2025-11-28 00:00:00
+York,E3,40,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Inverclyde,S2,40,Female,British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,E2,30,Male,Non-British,2023,12.7142515573,2025-11-28 00:00:00
+Richmond upon Thames,W2,60,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Aberdeen City,S3,30,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Tameside,E1,30,Female,Non-British,2022,5.425405841,2025-11-28 00:00:00
+Knowsley,W2,30,Female,British,2025,20.0013113837,2025-11-28 00:00:00
+Denbighshire,W1,40,Male,Non-British,2024,2.8817896676,2025-11-28 00:00:00
+Sheffield,W1,60,Male,Non-British,2021,3.2299003242,2025-11-28 00:00:00
+Merton,S2,30,Female,British,2022,0.0,2025-11-28 00:00:00
+York,W2,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,E1,30,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Rossendale,W1,50,Female,British,2024,12.8168318146,2025-11-28 00:00:00
+North Devon,S2,60,Male,Non-British,2022,30.2289572005,2025-11-28 00:00:00
+Hillingdon,E1,30,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Mole Valley,S3,30,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Gateshead,E1,60,Female,Non-British,2023,7.4910564942,2025-11-28 00:00:00
+Solihull,S2,40,Male,Non-British,2022,13.2549419206,2025-11-28 00:00:00
+South Ayrshire,S2,30,Male,Non-British,2022,10.5543882593,2025-11-28 00:00:00
+Brighton and Hove,W1,30,Female,British,2023,0.0,2025-11-28 00:00:00
+North Hertfordshire,E4,30,Male,British,2025,19.2461207316,2025-11-28 00:00:00
+North Lincolnshire,S1,40,Male,British,2023,8.8292515813,2025-11-28 00:00:00
+Moray,S3,40,Male,Non-British,2024,17.5267644549,2025-11-28 00:00:00
+Southampton,S3,40,Female,Non-British,2023,6.0552949518,2025-11-28 00:00:00
+Mid Devon,S1,40,Male,British,2023,0.0,2025-11-28 00:00:00
+"Kingston upon Hull, City of",E4,60,Male,British,2025,18.9358065002,2025-11-28 00:00:00
+Orkney Islands,E3,20,Female,Non-British,2024,1.749412187,2025-11-28 00:00:00
+Havant,E1,30,Female,British,2021,22.2577822994,2025-11-28 00:00:00
+County Durham,W2,40,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Tunbridge Wells,W2,40,Female,Non-British,2025,9.3703255199,2025-11-28 00:00:00
+Ceredigion,S2,30,Male,Non-British,2025,13.8368486693,2025-11-28 00:00:00
+Aberdeen City,E3,50,Female,British,2024,0.0,2025-11-28 00:00:00
+Waverley,W2,20,Male,Non-British,2023,4.4704643432,2025-11-28 00:00:00
+Glasgow City,S2,20,Male,Non-British,2022,9.1944962402,2025-11-28 00:00:00
+Gosport,S3,40,Male,Non-British,2025,35.1859290303,2025-11-28 00:00:00
+Maldon,W2,20,Female,Non-British,2022,1.5967062369,2025-11-28 00:00:00
+Exeter,S3,30,Male,Non-British,2025,34.1139215224,2025-11-28 00:00:00
+Liverpool,S1,30,Male,British,2022,0.0,2025-11-28 00:00:00
+Charnwood,W1,20,Male,Non-British,2022,0.3101237886,2025-11-28 00:00:00
+Oxford,S3,20,Female,Non-British,2022,16.134345787,2025-11-28 00:00:00
+South Ayrshire,E4,20,Female,British,2021,0.0,2025-11-28 00:00:00
+Islington,W1,50,Male,British,2021,32.0613725748,2025-11-28 00:00:00
+South Norfolk,E1,40,Female,British,2023,8.3010502618,2025-11-28 00:00:00
+Tower Hamlets,S1,60,Female,Non-British,2023,6.6294791227,2025-11-28 00:00:00
+Swansea,S2,30,Female,British,2024,0.0,2025-11-28 00:00:00
+Shropshire,S1,20,Male,British,2023,0.0,2025-11-28 00:00:00
+Wealden,W1,30,Male,British,2022,34.7483750212,2025-11-28 00:00:00
+Southend-on-Sea,E1,40,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+West Suffolk,E1,50,Female,Non-British,2025,6.6362844865,2025-11-28 00:00:00
+Medway,E4,60,Female,British,2023,0.0,2025-11-28 00:00:00
+North Lanarkshire,W1,40,Female,British,2022,9.845042983,2025-11-28 00:00:00
+Scottish Borders,E3,50,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Rugby,S3,30,Male,Non-British,2022,0.0,2025-11-28 00:00:00
+Three Rivers,W1,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,S3,40,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Mid Devon,S3,40,Female,British,2023,0.0,2025-11-28 00:00:00
+Bracknell Forest,S1,30,Male,British,2024,15.1979071542,2025-11-28 00:00:00
+Aberdeen City,E4,20,Male,British,2022,11.0262239063,2025-11-28 00:00:00
+Calderdale,S2,20,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Aberdeenshire,W2,40,Female,British,2021,18.1637783127,2025-11-28 00:00:00
+Lewes,W1,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+York,S2,20,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+Scottish Borders,E3,30,Female,British,2023,12.9645722129,2025-11-28 00:00:00
+Spelthorne,E2,30,Male,British,2023,0.0,2025-11-28 00:00:00
+Slough,E1,20,Male,Non-British,2022,20.1895098904,2025-11-28 00:00:00
+"Bournemouth, Christchurch and Poole",W2,30,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+Newham,S2,60,Male,Non-British,2022,3.2951974534,2025-11-28 00:00:00
+County Durham,E2,30,Female,Non-British,2023,5.6795111058,2025-11-28 00:00:00
+Liverpool,S3,30,Male,Non-British,2023,1.0454373012,2025-11-28 00:00:00
+Northern Ireland,E4,30,Male,British,2023,0.0,2025-11-28 00:00:00
+Norwich,W1,20,Male,British,2021,14.3388993002,2025-11-28 00:00:00
+"Bournemouth, Christchurch and Poole",W2,20,Female,British,2025,20.0969815466,2025-11-28 00:00:00
+Richmond upon Thames,S3,60,Female,British,2021,2.3119755254,2025-11-28 00:00:00
+Rotherham,S1,40,Female,British,2025,5.2737616951,2025-11-28 00:00:00
+Nottingham,S3,40,Female,British,2022,8.1276905334,2025-11-28 00:00:00
+South Oxfordshire,E1,30,Female,Non-British,2023,20.4064820884,2025-11-28 00:00:00
+Knowsley,S2,30,Male,British,2022,12.3930569097,2025-11-28 00:00:00
+Rushmoor,S2,30,Female,Non-British,2021,10.4676830145,2025-11-28 00:00:00
+Stratford-on-Avon,E2,20,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+Forest of Dean,S1,30,Male,British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,E3,30,Female,Non-British,2023,16.7306071164,2025-11-28 00:00:00
+Peterborough,E2,60,Female,Non-British,2024,1.3215568208,2025-11-28 00:00:00
+Lancaster,S2,30,Male,British,2022,0.0,2025-11-28 00:00:00
+Hyndburn,E1,40,Female,British,2023,5.9360143314,2025-11-28 00:00:00
+Gosport,W2,50,Male,Non-British,2021,5.4033808829,2025-11-28 00:00:00
+Chichester,E2,30,Male,British,2024,15.6167044603,2025-11-28 00:00:00
+Melton,E4,20,Female,Non-British,2025,14.430007066,2025-11-28 00:00:00
+York,E4,40,Female,Non-British,2022,31.7942233669,2025-11-28 00:00:00
+York,E3,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Moray,E2,20,Female,British,2025,8.0896316116,2025-11-28 00:00:00
+Gravesham,E4,30,Female,British,2023,11.3134868924,2025-11-28 00:00:00
+Na h-Eileanan Siar,E3,30,Male,British,2024,0.0,2025-11-28 00:00:00
+Tamworth,S2,30,Female,Non-British,2024,0.4209436451,2025-11-28 00:00:00
+South Staffordshire,E3,30,Female,British,2024,6.3279330999,2025-11-28 00:00:00
+Pembrokeshire,E4,40,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+Newport,S2,40,Male,British,2023,0.0,2025-11-28 00:00:00
+Guildford,E3,50,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Rushmoor,E2,40,Male,Non-British,2025,1.5367960675,2025-11-28 00:00:00
+Gravesham,W1,20,Male,British,2023,0.0,2025-11-28 00:00:00
+Cheltenham,W2,20,Female,Non-British,2025,12.0111334985,2025-11-28 00:00:00
+Runnymede,S1,50,Male,British,2023,14.9364909699,2025-11-28 00:00:00
+Aberdeen City,S2,20,Male,British,2024,2.6444360453,2025-11-28 00:00:00
+Hackney,E4,30,Female,British,2024,8.4044002015,2025-11-28 00:00:00
+Moray,S2,40,Male,British,2023,0.0,2025-11-28 00:00:00
+Erewash,E4,40,Male,Non-British,2024,14.0708171787,2025-11-28 00:00:00
+Tamworth,E4,50,Female,British,2025,8.6393659564,2025-11-28 00:00:00
+Great Yarmouth,S1,30,Female,British,2021,0.0,2025-11-28 00:00:00
+Maldon,E2,40,Male,Non-British,2021,20.2050568054,2025-11-28 00:00:00
+Redditch,W1,40,Female,British,2024,19.6847168308,2025-11-28 00:00:00
+Halton,E2,30,Female,British,2022,0.0,2025-11-28 00:00:00
+Nuneaton and Bedworth,E1,30,Male,British,2023,42.5190334473,2025-11-28 00:00:00
+Lichfield,E1,30,Male,Non-British,2024,0.2519165512,2025-11-28 00:00:00
+Telford and Wrekin,E3,30,Female,Non-British,2022,23.1348599585,2025-11-28 00:00:00
+Sefton,S1,30,Male,Non-British,2021,0.0,2025-11-28 00:00:00
+North Ayrshire,S2,40,Female,British,2022,18.9058723399,2025-11-28 00:00:00
+Wandsworth,E4,30,Male,British,2022,6.8556418627,2025-11-28 00:00:00
+West Lothian,E1,30,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+Bedford,W2,20,Female,Non-British,2024,0.0269175157,2025-11-28 00:00:00
+Telford and Wrekin,S2,50,Male,British,2025,6.4011813182,2025-11-28 00:00:00
+Cotswold,S2,50,Male,Non-British,2022,8.9498681948,2025-11-28 00:00:00
+Wrexham,W2,40,Female,Non-British,2023,53.1222456753,2025-11-28 00:00:00
+York,S1,30,Male,British,2023,0.0,2025-11-28 00:00:00
+Rushmoor,E1,40,Female,Non-British,2021,6.2041641255,2025-11-28 00:00:00
+Cotswold,E4,40,Female,British,2024,37.5939567771,2025-11-28 00:00:00
+South Ribble,E2,30,Male,Non-British,2021,0.0,2025-11-28 00:00:00
+Newcastle upon Tyne,S1,50,Male,Non-British,2023,25.3048339682,2025-11-28 00:00:00
+Dacorum,S3,50,Male,British,2022,0.0,2025-11-28 00:00:00
+Winchester,S2,60,Female,Non-British,2024,37.8284611919,2025-11-28 00:00:00
+Solihull,E3,50,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Aberdeen City,W1,30,Male,British,2023,10.1116115509,2025-11-28 00:00:00
+Kingston upon Thames,W1,60,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Hammersmith and Fulham,W1,30,Female,British,2022,0.0,2025-11-28 00:00:00
+Cumberland,S1,40,Female,British,2021,15.4412732554,2025-11-28 00:00:00
+Peterborough,E1,20,Male,British,2023,8.5854066465,2025-11-28 00:00:00
+Great Yarmouth,S3,30,Male,British,2021,27.8509568383,2025-11-28 00:00:00
+Torridge,E2,40,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Tower Hamlets,W2,50,Female,British,2021,2.1609640016,2025-11-28 00:00:00
+Reading,W1,30,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Thanet,E2,30,Female,Non-British,2023,0.7562881577,2025-11-28 00:00:00
+Lancaster,S1,30,Female,British,2025,10.1110402913,2025-11-28 00:00:00
+Sevenoaks,E2,20,Female,British,2025,0.0,2025-11-28 00:00:00
+Luton,S3,30,Male,Non-British,2022,7.69604791,2025-11-28 00:00:00
+Newport,E4,30,Male,Non-British,2022,2.0679884311,2025-11-28 00:00:00
+Leeds,W2,20,Male,British,2023,12.7704591329,2025-11-28 00:00:00
+Shropshire,E4,20,Male,Non-British,2022,20.2618889048,2025-11-28 00:00:00
+Fylde,S2,20,Male,Non-British,2024,15.7651247235,2025-11-28 00:00:00
+Malvern Hills,S1,30,Female,British,2021,15.5828715094,2025-11-28 00:00:00
+Isle of Anglesey,W2,30,Female,British,2021,24.4895790161,2025-11-28 00:00:00
+Merton,E4,40,Female,Non-British,2024,11.8156618527,2025-11-28 00:00:00
+East Hampshire,E4,20,Male,British,2023,4.8302603567,2025-11-28 00:00:00
+South Ribble,S3,20,Male,Non-British,2022,20.8776071537,2025-11-28 00:00:00
+Neath Port Talbot,E3,20,Female,British,2021,12.3130219326,2025-11-28 00:00:00
+York,W1,20,Female,British,2023,31.1668439247,2025-11-28 00:00:00
+Cannock Chase,W2,30,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+Dumfries and Galloway,S2,30,Female,Non-British,2023,0.0,2025-11-28 00:00:00
+Hounslow,S1,30,Female,Non-British,2025,0.0,2025-11-28 00:00:00
+Perth and Kinross,S3,20,Male,British,2024,0.0,2025-11-28 00:00:00
+Preston,E2,30,Female,British,2024,33.1111804324,2025-11-28 00:00:00
+Rushcliffe,S3,30,Male,British,2025,0.0,2025-11-28 00:00:00
+Aberdeen City,S1,50,Male,British,2021,0.0,2025-11-28 00:00:00
+Northern Ireland,S2,50,Male,Non-British,2025,26.2723208711,2025-11-28 00:00:00
+Chorley,E2,30,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+South Gloucestershire,E2,20,Female,British,2021,0.0,2025-11-28 00:00:00
+Haringey,E2,20,Female,British,2021,0.0,2025-11-28 00:00:00
+Warwick,E3,50,Male,Non-British,2023,15.7635270357,2025-11-28 00:00:00
+Halton,E4,40,Female,British,2023,13.5612850724,2025-11-28 00:00:00
+Aberdeen City,E1,30,Male,British,2021,0.0,2025-11-28 00:00:00
+Knowsley,E3,50,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+Croydon,E3,30,Female,British,2022,2.2470790364,2025-11-28 00:00:00
+Leeds,W2,30,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,E2,30,Female,British,2024,2.3257659836,2025-11-28 00:00:00
+Salford,S2,30,Female,British,2023,18.5358075345,2025-11-28 00:00:00
+York,E2,20,Male,British,2023,0.0,2025-11-28 00:00:00
+Ashford,W2,30,Male,British,2022,13.7356239469,2025-11-28 00:00:00
+Bexley,E1,60,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Fenland,W2,20,Male,British,2024,8.4617706336,2025-11-28 00:00:00
+North Yorkshire,E1,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Isle of Anglesey,W2,40,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Dudley,E2,20,Male,British,2024,11.0478042974,2025-11-28 00:00:00
+Hertsmere,W1,30,Female,Non-British,2021,32.9687345448,2025-11-28 00:00:00
+Isle of Anglesey,W2,30,Female,British,2021,23.5587975685,2025-11-28 00:00:00
+Swansea,E4,60,Female,British,2023,0.0,2025-11-28 00:00:00
+Havant,W1,30,Male,Non-British,2023,32.2154676732,2025-11-28 00:00:00
+Aberdeen City,E2,30,Female,British,2021,0.0,2025-11-28 00:00:00
+Aberdeen City,W2,40,Female,Non-British,2023,11.6285299068,2025-11-28 00:00:00
+Knowsley,E2,30,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+"Bristol, City of",E2,40,Female,Non-British,2021,0.0,2025-11-28 00:00:00
+Swindon,E1,30,Female,British,2023,14.4043366934,2025-11-28 00:00:00
+Leicester,E2,20,Male,British,2023,12.7141696,2025-11-28 00:00:00
+Aberdeen City,W2,30,Female,British,2021,4.6438863353,2025-11-28 00:00:00
+Ceredigion,E1,30,Male,British,2025,10.0457245939,2025-11-28 00:00:00
+Aberdeen City,W2,40,Female,British,2021,19.9290808159,2025-11-28 00:00:00
+South Staffordshire,E1,20,Male,Non-British,2025,15.8181186784,2025-11-28 00:00:00
+Basildon,S2,30,Male,British,2021,32.4615352453,2025-11-28 00:00:00
+Havering,E1,30,Male,British,2023,17.0835125216,2025-11-28 00:00:00
+Bradford,E1,20,Female,British,2023,24.2313774473,2025-11-28 00:00:00
+Colchester,S1,30,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+North East Lincolnshire,W2,40,Male,British,2023,6.996656727,2025-11-28 00:00:00
+Neath Port Talbot,S3,30,Male,British,2022,0.0,2025-11-28 00:00:00
+York,W1,30,Male,Non-British,2025,15.7407845237,2025-11-28 00:00:00
+Wandsworth,S2,30,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+Nuneaton and Bedworth,E1,30,Male,British,2024,13.6272966811,2025-11-28 00:00:00
+Stoke-on-Trent,E4,20,Female,British,2022,14.0003291155,2025-11-28 00:00:00
+Stroud,E4,30,Male,British,2023,8.6806820774,2025-11-28 00:00:00
+North West Leicestershire,E4,20,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+Derbyshire Dales,E1,40,Male,British,2025,20.7864574159,2025-11-28 00:00:00
+Huntingdonshire,E1,30,Female,Non-British,2023,24.8688860495,2025-11-28 00:00:00
+Lambeth,E3,40,Male,British,2025,9.3586299343,2025-11-28 00:00:00
+Aberdeenshire,S1,30,Male,Non-British,2024,19.8487453301,2025-11-28 00:00:00
+Cheshire West and Chester,S2,30,Male,Non-British,2025,10.3952830394,2025-11-28 00:00:00
+Cherwell,E2,30,Male,Non-British,2023,0.0,2025-11-28 00:00:00
+Teignbridge,S2,20,Male,British,2021,20.2315925408,2025-11-28 00:00:00
+Flintshire,E4,40,Female,British,2023,0.0,2025-11-28 00:00:00
+New Forest,W2,20,Female,British,2024,4.8785367022,2025-11-28 00:00:00
+South Gloucestershire,W1,40,Male,British,2021,0.0,2025-11-28 00:00:00
+Leeds,E3,40,Female,British,2025,29.6920885836,2025-11-28 00:00:00
+Mansfield,S1,30,Female,Non-British,2023,28.7908526275,2025-11-28 00:00:00
+North Warwickshire,W2,40,Male,British,2025,11.1585841323,2025-11-28 00:00:00
+Torbay,S3,40,Male,British,2024,18.570667575,2025-11-28 00:00:00
+Newport,E1,30,Female,Non-British,2021,1.9633998588,2025-11-28 00:00:00
+Halton,E3,30,Female,British,2022,0.0,2025-11-28 00:00:00
+Sevenoaks,W1,30,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Pembrokeshire,S3,40,Male,British,2022,28.8810094499,2025-11-28 00:00:00
+Mid Sussex,E4,30,Female,British,2023,1.0013269683,2025-11-28 00:00:00
+West Berkshire,E1,30,Female,Non-British,2022,0.0,2025-11-28 00:00:00
+City of London,W2,30,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+Cotswold,E3,20,Female,British,2023,12.5840161077,2025-11-28 00:00:00
+Forest of Dean,W1,30,Female,Non-British,2021,16.5137208671,2025-11-28 00:00:00
+Middlesbrough,S3,40,Male,Non-British,2023,5.0914995184,2025-11-28 00:00:00
+Epsom and Ewell,E3,30,Male,Non-British,2021,0.0,2025-11-28 00:00:00
+Hillingdon,W1,30,Female,British,2023,0.0,2025-11-28 00:00:00
+Oldham,E1,40,Male,Non-British,2021,14.956459207,2025-11-28 00:00:00
+Manchester,E4,50,Female,British,2024,0.2876552958,2025-11-28 00:00:00
+Monmouthshire,S1,30,Male,British,2022,0.0,2025-11-28 00:00:00
+North Yorkshire,E3,30,Female,Non-British,2021,25.2262789169,2025-11-28 00:00:00
+Isle of Wight,E3,20,Female,Non-British,2023,11.6362097641,2025-11-28 00:00:00
+Wyre,E4,50,Male,Non-British,2023,4.1342301934,2025-11-28 00:00:00
+Warwick,W1,60,Male,British,2024,2.8827258733,2025-11-28 00:00:00
+Spelthorne,E4,40,Male,Non-British,2025,0.0,2025-11-28 00:00:00
+Chelmsford,W1,20,Female,British,2025,15.8230572201,2025-11-28 00:00:00
+Bolsover,W1,40,Male,British,2023,9.4407530589,2025-11-28 00:00:00
+Rotherham,E1,40,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+West Northamptonshire,W2,60,Female,British,2023,0.0,2025-11-28 00:00:00
+South Lanarkshire,S2,50,Female,British,2022,0.0,2025-11-28 00:00:00
+Hyndburn,S1,50,Male,Non-British,2022,20.1690868816,2025-11-28 00:00:00
+Monmouthshire,S3,40,Male,Non-British,2024,20.4585498044,2025-11-28 00:00:00
+Ealing,E4,30,Female,British,2022,0.0,2025-11-28 00:00:00
+North West Leicestershire,S1,60,Male,British,2023,22.7289533551,2025-11-28 00:00:00
+Rhondda Cynon Taf,E2,30,Female,British,2023,14.0103391656,2025-11-28 00:00:00
+Haringey,S1,30,Male,British,2023,0.0,2025-11-28 00:00:00
+Aberdeen City,E3,30,Male,British,2024,23.9951369071,2025-11-28 00:00:00
+Boston,S2,50,Male,Non-British,2022,14.6476505866,2025-11-28 00:00:00
+West Lothian,E3,60,Female,Non-British,2024,0.0,2025-11-28 00:00:00
+Carmarthenshire,E2,20,Male,Non-British,2024,0.0,2025-11-28 00:00:00
+Rhondda Cynon Taf,S3,30,Female,Non-British,2022,12.9086270919,2025-11-28 00:00:00
+Aberdeen City,S1,40,Male,British,2022,0.0,2025-11-28 00:00:00
+Stoke-on-Trent,S1,30,Female,Non-British,2021,14.2232554832,2025-11-28 00:00:00
