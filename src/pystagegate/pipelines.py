@@ -84,7 +84,7 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     return output.reset_index(drop=True)
 
 
-def national_profile_main(config: dict | str):
+def sex_ratio_national_profile(config: dict | str):
     # Configuration setup
     config = utils.load_config(config)["sex_ratio"]
 
@@ -108,17 +108,19 @@ def national_profile_main(config: dict | str):
     merged = prov_fin.squared_difference(merged, "net", "net_prov", "net_fin")
 
     # Aggregate squared difference
-    sq_diff_output = merged.groupby(
-        config["datasets"]["final_immigration"]["variables"]["la_code"]
-    ).agg(
-        {
-            "imm_prov": "sum",
-            "em_prov": "sum",
-            "net_prov": "sum",
-            "sqdiff_imm": "sum",
-            "sqdiff_em": "sum",
-            "sqdiff_net": "sum",
-        }
+    sq_diff_output = (
+        merged.groupby(config["datasets"]["final_immigration"]["variables"]["la_code"])
+        .agg(
+            {
+                "imm_prov": "sum",
+                "em_prov": "sum",
+                "net_prov": "sum",
+                "sqdiff_imm": "sum",
+                "sqdiff_em": "sum",
+                "sqdiff_net": "sum",
+            }
+        )
+        .reset_index(drop=True)
     )
 
     # Year on year comparison squared difference for national vs local authority
@@ -129,20 +131,21 @@ def national_profile_main(config: dict | str):
         if not os.path.exists(config["output_path"]):
             os.makedirs(config["output_path"])
 
-        
         for pair in [
             (sq_diff_output, "provisional_final_ssq.csv"),
             (year_agg, "year_agg_ssq.csv"),
             (year_agg_adjusted, "year_agg_adjusted_ssq.csv"),
         ]:
             pair[0].to_csv(
-                os.path.join(
-                    config["output_path"], pair[1]
-                ),
+                os.path.join(config["output_path"], pair[1]),
                 index=False,
             )
 
-    return sq_diff_output, year_agg, year_agg_adjusted
+    return (
+        sq_diff_output,
+        year_agg.reset_index(drop=True),
+        year_agg_adjusted.reset_index(drop=True),
+    )
 
 
 def sex_ratio_main(config: dict | str):
@@ -185,7 +188,7 @@ def sex_ratio_main(config: dict | str):
 
     # Aggregate by age to get national-level data and recalculate sex ratios (use uncleaned data)
     sr_national = sex_ratio.compute_sex_ratio(
-        sr_pivot.groupby("Age").agg(sum)[["em_fin", "imm_fin"]], config, mask=False
+        sr_pivot.groupby("Age").agg("sum")[["em_fin", "imm_fin"]], config, mask=False
     )
 
     # Year on year comparison squared difference for national vs local authority
@@ -196,17 +199,18 @@ def sex_ratio_main(config: dict | str):
         if not os.path.exists(config["output_path"]):
             os.makedirs(config["output_path"])
 
-        
         for pair in [
             (sr_recode, "sex_ratio_recoded.csv"),
             (sr_national, "sex_ratio_national.csv"),
             (sr_merged, "sex_ratio_ssq.csv"),
         ]:
             pair[0].to_csv(
-                os.path.join(
-                    config["output_path"], pair[1]
-                ),
-                index=False,
+                os.path.join(config["output_path"], pair[1]),
+                index_label=config["datasets"]["final_immigration"]["variables"]["la_code"],
             )
-    
-    return sr_recode, sr_national, sr_merged
+
+    return (
+        sr_recode,
+        sr_national,
+        sr_merged,
+    )
