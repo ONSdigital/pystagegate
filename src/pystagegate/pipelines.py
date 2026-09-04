@@ -84,7 +84,7 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     return output.reset_index(drop=True)
 
 
-def national_profile_main(config: dict | str) -> list:
+def national_profile_main(config: dict | str):
     # Configuration setup
     config = utils.load_config(config)["sex_ratio"]
 
@@ -121,13 +121,31 @@ def national_profile_main(config: dict | str) -> list:
         }
     )
 
-    # Year on year comparison squared difference
+    # Year on year comparison squared difference for national vs local authority
     year_agg, year_agg_adjusted = sex_ratio.year_agg_sqdiff(final, config)
 
-    return [sq_diff_output, year_agg, year_agg_adjusted]
+    # Write outputs
+    if config["output_path"] is not None:
+        if not os.path.exists(config["output_path"]):
+            os.makedirs(config["output_path"])
+
+        
+        for pair in [
+            (sq_diff_output, "provisional_final_ssq.csv"),
+            (year_agg, "year_agg_ssq.csv"),
+            (year_agg_adjusted, "year_agg_adjusted_ssq.csv"),
+        ]:
+            pair[0].to_csv(
+                os.path.join(
+                    config["output_path"], pair[1]
+                ),
+                index=False,
+            )
+
+    return sq_diff_output, year_agg, year_agg_adjusted
 
 
-def sex_ratio_main(config: dict | str) -> pd.DataFrame:
+def sex_ratio_main(config: dict | str):
     # Configuration setup
     config = utils.load_config(config)["sex_ratio"]
 
@@ -154,7 +172,10 @@ def sex_ratio_main(config: dict | str) -> pd.DataFrame:
 
     sr_recode = sr_recode.merge(
         sr_mask,
-        on=["Local Authority Code", "Age"],
+        on=[
+            config["datasets"]["final_immigration"]["variables"]["la_code"],
+            config["datasets"]["final_immigration"]["variables"]["age"],
+        ],
         how="left",
         suffixes=("", "_quality"),
     )
@@ -162,23 +183,30 @@ def sex_ratio_main(config: dict | str) -> pd.DataFrame:
     # Calculate sex ratios:
     sr_recode = sex_ratio.compute_sex_ratio(sr_recode, config, caps=(0.1, 10.0))
 
-    # Aggregate over local authority and recalculate sex ratios
-    la_sr_recode = sex_ratio.compute_sex_ratio(
-        sr_recode.groupby("Age").agg(sum)[["em_fin", "imm_fin"]], config, mask=False
+    # Aggregate by age to get national-level data and recalculate sex ratios (use uncleaned data)
+    sr_national = sex_ratio.compute_sex_ratio(
+        sr_pivot.groupby("Age").agg(sum)[["em_fin", "imm_fin"]], config, mask=False
     )
 
-    sr_merged = (
-        sr_recode.reset_index()
-        .merge(
-            la_sr_recode, 
-            on=config["datasets"]["final_immigration"]["variables"]["age"], 
-            how="left", 
-            suffixes=("_local", "_national")
-        )
-        .set_index(config["datasets"]["final_immigration"]["variables"]["la_code"])
-    )
+    # Year on year comparison squared difference for national vs local authority
+    sr_merged = sex_ratio.sex_ratio_ssq(sr_recode, sr_national, config)
 
-    # Year on year comparison squared difference
+    # Write outputs
+    if config["output_path"] is not None:
+        if not os.path.exists(config["output_path"]):
+            os.makedirs(config["output_path"])
+
+        
+        for pair in [
+            (sr_recode, "sex_ratio_recoded.csv"),
+            (sr_national, "sex_ratio_national.csv"),
+            (sr_merged, "sex_ratio_ssq.csv"),
+        ]:
+            pair[0].to_csv(
+                os.path.join(
+                    config["output_path"], pair[1]
+                ),
+                index=False,
+            )
     
-
-    return sr_recode, la_sr_recode, sr_merged
+    return sr_recode, sr_national, sr_merged
