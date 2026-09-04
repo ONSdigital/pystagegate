@@ -10,6 +10,12 @@ def test_config():
 
 
 @pytest.fixture
+def test_config_path():
+    config = "tests/data/testing_config.json"
+    return config
+
+
+@pytest.fixture
 def prov_fin_config_no_output():
     config = load_config("tests/data/testing_config.json")
     config["prov_fin"]["output_path"] = None
