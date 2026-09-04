@@ -278,3 +278,52 @@ def _sex_ratio_helper(
         ].clip(caps[0], caps[1])
 
     return sex_ratio_df
+
+
+def sex_ratio_ssq(
+    la_df: pd.DataFrame, national_df: pd.DataFrame, config: dict
+) -> pd.DataFrame:
+    """
+    Compute the squared sex ratio for local authorities compared to the national average.
+
+    Args:
+        la_df (pd.DataFrame): DataFrame containing local authority sex ratio data.
+        national_df (pd.DataFrame): DataFrame containing national sex ratio data.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the squared sex ratio for local authorities compared to the national average.
+    """
+
+    variables = config["datasets"]["final_immigration"]["variables"]
+    year_1 = config["global_parameters"]["year"]
+    year_2 = config["global_parameters"]["year2"]
+
+    # Merge national data onto local authority data
+    sr_merged = (
+        la_df.reset_index()
+        .merge(
+            national_df,
+            on=variables["age"],
+            how="left",
+            suffixes=("_local", "_national"),
+        )
+        .set_index(variables["la_code"])
+    )
+
+    # Compute sum of squared differences in sex ratios for national vs local authority data
+    for migration in ["imm", "em"]:
+        sr_merged[f"ssq_{migration}"] = (
+            (
+                (
+                    sr_merged[f"sex_ratio_{migration}_{year_2}_local"]
+                    - sr_merged[f"sex_ratio_{migration}_{year_1}_local"]
+                )
+                - (
+                    sr_merged[f"sex_ratio_{migration}_{year_2}_national"]
+                    - sr_merged[f"sex_ratio_{migration}_{year_1}_national"]
+                )
+            )
+            ** 2
+        ) * sr_merged[f"{migration}_weight_local"]
+
+    return sr_merged
