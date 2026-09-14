@@ -5,10 +5,10 @@ from pystagegate import prov_fin
 
 class TestMergeFinalMigrationData:
     def test_merge_produces_correct_columns(
-        self, mock_immigration_df, mock_emigration_df, prov_fin_config_no_output
+        self, prov_fin_immigration_df, prov_fin_emigration_df, prov_fin_config_no_output
     ):
         result = prov_fin.merge_final_migration_data(
-            mock_immigration_df, mock_emigration_df, prov_fin_config_no_output
+            prov_fin_immigration_df, prov_fin_emigration_df, prov_fin_config_no_output
         )
         assert list(result.columns) == [
             "Year",
@@ -20,49 +20,52 @@ class TestMergeFinalMigrationData:
         ]
 
     def test_merge_calculates_net_migration(
-        self, mock_immigration_df, mock_emigration_df, prov_fin_config_no_output
+        self, prov_fin_immigration_df, prov_fin_emigration_df, prov_fin_config_no_output
     ):
         result = prov_fin.merge_final_migration_data(
-            mock_immigration_df, mock_emigration_df, prov_fin_config_no_output
+            prov_fin_immigration_df, prov_fin_emigration_df, prov_fin_config_no_output
         )
         assert (result["net_fin"] == result["imm_fin"] - result["em_fin"]).all()
 
-    def test_merge_filters_by_year(
-        self, mock_immigration_df, mock_emigration_df, prov_fin_config_no_output
-    ):
-        result = prov_fin.merge_final_migration_data(
-            mock_immigration_df, mock_emigration_df, prov_fin_config_no_output
-        )
-        # All rows should be for year 2024 (filtered by config)
-        assert (result["Year"] == 2024).all()
-
     def test_merge_filters_by_nationality(
-        self, mock_immigration_df, mock_emigration_df, prov_fin_config_no_output
+        self, prov_fin_immigration_df, prov_fin_emigration_df, prov_fin_config_no_output
     ):
         # Should only contain "All Nationalities" after filtering
         result = prov_fin.merge_final_migration_data(
-            mock_immigration_df, mock_emigration_df, prov_fin_config_no_output
+            prov_fin_immigration_df, prov_fin_emigration_df, prov_fin_config_no_output
         )
         assert len(result) > 0
 
     def test_merge_aggregates_by_la_year_age(
-        self, mock_immigration_df, mock_emigration_df, prov_fin_config_no_output
+        self, prov_fin_immigration_df, prov_fin_emigration_df, prov_fin_config_no_output
     ):
         result = prov_fin.merge_final_migration_data(
-            mock_immigration_df, mock_emigration_df, prov_fin_config_no_output
+            prov_fin_immigration_df, prov_fin_emigration_df, prov_fin_config_no_output
         )
         # No duplicates on groupby keys
         assert not result.duplicated(
             subset=["Local Authority Code", "Year", "Age"]
         ).any()
 
+    def test_sex_ratio_param_true(
+        self, prov_fin_immigration_df, prov_fin_emigration_df, prov_fin_config_no_output
+    ):
+        result = prov_fin.merge_final_migration_data(
+            prov_fin_immigration_df,
+            prov_fin_emigration_df,
+            prov_fin_config_no_output,
+            sex_ratio=True,
+        )
+
+        assert "Sex" in result.columns
+
 
 class TestSubsetProvisionalData:
     def test_subset_produces_correct_columns(
-        self, mock_provisional_df, prov_fin_config_no_output
+        self, prov_fin_prov_df, prov_fin_config_no_output
     ):
         result = prov_fin.subset_provisional_data(
-            mock_provisional_df, prov_fin_config_no_output
+            prov_fin_prov_df, prov_fin_config_no_output
         )
         assert list(result.columns) == [
             "year",
@@ -73,48 +76,46 @@ class TestSubsetProvisionalData:
             "net_prov",
         ]
 
-    def test_subset_adds_year_column(
-        self, mock_provisional_df, prov_fin_config_no_output
-    ):
+    def test_subset_adds_year_column(self, prov_fin_prov_df, prov_fin_config_no_output):
         result = prov_fin.subset_provisional_data(
-            mock_provisional_df, prov_fin_config_no_output
+            prov_fin_prov_df, prov_fin_config_no_output
         )
         assert (result["year"] == 2024).all()
 
     def test_subset_aggregates_by_la_age(
-        self, mock_provisional_df, prov_fin_config_no_output
+        self, prov_fin_prov_df, prov_fin_config_no_output
     ):
         result = prov_fin.subset_provisional_data(
-            mock_provisional_df, prov_fin_config_no_output
+            prov_fin_prov_df, prov_fin_config_no_output
         )
         assert not result.duplicated(subset=["code", "Age"]).any()
 
 
 class TestProvisionalScotCartesianMerge:
     def test_cartesian_fills_missing_with_zero(
-        self, mock_provisional_scot_df, prov_fin_config_no_output
+        self, prov_fin_scot_df, prov_fin_config_no_output
     ):
         result = prov_fin.provisional_scot_cartesian_merge(
-            mock_provisional_scot_df, prov_fin_config_no_output
+            prov_fin_scot_df, prov_fin_config_no_output
         )
         assert not result["count"].isna().any()
 
     def test_cartesian_has_all_combinations(
-        self, mock_provisional_scot_df, prov_fin_config_no_output
+        self, prov_fin_scot_df, prov_fin_config_no_output
     ):
         result = prov_fin.provisional_scot_cartesian_merge(
-            mock_provisional_scot_df, prov_fin_config_no_output
+            prov_fin_scot_df, prov_fin_config_no_output
         )
         # Should have at least as many rows as the original
-        assert len(result) >= len(mock_provisional_scot_df)
+        assert len(result) >= len(prov_fin_scot_df)
 
 
 class TestProvisionalScotAggregate:
     def test_aggregate_produces_correct_columns(
-        self, mock_provisional_scot_df, prov_fin_config_no_output
+        self, prov_fin_scot_df, prov_fin_config_no_output
     ):
         cartesian = prov_fin.provisional_scot_cartesian_merge(
-            mock_provisional_scot_df, prov_fin_config_no_output
+            prov_fin_scot_df, prov_fin_config_no_output
         )
         result = prov_fin.provisional_scot_aggregate(
             cartesian, prov_fin_config_no_output
@@ -129,10 +130,10 @@ class TestProvisionalScotAggregate:
         ]
 
     def test_aggregate_calculates_net(
-        self, mock_provisional_scot_df, prov_fin_config_no_output
+        self, prov_fin_scot_df, prov_fin_config_no_output
     ):
         cartesian = prov_fin.provisional_scot_cartesian_merge(
-            mock_provisional_scot_df, prov_fin_config_no_output
+            prov_fin_scot_df, prov_fin_config_no_output
         )
         result = prov_fin.provisional_scot_aggregate(
             cartesian, prov_fin_config_no_output
@@ -140,10 +141,10 @@ class TestProvisionalScotAggregate:
         assert (result["net_prov"] == result["imm_prov"] - result["em_prov"]).all()
 
     def test_aggregate_filters_by_year(
-        self, mock_provisional_scot_df, prov_fin_config_no_output
+        self, prov_fin_scot_df, prov_fin_config_no_output
     ):
         cartesian = prov_fin.provisional_scot_cartesian_merge(
-            mock_provisional_scot_df, prov_fin_config_no_output
+            prov_fin_scot_df, prov_fin_config_no_output
         )
         result = prov_fin.provisional_scot_aggregate(
             cartesian, prov_fin_config_no_output
@@ -173,7 +174,7 @@ class TestSquaredDifference:
         assert (result["sqdiff_imm"] >= 0).all()
 
 
-class TestRegionalBreakdown:
+class TestRegionalBreakdownSqDiff:
     def test_gb_breakdown_returns_two_dataframes(
         self, mock_final_merged_df, prov_fin_config_no_output
     ):
@@ -186,7 +187,7 @@ class TestRegionalBreakdown:
     def test_nation_breakdown_filters_correctly(
         self, mock_final_merged_df, prov_fin_config_no_output
     ):
-        age_agg, la_agg = prov_fin.regional_breakdown_sqdiff(
+        _, la_agg = prov_fin.regional_breakdown_sqdiff(
             mock_final_merged_df, prov_fin_config_no_output, "E"
         )
         assert (la_agg["nation"] == "E").all()

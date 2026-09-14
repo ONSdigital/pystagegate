@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from pystagegate.utils import load_config
+from pystagegate.utils import load_config, load_summary_data
 
 
 @pytest.fixture
@@ -23,71 +23,30 @@ def prov_fin_config_no_output():
 
 
 @pytest.fixture
-def mock_immigration_df():
-    return pd.DataFrame(
-        {
-            "Local Authority Code": ["E001", "E001", "E002", "E002", "E001"],
-            "Age": [25, 30, 25, 30, 25],
-            "Sex": ["Male", "Female", "Male", "Female", "Male"],
-            "Nationality Group": [
-                "All Nationalities",
-                "All Nationalities",
-                "All Nationalities",
-                "All Nationalities",
-                "British",
-            ],
-            "Year": [2024, 2024, 2024, 2024, 2024],
-            "Count": [100, 200, 150, 250, 50],
-        }
-    )
+def sex_ratio_config_no_output():
+    config = load_config("tests/data/testing_config.json")
+    config["sex_ratio"]["output_path"] = None
+    return config["sex_ratio"]
 
 
 @pytest.fixture
-def mock_emigration_df():
-    return pd.DataFrame(
-        {
-            "Local Authority Code": ["E001", "E001", "E002", "E002", "E001"],
-            "Age": [25, 30, 25, 30, 25],
-            "Sex": ["Male", "Female", "Male", "Female", "Male"],
-            "Nationality Group": [
-                "All Nationalities",
-                "All Nationalities",
-                "All Nationalities",
-                "All Nationalities",
-                "British",
-            ],
-            "Year": [2024, 2024, 2024, 2024, 2024],
-            "Count": [50, 100, 75, 125, 25],
-        }
-    )
+def prov_fin_immigration_df(prov_fin_config_no_output):
+    return load_summary_data(prov_fin_config_no_output, "final_immigration")
 
 
 @pytest.fixture
-def mock_provisional_df():
-    return pd.DataFrame(
-        {
-            "code": ["E001", "E001", "E002", "E002"],
-            "Age": [25, 30, 25, 30],
-            "sex": ["Male", "Female", "Male", "Female"],
-            "international_in_2024": [120, 220, 160, 260],
-            "international_out_2024": [60, 110, 80, 130],
-            "international_net_2024": [60, 110, 80, 130],
-        }
-    )
+def prov_fin_emigration_df(prov_fin_config_no_output):
+    return load_summary_data(prov_fin_config_no_output, "final_emigration")
 
 
 @pytest.fixture
-def mock_provisional_scot_df():
-    return pd.DataFrame(
-        {
-            "ca_code": ["S001", "S001", "S001", "S001", "S002", "S002"],
-            "Age": [25, 25, 30, 30, 25, 25],
-            "sex": ["Male", "Male", "Female", "Female", "Male", "Male"],
-            "dir": ["in", "out", "in", "out", "in", "out"],
-            "year": [2024, 2024, 2024, 2024, 2024, 2024],
-            "count": [100, 50, 80, 40, 120, 60],
-        }
-    )
+def prov_fin_prov_df(prov_fin_config_no_output):
+    return load_summary_data(prov_fin_config_no_output, "provisional")
+
+
+@pytest.fixture
+def prov_fin_scot_df(prov_fin_config_no_output):
+    return load_summary_data(prov_fin_config_no_output, "provisional_scot")
 
 
 @pytest.fixture
