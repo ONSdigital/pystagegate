@@ -14,10 +14,12 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     provisional_scot = utils.load_summary_data(config, "provisional_scot")
 
     # Filter final immigration and emmigration
-    immigration = prov_fin.filter_migration_data(
+    immigration = prov_fin._filter_migration_data(
         immigration, "final_immigration", config
     )
-    emigration = prov_fin.filter_migration_data(emigration, "final_immigration", config)
+    emigration = prov_fin._filter_migration_data(
+        emigration, "final_immigration", config
+    )
 
     # Merge and aggregate final immigration and emmigration
     final = prov_fin.merge_final_migration_data(immigration, emigration, config)
@@ -41,24 +43,25 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     provisional_all = pd.concat([provisional_agg, provisional_scot_agg])
 
     # Final dataframe with provisional and merged data
+    prov_vars = config["datasets"]["provisional"]["variables"]
+    fin_imm_vars = config["datasets"]["final_immigration"]["variables"]
+
     all = provisional_all.merge(
         final,
         left_on=[
-            config["datasets"]["provisional"]["variables"]["la_code"],
-            config["datasets"]["provisional"]["variables"]["age"],
+            prov_vars["la_code"],
+            prov_vars["age"],
             "year",
         ],
         right_on=[
-            config["datasets"]["final_immigration"]["variables"]["la_code"],
-            config["datasets"]["final_immigration"]["variables"]["age"],
-            config["datasets"]["final_immigration"]["variables"]["year"],
+            fin_imm_vars["la_code"],
+            fin_imm_vars["age"],
+            fin_imm_vars["year"],
         ],
         how="left",
     )
 
-    all["nation"] = all[
-        config["datasets"]["final_immigration"]["variables"]["la_code"]
-    ].str[0]
+    all["nation"] = all[fin_imm_vars["la_code"]].str[0]
 
     # England analysis
     _, eng_la = prov_fin.regional_breakdown_sqdiff(all, config, "E")
@@ -69,7 +72,7 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     # Scotland analysis
     _, scot_la = prov_fin.regional_breakdown_sqdiff(all, config, "S")
 
-    # Correlation matrices and outputs
+    # Concatenate for output
     output = pd.concat([eng_la, wal_la, scot_la])
 
     # Handle output directory creation
@@ -84,7 +87,7 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     return output
 
 
-def sex_ratio_national_profile(config: dict | str):
+def sex_ratio_national_profile(config: dict | str) -> tuple[pd.DataFrame, pd.DataFrame]:
     # Configuration setup
     config = utils.load_config(config)["sex_ratio"]
 
@@ -107,22 +110,6 @@ def sex_ratio_national_profile(config: dict | str):
     merged = prov_fin.squared_difference(merged, "em", "em_prov", "em_fin")
     merged = prov_fin.squared_difference(merged, "net", "net_prov", "net_fin")
 
-    # Aggregate squared difference
-    sq_diff_output = (
-        merged.groupby(config["datasets"]["final_immigration"]["variables"]["la_code"])
-        .agg(
-            {
-                "imm_prov": "sum",
-                "em_prov": "sum",
-                "net_prov": "sum",
-                "sqdiff_imm": "sum",
-                "sqdiff_em": "sum",
-                "sqdiff_net": "sum",
-            }
-        )
-        .reset_index(drop=True)
-    )
-
     # Year on year comparison squared difference for national vs local authority
     year_agg, year_agg_adjusted = sex_ratio.year_agg_sqdiff(final, config)
 
@@ -132,7 +119,6 @@ def sex_ratio_national_profile(config: dict | str):
             os.makedirs(config["output_path"])
 
         for pair in [
-            (sq_diff_output, "provisional_final_ssq.csv"),
             (year_agg, "year_agg_ssq.csv"),
             (year_agg_adjusted, "year_agg_adjusted_ssq.csv"),
         ]:
@@ -141,14 +127,12 @@ def sex_ratio_national_profile(config: dict | str):
                 index=False,
             )
 
-    return (
-        sq_diff_output,
-        year_agg,
-        year_agg_adjusted,
-    )
+    return (year_agg, year_agg_adjusted)
 
 
-def sex_ratio_main(config: dict | str):
+def sex_ratio_main(
+    config: dict | str,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     # Configuration setup
     config = utils.load_config(config)["sex_ratio"]
 
@@ -173,11 +157,13 @@ def sex_ratio_main(config: dict | str):
         .mask(sr_recode >= 5, "OK")
     )
 
+    fin_imm_vars = config["datasets"]["final_immigration"]["variables"]
+
     sr_recode = sr_recode.merge(
         sr_mask,
         on=[
-            config["datasets"]["final_immigration"]["variables"]["la_code"],
-            config["datasets"]["final_immigration"]["variables"]["age"],
+            fin_imm_vars["la_code"],
+            fin_imm_vars["age"],
         ],
         how="left",
         suffixes=("", "_quality"),
@@ -210,9 +196,7 @@ def sex_ratio_main(config: dict | str):
         ]:
             pair[0].to_csv(
                 os.path.join(config["output_path"], pair[1]),
-                index_label=config["datasets"]["final_immigration"]["variables"][
-                    "la_code"
-                ],
+                index_label=fin_imm_vars["la_code"],
                 index=False,
             )
 
