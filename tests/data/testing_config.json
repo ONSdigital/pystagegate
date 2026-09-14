@@ -1,17 +1,17 @@
 {
     "prov_fin": {
-        "root_path": "tests/data/prov_fin/",
+        "root_path": "tests/data/",
         "output_path": "tests/data/output/prov_fin_output/",
         "global_parameters": {
             "age_min": 0,
             "age_max": 200,
             "year": 2024,
-            "final_nationalities": ["All Nationalities", "British", "Non-British"],
+            "final_nationalities": ["British", "Non-British"],
             "provisional_scot_direction": ["in", "out"]
         },
         "datasets": {
             "final_immigration": {
-                "path": "final_immigration.csv",
+                "path": "immigration.csv",
                 "variables": {
                     "la_code": "Local Authority Code",
                     "age": "Age",
@@ -22,7 +22,7 @@
                 }
             },
             "final_emigration": {
-                "path": "final_emigration.csv",
+                "path": "emigration.csv",
                 "variables": {
                     "la_code": "Local Authority Code",
                     "age": "Age",
@@ -33,7 +33,7 @@
                 }
             },
             "provisional": {
-                "path": "provisional.csv",
+                "path": "provisional_ew.csv",
                 "variables": {
                     "la_code": "code",
                     "age": "Age",
@@ -44,7 +44,7 @@
                 }
             },
             "provisional_scot": {
-                "path": "provisional_added.csv",
+                "path": "provisional_scot.csv",
                 "variables": {
                     "la_code": "ca_code",
                     "age": "Age",
@@ -57,7 +57,7 @@
         }
     },
     "sex_ratio": {
-        "root_path": "tests/data/sex_ratio/",
+        "root_path": "tests/data/",
         "output_path": "tests/data/output/sex_ratio_output",
         "global_parameters": {
             "age_min": 0,
@@ -68,7 +68,7 @@
         },
         "datasets": {
             "final_immigration": {
-                "path": "final_immigration.csv",
+                "path": "immigration.csv",
                 "variables": {
                     "la_code": "Local Authority Code",
                     "age": "Age",
@@ -79,7 +79,7 @@
                 }
             },
             "final_emigration": {
-                "path": "final_emigration.csv",
+                "path": "emigration.csv",
                 "variables": {
                     "la_code": "Local Authority Code",
                     "age": "Age",
@@ -90,7 +90,7 @@
                 }
             },
             "provisional": {
-                "path": "provisional.csv",
+                "path": "provisional_ew.csv",
                 "variables": {
                     "la_code": "code",
                     "age": "Age",
