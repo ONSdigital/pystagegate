@@ -2,11 +2,12 @@ import pandas as pd
 from itertools import product
 
 
-def filter_migration_data(migration_df: pd.DataFrame, key: str, config: dict):
+def _filter_migration_data(migration_df: pd.DataFrame, key: str, config: dict):
     variables = config["datasets"][key]["variables"]
     migration_df = migration_df[
-        migration_df[variables["nationality"]]
-        == config["global_parameters"]["final_nationalities"][0]
+        migration_df[variables["nationality"]].isin(
+            config["global_parameters"]["final_nationalities"]
+        )
     ]
     migration_df = migration_df[
         migration_df[variables["year"]] == config["global_parameters"]["year"]
@@ -62,8 +63,6 @@ def merge_final_migration_data(
         immigration_col = left_vars["count"]
         emigration_col = right_vars["count"]
 
-    merged_df["net_cell"] = merged_df[immigration_col] - merged_df[emigration_col]
-
     if sex_ratio:
         # Alternative aggregation for sex_ratio calculations
         merged_df = (
@@ -96,13 +95,11 @@ def merge_final_migration_data(
             merged_df.groupby(
                 [left_vars["la_code"], left_vars["year"], left_vars["age"]]
             )
-            .agg(
-                imm_fin=(immigration_col, "sum"),
-                em_fin=(emigration_col, "sum"),
-                net_fin=("net_cell", "sum"),
-            )
+            .agg(imm_fin=(immigration_col, "sum"), em_fin=(emigration_col, "sum"))
             .reset_index()
         )
+
+        merged_df["net_fin"] = merged_df["imm_fin"] - merged_df["em_fin"]
 
         return merged_df[
             [
@@ -134,12 +131,12 @@ def subset_provisional_data(provisional_df: pd.DataFrame, config: dict) -> pd.Da
         .agg(
             imm_prov=(variables["immigration"], "sum"),
             em_prov=(variables["emigration"], "sum"),
-            net_prov=(variables["net"], "sum"),
         )
         .reset_index()
     )
 
     subset_df["year"] = config["global_parameters"]["year"]
+    subset_df["net_prov"] = subset_df["imm_prov"] - subset_df["em_prov"]
 
     return subset_df[
         [
