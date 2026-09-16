@@ -94,21 +94,9 @@ def sex_ratio_national_profile(config: dict | str) -> tuple[pd.DataFrame, pd.Dat
     # Load and validate datasets
     immigration = utils.load_summary_data(config, "final_immigration")
     emigration = utils.load_summary_data(config, "final_emigration")
-    provisional = utils.load_summary_data(config, "provisional")
 
     # Merge and aggregate final immigration and emmigration data
     final = prov_fin.merge_final_migration_data(immigration, emigration, config)
-
-    # Aggregate provisional data
-    provisional_agg = prov_fin.subset_provisional_data(provisional, config)
-
-    # Create merged provisional and final with added aggregated national profile
-    merged = sex_ratio.merged_national_profile(provisional_agg, final, config)
-
-    # Calculate squared difference from national profile
-    merged = prov_fin.squared_difference(merged, "imm", "imm_prov", "imm_fin")
-    merged = prov_fin.squared_difference(merged, "em", "em_prov", "em_fin")
-    merged = prov_fin.squared_difference(merged, "net", "net_prov", "net_fin")
 
     # Year on year comparison squared difference for national vs local authority
     year_agg, year_agg_adjusted = sex_ratio.year_agg_sqdiff(final, config)

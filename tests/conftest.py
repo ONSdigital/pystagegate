@@ -81,34 +81,6 @@ def mock_final_merged_df():
 
 
 @pytest.fixture
-def mock_national_profile_provisional_df():
-    return pd.DataFrame(
-        {
-            "year": [2024, 2024, 2024],
-            "code": ["E001", "E001", "E002"],
-            "Age": [25, 30, 25],
-            "imm_prov": [100.0, 50.0, 80.0],
-            "em_prov": [40.0, 20.0, 30.0],
-            "net_prov": [60.0, 30.0, 50.0],
-        }
-    )
-
-
-@pytest.fixture
-def mock_national_profile_final_df():
-    return pd.DataFrame(
-        {
-            "Year": [2024, 2024, 2024],
-            "Local Authority Code": ["E001", "E001", "E002"],
-            "Age": [25, 30, 25],
-            "imm_fin": [90.0, 55.0, 70.0],
-            "em_fin": [35.0, 25.0, 20.0],
-            "net_fin": [55.0, 30.0, 50.0],
-        }
-    )
-
-
-@pytest.fixture
 def mock_year_agg_final_df():
     return pd.DataFrame(
         {
@@ -170,10 +142,78 @@ def mock_sex_ratio_pivot_with_quality():
     )
     return pd.DataFrame(
         [
-            [10.0, 5.0, 12.0, 6.0, 4.0, 2.0, 90.0, 3.0, "OK", "OK", "OK", "OK", "OK", "OK", "OK", "OK"],
-            [2.0, 4.0, 8.0, 4.0, 6.0, 3.0, 6.0, 3.0, "Zero", "Low", "OK", "OK", "OK", "OK", "OK", "OK"],
-            [0.0, 8.0, 8.0, 4.0, 6.0, 3.0, 6.0, 3.0, "Zero", "OK", "OK", "OK", "OK", "OK", "OK", "OK"],
-            [7.0, 0.0, 8.0, 4.0, 6.0, 3.0, 6.0, 3.0, "OK", "Zero", "OK", "OK", "OK", "OK", "OK", "OK"],
+            [
+                10.0,
+                5.0,
+                12.0,
+                6.0,
+                4.0,
+                2.0,
+                90.0,
+                3.0,
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+            ],
+            [
+                2.0,
+                4.0,
+                8.0,
+                4.0,
+                6.0,
+                3.0,
+                6.0,
+                3.0,
+                "Zero",
+                "Low",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+            ],
+            [
+                0.0,
+                8.0,
+                8.0,
+                4.0,
+                6.0,
+                3.0,
+                6.0,
+                3.0,
+                "Zero",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+            ],
+            [
+                7.0,
+                0.0,
+                8.0,
+                4.0,
+                6.0,
+                3.0,
+                6.0,
+                3.0,
+                "OK",
+                "Zero",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+                "OK",
+            ],
         ],
         index=index,
         columns=columns,

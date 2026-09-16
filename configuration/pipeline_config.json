@@ -6,7 +6,7 @@
             "age_min": 0,
             "age_max": 200,
             "year": 2024,
-            "final_nationalities": ["", "", ""],
+            "final_nationalities": ["", ""],
             "provisional_scot_direction": ["", ""]
         },
         "datasets": {
@@ -87,17 +87,6 @@
                     "nationality": "",
                     "year": "",
                     "count": ""
-                }
-            },
-            "provisional": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "immigration": "",
-                    "emigration": "",
-                    "net": ""
                 }
             }
         }

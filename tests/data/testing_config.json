@@ -88,17 +88,6 @@
                     "year": "Year",
                     "count": "Count"
                 }
-            },
-            "provisional": {
-                "path": "provisional_ew.csv",
-                "variables": {
-                    "la_code": "code",
-                    "age": "Age",
-                    "sex": "sex",
-                    "immigration": "international_in_2024",
-                    "emigration": "international_out_2024",
-                    "net": "international_net_2024"
-                }
             }
         }
     }

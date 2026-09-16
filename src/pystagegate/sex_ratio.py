@@ -2,64 +2,6 @@ import pandas as pd
 import numpy as np
 
 
-def merged_national_profile(
-    provisional_df: pd.DataFrame, final_df: pd.DataFrame, config: dict
-) -> pd.DataFrame:
-    """
-    Merges final immigration data onto the provisional data and computes national profiles.
-
-    Args:
-        provisional_df (pd.DataFrame): The provisional immigration dataset.
-        final_df (pd.DataFrame): The final immigration dataset.
-        config (dict): Configuration dictionary containing dataset variable mappings.
-
-    Returns:
-        pd.DataFrame: A DataFrame containing the merged data along with national profiles.
-    """
-    left_vars = config["datasets"]["provisional"]["variables"]
-    right_vars = config["datasets"]["final_immigration"]["variables"]
-
-    merged_df = provisional_df.merge(
-        final_df,
-        left_on=[
-            "year",
-            left_vars["la_code"],
-            left_vars["age"],
-        ],
-        right_on=[right_vars["year"], right_vars["la_code"], right_vars["age"]],
-        how="left",
-    )
-
-    merged_df = merged_df[
-        [
-            right_vars["year"],
-            right_vars["la_code"],
-            right_vars["age"],
-            "imm_prov",
-            "em_prov",
-            "net_prov",
-            "imm_fin",
-            "em_fin",
-            "net_fin",
-        ]
-    ]
-
-    national_profile = (
-        merged_df.groupby(right_vars["age"])
-        .agg(
-            imm_prov_T=("imm_prov", "sum"),
-            em_prov_T=("em_prov", "sum"),
-            net_prov_T=("net_prov", "sum"),
-            imm_fin_T=("imm_fin", "sum"),
-            em_fin_T=("em_fin", "sum"),
-            net_fin_T=("net_fin", "sum"),
-        )
-        .reset_index()
-    )
-
-    return merged_df.merge(national_profile, on=right_vars["age"], how="left")
-
-
 def year_agg_sqdiff(merged_df: pd.DataFrame, config: dict) -> pd.DataFrame:
     """
     Computes the squared differences of immigration, emigration, and net migration counts
