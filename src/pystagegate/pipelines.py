@@ -61,16 +61,14 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         how="left",
     )
 
-    all["nation"] = all[fin_imm_vars["la_code"]].str[0]
-
     # England analysis
-    _, eng_la = prov_fin.regional_breakdown_sqdiff(all, config, "E")
+    eng_la = prov_fin.nation_breakdown_sqdiff(all, config, "E")
 
     # Wales analysis
-    _, wal_la = prov_fin.regional_breakdown_sqdiff(all, config, "W")
+    wal_la = prov_fin.nation_breakdown_sqdiff(all, config, "W")
 
     # Scotland analysis
-    _, scot_la = prov_fin.regional_breakdown_sqdiff(all, config, "S")
+    scot_la = prov_fin.nation_breakdown_sqdiff(all, config, "S")
 
     # Concatenate for output
     output = pd.concat([eng_la, wal_la, scot_la])
