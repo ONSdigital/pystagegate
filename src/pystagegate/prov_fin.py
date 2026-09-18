@@ -246,60 +246,66 @@ def provisional_scot_aggregate(
 
 
 def squared_difference(
-    df: pd.DataFrame, prefix: str, prov_col: str, fin_col: str
+    df: pd.DataFrame,
+    prov_col: str,
+    fin_col: str,
+    prov_col_total: str,
+    fin_col_total: str,
+    output_name: str = "output",
 ) -> pd.DataFrame:
     """
     Create squared difference estimates for migration data using provisional and final estimates.
 
     Args:
         df (pd.DataFrame): The input migration DataFrame.
-        prefix (str): A string prefix used to name the computed squared difference column
         prov_col (str): The provisional estimate column name.
         fin_col (str): The final estimate column name.
+        prov_col_total (str): The provisional estimate total column name.
+        fin_col_total (str): The final estimate total column name.
+        output_name (str): Substring to denote the outputted squared difference columns. Defaults to "output".
 
     Returns:
         df (pd.DataFrame): A pandas DataFrame containing the difference
         and squared difference estiamtes.
     """
-
-    df[f"diff_{prefix}"] = (df[fin_col] - df[prov_col]) - (
-        (df[prov_col] * df[f"{fin_col}_T"] / df[f"{prov_col}_T"]) - (df[prov_col])
+    df[f"diff_{output_name}"] = df[fin_col] - (
+        df[prov_col] * df[fin_col_total] / df[prov_col_total]
     )
 
-    df[f"sqdiff_{prefix}"] = (df[f"diff_{prefix}"] ** 2).where(
-        df[f"{prov_col}_T"] != 0, 0
+    # Todo: Interrogate why we recode to zero in the case of prov_col_total = 0
+    df[f"sqdiff_{output_name}"] = (df[f"diff_{output_name}"] ** 2).where(
+        df[f"{prov_col_total}"] != 0, 0
     )
 
     return df
 
 
-def regional_breakdown_sqdiff(
+def nation_breakdown_sqdiff(
     df: pd.DataFrame,
     config: dict,
-    nation: str = None,
+    nation: str,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Performs aggregations by Age and Local Authority on both a whole country (GB) profile and nation profile.
+    Performs aggregations and squared difference calculations by age and Local Authority on national profiles.
 
     Args:
         df (pd.DataFrame): The input migration DataFrame.
         config (dict): A dictionary configuration.
-        nation (str, optional): A one letter code for nation, must be one of 'E', 'S', 'W'. Defaults to None for GB analysis.
+        nation (str): A one letter code for nation, must be one of 'E', 'S', 'W'.
 
     Returns:
         tuple:
             - age_agg (pd.DataFrame): Migration data aggregated by age.
             - la_agg (pd.DataFrame): Migration data aggregated by age and local authority.
     """
-    imm_prefix = "imm"
-    em_prefix = "em"
-    net_prefix = "net"
 
     variables = config["datasets"]["final_immigration"]["variables"]
 
-    if nation is None:
+    # Filter by nation, aggregate by age and merge these totals with original dataframe
+    if nation in ["W", "S", "E"]:
         age_agg = (
-            df.groupby(variables["age"])
+            df[df[variables["la_code"]].str[0] == nation]
+            .groupby(variables["age"])
             .agg(
                 {
                     "imm_prov": "sum",
@@ -313,43 +319,30 @@ def regional_breakdown_sqdiff(
             .reset_index()
         )
 
-        age_agg = df.merge(
+        if len(age_agg) == 0:
+            raise ValueError(f"No matching records found for nation {nation}")
+
+        age_agg = df[df[variables["la_code"]].str[0] == nation].merge(
             age_agg,
             on=variables["age"],
             how="left",
             suffixes=("", "_T"),
         )
     else:
-        if nation in ["W", "S", "E"]:
-            age_agg = (
-                df[df["nation"] == nation]
-                .groupby(variables["age"])
-                .agg(
-                    {
-                        "imm_prov": "sum",
-                        "em_prov": "sum",
-                        "net_prov": "sum",
-                        "imm_fin": "sum",
-                        "em_fin": "sum",
-                        "net_fin": "sum",
-                    }
-                )
-                .reset_index()
-            )
+        raise ValueError("Nation must be one of 'E', 'S', 'W'")
 
-            age_agg = df[df["nation"] == nation].merge(
-                age_agg,
-                on=variables["age"],
-                how="left",
-                suffixes=("", "_T"),
-            )
-        else:
-            raise (ValueError("Nation must be one of 'E', 'S', 'W'"))
+    # Compute the squared difference between the age totals and the age and local authority estimates
+    for prefix in ["imm", "em", "net"]:
+        age_agg = squared_difference(
+            age_agg,
+            prov_col=f"{prefix}_prov",
+            fin_col=f"{prefix}_fin",
+            prov_col_total=f"{prefix}_prov_T",
+            fin_col_total=f"{prefix}_fin_T",
+            output_name=f"{prefix}",
+        )
 
-    age_agg = squared_difference(age_agg, imm_prefix, "imm_prov", "imm_fin")
-    age_agg = squared_difference(age_agg, em_prefix, "em_prov", "em_fin")
-    age_agg = squared_difference(age_agg, net_prefix, "net_prov", "net_fin")
-
+    # Now aggregate by local authority
     la_agg = (
         age_agg.groupby(variables["la_code"])
         .agg(
@@ -357,26 +350,27 @@ def regional_breakdown_sqdiff(
                 "imm_prov": "sum",
                 "em_prov": "sum",
                 "net_prov": "sum",
-                f"sqdiff_{imm_prefix}": "sum",
-                f"sqdiff_{em_prefix}": "sum",
-                f"sqdiff_{net_prefix}": "sum",
+                "sqdiff_imm": "sum",
+                "sqdiff_em": "sum",
+                "sqdiff_net": "sum",
             }
         )
         .reset_index()
     )
 
-    # todo: check denominator for scaled squared differences
-    for prefix in [imm_prefix, em_prefix, net_prefix]:
-        if prefix == net_prefix:
+    # Scale squared differences by provisional totals
+    # todo: Check denominator for scaled squared differences - why is net migration scaled by immigration??
+    # todo: How to handle divide by zero?
+    for prefix in ["imm", "em", "net"]:
+        if prefix == "net":
             la_agg[f"sqdiff_{prefix}_sc"] = (
-                la_agg[f"sqdiff_{prefix}"] / la_agg[f"{imm_prefix}_prov"]
+                la_agg[f"sqdiff_{prefix}"] / la_agg[f"imm_prov"]
             )
         else:
             la_agg[f"sqdiff_{prefix}_sc"] = (
                 la_agg[f"sqdiff_{prefix}"] / la_agg[f"{prefix}_prov"]
             )
 
-    for frame in [age_agg, la_agg]:
-        frame["nation"] = frame[variables["la_code"]].str[0]
+    la_agg["nation"] = la_agg[variables["la_code"]].str[0]
 
-    return age_agg, la_agg
+    return la_agg
