@@ -247,34 +247,35 @@ def provisional_scot_aggregate(
 
 def squared_difference(
     df: pd.DataFrame,
-    prov_col: str,
-    fin_col: str,
-    prov_col_total: str,
-    fin_col_total: str,
+    type_1: str,
+    type_2: str,
+    type_1_total: str,
+    type_2_total: str,
     output_name: str = "output",
 ) -> pd.DataFrame:
     """
-    Create squared difference estimates for migration data using provisional and final estimates.
+    Create squared difference estimates for migration data using two estimate types and their totals.
 
     Args:
         df (pd.DataFrame): The input migration DataFrame.
-        prov_col (str): The provisional estimate column name.
-        fin_col (str): The final estimate column name.
-        prov_col_total (str): The provisional estimate total column name.
-        fin_col_total (str): The final estimate total column name.
+        type_1 (str): The first estimate column name.
+        type_2 (str): The second estimate column name.
+        type_1_total (str): The first estimate total column name.
+        type_2_total (str): The second estimate total column name.
         output_name (str): Substring to denote the outputted squared difference columns. Defaults to "output".
 
     Returns:
         df (pd.DataFrame): A pandas DataFrame containing the difference
         and squared difference estiamtes.
     """
-    df[f"diff_{output_name}"] = df[fin_col] - (
-        df[prov_col] * df[fin_col_total] / df[prov_col_total]
+    # Todo: Interrogate why we do not recode here in the case of prov_col_total = 0
+    df[f"diff_{output_name}"] = df[type_2] - (
+        df[type_1] * df[type_2_total] / df[type_1_total]
     )
 
     # Todo: Interrogate why we recode to zero in the case of prov_col_total = 0
     df[f"sqdiff_{output_name}"] = (df[f"diff_{output_name}"] ** 2).where(
-        df[f"{prov_col_total}"] != 0, 0
+        df[f"{type_1_total}"] != 0, 0
     )
 
     return df
@@ -335,10 +336,10 @@ def nation_breakdown_sqdiff(
     for prefix in ["imm", "em", "net"]:
         age_agg = squared_difference(
             age_agg,
-            prov_col=f"{prefix}_prov",
-            fin_col=f"{prefix}_fin",
-            prov_col_total=f"{prefix}_prov_T",
-            fin_col_total=f"{prefix}_fin_T",
+            type_1=f"{prefix}_prov",
+            type_2=f"{prefix}_fin",
+            type_1_total=f"{prefix}_prov_T",
+            type_2_total=f"{prefix}_fin_T",
             output_name=f"{prefix}",
         )
 
@@ -364,7 +365,7 @@ def nation_breakdown_sqdiff(
     for prefix in ["imm", "em", "net"]:
         if prefix == "net":
             la_agg[f"sqdiff_{prefix}_sc"] = (
-                la_agg[f"sqdiff_{prefix}"] / la_agg[f"imm_prov"]
+                la_agg[f"sqdiff_{prefix}"] / la_agg["imm_prov"]
             )
         else:
             la_agg[f"sqdiff_{prefix}_sc"] = (
