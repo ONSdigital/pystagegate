@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
+from pystagegate import prov_fin
 
 
-def year_agg_sqdiff(merged_df: pd.DataFrame, config: dict) -> pd.DataFrame:
+def year_agg_merge(merged_df: pd.DataFrame, config: dict) -> pd.DataFrame:
     """
-    Computes the squared differences of immigration, emigration, and net migration counts
-    between two specified years.
+    Aggregates year totals for specified years and merges them for comparison.
 
     Args:
         merged_df (pd.DataFrame): The merged DataFrame containing immigration and emigration data.
@@ -18,6 +18,13 @@ def year_agg_sqdiff(merged_df: pd.DataFrame, config: dict) -> pd.DataFrame:
 
     year_1 = config["global_parameters"]["year"]
     year_2 = config["global_parameters"]["year2"]
+
+    if (
+        merged_df[merged_df[variables["year"]] == year_1].empty
+        | merged_df[merged_df[variables["year"]] == year_2].empty
+    ):
+        raise ValueError(f"Cannot find both {year_1} and {year_2} in data")
+
     df_dict = {}
 
     for year in [year_1, year_2]:
@@ -45,26 +52,59 @@ def year_agg_sqdiff(merged_df: pd.DataFrame, config: dict) -> pd.DataFrame:
 
         df_dict.update({year: df.drop(columns=[variables["year"]])})
 
-    # DataFrame containing squared differences
-    merged = pd.merge(
+    # DataFrame with merged totals for year_1 and year_2
+    return pd.merge(
         df_dict[year_1],
         df_dict[year_2],
         on=[variables["la_code"], variables["age"]],
         how="left",
-        suffixes=(year_1, year_2),
+        suffixes=(f"_{year_1}", f"_{year_2}"),
     )
 
-    for out_name in ["imm", "em", "net"]:
-        merged = year_squared_difference(merged, out_name, year_1, year_2)
+
+def year_agg_sqdiff(
+    merged_df: pd.DataFrame, config: dict
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """
+    Computes the squared differences for immigration, emigration, and net migration counts
+    between two specified years and aggregates the results.
+
+    Args:
+        merged (pd.DataFrame): The merged DataFrame containing immigration and emigration data.
+        config (dict): Configuration dictionary containing dataset variable mappings and global parameters.
+
+    Returns:
+        tuple[pd.DataFrame, pd.DataFrame]: A tuple containing the merged DataFrame with squared differences
+        and the aggregated DataFrame with scaled sums of squared differences.
+    """
+    variables = config["datasets"]["final_immigration"]["variables"]
+    year_1 = config["global_parameters"]["year"]
+    year_2 = config["global_parameters"]["year2"]
+
+    for output_name in ["imm", "em", "net"]:
+        count_year_1 = f"count_{output_name}_{year_1}"
+        total_count_year_1 = f"total_count_{output_name}_{year_1}"
+
+        count_year_2 = f"count_{output_name}_{year_2}"
+        total_count_year_2 = f"total_count_{output_name}_{year_2}"
+
+        merged_df = prov_fin.squared_difference(
+            merged_df,
+            type_1=count_year_1,
+            type_2=count_year_2,
+            type_1_total=total_count_year_1,
+            type_2_total=total_count_year_2,
+            output_name=output_name,
+        )
 
     # Aggregated DataFrame for scaled sums of squared differences
-    adjusted_ssq = merged.groupby(variables["la_code"]).agg(
+    adjusted_ssq = merged_df.groupby(variables["la_code"]).agg(
         imm_ssq_total=("sqdiff_imm", "sum"),
         em_ssq_total=("sqdiff_em", "sum"),
         net_ssq_total=("sqdiff_net", "sum"),
-        imm_la_total=(f"count_imm{year_1}", "sum"),
-        em_la_total=(f"count_em{year_1}", "sum"),
-        net_la_total=(f"count_net{year_1}", "sum"),
+        imm_la_total=(f"count_imm_{year_1}", "sum"),
+        em_la_total=(f"count_em_{year_1}", "sum"),
+        net_la_total=(f"count_net_{year_1}", "sum"),
     )
 
     for out_name in ["imm", "em", "net"]:
@@ -72,43 +112,7 @@ def year_agg_sqdiff(merged_df: pd.DataFrame, config: dict) -> pd.DataFrame:
             adjusted_ssq[f"{out_name}_ssq_total"] / adjusted_ssq[f"{out_name}_la_total"]
         )
 
-    return merged, adjusted_ssq.reset_index()
-
-
-def year_squared_difference(
-    yc_df: pd.DataFrame,
-    output_name: str,
-    year_1: int,
-    year_2: int,
-) -> pd.DataFrame:
-    """
-    Computes the squared differences for a specific migration type between two years.
-
-    Args:
-        yc_df (pd.DataFrame): The DataFrame containing migration counts for two years.
-        output_name (str): The migration type to compute squared differences for. Must be one of 'imm', 'em', or 'net'.
-        year_1 (int): The first year for comparison.
-        year_2 (int): The second year for comparison.
-
-    Returns:
-        pd.DataFrame: The DataFrame with added columns for the difference and squared difference of the specified migration type between the two years.
-    """
-    if output_name not in ["imm", "em", "net"]:
-        raise ValueError("output_name must be one of 'imm', 'em', 'net'")
-
-    count_year_1 = f"count_{output_name}{year_1}"
-    total_count_year_1 = f"total_count_{output_name}{year_1}"
-
-    count_year_2 = f"count_{output_name}{year_2}"
-    total_count_year_2 = f"total_count_{output_name}{year_2}"
-
-    yc_df[f"diff_{output_name}"] = (yc_df[count_year_2]) - (
-        yc_df[count_year_1] * yc_df[total_count_year_2] / yc_df[total_count_year_1]
-    )
-
-    yc_df[f"sqdiff_{output_name}"] = yc_df[f"diff_{output_name}"] ** 2
-
-    return yc_df
+    return merged_df, adjusted_ssq.reset_index()
 
 
 def pivot_sex_ratio_frame(sex_ratio_df: pd.DataFrame, config: dict):
@@ -144,6 +148,46 @@ def pivot_sex_ratio_frame(sex_ratio_df: pd.DataFrame, config: dict):
     return sr_pivot
 
 
+def clean_and_mask(
+    sex_ratio_df: pd.DataFrame,
+    config: dict,
+) -> pd.DataFrame:
+    """
+    Clean and mask the sex ratio DataFrame.
+
+    Args:
+        sex_ratio_df (pd.DataFrame): The DataFrame containing sex ratio data.
+        config (dict): Configuration dictionary.
+
+    Returns:
+        pd.DataFrame: The cleaned and masked DataFrame.
+    """
+    # Recode values
+    sex_ratio_df = sex_ratio_df.where(sex_ratio_df >= 1, 1).where(
+        sex_ratio_df >= 0.5, 0
+    )
+
+    # Add flags
+    masked_df = (
+        sex_ratio_df.mask(sex_ratio_df == 0, "Zero")
+        .mask(sex_ratio_df >= 1, "Low")
+        .mask(sex_ratio_df >= 5, "OK")
+    )
+
+    fin_imm_vars = config["datasets"]["final_immigration"]["variables"]
+
+    sex_ratio_df = sex_ratio_df.merge(
+        masked_df,
+        on=[
+            fin_imm_vars["la_code"],
+            fin_imm_vars["age"],
+        ],
+        how="left",
+        suffixes=("", "_quality"),
+    )
+    return sex_ratio_df
+
+
 def compute_sex_ratio(
     sex_ratio_df: pd.DataFrame,
     config: dict,
@@ -167,8 +211,8 @@ def compute_sex_ratio(
 
     # Call sex ratio calculation helper func for each year of data
     for year in [year_1, year_2]:
-        sex_ratio_df = _sex_ratio_helper(sex_ratio_df, "imm", year, caps, mask)
-        sex_ratio_df = _sex_ratio_helper(sex_ratio_df, "em", year, caps, mask)
+        sex_ratio_df = sex_ratio_helper(sex_ratio_df, "imm", year, caps, mask)
+        sex_ratio_df = sex_ratio_helper(sex_ratio_df, "em", year, caps, mask)
 
     # Calculate weights
     sex_ratio_df["imm_weight"] = sex_ratio_df["imm_fin"].sum(axis=1)
@@ -177,13 +221,26 @@ def compute_sex_ratio(
     return sex_ratio_df
 
 
-def _sex_ratio_helper(
+def sex_ratio_helper(
     sex_ratio_df: pd.DataFrame,
     migration: str,
     year: int,
     caps: tuple[float, float] = None,
     mask: bool = True,
 ) -> pd.DataFrame:
+    """
+    Helper function to compute sex ratio for a given migration type and year.
+
+    Args:
+        sex_ratio_df (pd.DataFrame): Pivoted DataFrame with (measure, sex, year) columns.
+        migration (str): Migration type, either 'imm' or 'em'.
+        year (int): Year for which to compute the sex ratio.
+        caps (tuple[float, float], optional): Lower and upper caps for sex ratio. Defaults to None.
+        mask (bool, optional): Whether to apply quality masking to the sex ratio calculations. Defaults to True.
+
+    Returns:
+        pd.DataFrame: The DataFrame with the added sex ratio column for the specified migration type and year.
+    """
     if migration not in ["imm", "em"]:
         raise ValueError("migration must be one of 'imm', 'em'")
 
