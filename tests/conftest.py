@@ -1,5 +1,6 @@
 import pytest
 import pandas as pd
+from pystagegate.prov_fin import merge_final_migration_data
 from pystagegate.utils import load_config, load_summary_data
 
 
@@ -50,9 +51,22 @@ def provisional_scot_df(prov_fin_config):
     return load_summary_data(prov_fin_config, "provisional_scot")
 
 
-# prov_fin_test_fixtures
+# test_prov_fin fixtures
 @pytest.fixture(scope="class")
 def nation_breakdown_df():
     df = pd.read_csv("tests/data/provisional_final_merged.csv")
 
     return df
+
+
+# test_sex_ratio fixtures
+@pytest.fixture(scope="class")
+def merged_df(sex_ratio_config, immigration_df, emigration_df):
+    return merge_final_migration_data(immigration_df, emigration_df, sex_ratio_config)
+
+
+@pytest.fixture(scope="class")
+def merged_sr_df(sex_ratio_config, immigration_df, emigration_df):
+    return merge_final_migration_data(
+        immigration_df, emigration_df, sex_ratio_config, sex_ratio=True
+    )
