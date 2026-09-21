@@ -61,6 +61,9 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         how="left",
     )
 
+    # Todo: delete
+    all.to_csv("tests/data/provisional_final_merged.csv")
+
     # England analysis
     eng_la = prov_fin.nation_breakdown_sqdiff(all, config, "E")
 
@@ -73,14 +76,8 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     # Concatenate for output
     output = pd.concat([eng_la, wal_la, scot_la])
 
-    # Handle output directory creation
-    if config["output_path"] is not None:
-        if not os.path.exists(config["output_path"]):
-            os.makedirs(config["output_path"])
-
-        output.to_csv(
-            os.path.join(config["output_path"], "prov_fin_output.csv"), index=False
-        )
+    # Write outputs
+    utils.write_outputs(config["output_path"], (output, "prov_fin_output.csv"))
 
     return output
 
@@ -97,21 +94,18 @@ def sex_ratio_national_profile(config: dict | str) -> tuple[pd.DataFrame, pd.Dat
     final = prov_fin.merge_final_migration_data(immigration, emigration, config)
 
     # Year on year comparison squared difference for national vs local authority
-    year_agg, year_agg_adjusted = sex_ratio.year_agg_sqdiff(final, config)
+    year_on_year_merged = sex_ratio.year_agg_merge(final, config)
+
+    year_agg, year_agg_adjusted = sex_ratio.year_agg_sqdiff(year_on_year_merged, config)
 
     # Write outputs
-    if config["output_path"] is not None:
-        if not os.path.exists(config["output_path"]):
-            os.makedirs(config["output_path"])
-
-        for pair in [
-            (year_agg, "year_agg_ssq.csv"),
-            (year_agg_adjusted, "year_agg_adjusted_ssq.csv"),
-        ]:
-            pair[0].to_csv(
-                os.path.join(config["output_path"], pair[1]),
-                index=False,
-            )
+    utils.write_outputs(
+        config["output_path"],
+        [
+            (year_agg, "year_on_year_sqdiff.csv"),
+            (year_agg_adjusted, "year_on_year_adjusted_sqdiff.csv"),
+        ],
+    )
 
     return (year_agg, year_agg_adjusted)
 
@@ -134,26 +128,7 @@ def sex_ratio_main(
     sr_pivot = sex_ratio.pivot_sex_ratio_frame(sr, config)
 
     # Data cleaning for sex ratio calculation
-    sr_recode = sr_pivot.where(sr_pivot >= 1, 1).where(sr_pivot >= 0.5, 0)
-
-    # Add flags
-    sr_mask = (
-        sr_recode.mask(sr_recode == 0, "Zero")
-        .mask(sr_recode >= 1, "Low")
-        .mask(sr_recode >= 5, "OK")
-    )
-
-    fin_imm_vars = config["datasets"]["final_immigration"]["variables"]
-
-    sr_recode = sr_recode.merge(
-        sr_mask,
-        on=[
-            fin_imm_vars["la_code"],
-            fin_imm_vars["age"],
-        ],
-        how="left",
-        suffixes=("", "_quality"),
-    )
+    sr_recode = sex_ratio.clean_and_mask(sr_pivot, config)
 
     # Calculate sex ratios:
     sr_recode = sex_ratio.compute_sex_ratio(sr_recode, config, caps=(0.1, 10.0))
@@ -171,20 +146,14 @@ def sex_ratio_main(
     sr_merged.drop(columns=["em_fin_quality", "imm_fin_quality"], level=0, inplace=True)
 
     # Write outputs
-    if config["output_path"] is not None:
-        if not os.path.exists(config["output_path"]):
-            os.makedirs(config["output_path"])
-
-        for pair in [
-            (sr_recode, "sex_ratio_recoded.csv"),
-            (sr_national, "sex_ratio_national.csv"),
-            (sr_merged, "sex_ratio_ssq.csv"),
-        ]:
-            pair[0].to_csv(
-                os.path.join(config["output_path"], pair[1]),
-                index_label=fin_imm_vars["la_code"],
-                index=False,
-            )
+    utils.write_outputs(
+        config["output_path"],
+        [
+            (sr_recode, "sex_ratios.csv"),
+            (sr_national, "national_sex_ratios.csv"),
+            (sr_merged, "sex_ratios_ssq.csv"),
+        ],
+    )
 
     return (
         sr_recode,
