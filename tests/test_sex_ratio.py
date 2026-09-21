@@ -60,11 +60,14 @@ class TestPivotSexRatioFrame:
             assert element[0] in ["imm_fin", "em_fin"]
 
     def test_multiindex_contains_all_index(self, merged_sr_df, sex_ratio_config):
-        unique_values = [merged_sr_df[col].unique() for col in merged_sr_df[["Local Authority Code", "Age"]].columns]
+        unique_values = [
+            merged_sr_df[col].unique()
+            for col in merged_sr_df[["Local Authority Code", "Age"]].columns
+        ]
 
         result = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
 
-        assert(set(product(*unique_values)) == set(result.index))
+        assert set(product(*unique_values)) == set(result.index)
 
 
 class TestCleanAndMask:

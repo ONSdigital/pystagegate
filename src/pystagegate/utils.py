@@ -69,7 +69,7 @@ def write_outputs(
         if not os.path.exists(output_path):
             warnings.warn(
                 f"No directory found at {output_path}, writing in new directory {os.path.abspath(output_path)}",
-                stacklevel=2
+                stacklevel=2,
             )
             os.makedirs(output_path)
 
