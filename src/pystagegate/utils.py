@@ -1,9 +1,8 @@
-from sdv.single_table import GaussianCopulaSynthesizer
-from sdv.metadata import Metadata
 import pandas as pd
 import numpy as np
 import json
 import os
+import warnings
 from pystagegate.validate import validate
 
 
@@ -46,62 +45,43 @@ def load_summary_data(config: dict, dataset_key: str) -> pd.DataFrame:
 
     df = pd.read_csv(path)[variables.values()]
 
-    validation_results = validate(df, dataset_key, config)
-
-    if config["output_path"] is not None:
-        if not os.path.exists(config["output_path"]):
-            os.makedirs(config["output_path"])
-
-        with open(
-            os.path.join(config["output_path"], f"{dataset_key}_validate.json"), "w"
-        ) as f:
-            json.dump(validation_results.to_json_dict(), f, indent=4)
+    validate(df, dataset_key, config)
 
     return df
 
 
-def _generate_synth_df(df: pd.DataFrame, n: int) -> pd.DataFrame:
+def write_outputs(
+    output_path: str,
+    output_pairs: list[tuple[pd.DataFrame, str]] | tuple[pd.DataFrame, str],
+) -> None:
     """
-    Return a synthetic DataFrame produced from a DataFrame reference.
+    Write output DataFrames to CSV files.
 
     Args:
-        df (pd.DataFrame): The input DataFrame.
-        n (int): Number of rows to return.
+        output_path (str): The directory path where the output files will be saved.
+        output_pairs (list[tuple[pd.DataFrame, str]] | tuple[pd.DataFrame, str]): A list of tuples or a single tuple
+        containing a DataFrame and the corresponding output file name.
 
     Returns:
-        synth_df (pd.DataFrame): A synthetic DataFrame modelled from df
+        None
+
     """
+    if output_path is not None:
+        if not os.path.exists(output_path):
+            warnings.warn(
+                f"No directory found at {output_path}, writing in new directory {os.path.abspath(output_path)}"
+            )
+            os.makedirs(output_path)
 
-    metadata = Metadata.detect_from_dataframes(data={"real data": df})
-
-    synthesizer = GaussianCopulaSynthesizer(metadata, default_distribution="norm")
-    synthesizer.fit(data=df)
-
-    synth_data = synthesizer.sample(num_rows=n)
-
-    if "Local Authority Code" in synth_data.columns:
-        synth_data["Local Authority Code"] = np.random.choice(
-            a=["E1", "E2", "E3", "E4", "S1", "S2", "S3", "W1", "W2"],
-            size=len(synth_data),
+    if type(output_pairs) is list:
+        for pair in output_pairs:
+            pair[0].to_csv(
+                os.path.join(output_path, pair[1]),
+                index=False,
+            )
+    elif type(output_pairs) is tuple:
+        output_pairs[0].to_csv(os.path.join(output_path, output_pairs[1]), index=False)
+    else:
+        raise ValueError(
+            "Invalid output_pairs. Must be tuple of (pd.DataFrame, str) or list of tuple of (pd.DataFrame, str)"
         )
-
-        print(synth_data["Local Authority Code"])
-
-    if "code" in synth_data.columns:
-        synth_data["code"] = np.random.choice(
-            a=["E1", "E2", "E3", "E4", "W1", "W2"], size=len(synth_data)
-        )
-
-        print(synth_data["code"])
-
-    if "ca_code" in synth_data.columns:
-        synth_data["ca_code"] = np.random.choice(
-            a=["S1", "S2", "S3"], size=len(synth_data)
-        )
-
-    if "Age" in synth_data.columns:
-        synth_data["Age"] = np.random.choice(
-            a=[20, 30, 40, 50, 60], size=len(synth_data), p=[0.2, 0.4, 0.2, 0.1, 0.1]
-        )
-
-    return synth_data
