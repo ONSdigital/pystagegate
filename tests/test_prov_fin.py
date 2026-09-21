@@ -207,10 +207,10 @@ class TestSquaredDifference:
 
         result = prov_fin.squared_difference(
             df,
-            prov_col="provisional",
-            fin_col="final",
-            prov_col_total="provisional_total",
-            fin_col_total="final_total",
+            type_1="provisional",
+            type_2="final",
+            type_1_total="provisional_total",
+            type_2_total="final_total",
         )
 
         pd.testing.assert_frame_equal(result, expected_df)
@@ -227,10 +227,10 @@ class TestSquaredDifference:
 
         result = prov_fin.squared_difference(
             df,
-            prov_col="provisional",
-            fin_col="final",
-            prov_col_total="provisional_total",
-            fin_col_total="final_total",
+            type_1="provisional",
+            type_2="final",
+            type_1_total="provisional_total",
+            type_2_total="final_total",
         )
 
         # Squared difference calculation should equal zero
@@ -248,10 +248,10 @@ class TestSquaredDifference:
         )
         result = prov_fin.squared_difference(
             df,
-            prov_col="provisional",
-            fin_col="final",
-            prov_col_total="provisional_total",
-            fin_col_total="final_total",
+            type_1="provisional",
+            type_2="final",
+            type_1_total="provisional_total",
+            type_2_total="final_total",
         )
 
         assert result["diff_output"].isna().all()
