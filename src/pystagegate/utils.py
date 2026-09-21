@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import json
 import os
 import warnings
@@ -69,7 +68,8 @@ def write_outputs(
     if output_path is not None:
         if not os.path.exists(output_path):
             warnings.warn(
-                f"No directory found at {output_path}, writing in new directory {os.path.abspath(output_path)}"
+                f"No directory found at {output_path}, writing in new directory {os.path.abspath(output_path)}",
+                stacklevel=2
             )
             os.makedirs(output_path)
 

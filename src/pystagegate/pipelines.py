@@ -1,6 +1,5 @@
 from pystagegate import prov_fin, sex_ratio, utils
 import pandas as pd
-import os
 
 
 def prov_fin_main(config: dict | str) -> pd.DataFrame:

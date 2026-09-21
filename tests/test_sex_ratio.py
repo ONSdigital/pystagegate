@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
 from itertools import product
-from pystagegate import sex_ratio, prov_fin
+from pystagegate import sex_ratio
 
 
 class TestYearAggMerge:
@@ -46,7 +46,7 @@ class TestYearAggSqDiff:
 class TestPivotSexRatioFrame:
     def test_return_is_multiindex(self, merged_sr_df, sex_ratio_config):
         result = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
-        assert type(result.index) == pd.core.indexes.multi.MultiIndex
+        assert type(result.index) is pd.core.indexes.multi.MultiIndex
 
     def test_multiindex_contains_all_columns(self, merged_sr_df, sex_ratio_config):
         result = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
