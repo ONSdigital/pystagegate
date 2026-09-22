@@ -70,3 +70,17 @@ def merged_sr_df(sex_ratio_config, immigration_df, emigration_df):
     return merge_final_migration_data(
         immigration_df, emigration_df, sex_ratio_config, sex_ratio=True
     )
+
+
+@pytest.fixture(scope="class")
+def fake_merged_df():
+    return pd.DataFrame(
+        {
+            "Year": [2024, 2024, 2024, 2025, 2025, 2025],
+            "Local Authority Code": ["E1", "E1", "E1", "E1", "E1", "E1"],
+            "Age": [30, 40, 50, 30, 40, 50],
+            "Sex": ["M", "M", "M", "M", "M", "M"],
+            "imm_fin": [0.3, 0.6, 1.1, 0, -100, 10],
+            "em_fin": [-1, 5, 0.3, 1.1, 0.5, 0.2],
+        }
+    )

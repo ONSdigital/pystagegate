@@ -127,13 +127,17 @@ def pivot_sex_ratio_frame(sex_ratio_df: pd.DataFrame, config: dict):
         pd.DataFrame: A pivoted DataFrame
     """
     variables = config["datasets"]["final_immigration"]["variables"]
+    year_1 = config["global_parameters"]["year"]
+    year_2 = config["global_parameters"]["year2"]
+
+    if (
+        sex_ratio_df[sex_ratio_df[variables["year"]] == year_1].empty
+        | sex_ratio_df[sex_ratio_df[variables["year"]] == year_2].empty
+    ):
+        raise ValueError(f"Cannot find both {year_1} and {year_2} in data")
 
     # Filter on years
-    sex_ratio_df = sex_ratio_df[
-        sex_ratio_df[variables["year"]].isin(
-            [config["global_parameters"]["year"], config["global_parameters"]["year2"]]
-        )
-    ]
+    sex_ratio_df = sex_ratio_df[sex_ratio_df[variables["year"]].isin([year_1, year_2])]
 
     # First pivot on gender and year
     sr_pivot = sex_ratio_df.pivot_table(
@@ -193,6 +197,8 @@ def compute_sex_ratio(
     config: dict,
     caps: tuple[float, float] = None,
     mask: bool = True,
+    male_sex: str = "Male",
+    female_sex: str = "Female",
 ) -> pd.DataFrame:
     """
     Compute sex ratios for immigration and emigration across both configured years.
@@ -211,8 +217,12 @@ def compute_sex_ratio(
 
     # Call sex ratio calculation helper func for each year of data
     for year in [year_1, year_2]:
-        sex_ratio_df = sex_ratio_helper(sex_ratio_df, "imm", year, caps, mask)
-        sex_ratio_df = sex_ratio_helper(sex_ratio_df, "em", year, caps, mask)
+        sex_ratio_df = sex_ratio_helper(
+            sex_ratio_df, "imm", year, caps, mask, male_sex, female_sex
+        )
+        sex_ratio_df = sex_ratio_helper(
+            sex_ratio_df, "em", year, caps, mask, male_sex, female_sex
+        )
 
     # Calculate weights
     sex_ratio_df["imm_weight"] = sex_ratio_df["imm_fin"].sum(axis=1)
@@ -227,6 +237,8 @@ def sex_ratio_helper(
     year: int,
     caps: tuple[float, float] = None,
     mask: bool = True,
+    male_sex: str = "Male",
+    female_sex: str = "Female",
 ) -> pd.DataFrame:
     """
     Helper function to compute sex ratio for a given migration type and year.
@@ -245,14 +257,14 @@ def sex_ratio_helper(
         raise ValueError("migration must be one of 'imm', 'em'")
 
     # Sex ratio calculation
-    male_count = sex_ratio_df[(f"{migration}_fin", "Male", year)]
-    female_count = sex_ratio_df[(f"{migration}_fin", "Female", year)]
+    male_count = sex_ratio_df[(f"{migration}_fin", male_sex, year)]
+    female_count = sex_ratio_df[(f"{migration}_fin", female_sex, year)]
     ratio = male_count / female_count
 
     # Default recode sex ratios based on quality metrics
     if mask:
-        male_quality = sex_ratio_df[(f"{migration}_fin_quality", "Male", year)]
-        female_quality = sex_ratio_df[(f"{migration}_fin_quality", "Female", year)]
+        male_quality = sex_ratio_df[(f"{migration}_fin_quality", male_sex, year)]
+        female_quality = sex_ratio_df[(f"{migration}_fin_quality", female_sex, year)]
 
         # Recode sex ratios based on quality metrics
         conditions = [

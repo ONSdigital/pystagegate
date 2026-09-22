@@ -130,11 +130,17 @@ def sex_ratio_main(
     sr_recode = sex_ratio.clean_and_mask(sr_pivot, config)
 
     # Calculate sex ratios:
-    sr_recode = sex_ratio.compute_sex_ratio(sr_recode, config, caps=(0.1, 10.0))
+    sr_recode = sex_ratio.compute_sex_ratio(
+        sr_recode, config, caps=(0.1, 10.0), male_sex="Male", female_sex="Female"
+    )
 
     # Aggregate by age to get national-level data and recalculate sex ratios (use uncleaned data)
     sr_national = sex_ratio.compute_sex_ratio(
-        sr_pivot.groupby("Age").agg("sum")[["em_fin", "imm_fin"]], config, mask=False
+        sr_pivot.groupby("Age").agg("sum")[["em_fin", "imm_fin"]],
+        config,
+        mask=False,
+        male_sex="Male",
+        female_sex="Female",
     )
 
     # Year on year comparison squared difference for national vs local authority
