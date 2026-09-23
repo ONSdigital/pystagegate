@@ -60,9 +60,6 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
         how="left",
     )
 
-    # Todo: delete
-    all.to_csv("tests/data/provisional_final_merged.csv")
-
     # England analysis
     eng_la = prov_fin.nation_breakdown_sqdiff(all, config, "E")
 
