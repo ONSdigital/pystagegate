@@ -7,7 +7,9 @@ from pystagegate.pipelines import (
 )
 
 
-@pytest.mark.parametrize("config", ["test_config", "test_config_path"])
+@pytest.mark.parametrize(
+    "config", ["test_config", "test_config_path", "test_config_with_no_output"]
+)
 class TestPipelines:
     def test_prov_fin_dict(self, request, config):
         output = prov_fin_main(request.getfixturevalue(config))

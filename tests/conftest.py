@@ -18,6 +18,14 @@ def test_config_path():
 
 
 @pytest.fixture(scope="module")
+def test_config_with_no_output():
+    config = load_config("tests/data/testing_config.json")
+    config["prov_fin"]["output_path"] = None
+    config["sex_ratio"]["output_path"] = None
+    return config
+
+
+@pytest.fixture(scope="module")
 def prov_fin_config():
     config = load_config("tests/data/testing_config.json")
     config["prov_fin"]["output_path"] = None
