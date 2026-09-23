@@ -119,6 +119,7 @@ def _validate_provisional_scot_directions(
             "provisional_scot must contain both configured directions for the configured year"
         )
 
+
 def validate(df: pd.DataFrame, df_key: str, config: dict):
     """
     Validate the given DataFrame against the configuration.
