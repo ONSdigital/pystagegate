@@ -1,105 +1,167 @@
-from pystagegate import prov_fin, utils
+from pystagegate import prov_fin, sex_ratio, utils
 import pandas as pd
-import os
 
 
 def prov_fin_main(config: dict | str) -> pd.DataFrame:
     # Configuration setup
-    if type(config) is str:
-        if os.path.exists(config):
-            config = utils.load_config(config)["prov_fin"]
-        else:
-            raise FileNotFoundError(f"Config file not found: {config}")
-    elif type(config) is dict:
-        config = config["prov_fin"]
-    else:
-        raise ValueError("Invalid config type. Must be str or dict.")
+    config = utils.load_config(config)["prov_fin"]
 
     # Load and validate datasets
-    ltim_immigration = prov_fin.load_summary_data(config, "final_immigration")
-    ltim_emigration = prov_fin.load_summary_data(config, "final_emigration")
-    ltim_provisional = prov_fin.load_summary_data(config, "provisional")
-    ltim_provisional_scot = prov_fin.load_summary_data(config, "provisional_scot")
+    immigration = utils.load_summary_data(config, "final_immigration")
+    emigration = utils.load_summary_data(config, "final_emigration")
+    provisional = utils.load_summary_data(config, "provisional")
+    provisional_scot = utils.load_summary_data(config, "provisional_scot")
 
-    # Merge immigration and emmigration and aggregate
-    ltim_merged = prov_fin.merge_final_migration_data(
-        ltim_immigration, ltim_emigration, config
+    # Filter final immigration and emmigration
+    immigration = prov_fin._filter_migration_data(
+        immigration, "final_immigration", config
+    )
+    emigration = prov_fin._filter_migration_data(
+        emigration, "final_immigration", config
     )
 
-    # Filter provisional data for the specified year and aggregate
-    ltim_provisional_subset = prov_fin.subset_provisional_data(ltim_provisional, config)
+    # Merge and aggregate final immigration and emmigration
+    final = prov_fin.merge_final_migration_data(immigration, emigration, config)
+
+    # Aggregate provisional data
+    provisional_agg = prov_fin.subset_provisional_data(provisional, config)
 
     # Create and merge cartesian product of unique values for the provisional Scotland data
-    ltim_provisional_scot_cartesian = prov_fin.provisional_scot_cartesian_merge(
-        ltim_provisional_scot, config
+    provisional_scot_cartesian = prov_fin.provisional_scot_cartesian_merge(
+        provisional_scot, config
     )
 
     # Aggregate the merged Scotland data, summing count for sex
-    ltim_provisional_scot_agg = prov_fin.provisional_scot_aggregate(
-        ltim_provisional_scot_cartesian, config
+    provisional_scot_agg = prov_fin.provisional_scot_aggregate(
+        provisional_scot_cartesian, config
     )
 
     # Concatenate all aggregated provisional data
-    ltim_provisional_scot_agg.columns = ltim_provisional_subset.columns
+    provisional_scot_agg.columns = provisional_agg.columns
 
-    ltim_provisional_all = pd.concat(
-        [ltim_provisional_subset, ltim_provisional_scot_agg]
-    )
+    provisional_all = pd.concat([provisional_agg, provisional_scot_agg])
 
     # Final dataframe with provisional and merged data
-    ltim_final = ltim_provisional_all.merge(
-        ltim_merged,
+    prov_vars = config["datasets"]["provisional"]["variables"]
+    fin_imm_vars = config["datasets"]["final_immigration"]["variables"]
+
+    all = provisional_all.merge(
+        final,
         left_on=[
-            config["datasets"]["provisional"]["variables"]["la_code"],
-            config["datasets"]["provisional"]["variables"]["age"],
+            prov_vars["la_code"],
+            prov_vars["age"],
             "year",
         ],
         right_on=[
-            config["datasets"]["final_immigration"]["variables"]["la_code"],
-            config["datasets"]["final_immigration"]["variables"]["age"],
-            config["datasets"]["final_immigration"]["variables"]["year"],
+            fin_imm_vars["la_code"],
+            fin_imm_vars["age"],
+            fin_imm_vars["year"],
         ],
         how="left",
     )
 
-    ltim_final["nation"] = ltim_final[
-        config["datasets"]["final_immigration"]["variables"]["la_code"]
-    ].str[0]
-
-    # GB analysis
-    gb_age, gb_la = prov_fin.regional_breakdown(ltim_final, config)
+    # Todo: delete
+    all.to_csv("tests/data/provisional_final_merged.csv")
 
     # England analysis
-    eng_age, eng_la = prov_fin.regional_breakdown(ltim_final, config, "E")
+    eng_la = prov_fin.nation_breakdown_sqdiff(all, config, "E")
 
     # Wales analysis
-    wal_age, wal_la = prov_fin.regional_breakdown(ltim_final, config, "W")
+    wal_la = prov_fin.nation_breakdown_sqdiff(all, config, "W")
 
     # Scotland analysis
-    scot_age, scot_la = prov_fin.regional_breakdown(ltim_final, config, "S")
+    scot_la = prov_fin.nation_breakdown_sqdiff(all, config, "S")
 
-    # Correlation matrices and outputs
-    ltim_output = pd.concat([eng_la, wal_la, scot_la])
+    # Concatenate for output
+    output = pd.concat([eng_la, wal_la, scot_la])
 
-    # Handle output directory creation
-    if config["output_path"] is not None:
-        if not os.path.exists(config["output_path"]):
-            os.makedirs(config["output_path"])
+    # Write outputs
+    utils.write_outputs(config["output_path"], (output, "prov_fin_output.csv"))
 
-        ltim_output.to_csv(
-            os.path.join(config["output_path"], "prov_fin_output.csv"), index=False
-        )
+    return output
 
-        ltim_output.groupby("nation")[["sqdiff_imm_sc", "imm_prov"]].corr().to_csv(
-            os.path.join(config["output_path"], "prov_fin_corr_imm.csv"), index=False
-        )
 
-        ltim_output.groupby("nation")[["sqdiff_em_sc", "em_prov"]].corr().to_csv(
-            os.path.join(config["output_path"], "prov_fin_corr_em.csv"), index=False
-        )
+def sex_ratio_national_profile(config: dict | str) -> tuple[pd.DataFrame, pd.DataFrame]:
+    # Configuration setup
+    config = utils.load_config(config)["sex_ratio"]
 
-        ltim_output.groupby("nation")[["sqdiff_net_sc", "imm_prov"]].corr().to_csv(
-            os.path.join(config["output_path"], "prov_fin_corr_net.csv"), index=False
-        )
+    # Load and validate datasets
+    immigration = utils.load_summary_data(config, "final_immigration")
+    emigration = utils.load_summary_data(config, "final_emigration")
 
-    return ltim_output.reset_index(drop=True)
+    # Merge and aggregate final immigration and emmigration data
+    final = prov_fin.merge_final_migration_data(immigration, emigration, config)
+
+    # Year on year comparison squared difference for national vs local authority
+    year_on_year_merged = sex_ratio.year_agg_merge(final, config)
+
+    year_agg, year_agg_adjusted = sex_ratio.year_agg_sqdiff(year_on_year_merged, config)
+
+    # Write outputs
+    utils.write_outputs(
+        config["output_path"],
+        [
+            (year_agg, "year_on_year_sqdiff.csv"),
+            (year_agg_adjusted, "year_on_year_adjusted_sqdiff.csv"),
+        ],
+    )
+
+    return (year_agg, year_agg_adjusted)
+
+
+def sex_ratio_main(
+    config: dict | str,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    # Configuration setup
+    config = utils.load_config(config)["sex_ratio"]
+
+    # Load and validate datasets
+    immigration = utils.load_summary_data(config, "final_immigration")
+    emigration = utils.load_summary_data(config, "final_emigration")
+
+    # Sex Ratio analysis
+    sr = prov_fin.merge_final_migration_data(
+        immigration, emigration, config, sex_ratio=True
+    )
+
+    sr_pivot = sex_ratio.pivot_sex_ratio_frame(sr, config)
+
+    # Data cleaning for sex ratio calculation
+    sr_recode = sex_ratio.clean_and_mask(sr_pivot, config)
+
+    # Calculate sex ratios:
+    sr_recode = sex_ratio.compute_sex_ratio(
+        sr_recode, config, caps=(0.1, 10.0), male_sex="Male", female_sex="Female"
+    )
+
+    # Aggregate by age to get national-level data and recalculate sex ratios (use uncleaned data)
+    sr_national = sex_ratio.compute_sex_ratio(
+        sr_pivot.groupby("Age").agg("sum")[["em_fin", "imm_fin"]],
+        config,
+        mask=False,
+        male_sex="Male",
+        female_sex="Female",
+    )
+
+    # Year on year comparison squared difference for national vs local authority
+    sr_merged = sex_ratio.sex_ratio_ssq(sr_recode, sr_national, config)
+
+    # Drop columns not needed for output
+    sr_recode.drop(columns=["em_fin_quality", "imm_fin_quality"], level=0, inplace=True)
+    sr_merged.drop(columns=["em_fin_quality", "imm_fin_quality"], level=0, inplace=True)
+
+    # Write outputs
+    utils.write_outputs(
+        config["output_path"],
+        [
+            (sr_recode, "sex_ratios.csv"),
+            (sr_national, "national_sex_ratios.csv"),
+            (sr_merged, "sex_ratios_ssq.csv"),
+        ],
+    )
+
+    return (
+        sr_recode,
+        sr_national,
+        sr_merged,
+    )

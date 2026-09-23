@@ -1,115 +1,86 @@
 import pytest
 import pandas as pd
-from pystagegate.utils import load_config
+from pystagegate.prov_fin import merge_final_migration_data
+from pystagegate.utils import load_config, load_summary_data
 
 
-@pytest.fixture
+# Fixtures for all test modules
+@pytest.fixture(scope="module")
 def test_config():
     config = load_config("tests/data/testing_config.json")
     return config
 
 
-@pytest.fixture
-def prov_fin_config_no_output():
+@pytest.fixture(scope="module")
+def test_config_path():
+    config = "tests/data/testing_config.json"
+    return config
+
+
+@pytest.fixture(scope="module")
+def prov_fin_config():
     config = load_config("tests/data/testing_config.json")
     config["prov_fin"]["output_path"] = None
     return config["prov_fin"]
 
 
-@pytest.fixture
-def mock_immigration_df():
-    return pd.DataFrame(
-        {
-            "Local Authority Code": ["E001", "E001", "E002", "E002", "E001"],
-            "Age": [25, 30, 25, 30, 25],
-            "Sex": ["Male", "Female", "Male", "Female", "Male"],
-            "Nationality Group": [
-                "All Nationalities",
-                "All Nationalities",
-                "All Nationalities",
-                "All Nationalities",
-                "British",
-            ],
-            "Year": [2024, 2024, 2024, 2024, 2024],
-            "Count": [100, 200, 150, 250, 50],
-        }
+@pytest.fixture(scope="module")
+def sex_ratio_config():
+    config = load_config("tests/data/testing_config.json")
+    config["sex_ratio"]["output_path"] = None
+    return config["sex_ratio"]
+
+
+@pytest.fixture(scope="module")
+def immigration_df(prov_fin_config):
+    return load_summary_data(prov_fin_config, "final_immigration")
+
+
+@pytest.fixture(scope="module")
+def emigration_df(prov_fin_config):
+    return load_summary_data(prov_fin_config, "final_emigration")
+
+
+@pytest.fixture(scope="module")
+def provisional_df(prov_fin_config):
+    return load_summary_data(prov_fin_config, "provisional")
+
+
+@pytest.fixture(scope="module")
+def provisional_scot_df(prov_fin_config):
+    return load_summary_data(prov_fin_config, "provisional_scot")
+
+
+# test_prov_fin fixtures
+@pytest.fixture(scope="class")
+def nation_breakdown_df():
+    df = pd.read_csv("tests/data/provisional_final_merged.csv")
+
+    return df
+
+
+# test_sex_ratio fixtures
+@pytest.fixture(scope="class")
+def merged_df(sex_ratio_config, immigration_df, emigration_df):
+    return merge_final_migration_data(immigration_df, emigration_df, sex_ratio_config)
+
+
+@pytest.fixture(scope="class")
+def merged_sr_df(sex_ratio_config, immigration_df, emigration_df):
+    return merge_final_migration_data(
+        immigration_df, emigration_df, sex_ratio_config, sex_ratio=True
     )
 
 
-@pytest.fixture
-def mock_emigration_df():
+@pytest.fixture(scope="class")
+def fake_merged_df():
     return pd.DataFrame(
         {
-            "Local Authority Code": ["E001", "E001", "E002", "E002", "E001"],
-            "Age": [25, 30, 25, 30, 25],
-            "Sex": ["Male", "Female", "Male", "Female", "Male"],
-            "Nationality Group": [
-                "All Nationalities",
-                "All Nationalities",
-                "All Nationalities",
-                "All Nationalities",
-                "British",
-            ],
-            "Year": [2024, 2024, 2024, 2024, 2024],
-            "Count": [50, 100, 75, 125, 25],
-        }
-    )
-
-
-@pytest.fixture
-def mock_provisional_df():
-    return pd.DataFrame(
-        {
-            "code": ["E001", "E001", "E002", "E002"],
-            "Age": [25, 30, 25, 30],
-            "sex": ["Male", "Female", "Male", "Female"],
-            "international_in_2024": [120, 220, 160, 260],
-            "international_out_2024": [60, 110, 80, 130],
-            "international_net_2024": [60, 110, 80, 130],
-        }
-    )
-
-
-@pytest.fixture
-def mock_provisional_scot_df():
-    return pd.DataFrame(
-        {
-            "ca_code": ["S001", "S001", "S001", "S001", "S002", "S002"],
-            "Age": [25, 25, 30, 30, 25, 25],
-            "sex": ["Male", "Male", "Female", "Female", "Male", "Male"],
-            "dir": ["in", "out", "in", "out", "in", "out"],
-            "year": [2024, 2024, 2024, 2024, 2024, 2024],
-            "count": [100, 50, 80, 40, 120, 60],
-        }
-    )
-
-
-@pytest.fixture
-def mock_merged_df():
-    return pd.DataFrame(
-        {
-            "Local Authority Code": ["E001", "E001", "E002"],
-            "Age": [25, 30, 25],
-            "imm_prov": [120.0, 220.0, 160.0],
-            "imm_fin": [100.0, 200.0, 150.0],
-            "imm_prov_T": [500.0, 500.0, 500.0],
-            "imm_fin_T": [450.0, 450.0, 450.0],
-        }
-    )
-
-
-@pytest.fixture
-def mock_final_merged_df():
-    return pd.DataFrame(
-        {
-            "Local Authority Code": ["E001", "E001", "E002", "W001", "S001"],
-            "Age": [25, 30, 25, 25, 25],
-            "imm_prov": [120.0, 220.0, 160.0, 90.0, 110.0],
-            "em_prov": [60.0, 110.0, 80.0, 45.0, 55.0],
-            "net_prov": [60.0, 110.0, 80.0, 45.0, 55.0],
-            "imm_fin": [100.0, 200.0, 150.0, 80.0, 100.0],
-            "em_fin": [50.0, 100.0, 75.0, 40.0, 50.0],
-            "net_fin": [50.0, 100.0, 75.0, 40.0, 50.0],
-            "nation": ["E", "E", "E", "W", "S"],
+            "Year": [2024, 2024, 2024, 2025, 2025, 2025],
+            "Local Authority Code": ["E1", "E1", "E1", "E1", "E1", "E1"],
+            "Age": [30, 40, 50, 30, 40, 50],
+            "Sex": ["M", "M", "M", "M", "M", "M"],
+            "imm_fin": [0.3, 0.6, 1.1, 0, -100, 10],
+            "em_fin": [-1, 5, 0.3, 1.1, 0.5, 0.2],
         }
     )

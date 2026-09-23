@@ -35,7 +35,7 @@ def create_gx_context(df: pd.DataFrame, df_key: str):
     return context, suite, batch_definition
 
 
-def prov_fin_validate(df: pd.DataFrame, df_key: str, config: dict):
+def validate(df: pd.DataFrame, df_key: str, config: dict):
     """
     Validate the given DataFrame against the configuration.
 
@@ -111,6 +111,12 @@ def prov_fin_validate(df: pd.DataFrame, df_key: str, config: dict):
             gx.expectations.ExpectColumnValuesToBeInTypeList(
                 column=v, type_list=["int64", "float64"]
             )
+
+        suite.add_expectation(
+            gx.expectations.ExpectColumnDistinctValuesToBeInSet(
+                column=variables["sex"], value_set=[1, 2]
+            )
+        )
 
     validation_definition = context.validation_definitions.add(
         gx.core.validation_definition.ValidationDefinition(
