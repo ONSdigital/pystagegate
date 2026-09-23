@@ -1,3 +1,5 @@
+import os
+import json
 import great_expectations as gx
 import os
 import pandas as pd
@@ -118,8 +120,7 @@ def _validate_provisional_scot_directions(
             "provisional_scot must contain both configured directions for the configured year"
         )
 
-
-def prov_fin_validate(df: pd.DataFrame, df_key: str, config: dict):
+def validate(df: pd.DataFrame, df_key: str, config: dict):
     """
     Validate the given DataFrame against the configuration.
 
@@ -270,6 +271,12 @@ def prov_fin_validate(df: pd.DataFrame, df_key: str, config: dict):
                 gx.expectations.ExpectColumnValuesToBeBetween(column=v, min_value=0)
             )
 
+        suite.add_expectation(
+            gx.expectations.ExpectColumnDistinctValuesToBeInSet(
+                column=variables["sex"], value_set=[1, 2]
+            )
+        )
+
     validation_definition = context.validation_definitions.add(
         gx.core.validation_definition.ValidationDefinition(
             name=f"{df_key} validation definition",
@@ -279,6 +286,15 @@ def prov_fin_validate(df: pd.DataFrame, df_key: str, config: dict):
     )
 
     validation_results = validation_definition.run(batch_parameters={"dataframe": df})
+
+    if config["output_path"] is not None:
+        if not os.path.exists(config["output_path"]):
+            os.makedirs(config["output_path"])
+
+        with open(
+            os.path.join(config["output_path"], f"{df_key}_validate.json"), "w"
+        ) as f:
+            json.dump(validation_results.to_json_dict(), f, indent=4)
 
     if validation_results.statistics["success_percent"] < 100:
         raise ValueError(validation_results.get_failed_validation_results())

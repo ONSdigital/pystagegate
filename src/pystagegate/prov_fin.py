@@ -1,42 +1,26 @@
 import pandas as pd
 from itertools import product
-import os
-import json
-from pystagegate.validate import prov_fin_validate
 
 
-def load_summary_data(config: dict, dataset_key: str) -> pd.DataFrame:
-    """
-    Load and validate summary data from a CSV file.
+def _filter_migration_data(migration_df: pd.DataFrame, key: str, config: dict):
+    variables = config["datasets"][key]["variables"]
+    migration_df = migration_df[
+        migration_df[variables["nationality"]].isin(
+            config["global_parameters"]["final_nationalities"]
+        )
+    ]
+    migration_df = migration_df[
+        migration_df[variables["year"]] == config["global_parameters"]["year"]
+    ]
 
-    Args:
-        config (dict): A dictionary configuration.
-        dataset (str): A string key value for the dataset to load.
-
-    Returns:
-        df (pd.DataFrame): A pandas DataFrame containing the selected data.
-    """
-    path = os.path.join(config["root_path"], config["datasets"][dataset_key]["path"])
-    variables = config["datasets"][dataset_key]["variables"]
-
-    df = pd.read_csv(path)[variables.values()]
-
-    validation_results = prov_fin_validate(df, dataset_key, config)
-
-    if config["output_path"] is not None:
-        if not os.path.exists(config["output_path"]):
-            os.makedirs(config["output_path"])
-
-        with open(
-            os.path.join(config["output_path"], f"{dataset_key}_validate.json"), "w"
-        ) as f:
-            json.dump(validation_results.to_json_dict(), f, indent=4)
-
-    return df
+    return migration_df
 
 
 def merge_final_migration_data(
-    immigration_df: pd.DataFrame, emigration_df: pd.DataFrame, config: dict
+    immigration_df: pd.DataFrame,
+    emigration_df: pd.DataFrame,
+    config: dict,
+    sex_ratio: bool = False,
 ) -> pd.DataFrame:
     """
     Merge immigration and emigration dataframes on specified columns and calculate net migration.
@@ -79,36 +63,54 @@ def merge_final_migration_data(
         immigration_col = left_vars["count"]
         emigration_col = right_vars["count"]
 
-    merged_df["net_cell"] = merged_df[immigration_col] - merged_df[emigration_col]
-
-    merged_df = merged_df[
-        merged_df[left_vars["nationality"]]
-        == config["global_parameters"]["final_nationalities"][0]
-    ]
-    merged_df = merged_df[
-        merged_df[left_vars["year"]] == config["global_parameters"]["year"]
-    ]
-
-    merged_df = (
-        merged_df.groupby([left_vars["la_code"], left_vars["year"], left_vars["age"]])
-        .agg(
-            imm_fin=(immigration_col, "sum"),
-            em_fin=(emigration_col, "sum"),
-            net_fin=("net_cell", "sum"),
+    if sex_ratio:
+        # Alternative aggregation for sex_ratio calculations
+        merged_df = (
+            merged_df.groupby(
+                [
+                    left_vars["la_code"],
+                    left_vars["year"],
+                    left_vars["age"],
+                    left_vars["sex"],
+                ]
+            )
+            .agg(imm_fin=(immigration_col, "sum"), em_fin=(emigration_col, "sum"))
+            .reset_index()
         )
-        .reset_index()
-    )
 
-    return merged_df[
-        [
-            left_vars["year"],
-            left_vars["la_code"],
-            left_vars["age"],
-            "imm_fin",
-            "em_fin",
-            "net_fin",
+        return merged_df[
+            [
+                left_vars["year"],
+                left_vars["la_code"],
+                left_vars["age"],
+                left_vars["sex"],
+                "imm_fin",
+                "em_fin",
+            ]
         ]
-    ]
+
+    else:
+        # Default aggregation for combining with provisional data
+        merged_df = (
+            merged_df.groupby(
+                [left_vars["la_code"], left_vars["year"], left_vars["age"]]
+            )
+            .agg(imm_fin=(immigration_col, "sum"), em_fin=(emigration_col, "sum"))
+            .reset_index()
+        )
+
+        merged_df["net_fin"] = merged_df["imm_fin"] - merged_df["em_fin"]
+
+        return merged_df[
+            [
+                left_vars["year"],
+                left_vars["la_code"],
+                left_vars["age"],
+                "imm_fin",
+                "em_fin",
+                "net_fin",
+            ]
+        ]
 
 
 def subset_provisional_data(provisional_df: pd.DataFrame, config: dict) -> pd.DataFrame:
@@ -122,31 +124,19 @@ def subset_provisional_data(provisional_df: pd.DataFrame, config: dict) -> pd.Da
     Returns:
         subset_df (pd.DataFrame): A pandas DataFrame containing the subsetted and renamed data.
     """
-    year = config["global_parameters"]["year"]
     variables = config["datasets"]["provisional"]["variables"]
 
-    subset_df = pd.concat(
-        [
-            provisional_df.iloc[:, 0:3],
-            provisional_df.loc[
-                :,
-                [variables["immigration"], variables["emigration"], variables["net"]],
-            ],
-        ],
-        axis=1,
-    )
-
     subset_df = (
-        subset_df.groupby([variables["la_code"], variables["age"]])
+        provisional_df.groupby([variables["la_code"], variables["age"]])
         .agg(
             imm_prov=(variables["immigration"], "sum"),
             em_prov=(variables["emigration"], "sum"),
-            net_prov=(variables["net"], "sum"),
         )
         .reset_index()
     )
 
-    subset_df["year"] = year
+    subset_df["year"] = config["global_parameters"]["year"]
+    subset_df["net_prov"] = subset_df["imm_prov"] - subset_df["em_prov"]
 
     return subset_df[
         [
@@ -256,59 +246,67 @@ def provisional_scot_aggregate(
 
 
 def squared_difference(
-    df: pd.DataFrame, prefix: str, prov_col: str, fin_col: str
+    df: pd.DataFrame,
+    type_1: str,
+    type_2: str,
+    type_1_total: str,
+    type_2_total: str,
+    output_name: str = "output",
 ) -> pd.DataFrame:
     """
-    Create squared difference estimates for migration data using provisional and final estimates.
+    Create squared difference estimates for migration data using two estimate types and their totals.
 
     Args:
         df (pd.DataFrame): The input migration DataFrame.
-        prov_col (str): The provisional estimate column name.
-        fin_col (str): The final estimate column name.
+        type_1 (str): The first estimate column name.
+        type_2 (str): The second estimate column name.
+        type_1_total (str): The first estimate total column name.
+        type_2_total (str): The second estimate total column name.
+        output_name (str): Substring to denote the outputted squared difference columns. Defaults to "output".
 
     Returns:
         df (pd.DataFrame): A pandas DataFrame containing the difference
         and squared difference estiamtes.
     """
-
-    df[f"diff_{prefix}"] = (df[fin_col] - df[prov_col]) - (
-        (df[prov_col] * df[f"{fin_col}_T"] / df[f"{prov_col}_T"]) - (df[prov_col])
+    # Todo: Interrogate why we do not recode here in the case of prov_col_total = 0
+    df[f"diff_{output_name}"] = df[type_2] - (
+        df[type_1] * df[type_2_total] / df[type_1_total]
     )
 
-    df[f"sqdiff_{prefix}"] = (df[f"diff_{prefix}"] ** 2).where(
-        df[f"{prov_col}_T"] != 0, 0
+    # Todo: Interrogate why we recode to zero in the case of prov_col_total = 0
+    df[f"sqdiff_{output_name}"] = (df[f"diff_{output_name}"] ** 2).where(
+        df[f"{type_1_total}"] != 0, 0
     )
 
     return df
 
 
-def regional_breakdown(
+def nation_breakdown_sqdiff(
     df: pd.DataFrame,
     config: dict,
-    nation: str = None,
+    nation: str,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Performs aggregations by Age and Local Authority on both a whole country (GB) profile and nation profile.
+    Performs aggregations and squared difference calculations by age and Local Authority on national profiles.
 
     Args:
         df (pd.DataFrame): The input migration DataFrame.
         config (dict): A dictionary configuration.
-        nation (str, optional): A one letter code for nation, must be one of 'E', 'S', 'W'. Defaults to None for GB analysis.
+        nation (str): A one letter code for nation, must be one of 'E', 'S', 'W'.
 
     Returns:
         tuple:
             - age_agg (pd.DataFrame): Migration data aggregated by age.
             - la_agg (pd.DataFrame): Migration data aggregated by age and local authority.
     """
-    imm_prefix = "imm"
-    em_prefix = "em"
-    net_prefix = "net"
 
     variables = config["datasets"]["final_immigration"]["variables"]
 
-    if nation is None:
+    # Filter by nation, aggregate by age and merge these totals with original dataframe
+    if nation in ["W", "S", "E"]:
         age_agg = (
-            df.groupby(variables["age"])
+            df[df[variables["la_code"]].str[0] == nation]
+            .groupby(variables["age"])
             .agg(
                 {
                     "imm_prov": "sum",
@@ -322,43 +320,30 @@ def regional_breakdown(
             .reset_index()
         )
 
-        age_agg = df.merge(
+        if len(age_agg) == 0:
+            raise ValueError(f"No matching records found for nation {nation}")
+
+        age_agg = df[df[variables["la_code"]].str[0] == nation].merge(
             age_agg,
             on=variables["age"],
             how="left",
             suffixes=("", "_T"),
         )
     else:
-        if nation in ["W", "S", "E"]:
-            age_agg = (
-                df[df["nation"] == nation]
-                .groupby(variables["age"])
-                .agg(
-                    {
-                        "imm_prov": "sum",
-                        "em_prov": "sum",
-                        "net_prov": "sum",
-                        "imm_fin": "sum",
-                        "em_fin": "sum",
-                        "net_fin": "sum",
-                    }
-                )
-                .reset_index()
-            )
+        raise ValueError("Nation must be one of 'E', 'S', 'W'")
 
-            age_agg = df[df["nation"] == nation].merge(
-                age_agg,
-                on=variables["age"],
-                how="left",
-                suffixes=("", "_T"),
-            )
-        else:
-            raise (ValueError("Nation must be one of 'E', 'S', 'W'"))
+    # Compute the squared difference between the age totals and the age and local authority estimates
+    for prefix in ["imm", "em", "net"]:
+        age_agg = squared_difference(
+            age_agg,
+            type_1=f"{prefix}_prov",
+            type_2=f"{prefix}_fin",
+            type_1_total=f"{prefix}_prov_T",
+            type_2_total=f"{prefix}_fin_T",
+            output_name=f"{prefix}",
+        )
 
-    age_agg = squared_difference(age_agg, imm_prefix, "imm_prov", "imm_fin")
-    age_agg = squared_difference(age_agg, em_prefix, "em_prov", "em_fin")
-    age_agg = squared_difference(age_agg, net_prefix, "net_prov", "net_fin")
-
+    # Now aggregate by local authority
     la_agg = (
         age_agg.groupby(variables["la_code"])
         .agg(
@@ -366,26 +351,27 @@ def regional_breakdown(
                 "imm_prov": "sum",
                 "em_prov": "sum",
                 "net_prov": "sum",
-                f"sqdiff_{imm_prefix}": "sum",
-                f"sqdiff_{em_prefix}": "sum",
-                f"sqdiff_{net_prefix}": "sum",
+                "sqdiff_imm": "sum",
+                "sqdiff_em": "sum",
+                "sqdiff_net": "sum",
             }
         )
         .reset_index()
     )
 
-    # todo: check denominator for scaled squared differences
-    for prefix in [imm_prefix, em_prefix, net_prefix]:
-        if prefix == net_prefix:
+    # Scale squared differences by provisional totals
+    # todo: Check denominator for scaled squared differences - why is net migration scaled by immigration??
+    # todo: How to handle divide by zero?
+    for prefix in ["imm", "em", "net"]:
+        if prefix == "net":
             la_agg[f"sqdiff_{prefix}_sc"] = (
-                la_agg[f"sqdiff_{prefix}"] / la_agg[f"{imm_prefix}_prov"]
+                la_agg[f"sqdiff_{prefix}"] / la_agg["imm_prov"]
             )
         else:
             la_agg[f"sqdiff_{prefix}_sc"] = (
                 la_agg[f"sqdiff_{prefix}"] / la_agg[f"{prefix}_prov"]
             )
 
-    for frame in [age_agg, la_agg]:
-        frame["nation"] = frame[variables["la_code"]].str[0]
+    la_agg["nation"] = la_agg[variables["la_code"]].str[0]
 
-    return age_agg, la_agg
+    return la_agg
