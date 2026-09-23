@@ -73,15 +73,17 @@ def write_outputs(
             )
             os.makedirs(output_path)
 
-    if type(output_pairs) is list:
-        for pair in output_pairs:
-            pair[0].to_csv(
-                os.path.join(output_path, pair[1]),
-                index=False,
+        if type(output_pairs) is list:
+            for pair in output_pairs:
+                pair[0].to_csv(
+                    os.path.join(output_path, pair[1]),
+                    index=False,
+                )
+        elif type(output_pairs) is tuple:
+            output_pairs[0].to_csv(
+                os.path.join(output_path, output_pairs[1]), index=False
             )
-    elif type(output_pairs) is tuple:
-        output_pairs[0].to_csv(os.path.join(output_path, output_pairs[1]), index=False)
-    else:
-        raise ValueError(
-            "Invalid output_pairs. Must be tuple of (pd.DataFrame, str) or list of tuple of (pd.DataFrame, str)"
-        )
+        else:
+            raise ValueError(
+                "Invalid output_pairs. Must be tuple of (pd.DataFrame, str) or list of tuple of (pd.DataFrame, str)"
+            )
