@@ -206,10 +206,12 @@ class TestComputeSexRatio:
 
 
 class TestSexRatioHelper:
-    @pytest.mark.parametrize("caps", [[0,1], [-10,100], [0.25,0.26], [1,2]])
+    @pytest.mark.parametrize("caps", [[0, 1], [-10, 100], [0.25, 0.26], [1, 2]])
     def test_valid_caps_are_applied(self, merged_sr_df, sex_ratio_config, caps):
         pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
-        result = sex_ratio.sex_ratio_helper(pivot_df, "imm", 2025, caps=caps, mask=False)
+        result = sex_ratio.sex_ratio_helper(
+            pivot_df, "imm", 2025, caps=caps, mask=False
+        )
 
         assert result["sex_ratio_imm_2025"].min() >= caps[0]
         assert result["sex_ratio_imm_2025"].max() <= caps[1]
@@ -218,7 +220,7 @@ class TestSexRatioHelper:
         pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
 
         with pytest.raises(ValueError):
-            sex_ratio.sex_ratio_helper(pivot_df, "imm", 2025, caps=[2,1], mask=False)
+            sex_ratio.sex_ratio_helper(pivot_df, "imm", 2025, caps=[2, 1], mask=False)
 
     def test_invalid_migration_type(self):
         with pytest.raises(ValueError):
@@ -236,4 +238,7 @@ class TestSexRatioHelper:
 
 
 class TestSexRatioSsq:
-    pass
+    def test_non_zero_ssq(self, local_sr_df, national_sr_df, sex_ratio_config):
+        result = sex_ratio.sex_ratio_ssq(local_sr_df, national_sr_df, sex_ratio_config)
+        for output in ["ssq_imm", "ssq_em"]:
+            assert (result[output] >= 0).all()
