@@ -288,10 +288,10 @@ def sex_ratio_helper(
     if caps:
         if caps[0] > caps[1]:
             raise ValueError(f"Caps are not valid, {caps[0]} is greater than {caps[1]}")
-        
-        df[f"sex_ratio_{migration}_{year}"] = df[
-            f"sex_ratio_{migration}_{year}"
-        ].clip(caps[0], caps[1])
+
+        df[f"sex_ratio_{migration}_{year}"] = df[f"sex_ratio_{migration}_{year}"].clip(
+            caps[0], caps[1]
+        )
 
     return df
 
