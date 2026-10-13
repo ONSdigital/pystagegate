@@ -132,8 +132,10 @@ def sex_ratio_main(
     )
 
     # Aggregate by age to get national-level data and recalculate sex ratios (use uncleaned data)
+    fin_imm_vars = config["datasets"]["final_immigration"]["variables"]
+
     sr_national = sex_ratio.compute_sex_ratio(
-        sr_pivot.groupby("Age").agg("sum")[["em_fin", "imm_fin"]],
+        sr_pivot.groupby(fin_imm_vars["age"]).agg("sum")[["em_fin", "imm_fin"]],
         config,
         mask=False,
         male_sex="Male",

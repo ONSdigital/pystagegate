@@ -1,6 +1,11 @@
 import pytest
 import pandas as pd
 from pystagegate.prov_fin import merge_final_migration_data
+from pystagegate.sex_ratio import (
+    pivot_sex_ratio_frame,
+    clean_and_mask,
+    compute_sex_ratio,
+)
 from pystagegate.utils import load_config, load_summary_data
 
 
@@ -91,4 +96,23 @@ def fake_merged_df():
             "imm_fin": [0.3, 0.6, 1.1, 0, -100, 10],
             "em_fin": [-1, 5, 0.3, 1.1, 0.5, 0.2],
         }
+    )
+
+
+@pytest.fixture(scope="class")
+def local_sr_df(merged_sr_df, sex_ratio_config):
+    pivot_df = pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+    mask_df = clean_and_mask(pivot_df, sex_ratio_config)
+
+    return compute_sex_ratio(mask_df, sex_ratio_config)
+
+
+@pytest.fixture(scope="class")
+def national_sr_df(merged_sr_df, sex_ratio_config):
+    pivot_df = pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+
+    return compute_sex_ratio(
+        pivot_df.groupby("Age").agg("sum")[["em_fin", "imm_fin"]],
+        sex_ratio_config,
+        mask=False,
     )

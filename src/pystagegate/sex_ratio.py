@@ -217,12 +217,10 @@ def compute_sex_ratio(
 
     # Call sex ratio calculation helper func for each year of data
     for year in [year_1, year_2]:
-        sex_ratio_df = sex_ratio_helper(
-            sex_ratio_df, "imm", year, caps, mask, male_sex, female_sex
-        )
-        sex_ratio_df = sex_ratio_helper(
-            sex_ratio_df, "em", year, caps, mask, male_sex, female_sex
-        )
+        for output in ["imm", "em"]:
+            sex_ratio_df = sex_ratio_helper(
+                sex_ratio_df, output, year, caps, mask, male_sex, female_sex
+            )
 
     # Calculate weights
     sex_ratio_df["imm_weight"] = sex_ratio_df["imm_fin"].sum(axis=1)
@@ -256,15 +254,18 @@ def sex_ratio_helper(
     if migration not in ["imm", "em"]:
         raise ValueError("migration must be one of 'imm', 'em'")
 
+    # Copy DataFrame so as to not modify inplace
+    df = sex_ratio_df.copy()
+
     # Sex ratio calculation
-    male_count = sex_ratio_df[(f"{migration}_fin", male_sex, year)]
-    female_count = sex_ratio_df[(f"{migration}_fin", female_sex, year)]
+    male_count = df[(f"{migration}_fin", male_sex, year)]
+    female_count = df[(f"{migration}_fin", female_sex, year)]
     ratio = male_count / female_count
 
     # Default recode sex ratios based on quality metrics
     if mask:
-        male_quality = sex_ratio_df[(f"{migration}_fin_quality", male_sex, year)]
-        female_quality = sex_ratio_df[(f"{migration}_fin_quality", female_sex, year)]
+        male_quality = df[(f"{migration}_fin_quality", male_sex, year)]
+        female_quality = df[(f"{migration}_fin_quality", female_sex, year)]
 
         # Recode sex ratios based on quality metrics
         conditions = [
@@ -277,25 +278,29 @@ def sex_ratio_helper(
         ]
         choices = [np.nan, np.nan, female_count, male_count]
 
-        sex_ratio_df[f"sex_ratio_{migration}_{year}"] = np.select(
+        df[f"sex_ratio_{migration}_{year}"] = np.select(
             conditions, choices, default=ratio
         )
     else:
-        sex_ratio_df[f"sex_ratio_{migration}_{year}"] = ratio
+        # Todo: How to handle divide by zero when no mask?
+        df[f"sex_ratio_{migration}_{year}"] = ratio.mask(female_count == 0, male_count)
 
     if caps:
-        sex_ratio_df[f"sex_ratio_{migration}_{year}"] = sex_ratio_df[
-            f"sex_ratio_{migration}_{year}"
-        ].clip(caps[0], caps[1])
+        if caps[0] > caps[1]:
+            raise ValueError(f"Caps are not valid, {caps[0]} is greater than {caps[1]}")
 
-    return sex_ratio_df
+        df[f"sex_ratio_{migration}_{year}"] = df[f"sex_ratio_{migration}_{year}"].clip(
+            caps[0], caps[1]
+        )
+
+    return df
 
 
 def sex_ratio_ssq(
     la_df: pd.DataFrame, national_df: pd.DataFrame, config: dict
 ) -> pd.DataFrame:
     """
-    Compute the squared sex ratio for local authorities compared to the national average.
+    Compute sum of squared differences in sex ratios for national vs local authority data.
 
     Args:
         la_df (pd.DataFrame): DataFrame containing local authority sex ratio data.

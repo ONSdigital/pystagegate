@@ -206,9 +206,39 @@ class TestComputeSexRatio:
 
 
 class TestSexRatioHelper:
-    # Todo: Expand test coverage into helper function to catch edge cases
-    pass
+    @pytest.mark.parametrize("caps", [[0, 1], [-10, 100], [0.25, 0.26], [1, 2]])
+    def test_valid_caps_are_applied(self, merged_sr_df, sex_ratio_config, caps):
+        pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+        result = sex_ratio.sex_ratio_helper(
+            pivot_df, "imm", 2025, caps=caps, mask=False
+        )
+
+        assert result["sex_ratio_imm_2025"].min() >= caps[0]
+        assert result["sex_ratio_imm_2025"].max() <= caps[1]
+
+    def test_invalid_caps(self, merged_sr_df, sex_ratio_config):
+        pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+
+        with pytest.raises(ValueError):
+            sex_ratio.sex_ratio_helper(pivot_df, "imm", 2025, caps=[2, 1], mask=False)
+
+    def test_invalid_migration_type(self):
+        with pytest.raises(ValueError):
+            sex_ratio.sex_ratio_helper(pd.DataFrame(), "Imm", 2025)
+
+    def test_divide_by_zero_no_mask(self, merged_sr_df, sex_ratio_config):
+        pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+
+        # Set denominators in sex ratio computation to zero
+        pivot_df[("imm_fin", "Female", 2025)] = 0
+
+        result = sex_ratio.sex_ratio_helper(pivot_df, "imm", 2025, mask=False)
+
+        assert (result["sex_ratio_imm_2025"] == result[("imm_fin", "Male", 2025)]).all()
 
 
 class TestSexRatioSsq:
-    pass
+    def test_non_zero_ssq(self, local_sr_df, national_sr_df, sex_ratio_config):
+        result = sex_ratio.sex_ratio_ssq(local_sr_df, national_sr_df, sex_ratio_config)
+        for output in ["ssq_imm", "ssq_em"]:
+            assert (result[output] >= 0).all()
