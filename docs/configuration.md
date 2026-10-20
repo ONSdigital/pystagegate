@@ -83,7 +83,7 @@ Within the configuration root we can access:
 | `global_parameters` | A dictionary for setting parameters for the entire pipeline |
 | `datasets` | A dictionary containing configuration specific to individual datasets |
 
-### Global Parameters
+## Global Parameters
 
 Within `global_parameters` we can access:
 
@@ -97,7 +97,7 @@ Within `global_parameters` we can access:
 | `provisional_scot_direction` | String array stating the direction categories from the provisional Scottish migration data. Must be ordered so that the immigration category takes position 0 and the emigration category takes position 1. E.g., `["in", "out"]` |
 
 
-### Datasets
+## Datasets
 
 Within `datasets` we can access:
 
@@ -113,7 +113,7 @@ Within each dataset-specific configuration we always have the two keys:
 - `path`: The path to the dataset. This can be either a shortened path appended to `root_path` or the entire path if `root_path` is left empty.
 - `variables`: The list of variable names required from the dataset to run the pipeline.
 
-#### Final Immigration / Final Emigration (`final_immigration`/`final_emigration`)
+## Final Immigration / Final Emigration (`final_immigration`/`final_emigration`)
 
 Final migration estimates by Local Authority geography, age, sex, nationality status and year.
 
@@ -130,7 +130,7 @@ The final migration datasets `final_immigration` and `final_migration` share the
 | `year` | String value to index the column for year data was collected | This column must be recognised in Pandas as an integer |
 | `count` | String value to index the column for the final estimate of migration at a given geography, age, sex and nationality | This column must be recognised in Pandas as an integer or floating point |
 
-#### Provisional Migration (`provisional`)
+## Provisional Migration (`provisional`)
 
 Provisional migration estimates by Local Authority geography, age, sex, nationality status and year.
 
@@ -143,7 +143,7 @@ Provisional migration estimates by Local Authority geography, age, sex, national
 | `emigration` | String value to index the column for the provisional estimate of emigration at a given geography, age, sex and nationality | This column must be recognised in Pandas as an integer or floating point |
 | `net` | `immigration` - `emigration` | This column must be recognised in Pandas as an integer or floating point |
 
-#### Scottish Provisional Migration (`provisional_scot`)
+## Scottish Provisional Migration (`provisional_scot`)
 
 Additional provisional migration estimates for Local Authority geographies in Scotland only.
 
