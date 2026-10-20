@@ -2,13 +2,13 @@ import pandas as pd
 import pytest
 from pystagegate.pipelines import (
     prov_fin_main,
-    sex_ratio_national_profile,
+    national_profile,
     sex_ratio_main,
 )
 
 
 @pytest.mark.parametrize(
-    "config", ["test_config", "test_config_path", "test_config_with_no_output"]
+    "config", ["test_config", "test_config_path", "test_config_no_output"]
 )
 class TestPipelines:
     def test_prov_fin_dict(self, request, config):
@@ -19,9 +19,7 @@ class TestPipelines:
         )
 
     def test_sex_ratio_national_profile_dict(self, request, config):
-        year_agg, year_agg_adjusted = sex_ratio_national_profile(
-            request.getfixturevalue(config)
-        )
+        year_agg, year_agg_adjusted = national_profile(request.getfixturevalue(config))
 
         pd.testing.assert_frame_equal(
             year_agg, pd.read_pickle("tests/data/sex_ratio/year_on_year_sqdiff.pkl")

@@ -5,9 +5,11 @@ from pystagegate import prov_fin
 
 
 class TestMergeFinalMigrationData:
-    def test_correct_columns(self, immigration_df, emigration_df, prov_fin_config):
+    def test_correct_columns(
+        self, immigration_df, emigration_df, test_config_no_output
+    ):
         result = prov_fin.merge_final_migration_data(
-            immigration_df, emigration_df, prov_fin_config
+            immigration_df, emigration_df, test_config_no_output
         )
         assert list(result.columns) == [
             "Year",
@@ -19,12 +21,12 @@ class TestMergeFinalMigrationData:
         ]
 
     def test_correct_columns_sex_ratio(
-        self, immigration_df, emigration_df, prov_fin_config
+        self, immigration_df, emigration_df, test_config_no_output
     ):
         result = prov_fin.merge_final_migration_data(
             immigration_df,
             emigration_df,
-            prov_fin_config,
+            test_config_no_output,
             sex_ratio=True,
         )
 
@@ -37,15 +39,19 @@ class TestMergeFinalMigrationData:
             "em_fin",
         ]
 
-    def test_merge_net_migration(self, immigration_df, emigration_df, prov_fin_config):
+    def test_merge_net_migration(
+        self, immigration_df, emigration_df, test_config_no_output
+    ):
         result = prov_fin.merge_final_migration_data(
-            immigration_df, emigration_df, prov_fin_config
+            immigration_df, emigration_df, test_config_no_output
         )
         assert (result["net_fin"] == result["imm_fin"] - result["em_fin"]).all()
 
-    def test_merge_aggregates(self, immigration_df, emigration_df, prov_fin_config):
+    def test_merge_aggregates(
+        self, immigration_df, emigration_df, test_config_no_output
+    ):
         result = prov_fin.merge_final_migration_data(
-            immigration_df, emigration_df, prov_fin_config
+            immigration_df, emigration_df, test_config_no_output
         )
         # No duplicates on groupby keys
         assert not result.duplicated(
@@ -53,10 +59,10 @@ class TestMergeFinalMigrationData:
         ).any()
 
     def test_merge_aggregates_sex_ratio(
-        self, immigration_df, emigration_df, prov_fin_config
+        self, immigration_df, emigration_df, test_config_no_output
     ):
         result = prov_fin.merge_final_migration_data(
-            immigration_df, emigration_df, prov_fin_config, sex_ratio=True
+            immigration_df, emigration_df, test_config_no_output, sex_ratio=True
         )
         # No duplicates on groupby keys
         assert not result.duplicated(
@@ -64,32 +70,34 @@ class TestMergeFinalMigrationData:
         ).any()
 
     def test_different_count_column_names(
-        self, immigration_df, emigration_df, prov_fin_config
+        self, immigration_df, emigration_df, test_config_no_output
     ):
         result = prov_fin.merge_final_migration_data(
-            immigration_df, emigration_df, prov_fin_config
+            immigration_df, emigration_df, test_config_no_output
         )
 
         # Rename count immigration in config and in frames
-        prov_fin_config["datasets"]["final_immigration"]["variables"]["count"] = (
+        test_config_no_output["datasets"]["final_immigration"]["variables"]["count"] = (
             "immigration"
         )
-        prov_fin_config["datasets"]["final_emigration"]["variables"]["count"] = (
+        test_config_no_output["datasets"]["final_emigration"]["variables"]["count"] = (
             "emigration"
         )
 
         result_nename = prov_fin.merge_final_migration_data(
             immigration_df.rename(columns={"Count": "immigration"}),
             emigration_df.rename(columns={"Count": "emigration"}),
-            prov_fin_config,
+            test_config_no_output,
         )
 
         pd.testing.assert_frame_equal(result, result_nename)
 
 
 class TestSubsetProvisionalData:
-    def test_subset_produces_correct_columns(self, provisional_df, prov_fin_config):
-        result = prov_fin.subset_provisional_data(provisional_df, prov_fin_config)
+    def test_subset_produces_correct_columns(
+        self, provisional_df, test_config_no_output
+    ):
+        result = prov_fin.subset_provisional_data(provisional_df, test_config_no_output)
         assert list(result.columns) == [
             "year",
             "code",
@@ -99,20 +107,22 @@ class TestSubsetProvisionalData:
             "net_prov",
         ]
 
-    def test_subset_adds_year_column(self, provisional_df, prov_fin_config):
-        result = prov_fin.subset_provisional_data(provisional_df, prov_fin_config)
+    def test_subset_adds_year_column(self, provisional_df, test_config_no_output):
+        result = prov_fin.subset_provisional_data(provisional_df, test_config_no_output)
         assert (result["year"] == 2024).all()
 
-    def test_subset_aggregates_by_la_age(self, provisional_df, prov_fin_config):
-        result = prov_fin.subset_provisional_data(provisional_df, prov_fin_config)
+    def test_subset_aggregates_by_la_age(self, provisional_df, test_config_no_output):
+        result = prov_fin.subset_provisional_data(provisional_df, test_config_no_output)
         # No duplicates on groupby keys
         assert not result.duplicated(subset=["code", "Age"]).any()
 
 
 class TestProvisionalScotCartesianMerge:
-    def test_cartesian_has_all_combinations(self, provisional_scot_df, prov_fin_config):
+    def test_cartesian_has_all_combinations(
+        self, provisional_scot_df, test_config_no_output
+    ):
         result = prov_fin.provisional_scot_cartesian_merge(
-            provisional_scot_df, prov_fin_config
+            provisional_scot_df, test_config_no_output
         )
 
         unique_values = [
@@ -124,20 +134,22 @@ class TestProvisionalScotCartesianMerge:
         # Len of merged result should equal len of unique combinations
         assert len(result) == len(list(product(*unique_values)))
 
-    def test_cartesian_has_no_duplicates(self, provisional_scot_df, prov_fin_config):
+    def test_cartesian_has_no_duplicates(
+        self, provisional_scot_df, test_config_no_output
+    ):
         result = prov_fin.provisional_scot_cartesian_merge(
-            provisional_scot_df, prov_fin_config
+            provisional_scot_df, test_config_no_output
         )
 
         assert not result.duplicated().any()
 
 
 class TestProvisionalScotAggregate:
-    def test_provscot_agg_columns(self, provisional_scot_df, prov_fin_config):
+    def test_provscot_agg_columns(self, provisional_scot_df, test_config_no_output):
         cartesian = prov_fin.provisional_scot_cartesian_merge(
-            provisional_scot_df, prov_fin_config
+            provisional_scot_df, test_config_no_output
         )
-        result = prov_fin.provisional_scot_aggregate(cartesian, prov_fin_config)
+        result = prov_fin.provisional_scot_aggregate(cartesian, test_config_no_output)
         assert list(result.columns) == [
             "year",
             "ca_code",
@@ -147,32 +159,36 @@ class TestProvisionalScotAggregate:
             "net_prov",
         ]
 
-    def test_provscot_agg_calculates_net(self, provisional_scot_df, prov_fin_config):
+    def test_provscot_agg_calculates_net(
+        self, provisional_scot_df, test_config_no_output
+    ):
         cartesian = prov_fin.provisional_scot_cartesian_merge(
-            provisional_scot_df, prov_fin_config
+            provisional_scot_df, test_config_no_output
         )
-        result = prov_fin.provisional_scot_aggregate(cartesian, prov_fin_config)
+        result = prov_fin.provisional_scot_aggregate(cartesian, test_config_no_output)
         assert (result["net_prov"] == result["imm_prov"] - result["em_prov"]).all()
 
-    def test_provscot_agg_filters_year(self, provisional_scot_df, prov_fin_config):
+    def test_provscot_agg_filters_year(
+        self, provisional_scot_df, test_config_no_output
+    ):
         cartesian = prov_fin.provisional_scot_cartesian_merge(
-            provisional_scot_df, prov_fin_config
+            provisional_scot_df, test_config_no_output
         )
-        result = prov_fin.provisional_scot_aggregate(cartesian, prov_fin_config)
+        result = prov_fin.provisional_scot_aggregate(cartesian, test_config_no_output)
         assert (result["year"] == 2024).all()
 
-    def test_provscot_agg_aggregates(self, provisional_scot_df, prov_fin_config):
+    def test_provscot_agg_aggregates(self, provisional_scot_df, test_config_no_output):
         cartesian = prov_fin.provisional_scot_cartesian_merge(
-            provisional_scot_df, prov_fin_config
+            provisional_scot_df, test_config_no_output
         )
-        result = prov_fin.provisional_scot_aggregate(cartesian, prov_fin_config)
+        result = prov_fin.provisional_scot_aggregate(cartesian, test_config_no_output)
         assert not result.duplicated(subset=["ca_code", "year", "Age"]).any()
 
-    def test_provsot_agg_pivots(self, provisional_scot_df, prov_fin_config):
+    def test_provsot_agg_pivots(self, provisional_scot_df, test_config_no_output):
         cartesian = prov_fin.provisional_scot_cartesian_merge(
-            provisional_scot_df, prov_fin_config
+            provisional_scot_df, test_config_no_output
         )
-        result = prov_fin.provisional_scot_aggregate(cartesian, prov_fin_config)
+        result = prov_fin.provisional_scot_aggregate(cartesian, test_config_no_output)
         assert list(result.columns) == [
             "year",
             "ca_code",
@@ -260,32 +276,34 @@ class TestSquaredDifference:
 
 @pytest.mark.parametrize("nation_param", ["E", "S", "W"])
 class TestNationBreakdownSqDiff:
-    def test_invalid_region(self, prov_fin_config, nation_param):
+    def test_invalid_region(self, test_config_no_output, nation_param):
         nation_param = "X"
         with pytest.raises(ValueError, match="Nation must be one of 'E', 'S', 'W'"):
             prov_fin.nation_breakdown_sqdiff(
-                pd.DataFrame(), prov_fin_config, nation=nation_param
+                pd.DataFrame(), test_config_no_output, nation=nation_param
             )
 
-    def test_filter_nation(self, prov_fin_config, nation_param, nation_breakdown_df):
+    def test_filter_nation(
+        self, test_config_no_output, nation_param, nation_breakdown_df
+    ):
         result = prov_fin.nation_breakdown_sqdiff(
-            nation_breakdown_df, prov_fin_config, nation=nation_param
+            nation_breakdown_df, test_config_no_output, nation=nation_param
         )
         assert (result["nation"] == nation_param).all()
 
     def test_nation_breakdown_aggregates(
-        self, prov_fin_config, nation_param, nation_breakdown_df
+        self, test_config_no_output, nation_param, nation_breakdown_df
     ):
         result = prov_fin.nation_breakdown_sqdiff(
-            nation_breakdown_df, prov_fin_config, nation=nation_param
+            nation_breakdown_df, test_config_no_output, nation=nation_param
         )
         assert not result.duplicated(subset=["Local Authority Code"]).any()
 
     def test_valid_output_exists(
-        self, prov_fin_config, nation_param, nation_breakdown_df
+        self, test_config_no_output, nation_param, nation_breakdown_df
     ):
         result = prov_fin.nation_breakdown_sqdiff(
-            nation_breakdown_df, prov_fin_config, nation=nation_param
+            nation_breakdown_df, test_config_no_output, nation=nation_param
         )
 
         # squared difference and scaled squared difference columns should be > 0 as all inputs > 0
@@ -293,7 +311,7 @@ class TestNationBreakdownSqDiff:
             assert (result[f"sqdiff_{prefix}"] > 0).all()
             assert (result[f"sqdiff_{prefix}_sc"] > 0).all()
 
-    def test_invalid_nation(self, prov_fin_config, nation_param):
+    def test_invalid_nation(self, test_config_no_output, nation_param):
         df = pd.DataFrame(
             {
                 "Local Authority Code": ["X001"],
@@ -308,4 +326,6 @@ class TestNationBreakdownSqDiff:
         )
 
         with pytest.raises(ValueError):
-            prov_fin.nation_breakdown_sqdiff(df, prov_fin_config, nation=nation_param)
+            prov_fin.nation_breakdown_sqdiff(
+                df, test_config_no_output, nation=nation_param
+            )
