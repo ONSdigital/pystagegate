@@ -23,45 +23,30 @@ def test_config_path():
 
 
 @pytest.fixture(scope="module")
-def test_config_with_no_output():
+def test_config_no_output():
     config = load_config("tests/data/testing_config.json")
-    config["prov_fin"]["output_path"] = None
-    config["sex_ratio"]["output_path"] = None
+    config["output_path"] = None
     return config
 
 
 @pytest.fixture(scope="module")
-def prov_fin_config():
-    config = load_config("tests/data/testing_config.json")
-    config["prov_fin"]["output_path"] = None
-    return config["prov_fin"]
+def immigration_df(test_config_no_output):
+    return load_summary_data(test_config_no_output, "final_immigration")
 
 
 @pytest.fixture(scope="module")
-def sex_ratio_config():
-    config = load_config("tests/data/testing_config.json")
-    config["sex_ratio"]["output_path"] = None
-    return config["sex_ratio"]
+def emigration_df(test_config_no_output):
+    return load_summary_data(test_config_no_output, "final_emigration")
 
 
 @pytest.fixture(scope="module")
-def immigration_df(prov_fin_config):
-    return load_summary_data(prov_fin_config, "final_immigration")
+def provisional_df(test_config_no_output):
+    return load_summary_data(test_config_no_output, "provisional")
 
 
 @pytest.fixture(scope="module")
-def emigration_df(prov_fin_config):
-    return load_summary_data(prov_fin_config, "final_emigration")
-
-
-@pytest.fixture(scope="module")
-def provisional_df(prov_fin_config):
-    return load_summary_data(prov_fin_config, "provisional")
-
-
-@pytest.fixture(scope="module")
-def provisional_scot_df(prov_fin_config):
-    return load_summary_data(prov_fin_config, "provisional_scot")
+def provisional_scot_df(test_config_no_output):
+    return load_summary_data(test_config_no_output, "provisional_scot")
 
 
 # test_prov_fin fixtures
@@ -74,14 +59,16 @@ def nation_breakdown_df():
 
 # test_sex_ratio fixtures
 @pytest.fixture(scope="class")
-def merged_df(sex_ratio_config, immigration_df, emigration_df):
-    return merge_final_migration_data(immigration_df, emigration_df, sex_ratio_config)
+def merged_df(test_config_no_output, immigration_df, emigration_df):
+    return merge_final_migration_data(
+        immigration_df, emigration_df, test_config_no_output
+    )
 
 
 @pytest.fixture(scope="class")
-def merged_sr_df(sex_ratio_config, immigration_df, emigration_df):
+def merged_sr_df(test_config_no_output, immigration_df, emigration_df):
     return merge_final_migration_data(
-        immigration_df, emigration_df, sex_ratio_config, sex_ratio=True
+        immigration_df, emigration_df, test_config_no_output, sex_ratio=True
     )
 
 
@@ -100,19 +87,19 @@ def fake_merged_df():
 
 
 @pytest.fixture(scope="class")
-def local_sr_df(merged_sr_df, sex_ratio_config):
-    pivot_df = pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
-    mask_df = clean_and_mask(pivot_df, sex_ratio_config)
+def local_sr_df(merged_sr_df, test_config_no_output):
+    pivot_df = pivot_sex_ratio_frame(merged_sr_df, test_config_no_output)
+    mask_df = clean_and_mask(pivot_df, test_config_no_output)
 
-    return compute_sex_ratio(mask_df, sex_ratio_config)
+    return compute_sex_ratio(mask_df, test_config_no_output)
 
 
 @pytest.fixture(scope="class")
-def national_sr_df(merged_sr_df, sex_ratio_config):
-    pivot_df = pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+def national_sr_df(merged_sr_df, test_config_no_output):
+    pivot_df = pivot_sex_ratio_frame(merged_sr_df, test_config_no_output)
 
     return compute_sex_ratio(
         pivot_df.groupby("Age").agg("sum")[["em_fin", "imm_fin"]],
-        sex_ratio_config,
+        test_config_no_output,
         mask=False,
     )
