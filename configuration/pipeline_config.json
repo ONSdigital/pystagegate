@@ -1,93 +1,57 @@
 {
-    "prov_fin": {
-        "root_path": "",
-        "output_path": null,
-        "global_parameters": {
-            "age_min": 0,
-            "age_max": 200,
-            "year": 2024,
-            "final_nationalities": ["", ""],
-            "provisional_scot_direction": ["", ""]
-        },
-        "datasets": {
-            "final_immigration": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "nationality": "",
-                    "year": "",
-                    "count": ""
-                }
-            },
-            "final_emigration": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "nationality": "",
-                    "year": "",
-                    "count": ""
-                }
-            },
-            "provisional": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "immigration": "",
-                    "emigration": "",
-                    "net": ""
-                }
-            },
-            "provisional_scot": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "direction": "",
-                    "year": "",
-                    "count": ""
-                }
-            }
-        }
+    "root_path": "",
+    "output_path": null,
+    "global_parameters": {
+        "age_min": 0,
+        "age_max": 200,
+        "year": 2024,
+        "year2": 2025,
+        "final_nationalities": ["", ""],
+        "provisional_scot_direction": ["", ""]
     },
-    "sex_ratio": {
-        "root_path": "",
-        "output_path": null,
-        "global_parameters": {
-            "age_min": 0,
-            "age_max": 200,
-            "year": 2024,
-            "year2": 2025,
-            "final_nationalities": ["", ""]
+    "datasets": {
+        "final_immigration": {
+            "path": "",
+            "variables": {
+                "la_code": "",
+                "age": "",
+                "sex": "",
+                "nationality": "",
+                "year": "",
+                "count": ""
+            }
         },
-        "datasets": {
-            "final_immigration": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "nationality": "",
-                    "year": "",
-                    "count": ""
-                }
-            },
-            "final_emigration": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "nationality": "",
-                    "year": "",
-                    "count": ""
-                }
+        "final_emigration": {
+            "path": "",
+            "variables": {
+                "la_code": "",
+                "age": "",
+                "sex": "",
+                "nationality": "",
+                "year": "",
+                "count": ""
+            }
+        },
+        "provisional": {
+            "path": "",
+            "variables": {
+                "la_code": "",
+                "age": "",
+                "sex": "",
+                "immigration": "",
+                "emigration": "",
+                "net": ""
+            }
+        },
+        "provisional_scot": {
+            "path": "",
+            "variables": {
+                "la_code": "",
+                "age": "",
+                "sex": "",
+                "direction": "",
+                "year": "",
+                "count": ""
             }
         }
     }
