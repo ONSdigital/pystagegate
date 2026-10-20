@@ -4,7 +4,7 @@ import pandas as pd
 
 def prov_fin_main(config: dict | str) -> pd.DataFrame:
     # Configuration setup
-    config = utils.load_config(config)["prov_fin"]
+    config = utils.load_config(config)
 
     # Load and validate datasets
     immigration = utils.load_summary_data(config, "final_immigration")
@@ -78,9 +78,9 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
     return output
 
 
-def sex_ratio_national_profile(config: dict | str) -> tuple[pd.DataFrame, pd.DataFrame]:
+def national_profile(config: dict | str) -> tuple[pd.DataFrame, pd.DataFrame]:
     # Configuration setup
-    config = utils.load_config(config)["sex_ratio"]
+    config = utils.load_config(config)
 
     # Load and validate datasets
     immigration = utils.load_summary_data(config, "final_immigration")
@@ -110,7 +110,7 @@ def sex_ratio_main(
     config: dict | str,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     # Configuration setup
-    config = utils.load_config(config)["sex_ratio"]
+    config = utils.load_config(config)
 
     # Load and validate datasets
     immigration = utils.load_summary_data(config, "final_immigration")
