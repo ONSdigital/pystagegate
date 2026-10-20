@@ -12,95 +12,59 @@ The JSON is shown below:
 
 ```json
 {
-    "prov_fin": {
-        "root_path": "",
-        "output_path": null,
-        "global_parameters": {
-            "age_min": 0,
-            "age_max": 200,
-            "year": 2024,
-            "final_nationalities": ["", ""],
-            "provisional_scot_direction": ["", ""]
-        },
-        "datasets": {
-            "final_immigration": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "nationality": "",
-                    "year": "",
-                    "count": ""
-                }
-            },
-            "final_emigration": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "nationality": "",
-                    "year": "",
-                    "count": ""
-                }
-            },
-            "provisional": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "immigration": "",
-                    "emigration": "",
-                    "net": ""
-                }
-            },
-            "provisional_scot": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "direction": "",
-                    "year": "",
-                    "count": ""
-                }
-            }
-        }
+    "root_path": "",
+    "output_path": null,
+    "global_parameters": {
+        "age_min": 0,
+        "age_max": 200,
+        "year": 2024,
+        "year2": 2025,
+        "final_nationalities": ["", ""],
+        "provisional_scot_direction": ["", ""]
     },
-    "sex_ratio": {
-        "root_path": "",
-        "output_path": null,
-        "global_parameters": {
-            "age_min": 0,
-            "age_max": 200,
-            "year": 2024,
-            "year2": 2025,
-            "final_nationalities": ["", ""]
+    "datasets": {
+        "final_immigration": {
+            "path": "",
+            "variables": {
+                "la_code": "",
+                "age": "",
+                "sex": "",
+                "nationality": "",
+                "year": "",
+                "count": ""
+            }
         },
-        "datasets": {
-            "final_immigration": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "nationality": "",
-                    "year": "",
-                    "count": ""
-                }
-            },
-            "final_emigration": {
-                "path": "",
-                "variables": {
-                    "la_code": "",
-                    "age": "",
-                    "sex": "",
-                    "nationality": "",
-                    "year": "",
-                    "count": ""
-                }
+        "final_emigration": {
+            "path": "",
+            "variables": {
+                "la_code": "",
+                "age": "",
+                "sex": "",
+                "nationality": "",
+                "year": "",
+                "count": ""
+            }
+        },
+        "provisional": {
+            "path": "",
+            "variables": {
+                "la_code": "",
+                "age": "",
+                "sex": "",
+                "immigration": "",
+                "emigration": "",
+                "net": ""
+            }
+        },
+        "provisional_scot": {
+            "path": "",
+            "variables": {
+                "la_code": "",
+                "age": "",
+                "sex": "",
+                "direction": "",
+                "year": "",
+                "count": ""
             }
         }
     }
@@ -108,11 +72,9 @@ The JSON is shown below:
 ```
 :::
 
-## Provisional-Final Configuration
+## Root
 
-The provisional final configuration is accessed using the `prov_fin` key.
-
-Within `prov_fin` we can access:
+Within the configuration root we can access:
 
 | Key | Value |
 |-----|-------|
@@ -130,6 +92,7 @@ Within `global_parameters` we can access:
 | `age_min` | The lower bound of age to perform the analysis on. Must be an integer |
 | `age_max` | The upper bound of age to perform the analysis on. Must be an integer |
 | `year` | The year to perform the analysis on. Must be an integer |
+| `year2` | The comparison year to use when performing year-on-year or sex ratio calculations |
 | `final_nationalities` | String array stating the nationality categories contained in both final migration datasets. Must only include values that sum to a total, not totals themselves, e.g, `["British", "Non-British"]` |
 | `provisional_scot_direction` | String array stating the direction categories from the provisional Scottish migration data. Must be ordered so that the immigration category takes position 0 and the emigration category takes position 1. E.g., `["in", "out"]` |
 
@@ -145,14 +108,11 @@ Within `datasets` we can access:
 | `provisional` | A dictionary for configuration specific to the provisional migration dataset |
 | `provisional_scot` | A dictionary for configuration specific to the Scottish additional provisional migration data |
 
-### Dataset-Specific Configuration
-
-Within each dataset-specific configuration we have the two keys:
+Within each dataset-specific configuration we always have the two keys:
 
 - `path`: The path to the dataset. This can be either a shortened path appended to `root_path` or the entire path if `root_path` is left empty.
 - `variables`: The list of variable names required from the dataset to run the pipeline.
 
-(final_migration_target)=
 #### Final Immigration / Final Emigration (`final_immigration`/`final_emigration`)
 
 Final migration estimates by Local Authority geography, age, sex, nationality status and year.
@@ -195,48 +155,3 @@ Additional provisional migration estimates for Local Authority geographies in Sc
 | `direction` | String value to index the column that states if the row refers to immigration or emigration | This column must take the values given in Global Parameters - `provisional_scot_direction` |
 | `year` | String value to index the column for year data was collected | This column must be recognised in Pandas as an integer |
 | `count` | String value to index the column for the provisional estimate migration at a given geography, age, sex and nationality | This column must be recognised in Pandas as an integer or floating point |
-
-## Sex Ratio Configuration
-
-The provisional final configuration is accessed using the `sex_ratio` key.
-
-Within `sex_ratio` we can access:
-
-| Key | Value |
-|-----|-------|
-| `root_path` | An optional directory that is appended to all other file paths to simplify the configuration |
-| `output_path` | An optional directory used to write output files, can be set to `null` to disable writing outputs |
-| `global_parameters` | A dictionary for setting parameters for the entire pipeline |
-| `datasets` | A dictionary containing configuration specific to individual datasets |
-
-### Global Parameters
-
-Within `global_parameters` we can access:
-
-| Key | Value |
-|-----|-------|
-| `age_min` | The lower bound of age to perform the analysis on. Must be an integer |
-| `age_max` | The upper bound of age to perform the analysis on. Must be an integer |
-| `year` | Year 1 for performing all year comparison analysis. Must be an integer |
-| `year_2` | Year 2 for performing all year comparison analysis. Must be an integer |
-| `final_nationalities` | String array stating the nationality categories contained in both final migration datasets. Must only include values that sum to a total, not totals themselves e.g, `["British", "Non-British"]` |
-
-### Datasets
-
-Within `datasets` we can access:
-
-| Key | Value |
-|-----|-------|
-| `final_immigration` | A dictionary for configuration specific to the final immigration dataset |
-| `final_emigration` | A dictionary for configuration specific to the final emigration dataset |
-
-### Dataset-Specific Configuration
-
-Within each dataset-specific configuration we have the two keys:
-
-- `path`: The path to the dataset. This can be either a shortened path appended to `root_path` or the entire path if `root_path` is left empty.
-- `variables`: The list of variable names required from the dataset to run the pipeline.
-
-#### Final Immigration / Final Emigration (`final_immigration`/`final_emigration`)
-
-[See the above section](#final_migration_target)
