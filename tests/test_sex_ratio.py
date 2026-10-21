@@ -5,11 +5,11 @@ from pystagegate import sex_ratio
 
 
 class TestYearAggMerge:
-    def test_merge_preserves_net_migration(self, merged_df, sex_ratio_config):
-        result = sex_ratio.year_agg_merge(merged_df, sex_ratio_config)
+    def test_merge_preserves_net_migration(self, merged_df, test_config_no_output):
+        result = sex_ratio.year_agg_merge(merged_df, test_config_no_output)
         for year in [
-            sex_ratio_config["global_parameters"]["year"],
-            sex_ratio_config["global_parameters"]["year2"],
+            test_config_no_output["global_parameters"]["year"],
+            test_config_no_output["global_parameters"]["year2"],
         ]:
             assert (
                 result[f"count_imm_{year}"] - result[f"count_em_{year}"]
@@ -20,21 +20,23 @@ class TestYearAggMerge:
                 == result[f"total_count_net_{year}"]
             ).all()
 
-    def test_error_for_years(self, sex_ratio_config):
+    def test_error_for_years(self, test_config_no_output):
         df = pd.DataFrame(
             {
                 "Year": [2023, 2023, 2023, 2024, 2024, 2024, 2026],
             }
         )
         with pytest.raises(ValueError):
-            sex_ratio.year_agg_merge(df, sex_ratio_config)
+            sex_ratio.year_agg_merge(df, test_config_no_output)
 
 
 class TestYearAggSqDiff:
-    def test_non_zero_sqdiff(self, merged_df, sex_ratio_config):
-        agg_df = sex_ratio.year_agg_merge(merged_df, sex_ratio_config)
+    def test_non_zero_sqdiff(self, merged_df, test_config_no_output):
+        agg_df = sex_ratio.year_agg_merge(merged_df, test_config_no_output)
 
-        result, result_adjusted = sex_ratio.year_agg_sqdiff(agg_df, sex_ratio_config)
+        result, result_adjusted = sex_ratio.year_agg_sqdiff(
+            agg_df, test_config_no_output
+        )
 
         for out_name in ["imm", "em", "net"]:
             assert (result[f"sqdiff_{out_name}"] >= 0).all()
@@ -44,46 +46,48 @@ class TestYearAggSqDiff:
 
 
 class TestPivotSexRatioFrame:
-    def test_error_for_years(self, sex_ratio_config):
+    def test_error_for_years(self, test_config_no_output):
         df = pd.DataFrame(
             {
                 "Year": [2023, 2023, 2023, 2024, 2024, 2024, 2026],
             }
         )
         with pytest.raises(ValueError):
-            sex_ratio.year_agg_merge(df, sex_ratio_config)
+            sex_ratio.year_agg_merge(df, test_config_no_output)
 
-    def test_return_is_multiindex(self, merged_sr_df, sex_ratio_config):
-        result = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+    def test_return_is_multiindex(self, merged_sr_df, test_config_no_output):
+        result = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, test_config_no_output)
         assert type(result.index) is pd.core.indexes.multi.MultiIndex
 
-    def test_multiindex_contains_all_columns(self, merged_sr_df, sex_ratio_config):
-        result = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+    def test_multiindex_contains_all_columns(self, merged_sr_df, test_config_no_output):
+        result = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, test_config_no_output)
 
         for element in result.columns.to_flat_index():
             assert element[2] in [
-                sex_ratio_config["global_parameters"]["year"],
-                sex_ratio_config["global_parameters"]["year2"],
+                test_config_no_output["global_parameters"]["year"],
+                test_config_no_output["global_parameters"]["year2"],
             ]
             assert element[1] in ["Male", "Female"]
             assert element[0] in ["imm_fin", "em_fin"]
 
-    def test_multiindex_contains_all_index(self, merged_sr_df, sex_ratio_config):
+    def test_multiindex_contains_all_index(self, merged_sr_df, test_config_no_output):
         unique_values = [
             merged_sr_df[col].unique()
             for col in merged_sr_df[["Local Authority Code", "Age"]].columns
         ]
 
-        result = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+        result = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, test_config_no_output)
 
         assert set(product(*unique_values)) == set(result.index)
 
 
 class TestCleanAndMask:
-    def test_recoding(self, fake_merged_df, sex_ratio_config):
-        fake_sr_df = sex_ratio.pivot_sex_ratio_frame(fake_merged_df, sex_ratio_config)
+    def test_recoding(self, fake_merged_df, test_config_no_output):
+        fake_sr_df = sex_ratio.pivot_sex_ratio_frame(
+            fake_merged_df, test_config_no_output
+        )
 
-        result = sex_ratio.clean_and_mask(fake_sr_df, sex_ratio_config).drop(
+        result = sex_ratio.clean_and_mask(fake_sr_df, test_config_no_output).drop(
             columns=["imm_fin_quality", "em_fin_quality"], level=0
         )
 
@@ -92,10 +96,12 @@ class TestCleanAndMask:
         assert list(result.loc[("E1", 40)]) == [5.0, 1.0, 1.0, 0]
         assert list(result.loc[("E1", 50)]) == [0, 0, 1.1, 10]
 
-    def test_masking(self, fake_merged_df, sex_ratio_config):
-        fake_sr_df = sex_ratio.pivot_sex_ratio_frame(fake_merged_df, sex_ratio_config)
+    def test_masking(self, fake_merged_df, test_config_no_output):
+        fake_sr_df = sex_ratio.pivot_sex_ratio_frame(
+            fake_merged_df, test_config_no_output
+        )
 
-        result = sex_ratio.clean_and_mask(fake_sr_df, sex_ratio_config).drop(
+        result = sex_ratio.clean_and_mask(fake_sr_df, test_config_no_output).drop(
             columns=["imm_fin", "em_fin"], level=0
         )
 
@@ -104,14 +110,14 @@ class TestCleanAndMask:
         assert list(result.loc[("E1", 40)]) == ["OK", "Low", "Low", "Zero"]
         assert list(result.loc[("E1", 50)]) == ["Zero", "Zero", "Low", "OK"]
 
-    def test_no_small_numbers(self, merged_sr_df, sex_ratio_config):
+    def test_no_small_numbers(self, merged_sr_df, test_config_no_output):
         # Artifically make counts very small, so that many counts are between 0 and 1
         fact = 0.05
         merged_sr_df["imm_fin"] = merged_sr_df["imm_fin"] * fact
         merged_sr_df["em_fin"] = merged_sr_df["em_fin"] * fact
 
-        sr_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
-        result = sex_ratio.clean_and_mask(sr_df, sex_ratio_config).drop(
+        sr_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, test_config_no_output)
+        result = sex_ratio.clean_and_mask(sr_df, test_config_no_output).drop(
             columns=["imm_fin_quality", "em_fin_quality"], level=0
         )
 
@@ -120,18 +126,20 @@ class TestCleanAndMask:
 
 
 class TestComputeSexRatio:
-    def test_no_match_for_ratios(self, fake_merged_df, sex_ratio_config):
-        fake_sr_df = sex_ratio.pivot_sex_ratio_frame(fake_merged_df, sex_ratio_config)
+    def test_no_match_for_ratios(self, fake_merged_df, test_config_no_output):
+        fake_sr_df = sex_ratio.pivot_sex_ratio_frame(
+            fake_merged_df, test_config_no_output
+        )
 
-        fake_mask_df = sex_ratio.clean_and_mask(fake_sr_df, sex_ratio_config)
+        fake_mask_df = sex_ratio.clean_and_mask(fake_sr_df, test_config_no_output)
 
         # Check that we get a KeyError when there is no match for ratios
         with pytest.raises(KeyError):
             sex_ratio.compute_sex_ratio(
-                fake_mask_df, sex_ratio_config, male_sex="M", female_sex="F"
+                fake_mask_df, test_config_no_output, male_sex="M", female_sex="F"
             )
 
-    def test_low_zero_computes(self, sex_ratio_config):
+    def test_low_zero_computes(self, test_config_no_output):
         low_zero_df = pd.DataFrame(
             {
                 "Year": [2024, 2025, 2024, 2025],
@@ -142,11 +150,15 @@ class TestComputeSexRatio:
                 "em_fin": [-1, 0.3, 0.3, 1.1],
             }
         )
-        low_zero_sr_df = sex_ratio.pivot_sex_ratio_frame(low_zero_df, sex_ratio_config)
-        low_zero_mask_df = sex_ratio.clean_and_mask(low_zero_sr_df, sex_ratio_config)
+        low_zero_sr_df = sex_ratio.pivot_sex_ratio_frame(
+            low_zero_df, test_config_no_output
+        )
+        low_zero_mask_df = sex_ratio.clean_and_mask(
+            low_zero_sr_df, test_config_no_output
+        )
 
         result = sex_ratio.compute_sex_ratio(
-            low_zero_mask_df, sex_ratio_config, male_sex="M", female_sex="F"
+            low_zero_mask_df, test_config_no_output, male_sex="M", female_sex="F"
         )
 
         # Prove Zero/Zero quality mask gives NA sex ratio
@@ -172,7 +184,7 @@ class TestComputeSexRatio:
             == result[("imm_fin", "M", 2025)] / result[("imm_fin", "F", 2025)]
         ).all()  # Ratio
 
-    def test_ok_zero_computes(self, sex_ratio_config):
+    def test_ok_zero_computes(self, test_config_no_output):
         ok_zero_df = pd.DataFrame(
             {
                 "Year": [2024, 2025, 2024, 2025],
@@ -183,11 +195,13 @@ class TestComputeSexRatio:
                 "em_fin": [4, 2, 1, 0.9],
             }
         )
-        ok_zero_sr_df = sex_ratio.pivot_sex_ratio_frame(ok_zero_df, sex_ratio_config)
-        ok_zero_mask_df = sex_ratio.clean_and_mask(ok_zero_sr_df, sex_ratio_config)
+        ok_zero_sr_df = sex_ratio.pivot_sex_ratio_frame(
+            ok_zero_df, test_config_no_output
+        )
+        ok_zero_mask_df = sex_ratio.clean_and_mask(ok_zero_sr_df, test_config_no_output)
 
         result = sex_ratio.compute_sex_ratio(
-            ok_zero_mask_df, sex_ratio_config, male_sex="M", female_sex="F"
+            ok_zero_mask_df, test_config_no_output, male_sex="M", female_sex="F"
         )
 
         # Prove OK/Zero quality mask skips computation and returns value of OK
@@ -207,8 +221,8 @@ class TestComputeSexRatio:
 
 class TestSexRatioHelper:
     @pytest.mark.parametrize("caps", [[0, 1], [-10, 100], [0.25, 0.26], [1, 2]])
-    def test_valid_caps_are_applied(self, merged_sr_df, sex_ratio_config, caps):
-        pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+    def test_valid_caps_are_applied(self, merged_sr_df, test_config_no_output, caps):
+        pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, test_config_no_output)
         result = sex_ratio.sex_ratio_helper(
             pivot_df, "imm", 2025, caps=caps, mask=False
         )
@@ -216,8 +230,8 @@ class TestSexRatioHelper:
         assert result["sex_ratio_imm_2025"].min() >= caps[0]
         assert result["sex_ratio_imm_2025"].max() <= caps[1]
 
-    def test_invalid_caps(self, merged_sr_df, sex_ratio_config):
-        pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+    def test_invalid_caps(self, merged_sr_df, test_config_no_output):
+        pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, test_config_no_output)
 
         with pytest.raises(ValueError):
             sex_ratio.sex_ratio_helper(pivot_df, "imm", 2025, caps=[2, 1], mask=False)
@@ -226,8 +240,8 @@ class TestSexRatioHelper:
         with pytest.raises(ValueError):
             sex_ratio.sex_ratio_helper(pd.DataFrame(), "Imm", 2025)
 
-    def test_divide_by_zero_no_mask(self, merged_sr_df, sex_ratio_config):
-        pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, sex_ratio_config)
+    def test_divide_by_zero_no_mask(self, merged_sr_df, test_config_no_output):
+        pivot_df = sex_ratio.pivot_sex_ratio_frame(merged_sr_df, test_config_no_output)
 
         # Set denominators in sex ratio computation to zero
         pivot_df[("imm_fin", "Female", 2025)] = 0
@@ -238,7 +252,9 @@ class TestSexRatioHelper:
 
 
 class TestSexRatioSsq:
-    def test_non_zero_ssq(self, local_sr_df, national_sr_df, sex_ratio_config):
-        result = sex_ratio.sex_ratio_ssq(local_sr_df, national_sr_df, sex_ratio_config)
+    def test_non_zero_ssq(self, local_sr_df, national_sr_df, test_config_no_output):
+        result = sex_ratio.sex_ratio_ssq(
+            local_sr_df, national_sr_df, test_config_no_output
+        )
         for output in ["ssq_imm", "ssq_em"]:
             assert (result[output] >= 0).all()
