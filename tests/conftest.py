@@ -103,3 +103,59 @@ def national_sr_df(merged_sr_df, test_config_no_output):
         test_config_no_output,
         mask=False,
     )
+
+
+@pytest.fixture
+def valid_validation_dfs():
+    return {
+        "final_immigration": pd.DataFrame(
+            {
+                "Local Authority Code": ["E1", "W1", "S1", "E2"],
+                "Age": [0, 30, 40, 200],
+                "Sex": ["M", "F", "M", "F"],
+                "Nationality Group": [
+                    "British",
+                    "Non-British",
+                    "British",
+                    "Non-British",
+                ],
+                "Year": [2024, 2025, 2024, 2025],
+                "Count": [0.0, 1.0, 10.0, 1_000_000.0],
+            }
+        ),
+        "final_emigration": pd.DataFrame(
+            {
+                "Local Authority Code": ["E1", "W1", "S1", "E2"],
+                "Age": [0, 30, 40, 200],
+                "Sex": ["M", "F", "M", "F"],
+                "Nationality Group": [
+                    "British",
+                    "Non-British",
+                    "British",
+                    "Non-British",
+                ],
+                "Year": [2024, 2025, 2024, 2025],
+                "Count": [0.0, 1.0, 10.0, 1_000_000.0],
+            }
+        ),
+        "provisional": pd.DataFrame(
+            {
+                "code": ["E1", "W1", "S1", "E2"],
+                "Age": [0, 30, 40, 200],
+                "sex": ["M", "F", "M", "F"],
+                "international_in_2024": [10.0, 20.0, 30.0, 40.0],
+                "international_out_2024": [1.0, 2.0, 3.0, 4.0],
+                "international_net_2024": [9.0, 18.0, 27.0, 36.0],
+            }
+        ),
+        "provisional_scot": pd.DataFrame(
+            {
+                "ca_code": ["E1", "W1", "S1", "E2"],
+                "Age": [0, 30, 40, 200],
+                "sex": ["M", "F", "M", "F"],
+                "dir": ["in", "out", "in", "out"],
+                "year": [2024, 2025, 2024, 2025],
+                "count": [0.0, 1.0, 10.0, 1_000_000.0],
+            }
+        ),
+    }
