@@ -13,8 +13,9 @@ dependencies = [
 ]
 
 [project.scripts]
-provfin = "pystagegate:run_prov_fin"
-sexratio = "pystagegate:run_sex_ratio"
+run_prov_fin = "pystagegate:run_prov_fin"
+run_sex_ratio = "pystagegate:run_sex_ratio"
+run_national_profile = "pystagegate:run_national_profile"
 
 [build-system]
 requires = ["uv_build>=0.11.14,<0.12.0"]
