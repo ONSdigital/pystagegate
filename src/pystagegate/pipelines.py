@@ -3,6 +3,15 @@ import pandas as pd
 
 
 def prov_fin_main(config: dict | str) -> pd.DataFrame:
+    """
+    Compute sums of squared differences between provisional and final migration data.
+
+    Args:
+        config (dict | str): Configuration dictionary or path to configuration file.
+
+    Returns:
+        pd.DataFrame: DataFrame containing sums of squared differences between provisional and final migration data.
+    """
     # Configuration setup
     config = utils.load_config(config)
 
@@ -79,6 +88,15 @@ def prov_fin_main(config: dict | str) -> pd.DataFrame:
 
 
 def national_profile(config: dict | str) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """
+    Compute year-on-year squared differences in final migration data.
+
+    Args:
+        config (dict | str): Configuration dictionary or path to configuration file.
+
+    Returns:
+        tuple[pd.DataFrame, pd.DataFrame]: DataFrames containing year-on-year squared differences and adjusted squared differences.
+    """
     # Configuration setup
     config = utils.load_config(config)
 
@@ -109,6 +127,15 @@ def national_profile(config: dict | str) -> tuple[pd.DataFrame, pd.DataFrame]:
 def sex_ratio_main(
     config: dict | str,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """
+    Compute sex ratio analysis for final migration data, including national and local authority levels.
+
+    Args:
+        config (dict | str): Configuration dictionary or path to configuration file.
+
+    Returns:
+        tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]: DataFrames containing sex ratios, national sex ratios, and squared differences.
+    """
     # Configuration setup
     config = utils.load_config(config)
 
