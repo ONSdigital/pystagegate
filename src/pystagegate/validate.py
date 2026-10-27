@@ -3,6 +3,21 @@ import pandera.pandas as pa
 
 
 def validate(df: pd.DataFrame, df_key: str, config: dict) -> None:
+    """
+    Validate a DataFrame against the schema defined in the configuration.
+
+    Args:
+        df (pd.DataFrame): DataFrame to validate.
+        df_key (str): Key identifying the dataset in the configuration.
+        config (dict): Configuration dictionary containing validation rules.
+
+    Raises:
+        ValueError: If the dataset key is not found in the configuration.
+        pandera.errors.SchemaError: If the DataFrame does not conform to the schema.
+
+    Returns:
+        None
+    """
     if df_key not in config["datasets"]:
         raise ValueError(f"Dataset key '{df_key}' not found in configuration.")
 
