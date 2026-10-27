@@ -1,6 +1,12 @@
 API Reference
 =============
 
+Pipelines
+_________
+
+.. automodule:: pystagegate.pipelines
+    :members:
+
 Provisional-Final analysis
 __________________________
 

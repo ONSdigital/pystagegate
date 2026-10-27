@@ -20,10 +20,22 @@ Download a copy of the [configuration](https://github.com/ONSdigital/pystagegate
 
 #### Running from the command line
 
-Open your Python environment of choice and in your working directory use the console command `provfin` to run the provisional-final migration data quality assurance pipeline:
+Open your Python environment of choice and in your working directory use the console command `run_prov_fin` to run the provisional-final migration data quality assurance pipeline:
 
 ```{bash}
-provfin pipeline_config.json
+run_prov_fin pipeline_config.json
+```
+
+Similiary, there is a console command for the sex-ratio pipeline:
+
+```{bash}
+run_sex_ratio pipeline_config.json
+```
+
+And also the national profile pipeline:
+
+```{bash}
+run_national_profile pipeline_config.json
 ```
 
 #### Running in Jupyter Notebooks
