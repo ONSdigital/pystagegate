@@ -1,22 +1,66 @@
+"""Validate configured migration tables using dataset-specific Pandera schemas.
+
+Notes:
+    Checks cover column structure, coercible types and selected value constraints,
+    not statistical fitness, complete coverage or formal quality compliance.
+    Validation does not read or write files.
+"""
+
 import pandas as pd
 import pandera.pandas as pa
 
 
 def validate(df: pd.DataFrame, df_key: str, config: dict) -> None:
-    """
-    Validate a DataFrame against the schema defined in the configuration.
+    """Check one supported migration table without returning its coerced copy.
 
     Args:
-        df (pd.DataFrame): DataFrame to validate.
-        df_key (str): Key identifying the dataset in the configuration.
-        config (dict): Configuration dictionary containing validation rules.
-
-    Raises:
-        ValueError: If the dataset key is not found in the configuration.
-        pandera.errors.SchemaError: If the DataFrame does not conform to the schema.
+        df (pd.DataFrame): Table containing exactly the configured columns for
+            its schema, with no null values. Final tables require string local
+            authority, sex and nationality columns, integer age and year, and a
+            float count. Provisional England/Wales tables require string local
+            authority and sex, integer age, and float immigration, emigration
+            and net. Scottish provisional tables require string local authority,
+            sex and direction, integer age and year, and a float count. Types
+            are checked after Pandera attempts coercion.
+        df_key (str): Dataset name: ``final_immigration``, ``final_emigration``,
+            ``provisional`` or ``provisional_scot``.
+        config (dict): Requires ``datasets[df_key].variables`` mapping semantic
+            names to column names. All schemas use ``la_code``, ``age`` and
+            ``sex``; final schemas also use ``nationality``, ``year`` and
+            ``count``; provisional uses ``immigration``, ``emigration`` and
+            ``net``; Scottish provisional uses ``direction``, ``year`` and
+            ``count``. ``global_parameters`` must contain ``age_min``,
+            ``age_max``, ``year`` and ``year2`` (which may be None). Final
+            schemas additionally require ``final_nationalities``; Scottish
+            provisional requires ``provisional_scot_direction``.
 
     Returns:
-        None
+        None: Successful validation returns no data. The coerced DataFrame
+        returned by Pandera is discarded; this function does not request
+        in-place validation or replace the caller's table.
+
+    Raises:
+        ValueError: If ``df_key`` is absent from ``config['datasets']``.
+        KeyError: If a required configuration entry is absent.
+        pandera.errors.SchemaError: If schema validation or coercion fails.
+        UnboundLocalError: If a configured dataset name has no supported schema.
+
+    Notes:
+        Local authority strings need only start with E, S or W; actual codes
+        are not verified. Ages must be within the inclusive configured bounds.
+        Sex must have exactly two distinct values, with no label check. For
+        year-bearing tables, the configured year and any non-None year2 must
+        occur somewhere in the column; other years are not excluded and
+        coverage within each authority or age is not checked. Counts and
+        provisional immigration/emigration must lie in [0, 1000000]. Final
+        nationalities must belong to the configured collection. Scottish
+        directions must have exactly two distinct values, both in the configured
+        collection. Provisional net must equal immigration minus emigration
+        exactly, using the original input columns for that comparison.
+
+        Schemas reject extra columns and do not enforce unique rows, balanced
+        groups, integral counts or consistency between separate datasets.
+        Checks normally fail at the first reported error, not as a full audit.
     """
     if df_key not in config["datasets"]:
         raise ValueError(f"Dataset key '{df_key}' not found in configuration.")

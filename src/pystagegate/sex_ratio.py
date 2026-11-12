@@ -5,14 +5,33 @@ from pystagegate import prov_fin
 
 def year_agg_merge(merged_df: pd.DataFrame, config: dict) -> pd.DataFrame:
     """
-    Aggregates year totals for specified years and merges them for comparison.
+    Aggregate migration counts by area and age for two comparison years.
 
     Args:
-        merged_df (pd.DataFrame): The merged DataFrame containing immigration and emigration data.
-        config (dict): Configuration dictionary containing dataset variable mappings and global parameters.
+        merged_df (pd.DataFrame): Final migration estimates with ``imm_fin``,
+            ``em_fin`` and ``net_fin`` counts and the configured local authority,
+            year and age columns. Counts are summed across all other dimensions,
+            including sex. The input is not modified.
+        config (dict): Mapping with ``datasets.final_immigration.variables``
+            entries for ``la_code``, ``year`` and ``age``, and comparison years
+            in ``global_parameters.year`` and ``global_parameters.year2``.
 
     Returns:
-        pd.DataFrame: A DataFrame containing the squared differences for immigration, emigration, and net migration counts between the two specified years.
+        pd.DataFrame: One row per local authority and age observed in the first
+        year. Columns ``count_{imm,em,net}_{year}`` contain area counts and
+        ``total_count_{imm,em,net}_{year}`` contain totals across all supplied
+        areas for that age and year. Second-year values are left-joined, so
+        unmatched area-age combinations contain missing values. No squared
+        differences are calculated here.
+
+    Raises:
+        ValueError: If either configured year has no observations.
+        KeyError: If a required configuration key or input column is absent.
+
+    Notes:
+        Totals describe the coverage of the supplied data; they are national
+        totals only when all relevant areas are included. Missing group keys
+        are excluded by pandas' default grouping behaviour.
     """
     variables = config["datasets"]["final_immigration"]["variables"]
 
